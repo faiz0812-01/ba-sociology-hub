@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WRBVFQK55"></script>
@@ -16,6 +14,7 @@
 </script>
 
 </head>
+<head>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +22,18 @@
   <title>BA Sociology Learning Portal</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WRBVFQK55"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5WRBVFQK55');
+  </script>
 
 </head>
 
@@ -32,6 +43,10 @@
 
     <h1>Academic Learning Portal</h1>
 
+    <h2 style="margin-top:10px; color:#7c3aed;">
+      BA Sociology – Calicut University
+    </h2>
+
     <p>
       Notes • MCQ • Videos • Study Materials
     </p>
@@ -39,7 +54,8 @@
   </header>
 
 
-  <!-- SEARCH BAR -->
+
+  <!-- SEARCH -->
 
   <div class="search-box">
 
@@ -53,9 +69,10 @@
 
 
 
-  <!-- SUBJECTS CONTAINER -->
+  <!-- SUBJECTS -->
 
   <div class="subjects-container">
+
 
 
     <!-- MALAYALAM -->
@@ -66,86 +83,26 @@
 
       <div class="tabs">
 
-        <button onclick="showTab(event,'mal-short')">
-          Short Notes
+        <button onclick="window.location.href='mal-lms.html'">
+          1. LMS PDF
         </button>
 
-        <button onclick="showTab(event,'mal-mcq')">
-          MCQ
+        <button onclick="window.location.href='mal-pdf.html'">
+          2. LMS PDF Malayalam
         </button>
 
-        <button onclick="showTab(event,'mal-video')">
-          Watch Videos
+        <button onclick="window.location.href='mal-short.html'">
+          3. Short Notes
         </button>
 
-        <button onclick="showTab(event,'mal-material')">
-  Malayalam PDF
-</button>
-
-        <button onclick="showTab(event,'mal-lms')">
-          LMS PDF
+        <button onclick="window.location.href='mal-mcq.html'">
+          4. MCQs
         </button>
 
-      </div>
+        <button onclick="window.location.href='mal-video.html'">
+          5. Videos
+        </button>
 
-      <div id="mal-short" class="tab-content active">
-
-  <a href="./Malaylam/Malayalam_short_notes/short1.pdf" target="_blank">
-    Short Note 1
-  </a>
-
-  <br><br>
-
-  <a href="./Malaylam/Malayalam_short_notes/short2.pdf" target="_blank">
-    Short Note 2
-  </a>
-
-  <br><br>
-
-  <a href="./Malaylam/Malayalam_short_notes/short3.pdf" target="_blank">
-    Short Note 3
-  </a>
-
-</div>
-
-      <div id="mal-mcq" class="tab-content">
-        <a href="#">Open MCQ</a>
-      </div>
-
-      <div id="mal-video" class="tab-content">
-
-        <iframe
-          width="100%"
-          height="220"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div id="mal-material" class="tab-content">
-
-  <a href="Sociology/Malayalam_PDF/mod1.pdf" target="_blank">
-    Mod 1
-  </a>
-
-  <br><br>
-
-  <a href="Sociology/Malayalam_PDF/mod2.pdf" target="_blank">
-    Mod 2
-  </a>
-
-  <br><br>
-
-  <a href="Sociology/Malayalam_PDF/mod3.pdf" target="_blank">
-    Mod 3
-  </a>
-
-</div>
-
-      <div id="mal-lms" class="tab-content">
-        <a href="#">Open LMS PDF Files</a>
       </div>
 
     </div>
@@ -160,59 +117,27 @@
 
       <div class="tabs">
 
-        <button onclick="showTab(event,'eng-short')">
-          Short Notes
+        <button onclick="window.location.href='eng-lms.html'">
+          1. LMS PDF
         </button>
 
-        <button onclick="showTab(event,'eng-mcq')">
-          MCQ
+        <button onclick="window.location.href='eng-pdf.html'">
+          2. English PDF
         </button>
 
-        <button onclick="showTab(event,'eng-video')">
-          Watch Videos
+        <button onclick="window.location.href='eng-short.html'">
+          3. Short Notes
         </button>
 
-        <button onclick="showTab(event,'eng-material')">
-          Materials
+        <button onclick="window.location.href='eng-mcq.html'">
+          4. MCQs
         </button>
 
-        <button onclick="showTab(event,'eng-lms')">
-          LMS PDF
+        <button onclick="window.location.href='eng-video.html'">
+          5. Videos
         </button>
 
       </div>
-
-      <div id="eng-short" class="tab-content active">
-        <a href="#">Open Short Notes</a>
-      </div>
-
-      <div id="eng-mcq" class="tab-content">
-        <a href="#">Open MCQ</a>
-      </div>
-
-      <div id="eng-video" class="tab-content">
-
-        <iframe
-          width="100%"
-          height="220"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div id="eng-material" class="tab-content">
-        <a href="#">Open Materials</a>
-      </div>
-
-      <div id="eng-lms" class="tab-content">
-
-  <a href="./English/LMS_PDF/Ch1-Ihaveadream.pdf" target="_blank">
-    LMS Module 1
-  </a>
-
-</div>
 
     </div>
 
@@ -226,58 +151,26 @@
 
       <div class="tabs">
 
-        <button onclick="showTab(event,'soc-short')">
-          Short Notes
+        <button onclick="window.location.href='soc-lms.html'">
+          1. LMS PDF
         </button>
 
-        <button onclick="showTab(event,'soc-mcq')">
-          MCQ
+        <button onclick="window.location.href='soc-pdf.html'">
+          2. LMS PDF Malayalam
         </button>
 
-        <button onclick="showTab(event,'soc-video')">
-          Watch Videos
+        <button onclick="window.location.href='soc-short.html'">
+          3. Short Notes
         </button>
 
-        <button onclick="showTab(event,'soc-material')">
-  Malayalam PDF
-</button>
-
-        <button onclick="showTab(event,'soc-lms')">
-          LMS PDF
+        <button onclick="window.location.href='soc-mcq.html'">
+          4. MCQs
         </button>
 
-      </div>
+        <button onclick="window.location.href='soc-video.html'">
+          5. Videos
+        </button>
 
-      <div id="mal-short" class="tab-content active">
-
-  <a href="./Malaylam/Malayalam_short_notes/Notes_Chapter_1.pdf" target="_blank">
-    Short Note 1
-  </a>
-
-</div>
-
-      <div id="soc-mcq" class="tab-content">
-        <a href="#">Open MCQ</a>
-      </div>
-
-      <div id="soc-video" class="tab-content">
-
-        <iframe
-          width="100%"
-          height="220"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div id="soc-material" class="tab-content">
-        <a href="#">Open Materials</a>
-      </div>
-
-      <div id="soc-lms" class="tab-content">
-        <a href="#">Open LMS PDF Files</a>
       </div>
 
     </div>
@@ -292,58 +185,26 @@
 
       <div class="tabs">
 
-        <button onclick="showTab(event,'ai-short')">
-          Short Notes
+        <button onclick="window.location.href='ai-lms.html'">
+          1. LMS PDF
         </button>
 
-        <button onclick="showTab(event,'ai-mcq')">
-          MCQ
+        <button onclick="window.location.href='ai-pdf.html'">
+          2. LMS PDF Malayalam
         </button>
 
-        <button onclick="showTab(event,'ai-video')">
-          Watch Videos
+        <button onclick="window.location.href='ai-short.html'">
+          3. Short Notes
         </button>
 
-        <button onclick="showTab(event,'ai-material')">
-  Malayalam PDF
-</button>
-
-        <button onclick="showTab(event,'ai-lms')">
-          LMS PDF
+        <button onclick="window.location.href='ai-mcq.html'">
+          4. MCQs
         </button>
 
-      </div>
+        <button onclick="window.location.href='ai-video.html'">
+          5. Videos
+        </button>
 
-      <div id="mal-short" class="tab-content active">
-
-  <a href="./Malaylam/Malayalam_short_notes/Notes_Chapter_1.pdf" target="_blank">
-    Short Note 1
-  </a>
-
-</div>
-
-      <div id="ai-mcq" class="tab-content">
-        <a href="#">Open MCQ</a>
-      </div>
-
-      <div id="ai-video" class="tab-content">
-
-        <iframe
-          width="100%"
-          height="220"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div id="ai-material" class="tab-content">
-        <a href="#">Open Materials</a>
-      </div>
-
-      <div id="ai-lms" class="tab-content">
-        <a href="#">Open LMS PDF Files</a>
       </div>
 
     </div>
@@ -358,54 +219,26 @@
 
       <div class="tabs">
 
-        <button onclick="showTab(event,'edu-short')">
-          Short Notes
+        <button onclick="window.location.href='edu-lms.html'">
+          1. LMS PDF
         </button>
 
-        <button onclick="showTab(event,'edu-mcq')">
-          MCQ
+        <button onclick="window.location.href='edu-pdf.html'">
+          2. LMS PDF Malayalam
         </button>
 
-        <button onclick="showTab(event,'edu-video')">
-          Watch Videos
+        <button onclick="window.location.href='edu-short.html'">
+          3. Short Notes
         </button>
 
-        <button onclick="showTab(event,'edu-material')">
-  Malaylam PDF
-</button>
-
-        <button onclick="showTab(event,'edu-lms')">
-          LMS PDF
+        <button onclick="window.location.href='edu-mcq.html'">
+          4. MCQs
         </button>
 
-      </div>
+        <button onclick="window.location.href='edu-video.html'">
+          5. Videos
+        </button>
 
-      <div id="edu-short" class="tab-content active">
-        <a href="#">Open Short Notes</a>
-      </div>
-
-      <div id="edu-mcq" class="tab-content">
-        <a href="#">Open MCQ</a>
-      </div>
-
-      <div id="edu-video" class="tab-content">
-
-        <iframe
-          width="100%"
-          height="220"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div id="edu-material" class="tab-content">
-        <a href="#">Open Materials</a>
-      </div>
-
-      <div id="edu-lms" class="tab-content">
-        <a href="#">Open LMS PDF Files</a>
       </div>
 
     </div>
@@ -420,54 +253,26 @@
 
       <div class="tabs">
 
-        <button onclick="showTab(event,'eth-short')">
-          Short Notes
+        <button onclick="window.location.href='eth-lms.html'">
+          1. LMS PDF
         </button>
 
-        <button onclick="showTab(event,'eth-mcq')">
-          MCQ
+        <button onclick="window.location.href='eth-pdf.html'">
+          2. LMS PDF Malayalam
         </button>
 
-        <button onclick="showTab(event,'eth-video')">
-          Watch Videos
+        <button onclick="window.location.href='eth-short.html'">
+          3. Short Notes
         </button>
 
-        <button onclick="showTab(event,'eth-material')">
-  Malayalam PDF
-</button>
-
-        <button onclick="showTab(event,'eth-lms')">
-          LMS PDF
+        <button onclick="window.location.href='eth-mcq.html'">
+          4. MCQs
         </button>
 
-      </div>
+        <button onclick="window.location.href='eth-video.html'">
+          5. Videos
+        </button>
 
-      <div id="eth-short" class="tab-content active">
-        <a href="#">Open Short Notes</a>
-      </div>
-
-      <div id="eth-mcq" class="tab-content">
-        <a href="#">Open MCQ</a>
-      </div>
-
-      <div id="eth-video" class="tab-content">
-
-        <iframe
-          width="100%"
-          height="220"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div id="eth-material" class="tab-content">
-        <a href="#">Open Materials</a>
-      </div>
-
-      <div id="eth-lms" class="tab-content">
-        <a href="#">Open LMS PDF Files</a>
       </div>
 
     </div>
@@ -475,45 +280,46 @@
 
 
   </div>
-<!-- CONTACT SECTION -->
 
-<div style="
-  margin-top:40px;
-  text-align:center;
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-">
 
-  <h2 style="color:#2563eb;">
-  For any queries?
-  </h2>
 
-  <p style="margin-top:10px;">
-    Contact us on WhatsApp
-  </p>
+  <!-- CONTACT -->
 
-  <a
-    href="https://wa.me/919544750606"
-    target="_blank"
-    style="
-      display:inline-block;
-      margin-top:15px;
-      padding:12px 20px;
-      background:#25D366;
-      color:white;
-      text-decoration:none;
-      border-radius:12px;
-      font-weight:bold;
-    "
-  >
-    WhatsApp Support
-  </a>
+  <div style="
+    margin-top:40px;
+    text-align:center;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  ">
 
-</div>
+    <h2 style="color:#2563eb;">
+      For any queries?
+    </h2>
 
-  <script src="script.js"></script>
+    <p style="margin-top:10px;">
+      Contact us on WhatsApp
+    </p>
+
+    <a
+      href="https://wa.me/919544750606"
+      target="_blank"
+      style="
+        display:inline-block;
+        margin-top:15px;
+        padding:12px 20px;
+        background:#25D366;
+        color:white;
+        text-decoration:none;
+        border-radius:12px;
+        font-weight:bold;
+      "
+    >
+      WhatsApp Support
+    </a>
+
+  </div>
 
 </body>
 
