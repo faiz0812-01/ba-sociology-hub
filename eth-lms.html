@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamentals of Ethics LMS PDF</title>
+
+<title>English LMS PDF</title>
+
 <link rel="stylesheet" href="style.css">
 
 <style>
@@ -15,7 +19,7 @@ body{
 }
 
 .page-box{
-  max-width:700px;
+  max-width:1000px;
   margin:auto;
   background:white;
   padding:35px;
@@ -25,53 +29,228 @@ body{
 
 h1{
   text-align:center;
-  color:#7c3aed;
-  margin-bottom:30px;
+  color:#2563eb;
+  margin-bottom:40px;
 }
 
-.pdf-btn{
-  display:block;
-  margin-bottom:18px;
-  padding:18px;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
+.pdf-grid{
   text-align:center;
-  border-radius:18px;
-  background:linear-gradient(135deg,#8b5cf6,#6366f1);
+}
+
+.pdf-card{
+
+  width:220px;
+  height:120px;
+  border:none;
+  border-radius:20px;
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
   color:white;
+  font-size:22px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:15px;
+  transition:0.3s;
+
+}
+
+.pdf-card:hover{
+  transform:scale(1.05);
+}
+
+.modal{
+
+  display:none;
+  position:fixed;
+  z-index:1000;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+
+}
+
+.modal-content{
+
+  background:#111827;
+  color:white;
+  width:320px;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  margin:10% auto;
+  position:relative;
+
+}
+
+.close-btn{
+
+  position:absolute;
+  top:10px;
+  right:18px;
+  font-size:28px;
+  cursor:pointer;
+
+}
+
+.modal-btn{
+
+  display:block;
+  margin-top:20px;
+  padding:14px;
+  border-radius:12px;
+  background:#374151;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+
 }
 
 .back-btn{
+
   display:block;
-  margin-top:35px;
+  margin-top:40px;
   text-align:center;
   background:#111827;
   color:white;
   padding:15px;
   border-radius:16px;
   text-decoration:none;
+  font-weight:bold;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="page-box">
 
-<h1>Sociology LMS PDF</h1>
+<h1>English LMS PDF</h1>
 
-<a class="pdf-btn" href="#">Module 1</a>
-<a class="pdf-btn" href="#">Module 2</a>
-<a class="pdf-btn" href="#">Module 3</a>
-<a class="pdf-btn" href="#">Module 4</a>
 
-<a class="back-btn" href="index.html">
+
+<div class="pdf-grid">
+
+<button class="pdf-card"
+onclick="openModal(
+'Module 1',
+'English/LMS_PDF/module1.pdf'
+)">
+Module 1
+</button>
+
+
+
+<button class="pdf-card"
+onclick="openModal(
+'Module 2',
+'English/LMS_PDF/module2.pdf'
+)">
+Module 2
+</button>
+
+
+
+<button class="pdf-card"
+onclick="openModal(
+'Module 3',
+'English/LMS_PDF/module3.pdf'
+)">
+Module 3
+</button>
+
+
+
+<button class="pdf-card"
+onclick="openModal(
+'Module 4',
+'English/LMS_PDF/module4.pdf'
+)">
+Module 4
+</button>
+
+</div>
+
+
+
+<div id="pdfModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close-btn"
+    onclick="closeModal()">
+    ×
+    </span>
+
+    <h2 id="modalTitle"></h2>
+
+    <a id="viewBtn"
+    class="modal-btn"
+    target="_blank">
+
+      View PDF
+
+    </a>
+
+    <a id="downloadBtn"
+    class="modal-btn"
+    download>
+
+      Download PDF
+
+    </a>
+
+  </div>
+
+</div>
+
+
+
+<a class="back-btn"
+href="index.html">
+
 ← Back Home
+
 </a>
 
 </div>
+
+
+
+<script>
+
+function openModal(title,pdf){
+
+  document.getElementById(
+  "pdfModal"
+  ).style.display="block";
+
+  document.getElementById(
+  "modalTitle"
+  ).innerText=title;
+
+  document.getElementById(
+  "viewBtn"
+  ).href=pdf;
+
+  document.getElementById(
+  "downloadBtn"
+  ).href=pdf;
+
+}
+
+function closeModal(){
+
+  document.getElementById(
+  "pdfModal"
+  ).style.display="none";
+
+}
+
+</script>
 
 </body>
 </html>
