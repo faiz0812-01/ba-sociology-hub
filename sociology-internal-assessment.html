@@ -11,7 +11,7 @@ const TEST_SIZE = 50, TEST_MINUTES = 30, PASS_PERCENT = 40;
 
 // Optional result backend. Set this to your deployed Cloudflare Worker URL.
 // Example: https://assessment-api.your-subdomain.workers.dev
-const RESULT_API_URL = "";
+const RESULT_API_URL = "https://ba-sociology-results.faiz0812.workers.dev";
 
 let test=[], current=0, answers={}, seconds=TEST_MINUTES*60, timer=null, student={};
 const $=id=>document.getElementById(id);
