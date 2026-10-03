@@ -39,7 +39,7 @@ async function saveResult(auto){
     autoSubmitted:!!auto, submittedAt:new Date().toISOString()
   };
   try{
-    await fetch(RESULT_API_URL.replace(/\\/$/,'')+"/submit",{
+    await fetch(RESULT_API_URL.replace(/\/$/,'')+"/submit",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(payload),
