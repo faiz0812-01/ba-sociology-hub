@@ -28,6 +28,7 @@ export default {
 
       // Cloudflare provides the connecting IP in this header at the edge.
       const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+      const cfCountry = request.cf?.country || "Unknown";
       const ua = request.headers.get("User-Agent") || "";
 
       await env.DB.prepare(
@@ -54,7 +55,7 @@ export default {
         `SELECT id,name,reg,subject,score,total,percentage,wrong,unanswered,status,auto_submitted,submitted_at,ip_address
          FROM results ORDER BY id DESC LIMIT ?`
       ).bind(limit).all();
-      return json({results:result.results || []});
+      return json({results:(result.results || []).map(x=>({...x,country:x.country || "Unknown"}))});
     }
 
     return json({service:"BA Sociology Assessment API", ok:true});
