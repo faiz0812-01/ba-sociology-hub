@@ -11,7 +11,75 @@ function start(){let n=$('name').value.trim();if(!n){$('msg').textContent='Pleas
 function tick(){sec=Math.max(0,sec-1);$('timer').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');if(!sec){clearInterval(timer);submitTest(true)}}
 function render(){let q=test[i];$('submit').classList.toggle('hidden',i!==N-1);$('counter').textContent='Question '+(i+1)+' of '+N;$('q').textContent=q.question;$('opts').innerHTML=q.options.map(o=>'<label class="opt"><input type="radio" name="a" value="'+o.value+'" '+(a[i]===o.value?'checked':'')+'> '+o.value+') '+o.text+'</label>').join('');document.querySelectorAll('input[name=a]').forEach(x=>x.onchange=()=>{a[i]=x.value;nav()});$('prev').disabled=!i;$('next').classList.toggle('hidden',i===N-1);nav()}
 function nav(){let n=$('nav');n.innerHTML='';test.forEach((_,j)=>{let b=document.createElement('button');b.textContent=j+1;b.className=(a[j]?'answered ':'')+(j===i?'current':'');b.onclick=()=>{i=j;render()};n.appendChild(b)})}
-function submitTest(auto){if(submitted)return;submitted=true;try{clearInterval(timer);let c=0,w=0,u=0;test.forEach((q,j)=>{if(!a[j])u++;else if(a[j]===q.answer)c++;else w++});student.score=c;student.wrong=w;student.unanswered=u;student.attempted=c+w;student.pct=c/N*100;student.accuracy=(c+w)?c/(c+w)*100:0;student.timeUsed=MIN*60-sec;student.status=student.pct>=40?'PASS':'NEEDS IMPROVEMENT';showResult(auto);fetch(API+'/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:student.name,reg:'',subject:'Sociology Mock Test mod-1,2 - 60Q',score:c,total:N,percentage:Number(student.pct.toFixed(1)),wrong:w,unanswered:u,status:student.status,autoSubmitted:auto,submittedAt:new Date().toISOString()}),keepalive:true}).catch(()=>{});}catch(e){show('result');$('rn').textContent=student.name||'';$('score').textContent='Error';$('expired').textContent='Could not calculate result: '+e.message;}}
-function showResult(auto){$('rn').textContent=student.name;$('score').textContent=student.score+' / '+N;$('pct').textContent=student.pct.toFixed(1)+'%';$('attempted').textContent=student.attempted+' / '+N;$('accuracy').textContent=student.accuracy.toFixed(1)+'%';let tm=Math.max(0,student.timeUsed),mm=Math.floor(tm/60),ss=tm%60;$('timeused').textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');$('cor').textContent=student.score;$('wr').textContent=student.wrong;$('ua').textContent=student.unanswered;$('st').textContent=student.status;$('expired').textContent=auto?'Time expired — the test was submitted automatically.':'';let r='';test.forEach((q,j)=>{let co=q.options.find(o=>o.value===q.answer);r+='<div><b>Q'+(j+1)+'. '+q.question+'</b><br>Your answer: '+(a[j]||'Not answered')+'<br>Correct answer: '+q.answer+') '+co.text+'</div>'});$('rev').innerHTML=r}
+function calculateResult(auto){
+  if(!test.length){alert('Test data is not loaded. Please refresh and start again.');return false;}
+  clearInterval(timer);
+  let correct=0,wrong=0,unanswered=0;
+  test.forEach(function(q,j){
+    if(!a[j]) unanswered++;
+    else if(a[j]===q.answer) correct++;
+    else wrong++;
+  });
+  student.score=correct;
+  student.wrong=wrong;
+  student.unanswered=unanswered;
+  student.attempted=correct+wrong;
+  student.pct=(correct/N)*100;
+  student.accuracy=student.attempted ? (correct/student.attempted)*100 : 0;
+  student.timeUsed=(MIN*60)-sec;
+  student.status=student.pct>=40?'PASS':'NEEDS IMPROVEMENT';
+  showResult(auto);
+  return true;
+}
+function submitTest(auto){
+  if(submitted) return;
+  if(!auto && !confirm('Are you sure you want to submit the test?')) return;
+  submitted=true;
+  if(!calculateResult(auto)){submitted=false;return;}
+  var payload={
+    name:student.name,
+    reg:'',
+    subject:'Sociology Mock Test mod-1,2 - 60Q',
+    score:student.score,
+    total:N,
+    percentage:Number(student.pct.toFixed(1)),
+    wrong:student.wrong,
+    unanswered:student.unanswered,
+    status:student.status,
+    autoSubmitted:auto,
+    submittedAt:new Date().toISOString()
+  };
+  fetch(API+'/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  }).then(function(response){
+    if(!response.ok) throw new Error('Server returned '+response.status);
+  }).catch(function(error){
+    console.warn('Result server submission failed:',error);
+  });
+}
+function showResult(auto){
+  $('rn').textContent=student.name;
+  $('score').textContent=student.score+' / '+N;
+  $('pct').textContent=student.pct.toFixed(1)+'%';
+  $('attempted').textContent=student.attempted+' / '+N;
+  $('accuracy').textContent=student.accuracy.toFixed(1)+'%';
+  var tm=Math.max(0,student.timeUsed),mm=Math.floor(tm/60),ss=tm%60;
+  $('timeused').textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+  $('cor').textContent=student.score;
+  $('wr').textContent=student.wrong;
+  $('ua').textContent=student.unanswered;
+  $('st').textContent=student.status;
+  $('expired').textContent=auto?'Time expired — the test was submitted automatically.':'Test submitted successfully.';
+  var r='';
+  test.forEach(function(q,j){
+    var co=q.options.find(function(o){return o.value===q.answer;});
+    var your=a[j]||'Not answered';
+    var result=your===q.answer?'Correct':(your==='Not answered'?'Unanswered':'Wrong');
+    r+='<div><b>Q'+(j+1)+'. '+q.question+'</b><br>Your answer: '+your+'<br>Correct answer: '+q.answer+') '+co.text+'<br><b>'+result+'</b></div>';
+  });
+  $('rev').innerHTML=r;
+}
 $('startBtn').onclick=start;$('prev').onclick=()=>{if(i>0){i--;render()}};$('next').onclick=()=>{if(i<N-1){i++;render()}};$('submit').onclick=()=>submitTest(false);$('saveReport').onclick=saveReport;window.submitTest=submitTest;
 function saveReport(){let html='<!doctype html><html><head><meta charset="utf-8"><title>Sociology Mock Test Analysis</title><style>body{font-family:Arial;margin:30px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px;text-align:left}th{background:#eee}.ok{color:green}.bad{color:red}</style></head><body><h1>Sociology Mock Test mod-1,2 — Analysis Report</h1><p><b>Student:</b> '+esc(student.name)+'</p><p><b>Score:</b> '+student.score+' / '+N+' &nbsp; <b>Percentage:</b> '+student.pct.toFixed(1)+'% &nbsp; <b>Status:</b> '+student.status+'</p><p><b>Attempted:</b> '+student.attempted+' &nbsp; <b>Correct:</b> '+student.score+' &nbsp; <b>Wrong:</b> '+student.wrong+' &nbsp; <b>Unanswered:</b> '+student.unanswered+' &nbsp; <b>Accuracy:</b> '+student.accuracy.toFixed(1)+'%</p><table><tr><th>No.</th><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></tr>'+test.map((q,j)=>{let co=q.options.find(o=>o.value===q.answer),your=a[j]||'Not answered',res=your===q.answer?'Correct':your==='Not answered'?'Unanswered':'Wrong';return '<tr><td>'+(j+1)+'</td><td>'+esc(q.question)+'</td><td>'+esc(your)+'</td><td>'+esc(q.answer+') '+co.text)+'</td><td class="'+(res==='Correct'?'ok':'bad')+'">'+res+'</td></tr>'}).join('')+'</table></body></html>';let blob=new Blob([html],{type:'text/html'}),url=URL.createObjectURL(blob),aEl=document.createElement('a');aEl.href=url;aEl.download='Sociology_Mock_Test_Analysis.html';document.body.appendChild(aEl);aEl.click();aEl.remove();URL.revokeObjectURL(url)}function esc(s){return String(s).replace(/[&<>]/g,function(x){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[x]})}</script></body></html>
