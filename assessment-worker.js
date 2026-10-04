@@ -33,13 +33,13 @@ export default {
 
       await env.DB.prepare(
         `INSERT INTO results
-        (name, reg, subject, score, total, percentage, wrong, unanswered, status, auto_submitted, submitted_at, ip_address, user_agent)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        (name, reg, subject, score, total, percentage, wrong, unanswered, status, auto_submitted, submitted_at, ip_address, user_agent, country)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).bind(
         String(body.name).slice(0,120), String(body.reg).slice(0,80), String(body.subject).slice(0,80),
         Number(body.score), Number(body.total), Number(body.percentage), Number(body.wrong),
         Number(body.unanswered), String(body.status).slice(0,40), body.autoSubmitted ? 1 : 0,
-        String(body.submittedAt), ip, ua.slice(0,500)
+        String(body.submittedAt), ip, ua.slice(0,500), cfCountry
       ).run();
 
       return json({ok:true});
@@ -52,10 +52,10 @@ export default {
 
       const limit = Math.min(Number(url.searchParams.get("limit") || 500), 2000);
       const result = await env.DB.prepare(
-        `SELECT id,name,reg,subject,score,total,percentage,wrong,unanswered,status,auto_submitted,submitted_at,ip_address
+        `SELECT id,name,reg,subject,score,total,percentage,wrong,unanswered,status,auto_submitted,submitted_at,ip_address,country
          FROM results ORDER BY id DESC LIMIT ?`
       ).bind(limit).all();
-      return json({results:(result.results || []).map(x=>({...x,country:x.country || "Unknown"}))});
+      return json({results:result.results || []});
     }
 
     return json({service:"BA Sociology Assessment API", ok:true});
