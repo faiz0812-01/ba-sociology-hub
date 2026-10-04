@@ -9,26 +9,103 @@
 <p>Private dashboard for assessment submissions.</p>
 <input id="api" value="https://ba-sociology-results.faiz0812.workers.dev" style="width:100%;box-sizing:border-box">
 <input id="token" type="password" placeholder="Admin token" style="width:100%;box-sizing:border-box;margin-top:8px">
-<button type="button" onclick="load()" style="margin-top:8px">Load Results</button>
+<button type="button" id="loadBtn" style="margin-top:8px">Load Results</button>
 <span id="msg"></span></div>
 <div class="card" id="summary"></div>
 <div class="card scroll"><table><thead><tr><th>Name</th><th>Subject</th><th>Score</th><th>%</th><th>Status</th><th>Time</th><th>IP Address</th><th>Country</th><th>Device / Browser Details</th></tr></thead><tbody id="rows"></tbody></table></div>
 </div>
 <script>
-async function load(){
- const api=document.getElementById("api").value.replace(/\/$/,""), token=document.getElementById("token").value, msg=document.getElementById("msg");
- if(!api||!token){msg.textContent=" Enter Worker URL and admin token.";return}
- msg.textContent=" Loading...";
- try{
-  const r=await fetch(api+"/results",{headers:{Authorization:"Bearer "+token}});
-  if(!r.ok) throw new Error("HTTP "+r.status);
-  const data=await r.json(), rows=data.results||[];
-  document.getElementById("rows").innerHTML=rows.map(x=>{const cc=String(x.country||"").toUpperCase();const flag=countryFlag(cc);const countryName=countryNameFromCode(cc);return `<tr><td><b>${esc(x.name)}</b><br><span class="badge">${esc(x.reg||"N/A")}</span></td><td>${esc(x.subject)}</td><td><b>${x.score}/${x.total}</b><br><span class="details">Wrong: ${x.wrong} · Unanswered: ${x.unanswered}</span></td><td>${x.percentage}%</td><td>${esc(x.status)}</td><td>${new Date(x.submitted_at).toLocaleString()}</td><td><span class="ip">${esc(x.ip_address||"Unknown")}</span></td><td class="country-cell"><span class="flag">${flag}</span>${esc(countryName)}<br><span class="details">${esc(cc||"Unknown")}</span></td><td class="details"><b>User Agent:</b><br>${esc(x.user_agent||"Not available")}</td></tr>`}).join("");
-  document.getElementById("summary").innerHTML=`<span class="stat">Submissions: ${rows.length}</span><span class="stat">Pass: ${rows.filter(x=>x.status==="PASS").length}</span>`;
-  msg.textContent=" Loaded.";
- }catch(e){msg.textContent=" Error: "+e.message}
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("loadBtn").addEventListener("click", loadResults);
+});
+
+async function loadResults(){
+  var api = document.getElementById("api").value.trim().replace(/\/$/, "");
+  var token = document.getElementById("token").value.trim();
+  var msg = document.getElementById("msg");
+  var btn = document.getElementById("loadBtn");
+
+  if(!api || !token){
+    msg.textContent = " Please enter the Admin Token.";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Loading...";
+  msg.textContent = "";
+
+  try{
+    var response = await fetch(api + "/results", {
+      method: "GET",
+      headers: { "Authorization": "Bearer " + token }
+    });
+
+    if(!response.ok){
+      throw new Error("HTTP " + response.status);
+    }
+
+    var data = await response.json();
+    var rows = Array.isArray(data.results) ? data.results : [];
+
+    var html = "";
+    for(var i=0;i<rows.length;i++){
+      var x = rows[i];
+      var code = String(x.country || "").toUpperCase();
+      var flag = getFlag(code);
+      var country = getCountry(code);
+
+      html += "<tr>";
+      html += "<td><b>" + esc(x.name) + "</b><br><span class='badge'>" + esc(x.reg || "N/A") + "</span></td>";
+      html += "<td>" + esc(x.subject) + "</td>";
+      html += "<td><b>" + esc(x.score) + "/" + esc(x.total) + "</b><br><span class='details'>Wrong: " + esc(x.wrong) + " · Unanswered: " + esc(x.unanswered) + "</span></td>";
+      html += "<td>" + esc(x.percentage) + "%</td>";
+      html += "<td>" + esc(x.status) + "</td>";
+      html += "<td>" + esc(formatDate(x.submitted_at)) + "</td>";
+      html += "<td><span class='ip'>" + esc(x.ip_address || "Unknown") + "</span></td>";
+      html += "<td class='country-cell'><span class='flag'>" + flag + "</span>" + esc(country) + "<br><span class='details'>" + esc(code || "Unknown") + "</span></td>";
+      html += "<td class='details'><b>User Agent:</b><br>" + esc(x.user_agent || "Not available") + "</td>";
+      html += "</tr>";
+    }
+
+    document.getElementById("rows").innerHTML = html;
+    document.getElementById("summary").innerHTML =
+      "<span class='stat'>Submissions: " + rows.length + "</span>" +
+      "<span class='stat'>Pass: " + rows.filter(function(x){return x.status === "PASS";}).length + "</span>";
+
+    msg.textContent = " Loaded successfully.";
+  }catch(error){
+    msg.textContent = " Error: " + error.message;
+  }finally{
+    btn.disabled = false;
+    btn.textContent = "Load Results";
+  }
 }
-function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function countryFlag(code){if(!/^[A-Z]{2}$/.test(code))return "🌐";return String.fromCodePoint(...[...code].map(ch=>127397+ch.charCodeAt(0)))}
-function countryNameFromCode(code){if(!/^[A-Z]{2}$/.test(code))return "Unknown";try{return new Intl.DisplayNames(["en"],{type:"region"}).of(code)||code}catch{return code}}
+
+function esc(value){
+  return String(value == null ? "" : value).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+  });
+}
+
+function getFlag(code){
+  if(!/^[A-Z]{2}$/.test(code)) return "🌐";
+  return String.fromCodePoint.apply(null, code.split("").map(function(ch){
+    return 127397 + ch.charCodeAt(0);
+  }));
+}
+
+function getCountry(code){
+  if(!/^[A-Z]{2}$/.test(code)) return "Unknown";
+  try{
+    return new Intl.DisplayNames(["en"], {type:"region"}).of(code) || code;
+  }catch(e){
+    return code;
+  }
+}
+
+function formatDate(value){
+  if(!value) return "";
+  var d = new Date(value);
+  return isNaN(d.getTime()) ? value : d.toLocaleString();
+}
 </script></body></html>
