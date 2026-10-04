@@ -6,9 +6,9 @@ body{font-family:Arial;margin:0;background:#f4f7fb;color:#17202a}.wrap{max-width
 <body><div class="wrap">
 <div class="card"><h1>📊 Teacher Assessment Dashboard</h1>
 <p>Private dashboard for assessment submissions.</p>
-<input id="api" placeholder="Worker URL, e.g. https://assessment-api.example.workers.dev" style="width:100%;box-sizing:border-box">
+<input id="api" value="https://ba-sociology-results.faiz0812.workers.dev" style="width:100%;box-sizing:border-box">
 <input id="token" type="password" placeholder="Admin token" style="width:100%;box-sizing:border-box;margin-top:8px">
-<button type="button" id="loadBtn" style="margin-top:8px">Load Results</button>
+<button type="button" onclick="load()" style="margin-top:8px">Load Results</button>
 <span id="msg"></span></div>
 <div class="card" id="summary"></div>
 <div class="card scroll"><table><thead><tr><th>Name</th><th>Register</th><th>Subject</th><th>Score</th><th>%</th><th>Status</th><th>Time</th><th>IP</th></tr></thead><tbody id="rows"></tbody></table></div>
@@ -28,5 +28,4 @@ async function load(){
  }catch(e){msg.textContent=" Error: "+e.message}
 }
 function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-document.addEventListener("DOMContentLoaded",function(){document.getElementById("loadBtn").addEventListener("click",load);});
 </script></body></html>
