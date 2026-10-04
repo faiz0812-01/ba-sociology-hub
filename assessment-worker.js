@@ -28,7 +28,7 @@ export default {
 
       // Cloudflare provides the connecting IP in this header at the edge.
       const ip = request.headers.get("CF-Connecting-IP") || "unknown";
-      const cfCountry = request.cf?.country || "Unknown";
+      const cfCountry = (request.cf?.country || request.headers.get("CF-IPCountry") || "Unknown").toUpperCase();
       const ua = request.headers.get("User-Agent") || "";
 
       await env.DB.prepare(
