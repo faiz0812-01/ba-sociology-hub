@@ -32,6 +32,8 @@ export default {
       const provider = request.cf?.asOrganization || request.cf?.asn || "Unknown";
       const ua = request.headers.get("User-Agent") || "";
 
+      await env.DB.prepare(`ALTER TABLE results ADD COLUMN provider TEXT`).run().catch(() => {});
+
       await env.DB.prepare(
         `INSERT INTO results
         (name, reg, subject, score, total, percentage, wrong, unanswered, status, auto_submitted, submitted_at, ip_address, user_agent, country, provider)
@@ -53,7 +55,7 @@ export default {
 
       const limit = Math.min(Number(url.searchParams.get("limit") || 500), 2000);
       const result = await env.DB.prepare(
-        `SELECT id,name,reg,subject,score,total,percentage,wrong,unanswered,status,auto_submitted,submitted_at,ip_address,country
+        `SELECT id,name,reg,subject,score,total,percentage,wrong,unanswered,status,auto_submitted,submitted_at,ip_address,country,provider
          FROM results ORDER BY id DESC LIMIT ?`
       ).bind(limit).all();
       return json({results:result.results || []});
