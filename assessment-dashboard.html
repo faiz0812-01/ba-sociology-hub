@@ -10,14 +10,78 @@
 <input id="api" value="https://ba-sociology-results.faiz0812.workers.dev" style="width:100%;box-sizing:border-box">
 <input id="token" type="password" placeholder="Admin token" style="width:100%;box-sizing:border-box;margin-top:8px">
 <button type="button" id="loadBtn" style="margin-top:8px">Load Results</button>
+<select id="subjectFilter" style="margin-top:8px;width:100%;padding:12px;border-radius:10px;border:1px solid #c7d2fe;font-family:inherit">
+<option value="">All Subjects</option>
+</select>
 <span id="msg"></span></div>
 <div class="card" id="summary"></div>
+<div class="card" id="subjectSummary"></div>
 <div class="card scroll"><table><thead><tr><th>Name</th><th>Subject</th><th>Score</th><th>%</th><th>Status</th><th>Time</th><th>IP Address</th><th>Country</th><th>Device / Browser Details</th></tr></thead><tbody id="rows"></tbody></table></div>
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("loadBtn").addEventListener("click", loadResults);
+  document.getElementById("subjectFilter").addEventListener("change", applySubjectFilter);
 });
+
+var allRows = [];
+
+function renderRows(rows){
+  var html = "";
+  for(var i=0;i<rows.length;i++){
+    var x = rows[i];
+    var code = String(x.country || "").toUpperCase();
+    var flag = getFlag(code);
+    var country = getCountry(code);
+    html += "<tr>";
+    html += "<td><b>" + esc(x.name) + "</b><br><span class='badge'>" + esc(x.reg || "N/A") + "</span></td>";
+    html += "<td>" + esc(x.subject) + "</td>";
+    html += "<td><b>" + esc(x.score) + "/" + esc(x.total) + "</b><br><span class='details'>Wrong: " + esc(x.wrong) + " · Unanswered: " + esc(x.unanswered) + "</span></td>";
+    html += "<td>" + esc(x.percentage) + "%</td>";
+    html += "<td>" + esc(x.status) + "</td>";
+    html += "<td>" + esc(formatDate(x.submitted_at)) + "</td>";
+    html += "<td><span class='ip'>" + esc(x.ip_address || "Unknown") + "</span></td>";
+    html += "<td class='country-cell'><span class='flag'>" + flag + "</span>" + esc(country) + "<br><span class='details'>" + esc(code || "Unknown") + "</span></td>";
+    html += "<td class='details'><b>User Agent:</b><br>" + esc(x.user_agent || "Not available") + "</td>";
+    html += "</tr>";
+  }
+  document.getElementById("rows").innerHTML = html;
+}
+
+function renderSummary(rows){
+  var subjects = {};
+  for(var i=0;i<rows.length;i++){
+    var s = rows[i].subject || "Unknown";
+    subjects[s] = (subjects[s] || 0) + 1;
+  }
+  document.getElementById("summary").innerHTML =
+    "<span class='stat'>Submissions: " + rows.length + "</span>" +
+    "<span class='stat'>Pass: " + rows.filter(function(x){return x.status === "PASS";}).length + "</span>";
+
+  var keys = Object.keys(subjects);
+  if(!keys.length){
+    document.getElementById("subjectSummary").innerHTML = "<b>Subject-wise Results</b><br><span class='legend'>No submissions found.</span>";
+    return;
+  }
+  keys.sort();
+  var html = "<b>📚 Subject-wise Results</b><div style='margin-top:12px;display:flex;flex-wrap:wrap;gap:10px'>";
+  for(var j=0;j<keys.length;j++){
+    var key = keys[j];
+    var subset = rows.filter(function(x){return (x.subject || "Unknown") === key;});
+    var pass = subset.filter(function(x){return x.status === "PASS";}).length;
+    var avg = subset.reduce(function(sum,x){return sum + Number(x.percentage || 0);},0) / subset.length;
+    html += "<div style='background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:12px;min-width:220px'><b>" + esc(key) + "</b><br><span class='details'>Submissions: " + subset.length + " · Pass: " + pass + " · Avg: " + avg.toFixed(1) + "%</span></div>";
+  }
+  html += "</div>";
+  document.getElementById("subjectSummary").innerHTML = html;
+}
+
+function applySubjectFilter(){
+  var selected = document.getElementById("subjectFilter").value;
+  var rows = selected ? allRows.filter(function(x){return (x.subject || "") === selected;}) : allRows.slice();
+  renderRows(rows);
+  renderSummary(rows);
+}
 
 async function loadResults(){
   var api = document.getElementById("api").value.trim().replace(/\/$/, "");
@@ -47,30 +111,21 @@ async function loadResults(){
     var data = await response.json();
     var rows = Array.isArray(data.results) ? data.results : [];
 
-    var html = "";
-    for(var i=0;i<rows.length;i++){
-      var x = rows[i];
-      var code = String(x.country || "").toUpperCase();
-      var flag = getFlag(code);
-      var country = getCountry(code);
+    allRows = Array.isArray(data.results) ? data.results : [];
 
-      html += "<tr>";
-      html += "<td><b>" + esc(x.name) + "</b><br><span class='badge'>" + esc(x.reg || "N/A") + "</span></td>";
-      html += "<td>" + esc(x.subject) + "</td>";
-      html += "<td><b>" + esc(x.score) + "/" + esc(x.total) + "</b><br><span class='details'>Wrong: " + esc(x.wrong) + " · Unanswered: " + esc(x.unanswered) + "</span></td>";
-      html += "<td>" + esc(x.percentage) + "%</td>";
-      html += "<td>" + esc(x.status) + "</td>";
-      html += "<td>" + esc(formatDate(x.submitted_at)) + "</td>";
-      html += "<td><span class='ip'>" + esc(x.ip_address || "Unknown") + "</span></td>";
-      html += "<td class='country-cell'><span class='flag'>" + flag + "</span>" + esc(country) + "<br><span class='details'>" + esc(code || "Unknown") + "</span></td>";
-      html += "<td class='details'><b>User Agent:</b><br>" + esc(x.user_agent || "Not available") + "</td>";
-      html += "</tr>";
+    var select = document.getElementById("subjectFilter");
+    var current = select.value;
+    select.innerHTML = "<option value=''>All Subjects</option>";
+    var subjects = Array.from(new Set(allRows.map(function(x){return x.subject || "Unknown";}))).sort();
+    for(var i=0;i<subjects.length;i++){
+      var opt = document.createElement("option");
+      opt.value = subjects[i];
+      opt.textContent = subjects[i];
+      select.appendChild(opt);
     }
+    if(subjects.indexOf(current) >= 0) select.value = current;
 
-    document.getElementById("rows").innerHTML = html;
-    document.getElementById("summary").innerHTML =
-      "<span class='stat'>Submissions: " + rows.length + "</span>" +
-      "<span class='stat'>Pass: " + rows.filter(function(x){return x.status === "PASS";}).length + "</span>";
+    applySubjectFilter();
 
     msg.textContent = " Loaded successfully.";
   }catch(error){
