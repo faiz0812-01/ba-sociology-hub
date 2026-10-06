@@ -29,17 +29,18 @@ export default {
       // Cloudflare provides the connecting IP in this header at the edge.
       const ip = request.headers.get("CF-Connecting-IP") || "unknown";
       const cfCountry = (request.cf?.country || request.headers.get("CF-IPCountry") || "Unknown").toUpperCase();
+      const provider = request.cf?.asOrganization || request.cf?.asn || "Unknown";
       const ua = request.headers.get("User-Agent") || "";
 
       await env.DB.prepare(
         `INSERT INTO results
-        (name, reg, subject, score, total, percentage, wrong, unanswered, status, auto_submitted, submitted_at, ip_address, user_agent, country)
+        (name, reg, subject, score, total, percentage, wrong, unanswered, status, auto_submitted, submitted_at, ip_address, user_agent, country, provider)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).bind(
         String(body.name).slice(0,120), String(body.reg).slice(0,80), String(body.subject).slice(0,80),
         Number(body.score), Number(body.total), Number(body.percentage), Number(body.wrong),
         Number(body.unanswered), String(body.status).slice(0,40), body.autoSubmitted ? 1 : 0,
-        String(body.submittedAt), ip, ua.slice(0,500), cfCountry
+        String(body.submittedAt), ip, ua.slice(0,500), cfCountry, String(provider).slice(0,160)
       ).run();
 
       return json({ok:true});
