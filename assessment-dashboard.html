@@ -16,7 +16,7 @@
 <span id="msg"></span></div>
 <div class="card" id="summary"></div>
 <div class="card" id="subjectSummary"></div>
-<div class="card scroll"><table><thead><tr><th>Name</th><th>Subject</th><th>Score</th><th>%</th><th>Status</th><th>Time</th><th>IP Address</th><th>Country</th><th>Device / Browser Details</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="card scroll"><table><thead><tr><th>Name</th><th>Subject</th><th>Score</th><th>%</th><th>Status</th><th>Time</th><th>IP Address</th><th>Country</th><th>Provider</th><th>Device / Browser Details</th></tr></thead><tbody id="rows"></tbody></table></div>
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
@@ -42,6 +42,7 @@ function renderRows(rows){
     html += "<td>" + esc(formatDate(x.submitted_at)) + "</td>";
     html += "<td><span class='ip'>" + esc(x.ip_address || "Unknown") + "</span></td>";
     html += "<td class='country-cell'><span class='flag'>" + flag + "</span>" + esc(country) + "<br><span class='details'>" + esc(code || "Unknown") + "</span></td>";
+    html += "<td class='details'><b>" + esc(x.provider || "Not available") + "</b></td>";
     html += "<td class='details'><b>User Agent:</b><br>" + esc(x.user_agent || "Not available") + "</td>";
     html += "</tr>";
   }
