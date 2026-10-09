@@ -33,6 +33,13 @@ body{font-family:"Noto Sans Malayalam","Noto Sans",sans-serif;line-height:1.5;ba
  #test #nav,#test .nav{display:flex!important;flex-wrap:wrap!important;overflow-x:visible!important;overflow-y:visible!important;white-space:normal!important;gap:3px!important;scrollbar-width:none}
  #test #nav button,#test .nav button{flex:0 0 25px!important;box-sizing:border-box;width:25px!important;min-width:25px!important;height:25px!important;margin:0!important;padding:0!important;font-size:12px!important;line-height:1!important}
 }
+
+/* MALAYALAM FONT CLARITY FIX */
+body, input, button, .q, .opt, .option, .review-q, .review-line, .review-card, #question, #options, #review, .subject-display, .subject-result { font-family: "Noto Sans Malayalam", "Noto Sans", sans-serif !important; }
+#test .q, #test #question { font-size: clamp(18px, 1.5vw, 21px) !important; line-height: 1.55 !important; font-weight: 600; }
+#test .opt, #test .option { font-size: clamp(15px, 1.15vw, 17px) !important; line-height: 1.55 !important; }
+#review .review-q, #review .review-line { line-height: 1.55; }
+@media(max-width:600px){ #test .q, #test #question { font-size: 18px !important; line-height: 1.5 !important; } #test .opt, #test .option { font-size: 15px !important; line-height: 1.5 !important; } }
 </style></head><body><div class="wrap">
 <section id="start" class="card"><h1 class="main-title">Malayalam MCQ Test</h1><div id="greeting" class="greeting"></div><p><b>60 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">Malayalam — BA First Semester</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
 <section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="question" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
@@ -45,11 +52,3 @@ const GREETINGS=['Welcome! 📚🌟 Get ready for Malayalam — BA First Semeste
 function lockAnswerOptions(selector){const box=document.querySelector(selector);if(!box)return;box.querySelectorAll('input[type="radio"]').forEach(input=>input.disabled=true);box.querySelectorAll('.opt,.option').forEach(label=>label.classList.add('locked'));}
 function paintAnswerFeedback(q,selector,selected){const box=document.querySelector(selector);if(!box)return;box.querySelectorAll('.opt,.option').forEach(label=>label.classList.remove('correct-reveal'));if(!selected||selected===q.answer)return;box.querySelectorAll('input[type="radio"]').forEach(input=>{if(input.value===q.answer){const label=input.closest('.opt,.option');if(label)label.classList.add('correct-reveal');}});}
 </script></body></html>
-<style>
-/* MALAYALAM FONT CLARITY FIX: use Noto Sans Malayalam throughout the test */
-body, input, button, .q, .opt, .option, .review-q, .review-line, .review-card, #question, #options, #review, .subject-display, .subject-result { font-family: "Noto Sans Malayalam", "Noto Sans", sans-serif !important; }
-#test .q, #test #question { font-size: clamp(18px, 1.5vw, 21px) !important; line-height: 1.55 !important; font-weight: 600; }
-#test .opt, #test .option { font-size: clamp(15px, 1.15vw, 17px) !important; line-height: 1.55 !important; }
-#review .review-q, #review .review-line { line-height: 1.55; }
-@media(max-width:600px){ #test .q, #test #question { font-size: 18px !important; line-height: 1.5 !important; } #test .opt, #test .option { font-size: 15px !important; line-height: 1.5 !important; } }
-</style>
