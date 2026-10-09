@@ -30,7 +30,7 @@ function render(){let questionIndex=pos;
   $('counter').textContent='Question '+(pos+1)+' of '+N;
   $('question').textContent=q.question;
   $('options').innerHTML=q.options.map(o=>'<label class="opt"><input type="radio" name="answer" value="'+esc(o.value)+'" '+(answers[pos]===o.value?'checked':'')+'> '+esc(o.value)+') '+esc(o.text)+'</label>').join('');
-  lockAnswerOptions('#options');document.querySelectorAll('input[name="answer"]').forEach(x=>x.onchange=()=>{if(answers[questionIndex]){x.checked=x.value===answers[questionIndex];lockAnswerOptions('#options');return}answers[questionIndex]=x.value;lockAnswerOptions('#options');paintAnswerFeedback(q,'#options',x.value);renderNav();});
+  if(answers[questionIndex])lockAnswerOptions('#options');document.querySelectorAll('input[name="answer"]').forEach(x=>x.onchange=()=>{if(answers[questionIndex]){x.checked=x.value===answers[questionIndex];lockAnswerOptions('#options');return}answers[questionIndex]=x.value;lockAnswerOptions('#options');paintAnswerFeedback(q,'#options',x.value);renderNav();});
   $('prev').disabled=pos===0;
   $('next').disabled=pos===N-1;
   $('submit').style.display=pos===N-1?'inline-block':'none';
