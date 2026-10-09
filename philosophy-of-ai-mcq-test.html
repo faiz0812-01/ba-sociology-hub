@@ -76,7 +76,7 @@ function render(){let questionIndex=current;
  $("counter").textContent=`Question ${current+1} of ${test.length}`;$("progress").style.width=((current+1)/test.length*100)+"%";$("qtext").textContent=q.question;
  const box=$("options");box.innerHTML="";
  q.options.forEach(o=>{const l=document.createElement("label");l.className="option";l.innerHTML=`<input type="radio" name="answer" value="${o.value}" ${selected===o.value?"checked":""}> ${escapeHtml(o.text)}`;l.querySelector("input").addEventListener("change",e=>{if(answers[questionIndex]){e.target.checked=e.target.value===answers[questionIndex];lockAnswerOptions("#options");return}answers[questionIndex]=e.target.value;lockAnswerOptions("#options");paintAnswerFeedback(q,"#options",e.target.value);renderNav()});box.appendChild(l)});
- $("prev").disabled=current===0;$("next").classList.toggle("hidden",current===test.length-1);$("submit").classList.toggle("hidden",current!==test.length-1);renderNav();
+ if(answers[questionIndex])lockAnswerOptions("#options");$("prev").disabled=current===0;$("next").classList.toggle("hidden",current===test.length-1);$("submit").classList.toggle("hidden",current!==test.length-1);renderNav();
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function renderNav(){const n=$("nav");n.innerHTML="";test.forEach((_,i)=>{const b=document.createElement("button");b.type="button";b.textContent=i+1;b.className=(answers[i]?"answered ":"")+(i===current?"current":"");b.addEventListener("click",()=>{current=i;render()});n.appendChild(b)})}
