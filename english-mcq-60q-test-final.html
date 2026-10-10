@@ -192,6 +192,28 @@ html body #result .result-actions .btn{font-size:8px!important;padding:4px!impor
 }
 
 </style>
+
+<style id="final-motivation-green-override">
+/* Requested change: final-page motivational messages only */
+html body #result #message{
+  font-size:12px!important;
+  line-height:1.4!important;
+  background:#dcfce7!important;
+  color:#166534!important;
+  border:1px solid #86efac!important;
+  border-radius:8px!important;
+  padding:8px 10px!important;
+}
+html body #result #motivation{
+  font-size:13px!important;
+  line-height:1.4!important;
+  background:#dcfce7!important;
+  color:#166534!important;
+  border:1px solid #86efac!important;
+  border-radius:10px!important;
+  padding:10px 12px!important;
+}
+</style>
 </head><body><div class="wrap">
 <section id="start" class="card"><h1 class="main-title">English MCQ Internal Test</h1><div id="greeting" class="greeting"></div><p><b>60 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">English</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
 <section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="question" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
