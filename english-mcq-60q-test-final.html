@@ -144,6 +144,53 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f4f7fb;margin:0;color:#
 #result .result-actions .btn{font-size:9px!important;padding:5px 6px!important}
 #result .review-q{font-size:9px!important}
 }
+
+<style id="mobile-results-override-v2">
+@media screen and (max-width:600px){
+html body .wrap{padding:3px!important}
+html body #result.card{padding:3px!important;border-radius:6px!important}
+html body #result .report-header{padding:7px 5px!important}
+html body #result .report-brand{font-size:11px!important}
+html body #result .report-series{font-size:7px!important;margin-top:2px!important}
+html body #result .report-title{font-size:14px!important;margin:3px 0!important}
+html body #result .report-body{padding:5px 4px!important}
+html body #result .performance-heading,html body #result .review-heading{font-size:11px!important;margin:6px 0 4px!important;padding:4px 0!important}
+html body #result .student-info-card{padding:4px!important;gap:3px!important;margin-bottom:5px!important}
+html body #result .student-info-card>div{padding:2px 3px!important}
+html body #result .info-label{font-size:7px!important;margin-bottom:1px!important}
+html body #result .info-value{font-size:9px!important;line-height:1.15!important}
+html body #result .final-score-card{padding:5px 3px!important;margin:4px 0!important}
+html body #result .final-score-label{font-size:8px!important}
+html body #result .final-score-value{font-size:20px!important;margin:2px 0!important}
+html body #result .final-score-value .score-divider{font-size:13px!important}
+html body #result .final-score-meta{font-size:9px!important}
+html body #result .performance-stats{gap:3px!important;margin:4px 0!important}
+html body #result .performance-stat{padding:4px 1px!important}
+html body #result .stat-number{font-size:13px!important}
+html body #result .stat-label{font-size:7px!important;margin-top:2px!important}
+html body #result .analysis-grid{gap:3px!important;margin:4px 0!important}
+html body #result .analysis-item{padding:4px!important}
+html body #result .analysis-item b,html body #result .analysis-item span{font-size:8px!important;line-height:1.15!important}
+html body #result #message{font-size:9px!important;margin:4px 0!important}
+html body #result #motivation{font-size:10px!important;padding:4px 5px!important;margin:4px 0!important;line-height:1.2!important}
+html body #result .report-footer{padding:5px 3px!important;font-size:7px!important}
+html body #result .report-footer strong{font-size:9px!important;margin-bottom:1px!important}
+html body #result .review-heading{margin:6px 4px 4px!important;padding:5px!important}
+html body #result #review{padding:0 4px 6px!important}
+html body #result .review-card{padding:4px!important;margin:4px 0!important;border-left-width:2px!important}
+html body #result .review-q{font-size:9px!important;line-height:1.2!important;margin-bottom:3px!important}
+html body #result .review-line{padding:2px 0!important;gap:3px!important}
+html body #result .review-line span,html body #result .review-line b{font-size:8px!important;line-height:1.15!important}
+html body #result .result-badge{font-size:7px!important;padding:2px 4px!important;margin-top:3px!important}
+html body #result .result-actions{padding:4px!important;gap:3px!important}
+html body #result .result-actions .btn{font-size:9px!important;padding:5px!important}
+}
+@media screen and (max-width:380px){
+html body #result .report-title{font-size:13px!important}
+html body #result .final-score-value{font-size:18px!important}
+html body #result .result-actions .btn{font-size:8px!important;padding:4px!important}
+}
+</style>
 </style>
 </head><body><div class="wrap">
 <section id="start" class="card"><h1 class="main-title">English MCQ Internal Test</h1><div id="greeting" class="greeting"></div><p><b>60 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">English</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
@@ -194,50 +241,5 @@ const GREETINGS=['Welcome! 📚🌟 You are ready for this! Read carefully and g
 function lockAnswerOptions(selector){const box=document.querySelector(selector);if(!box)return;box.querySelectorAll('input[type="radio"]').forEach(input=>input.disabled=true);box.querySelectorAll('.opt,.option').forEach(label=>label.classList.add('locked'));}
 function paintAnswerFeedback(q,selector,selected){const box=document.querySelector(selector);if(!box)return;box.querySelectorAll('.opt,.option').forEach(label=>label.classList.remove('correct-reveal'));if(!selected||selected===q.answer)return;box.querySelectorAll('input[type="radio"]').forEach(input=>{if(input.value===q.answer){const label=input.closest('.opt,.option');if(label)label.classList.add('correct-reveal');}});}
 
-<style id="mobile-results-override-v2">
-@media screen and (max-width:600px){
-html body .wrap{padding:3px!important}
-html body #result.card{padding:3px!important;border-radius:6px!important}
-html body #result .report-header{padding:7px 5px!important}
-html body #result .report-brand{font-size:11px!important}
-html body #result .report-series{font-size:7px!important;margin-top:2px!important}
-html body #result .report-title{font-size:14px!important;margin:3px 0!important}
-html body #result .report-body{padding:5px 4px!important}
-html body #result .performance-heading,html body #result .review-heading{font-size:11px!important;margin:6px 0 4px!important;padding:4px 0!important}
-html body #result .student-info-card{padding:4px!important;gap:3px!important;margin-bottom:5px!important}
-html body #result .student-info-card>div{padding:2px 3px!important}
-html body #result .info-label{font-size:7px!important;margin-bottom:1px!important}
-html body #result .info-value{font-size:9px!important;line-height:1.15!important}
-html body #result .final-score-card{padding:5px 3px!important;margin:4px 0!important}
-html body #result .final-score-label{font-size:8px!important}
-html body #result .final-score-value{font-size:20px!important;margin:2px 0!important}
-html body #result .final-score-value .score-divider{font-size:13px!important}
-html body #result .final-score-meta{font-size:9px!important}
-html body #result .performance-stats{gap:3px!important;margin:4px 0!important}
-html body #result .performance-stat{padding:4px 1px!important}
-html body #result .stat-number{font-size:13px!important}
-html body #result .stat-label{font-size:7px!important;margin-top:2px!important}
-html body #result .analysis-grid{gap:3px!important;margin:4px 0!important}
-html body #result .analysis-item{padding:4px!important}
-html body #result .analysis-item b,html body #result .analysis-item span{font-size:8px!important;line-height:1.15!important}
-html body #result #message{font-size:9px!important;margin:4px 0!important}
-html body #result #motivation{font-size:10px!important;padding:4px 5px!important;margin:4px 0!important;line-height:1.2!important}
-html body #result .report-footer{padding:5px 3px!important;font-size:7px!important}
-html body #result .report-footer strong{font-size:9px!important;margin-bottom:1px!important}
-html body #result .review-heading{margin:6px 4px 4px!important;padding:5px!important}
-html body #result #review{padding:0 4px 6px!important}
-html body #result .review-card{padding:4px!important;margin:4px 0!important;border-left-width:2px!important}
-html body #result .review-q{font-size:9px!important;line-height:1.2!important;margin-bottom:3px!important}
-html body #result .review-line{padding:2px 0!important;gap:3px!important}
-html body #result .review-line span,html body #result .review-line b{font-size:8px!important;line-height:1.15!important}
-html body #result .result-badge{font-size:7px!important;padding:2px 4px!important;margin-top:3px!important}
-html body #result .result-actions{padding:4px!important;gap:3px!important}
-html body #result .result-actions .btn{font-size:9px!important;padding:5px!important}
-}
-@media screen and (max-width:380px){
-html body #result .report-title{font-size:13px!important}
-html body #result .final-score-value{font-size:18px!important}
-html body #result .result-actions .btn{font-size:8px!important;padding:4px!important}
-}
-</style>
+
 </script></body></html>
