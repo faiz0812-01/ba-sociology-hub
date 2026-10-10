@@ -243,10 +243,10 @@ html body #result #motivation{
 html body #result #message:empty{display:none!important}
 </style>
 </head><body><div class="wrap">
-<section id="start" class="card"><h1 class="main-title">Philosophy of AI — MCQ Test</h1><div id="greeting" class="greeting"></div><p><b>50 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">Philosophy of AI</div></div><input id="reg" type="hidden" value="—"><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
-<section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="qtext" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
+<section id="start" class="card"><h1 class="main-title">Philosophy of AI MCQ Test</h1><div id="greeting" class="greeting"></div><p><b>50 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">Philosophy of AI</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
+<section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="question" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
 <section id="result" class="card hidden">
-<div class="result-actions actions"><button id="save" class="btn primary">Save Analysis Report</button><button id="print" class="btn secondary">Print / Save PDF</button><button id="startAgain" type="button" class="btn danger" onclick="finish()">Start Again</button></div>
+<div class="result-actions actions"><button id="save" class="btn primary">Save Analysis Report</button><button id="print" class="btn secondary">Print / Save PDF</button><button id="startAgain" type="button" class="btn danger" onclick="restart()">Start Again</button></div>
 <header class="report-header">
 <div class="report-brand">BA Sociology Study Hub</div>
 <div class="report-series">UNIVERSITY INTERNAL EXAM PREPARATION SERIES</div>
@@ -264,18 +264,18 @@ html body #result #message:empty{display:none!important}
 <h2 class="performance-heading">Your Test Performance</h2>
 <div class="final-score-card">
 <div class="final-score-label">Final Score</div>
-<div class="final-score-value"><span id="rscore"></span></div>
-<div class="final-score-meta"><span id="rpct"></span></div>
+<div class="final-score-value"><span id="score"></span></div>
+<div class="final-score-meta"><span id="pct"></span></div>
 </div>
 <div class="performance-stats">
-<div class="performance-stat correct"><div class="stat-number" id="rcorrect"></div><div class="stat-label">Correct</div></div>
-<div class="performance-stat incorrect"><div class="stat-number" id="rwrong"></div><div class="stat-label">Incorrect</div></div>
-<div class="performance-stat unanswered"><div class="stat-number" id="runanswered"></div><div class="stat-label">Unanswered</div></div>
+<div class="performance-stat correct"><div class="stat-number" id="correct"></div><div class="stat-label">Correct</div></div>
+<div class="performance-stat incorrect"><div class="stat-number" id="wrong"></div><div class="stat-label">Incorrect</div></div>
+<div class="performance-stat unanswered"><div class="stat-number" id="unanswered"></div><div class="stat-label">Unanswered</div></div>
 </div>
 <div class="analysis-grid">
 <div class="analysis-item"><b>Questions Attempted</b><span id="attempted"></span></div>
 <div class="analysis-item"><b>Accuracy</b><span id="accuracy"></span></div>
-<div class="analysis-item"><b>Performance Status</b><span id="rstatus"></span></div>
+<div class="analysis-item"><b>Performance Status</b><span id="status"></span></div>
 
 </div>
 <div id="message" style="display:none!important" aria-hidden="true"></div>
@@ -303,7 +303,7 @@ function tick(){if(seconds<=0){seconds=0;updateTimer();clearInterval(timer);subm
 function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");$("timer").textContent=`${m}:${s}`;}
 function render(){let questionIndex=current;
  const q=test[current],selected=answers[current]||"";
- $("counter").textContent=`Question ${current+1} of ${test.length}`;$("qtext").textContent=q.question;
+ $("counter").textContent=`Question ${current+1} of ${test.length}`;$("question").textContent=q.question;
  const box=$("options");box.innerHTML="";
  q.options.forEach(o=>{const l=document.createElement("label");l.className="option";l.innerHTML=`<input type="radio" name="answer" value="${o.value}" ${selected===o.value?"checked":""}> ${escapeHtml(o.text)}`;l.querySelector("input").addEventListener("change",e=>{if(answers[questionIndex]){e.target.checked=e.target.value===answers[questionIndex];lockAnswerOptions("#options");return}answers[questionIndex]=e.target.value;lockAnswerOptions("#options");paintAnswerFeedback(q,"#options",e.target.value);renderNav()});box.appendChild(l)});
  if(answers[questionIndex])lockAnswerOptions("#options");$("prev").disabled=current===0;$("next").classList.toggle("hidden",current===test.length-1);$("submit").classList.toggle("hidden",current!==test.length-1);renderNav();
@@ -325,12 +325,13 @@ async function saveResult(auto){
  try{await fetch(RESULT_API_URL.replace(/\/$/,"")+"/submit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true})}catch(e){console.warn("Result server unavailable",e)}
 }
 function showResult(auto){
- show("result");$("rname").textContent=student.name;$("rscore").textContent=`${student.score} / ${test.length}`;$("rpct").textContent=student.pct.toFixed(1)+"%";$("attempted").textContent=test.length-student.unanswered;$("accuracy").textContent=((test.length-student.unanswered)?(student.score/(test.length-student.unanswered)*100):0).toFixed(1)+"%";$("status").textContent=student.status;
- $("rcorrect").textContent=student.score;$("rwrong").textContent=student.wrong;$("runanswered").textContent=student.unanswered;$("rstatus").textContent=student.status;
+ show("result");$("rname").textContent=student.name;$("score").textContent=`${student.score} / ${test.length}`;$("pct").textContent=student.pct.toFixed(1)+"%";$("attempted").textContent=test.length-student.unanswered;$("accuracy").textContent=((test.length-student.unanswered)?(student.score/(test.length-student.unanswered)*100):0).toFixed(1)+"%";$("status").textContent=student.status;
+ $("correct").textContent=student.score;$("wrong").textContent=student.wrong;$("unanswered").textContent=student.unanswered;
  const rev=$("review");rev.innerHTML="";test.forEach((q,i)=>{const div=document.createElement("div");const cls=!answers[i]?"unanswered":answers[i]===q.answer?"correct":"wrong";const your=answers[i]||"Not answered";const correctOpt=q.options.find(o=>o.value===q.answer);div.className="review-item "+cls;div.innerHTML=`<b>Q${i+1}. ${escapeHtml(q.question)}</b><br><span class="small">Your answer: ${escapeHtml(your)}</span><br><span class="small">Correct answer: ${escapeHtml(q.answer)} — ${escapeHtml(correctOpt?correctOpt.text:"")}</span>`;rev.appendChild(div)});
  if($("autoMsg"))$("autoMsg").textContent=auto?"Time expired — the assessment was submitted automatically.":"";if($("motivation"))$("motivation").textContent=student.pct>=80?"Excellent work! Keep up the great effort.":student.pct>=40?"Good effort! Keep learning and improving.":"Keep practising. Every attempt helps you improve.";
 }
 function restart(){location.reload()}
+function finish(){restart()}
 document.addEventListener("DOMContentLoaded",()=>{
  $("startBtn").addEventListener("click",startTest);$("prev").addEventListener("click",prev);$("next").addEventListener("click",next);
  $("submit").addEventListener("click",()=>submitTest(false));$("print").addEventListener("click",()=>window.print());$("startAgain").addEventListener("click",restart);
