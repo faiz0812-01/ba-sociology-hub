@@ -90,23 +90,67 @@ h1,h2{color:var(--navy)}h1{text-align:center;margin:0 0 8px;font-size:30px}h2{ma
 #result .actions{padding:0 12px 12px;margin-top:8px}
 @media(max-width:560px){.ai-report-header{padding:12px 6px}.ai-report-brand{font-size:12px}.ai-report-series{font-size:8px}.ai-report-header h1{font-size:17px!important}.ai-report-body{padding:7px}.ai-section-heading{font-size:11px;margin:6px 0 4px;padding-bottom:4px}.ai-student-info{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:5px}.ai-student-info b{font-size:7px;margin-bottom:2px}.ai-student-info span{font-size:9px}.ai-score-card{padding:5px}.ai-score-card .score{font-size:24px!important}.ai-score-label,.ai-score-percent{font-size:9px}#result .stats{gap:3px;margin:5px 0}#result .stat{padding:5px 2px;font-size:8px}#result .stat strong{font-size:14px}.ai-report-footer{padding:6px 4px;font-size:8px}.ai-report-footer strong{font-size:10px}#result .review{padding:0 7px}#result .review h2{font-size:13px;padding:6px}#result .actions{padding:0 7px 8px}#result .actions .btn{font-size:11px;padding:8px 9px}}
 @media print{.ai-report-header,.ai-report-footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<style id="english-replica-layout-preserve-ai-content">
+.main-title{text-align:center;margin:0 0 8px;font-size:30px;color:var(--navy)}
+.greeting{text-align:center;color:#64748b;margin:0 0 18px;font-weight:700}
+.info-field{margin:14px 0}
+.big-label{display:block;font-weight:800;margin-bottom:7px;font-size:16px}
+.info-field input{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
+.start-message{margin-top:12px;font-weight:700;color:#dc2626}
+#start .instructions{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px 16px;margin:14px 0;font-size:14px}
+#start .instructions h2{font-size:18px;margin:0 0 8px}
+#start .instructions ul{padding-left:22px;margin:0}
+#start .instructions li{margin:5px 0}
+#start .check{display:flex;gap:10px;align-items:flex-start;margin:14px 0}
+#test .top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+#test #counter{font-size:clamp(14px,1.25vw,18px);line-height:1.15}
+#test .q{font-size:clamp(16px,1.35vw,19px);font-weight:700;line-height:1.3;margin:12px 0}
+#test .nav{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}
+#test .nav button{width:28px;height:28px;padding:0;font-size:12px;border:1px solid #cbd5e1;border-radius:6px;background:#fff}
+#test .nav button.answered{background:#dcfce7;border-color:#86efac}
+#test .nav button.current{outline:2px solid #bfdbfe}
+#test .progress{height:7px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:10px 0}
+#test .progress>div{height:100%;background:#2563eb}
+#test .option{display:block;border:1px solid #d7dee8;border-radius:10px;padding:10px 12px;margin:7px 0;cursor:pointer;line-height:1.3;font-size:15px}
+#test .option input{margin-right:9px}
+#test .actions{display:flex;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap}
+#result .ai-report-header{background:linear-gradient(120deg,#17324d,#1e40af);color:#fff;text-align:center;padding:18px 10px;border-bottom:4px solid #22c55e}
+#result .ai-report-brand{font-size:20px;letter-spacing:1px;font-weight:900}
+#result .ai-report-series{font-size:12px;font-weight:700;color:#dbeafe;margin-top:5px}
+#result .ai-report-header h1{color:#fff!important;font-size:28px!important;margin:8px 0 0!important}
+#result .ai-report-body{padding:14px}
+#result .ai-section-heading{font-size:16px;text-transform:uppercase;letter-spacing:1px;border-bottom:3px solid #22c55e;padding-bottom:7px;margin:10px 0}
+#result .ai-student-info{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px;border:1px solid #dbe3ee;border-left:5px solid #2563eb;border-radius:14px}
+#result .ai-student-info b{font-size:11px;letter-spacing:.5px;margin-bottom:5px}
+#result .ai-student-info span{font-size:14px}
+#result .ai-score-card{padding:10px;border-radius:14px}
+#result .ai-score-label{font-size:12px}
+#result .ai-score-card .score{font-size:38px!important}
+#result .ai-score-percent{font-size:14px}
+#result .stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:8px 0}
+#result .stat{padding:10px 4px;border:1px solid #e2e8f0;font-size:11px}
+#result .stat strong{font-size:22px}
+#result .ai-report-footer{font-size:12px;padding:10px 6px}
+#result .ai-report-footer strong{font-size:15px}
+#result .review{padding:0 12px;margin-top:12px}
+#result .review h2{background:#f1f5f9;border-left:5px solid #2563eb;padding:10px;margin:0 0 8px;font-size:18px}
+#result .review-item{border-radius:10px;margin:8px 0;padding:10px}
+@media(max-width:560px){.wrap{padding:10px}.card{padding:14px}.main-title{font-size:24px!important}.greeting{font-size:13px;margin-bottom:12px}#start .instructions{padding:9px 11px;font-size:12px}#start .instructions h2{font-size:16px}#start .instructions li{margin:4px 0}.big-label{font-size:14px}#test .nav{gap:3px}#test .nav button{width:25px;height:25px;font-size:11px}#test .q{font-size:17px}#test .option{font-size:14px;padding:8px 9px}#result .ai-report-header{padding:12px 6px}#result .ai-report-brand{font-size:15px}#result .ai-report-series{font-size:9px}#result .ai-report-header h1{font-size:21px!important}#result .ai-report-body{padding:8px}#result .ai-section-heading{font-size:12px;margin:7px 0 5px;padding-bottom:5px}#result .ai-student-info{gap:5px;padding:7px}#result .ai-student-info b{font-size:8px}#result .ai-student-info span{font-size:11px}#result .ai-score-card .score{font-size:29px!important}#result .stats{gap:4px}#result .stat{font-size:8px;padding:6px 2px}#result .stat strong{font-size:16px}#result .ai-report-footer{font-size:9px}#result .ai-report-footer strong{font-size:11px}#result .review{padding:0 7px}#result .review h2{font-size:14px;padding:7px}}
 </style></head><body><div class="wrap">
 <section id="start" class="card">
-<h1>Philosophy of AI — MCQ Test</h1><div class="subtitle">Online MCQ Assessment</div>
-<div class="field"><label for="name">Student Name</label><input id="name" autocomplete="name"></div>
-<div class="field"><label for="reg">Register Number</label><input id="reg" inputmode="text"></div>
+<h1 class="main-title">Philosophy of AI — MCQ Test</h1><div class="greeting">Welcome to your Philosophy of AI assessment</div><p><b>50 Questions • 30 Minutes</b></p>
+<div class="field info-field"><b class="big-label">Student Name</b><input id="name" autocomplete="name"></div>
+<div class="field info-field"><b class="big-label">Register Number</b><input id="reg" inputmode="text"></div>
 <div class="instructions"><h2>Instructions</h2><ul>
 <li>50 questions will be selected randomly from the 110-question bank.</li><li>Each question carries 1 mark. Total: 50 marks.</li>
 <li>Time limit: 30 minutes.</li><li>There is no negative marking.</li>
 <li>Your assessment is automatically submitted when the timer reaches zero.</li><li>Once submitted, answers cannot be changed.</li>
 </ul></div>
 <label class="check"><input type="checkbox" id="agree"><span>I have read and understood the instructions.</span></label>
-<button type="button" class="btn primary" id="startBtn">Start Assessment</button><div id="startMsg" style="margin-top:12px;font-weight:700;color:#dc2626"></div>
+<button type="button" class="btn primary" id="startBtn">Start Mock Test</button><div id="startMsg" class="start-message"></div>
 </section>
-<section id="test" class="card hidden"><div class="topbar"><b id="counter">Question 1 of 50</b><span>Time Remaining: <span class="timer" id="timer">30:00</span></span></div>
-<div class="progress"><div id="progress" style="width:2%"></div></div><div class="qnav" id="nav"></div>
-<div class="question" id="qtext"></div><div id="options"></div>
-<div class="actions"><button type="button" class="btn secondary" id="prev">← Previous</button><button type="button" class="btn primary" id="next">Next →</button><button type="button" class="btn danger hidden" id="submit">Submit Assessment</button></div></section>
+<section id="test" class="card hidden"><div class="top"><b id="counter">Question 1 of 50</b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div class="progress"><div id="progress" style="width:2%"></div></div><div id="nav" class="nav"></div><div class="q" id="qtext"></div><div id="options"></div><div class="actions"><button type="button" class="btn secondary" id="prev">Previous</button><button type="button" class="btn primary" id="next">Next</button><button type="button" class="btn danger hidden" id="submit">Submit Test</button></div></section>
 <section id="result" class="card hidden"><header class="ai-report-header"><div class="ai-report-brand">BA SOCIOLOGY STUDY HUB</div><div class="ai-report-series">UNIVERSITY INTERNAL EXAM PREPARATION SERIES</div><h1>MOCK TEST RESULTS</h1></header>
 <div class="ai-report-body"><p id="autoMsg" class="small"></p>
 <h2 class="ai-section-heading">Student Information</h2><div class="ai-student-info"><div><b>Student Name</b><span id="rname"></span></div><div><b>Register Number</b><span id="rreg"></span></div><div><b>Subject</b><span>Philosophy of AI</span></div></div>
