@@ -95,6 +95,48 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:#f4f7fb;margin:0;color:#
 @media print{#result .result-actions{display:none!important}#result{box-shadow:none;border:0}#result .report-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}#result .report-footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style> <style id="name-display-adjustment">#rname{color:#000!important;background:#dcfce7!important;border:1px solid #86efac;border-radius:8px;padding:6px 10px;display:inline-block;font-weight:900;text-transform:uppercase;}</style>
 <style id="motivation-random-colors">#motivation{font-weight:900!important}#motivation strong,#motivation b{font-weight:900!important}</style>
+<style id="mobile-compact-results">
+@media screen and (max-width:600px){
+#result{padding:10px!important;margin:0!important}
+#result .report-header{padding:14px 10px!important}
+#result .report-brand{font-size:16px!important;line-height:1.2!important}
+#result .report-series{font-size:9px!important;letter-spacing:.4px!important;margin-top:5px!important}
+#result .report-title{font-size:21px!important;line-height:1.15!important;margin:7px 0!important}
+#result .report-body{padding:12px 10px!important}
+#result .performance-heading,#result .review-heading{font-size:16px!important;margin:12px 0 8px!important}
+#result .student-info-card{gap:6px!important;padding:10px!important}
+#result .student-info-card>div{padding:6px 7px!important;gap:3px!important}
+#result .info-label{font-size:10px!important}
+#result .info-value{font-size:12px!important;overflow-wrap:anywhere}
+#result .final-score-card{padding:12px 8px!important;margin:10px 0!important}
+#result .final-score-label{font-size:12px!important}
+#result .final-score-value{font-size:32px!important;line-height:1.1!important}
+#result .final-score-meta{font-size:14px!important}
+#result .performance-stats{gap:6px!important;margin:8px 0!important}
+#result .performance-stat{padding:9px 4px!important;min-width:0!important}
+#result .stat-number{font-size:20px!important}
+#result .stat-label{font-size:10px!important}
+#result .analysis-grid{gap:6px!important}
+#result .analysis-item{padding:7px 8px!important;font-size:11px!important;gap:6px!important}
+#result .analysis-item b,#result .analysis-item span{font-size:11px!important;overflow-wrap:anywhere}
+#result #motivation{font-size:14px!important;line-height:1.35!important;padding:10px 11px!important;margin:10px 0!important}
+#result .report-footer{padding:10px!important;font-size:10px!important;line-height:1.4!important}
+#result .review-card{padding:10px!important;margin:8px 0!important;border-radius:9px!important}
+#result .review-q{font-size:13px!important;line-height:1.35!important;margin-bottom:7px!important}
+#result .review-line{gap:8px!important;padding:6px 0!important;font-size:11px!important;flex-wrap:wrap}
+#result .review-line span,#result .review-line b{font-size:11px!important;overflow-wrap:anywhere}
+#result .result-badge{font-size:10px!important;padding:4px 9px!important}
+#result .result-actions{gap:6px!important}
+#result .result-actions .btn{font-size:12px!important;padding:9px 10px!important}
+}
+@media screen and (max-width:380px){
+#result .report-title{font-size:18px!important}
+#result .report-body{padding:9px 7px!important}
+#result .final-score-value{font-size:28px!important}
+#result .info-value{font-size:11px!important}
+#result .analysis-item{grid-template-columns:1fr!important}
+}
+</style>
 </head><body><div class="wrap">
 <section id="start" class="card"><h1 class="main-title">English MCQ Internal Test</h1><div id="greeting" class="greeting"></div><p><b>60 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">English</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
 <section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="question" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
