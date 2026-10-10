@@ -23,7 +23,7 @@ export default {
       let body;
       try { body = await request.json(); } catch { return json({error:"Invalid JSON"},400); }
 
-      const required=["name","reg","subject","score","total","percentage","wrong","unanswered","status","submittedAt"];
+      const required=["name","subject","score","total","percentage","wrong","unanswered","status","submittedAt"];
       for(const k of required) if(body[k]===undefined || body[k]===null || body[k]==="") return json({error:"Missing "+k},400);
 
       // Cloudflare provides the connecting IP in this header at the edge.
@@ -39,7 +39,7 @@ export default {
         (name, reg, subject, score, total, percentage, wrong, unanswered, status, auto_submitted, submitted_at, ip_address, user_agent, country, provider)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).bind(
-        String(body.name).slice(0,120), String(body.reg).slice(0,80), String(body.subject).slice(0,80),
+        String(body.name).slice(0,120), String(body.reg || "N/A").slice(0,80), String(body.subject).slice(0,80),
         Number(body.score), Number(body.total), Number(body.percentage), Number(body.wrong),
         Number(body.unanswered), String(body.status).slice(0,40), body.autoSubmitted ? 1 : 0,
         String(body.submittedAt), ip, ua.slice(0,500), cfCountry, String(provider).slice(0,160)
