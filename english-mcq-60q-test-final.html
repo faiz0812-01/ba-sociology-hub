@@ -237,7 +237,12 @@ html body #result #motivation{
  #result .student-info-card .info-label{font-size:8px!important;margin-bottom:1px!important}
  #result .student-info-card .info-value{font-size:10px!important}
 }
-</style></head><body><div class="wrap">
+</style>
+<style id="hide-empty-performance-analysis-message">
+/* Hide the empty message placeholder in Performance Analysis; keep all report content unchanged */
+html body #result #message:empty{display:none!important}
+</style>
+</head><body><div class="wrap">
 <section id="start" class="card"><h1 class="main-title">English MCQ Internal Test</h1><div id="greeting" class="greeting"></div><p><b>60 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">English</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
 <section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="question" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
 <section id="result" class="card hidden">
