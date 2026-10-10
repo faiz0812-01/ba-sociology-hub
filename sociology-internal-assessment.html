@@ -66,7 +66,7 @@ function submitTest(auto=false){if(!auto&&!confirm('Submit your assessment now? 
 async function saveResult(auto){
   if(!RESULT_API_URL) return;
   const payload={
-    name:student.name, reg:student.reg, subject:"Sociology",
+    name:student.name, reg:student.reg||"N/A", subject:"Sociology",
     score:student.score, total:test.length, percentage:Number(student.pct.toFixed(1)),
     wrong:student.wrong, unanswered:student.unanswered, status:student.status,
     autoSubmitted:!!auto, submittedAt:new Date().toISOString()
