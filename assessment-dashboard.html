@@ -100,7 +100,7 @@ async function loadResults(){
   msg.textContent = "";
 
   try{
-    var response = await fetch(api + "/results", {
+    var response = await fetch(api + "/results?limit=2000", {
       method: "GET",
       headers: { "Authorization": "Bearer " + token }
     });
