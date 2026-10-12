@@ -46,18 +46,18 @@ function canonicalSubject(value){
     .replace(/&/g, " and ")
     .replace(/[’']/g, "")
     .replace(/[^a-z0-9]+/g, " ")
-    .replace(/\\b(mock|practice|online|offline|mcq|test|tests|quiz|exam|examination|assessment|final|finals|paper|question|questions|chapter|module|unit|part)\\b/g, " ")
-    .replace(/\\s+/g, " ")
+    .replace(/\b(mock|practice|online|offline|mcq|test|tests|quiz|exam|examination|assessment|final|finals|paper|question|questions|chapter|module|unit|part)\b/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
 
-  if(/\\bmalayalam\\b/.test(key)) return null;
+  if(/\bmalayalam\b/.test(key)) return null;
 
   if(key === "english" || key === "english language" || key === "functional english") return "English";
-  if(/\\b(sociology|sociological)\\b/.test(key) || key === "ba sociology") return "Sociology";
-  if(/\\b(philosophy of ai|philosophy of artificial intelligence|artificial intelligence|classical ai|symbolic ai|good old fashioned ai|ai philosophy)\\b/.test(key)) return "Philosophy of AI";
-  if(/\\b(philosophy of education|education philosophy)\\b/.test(key)) return "Philosophy of Education";
-  if(/\\b(fundamentals of ethics|ethics)\\b/.test(key)) return "Fundamentals of Ethics";
-  if(/\\b(development issues in indian economy|development of indian economy|indian economy|development economics)\\b/.test(key)) return "Development Issues in Indian Economy";
+  if(/\b(sociology|sociological)\b/.test(key) || key === "ba sociology") return "Sociology";
+  if(/\b(philosophy of ai|philosophy of artificial intelligence|artificial intelligence|classical ai|symbolic ai|good old fashioned ai|ai philosophy)\b/.test(key)) return "Philosophy of AI";
+  if(/\b(philosophy of education|education philosophy)\b/.test(key)) return "Philosophy of Education";
+  if(/\b(fundamentals of ethics|ethics)\b/.test(key)) return "Fundamentals of Ethics";
+  if(/\b(development issues in indian economy|development of indian economy|indian economy|development economics)\b/.test(key)) return "Development Issues in Indian Economy";
   return null;
 }
 
