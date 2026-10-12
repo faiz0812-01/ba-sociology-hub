@@ -40,24 +40,27 @@ var allRows = [];
 // Consolidate dashboard results into the six official subjects.
 // Malayalam submissions and any unclassified subjects are excluded.
 function canonicalSubject(value){
-  var raw = String(value == null ? "" : value).trim();
+  var raw = String(value == null ? "" : value).trim().toLowerCase();
   if(!raw) return null;
-  var key = raw.toLowerCase()
+
+  // Exclude Malayalam tests before normalizing the test title.
+  if(/malayalam/.test(raw)) return null;
+
+  var key = raw
     .replace(/&/g, " and ")
     .replace(/[’']/g, "")
+    .replace(/\b(60q|\d+q|mcq|mock|practice|online|offline|test|tests|quiz|exam|examination|assessment|internal|final|finals|paper|question|questions|chapter|module|unit|part|mod)\b/g, " ")
     .replace(/[^a-z0-9]+/g, " ")
-    .replace(/\b(mock|practice|online|offline|mcq|test|tests|quiz|exam|examination|assessment|final|finals|paper|question|questions|chapter|module|unit|part)\b/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
-  if(/\bmalayalam\b/.test(key)) return null;
-
-  if(key === "english" || key === "english language" || key === "functional english") return "English";
-  if(/\b(sociology|sociological)\b/.test(key) || key === "ba sociology") return "Sociology";
-  if(/\b(philosophy of ai|philosophy of artificial intelligence|artificial intelligence|classical ai|symbolic ai|good old fashioned ai|ai philosophy)\b/.test(key)) return "Philosophy of AI";
+  // Match the subject phrase even when a test title contains extra words.
+  if(/\b(english|functional english|english language)\b/.test(key)) return "English";
+  if(/\b(sociology|sociological)\b/.test(key)) return "Sociology";
+  if(/\b(philosophy of ai|philosophy of artificial intelligence|artificial intelligence|classical ai|symbolic ai|good old fashioned ai|ai philosophy|philosophy of mind)\b/.test(key)) return "Philosophy of AI";
   if(/\b(philosophy of education|education philosophy)\b/.test(key)) return "Philosophy of Education";
   if(/\b(fundamentals of ethics|ethics)\b/.test(key)) return "Fundamentals of Ethics";
-  if(/\b(development issues in indian economy|development of indian economy|indian economy|development economics)\b/.test(key)) return "Development Issues in Indian Economy";
+  if(/\b(development issues (of|in) indian economy|development of indian economy|indian economy|development economics)\b/.test(key)) return "Development Issues in Indian Economy";
   return null;
 }
 
