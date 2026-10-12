@@ -37,6 +37,36 @@ document.addEventListener("DOMContentLoaded", function(){
 
 var allRows = [];
 
+// Normalize subject labels so minor naming differences are grouped as one subject.
+function canonicalSubject(value){
+  var raw = String(value == null ? "" : value).trim();
+  if(!raw) return "Unknown";
+  var key = raw.toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[’']/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\b(mock|practice|online|offline|mcq|test|tests|quiz|exam|examination|assessment|final|finals)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  var aliases = {
+    "sociology": "Sociology",
+    "ba sociology": "Sociology",
+    "introduction to sociology": "Sociology",
+    "english": "English",
+    "english language": "English",
+    "malayalam": "Malayalam",
+    "philosophy of ai": "Philosophy of AI",
+    "artificial intelligence": "Philosophy of AI",
+    "philosophy of artificial intelligence": "Philosophy of AI",
+    "philosophy of education": "Philosophy of Education",
+    "fundamentals of ethics": "Fundamentals of Ethics",
+    "ethics": "Fundamentals of Ethics",
+    "development issues in indian economy": "Development Issues in Indian Economy",
+    "development of indian economy": "Development Issues in Indian Economy"
+  };
+  return aliases[key] || raw.replace(/\s+/g, " ");
+}
+
 function renderRows(rows){
   var html = "";
   for(var i=0;i<rows.length;i++){
@@ -46,7 +76,7 @@ function renderRows(rows){
     var country = getCountry(code);
     html += "<tr>";
     html += "<td><b>" + esc(x.name) + "</b><br><span class='badge'>" + esc(x.reg || "N/A") + "</span></td>";
-    html += "<td>" + esc(x.subject) + "</td>";
+    html += "<td>" + esc(canonicalSubject(x.subject)) + "</td>";
     html += "<td><b>" + esc(x.score) + "/" + esc(x.total) + "</b><br><span class='details'>Wrong: " + esc(x.wrong) + " · Unanswered: " + esc(x.unanswered) + "</span></td>";
     html += "<td>" + esc(x.percentage) + "%</td>";
     html += "<td>" + esc(x.status) + "</td>";
@@ -59,7 +89,7 @@ function renderRows(rows){
 function renderSummary(rows){
   var subjects = {};
   for(var i=0;i<rows.length;i++){
-    var s = rows[i].subject || "Unknown";
+    var s = canonicalSubject(rows[i].subject);
     subjects[s] = (subjects[s] || 0) + 1;
   }
   document.getElementById("summary").innerHTML =
@@ -75,7 +105,7 @@ function renderSummary(rows){
   var html = "<b>📚 Subject-wise Results</b><div style='margin-top:12px;display:flex;flex-wrap:wrap;gap:10px'>";
   for(var j=0;j<keys.length;j++){
     var key = keys[j];
-    var subset = rows.filter(function(x){return (x.subject || "Unknown") === key;});
+    var subset = rows.filter(function(x){return canonicalSubject(x.subject) === key;});
     var pass = subset.filter(function(x){return x.status === "PASS";}).length;
     var avg = subset.reduce(function(sum,x){return sum + Number(x.percentage || 0);},0) / subset.length;
     html += "<div style='background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:12px;min-width:220px'><b>" + esc(key) + "</b><br><span class='details'>Submissions: " + subset.length + " · Pass: " + pass + " · Avg: " + avg.toFixed(1) + "%</span></div>";
@@ -86,7 +116,7 @@ function renderSummary(rows){
 
 function applySubjectFilter(){
   var selected = document.getElementById("subjectFilter").value;
-  var rows = selected ? allRows.filter(function(x){return (x.subject || "") === selected;}) : allRows.slice();
+  var rows = selected ? allRows.filter(function(x){return canonicalSubject(x.subject) === selected;}) : allRows.slice();
   renderRows(rows);
   renderSummary(rows);
 }
@@ -124,7 +154,7 @@ async function loadResults(){
     var select = document.getElementById("subjectFilter");
     var current = select.value;
     select.innerHTML = "<option value=''>All Subjects</option>";
-    var subjects = Array.from(new Set(allRows.map(function(x){return x.subject || "Unknown";}))).sort();
+    var subjects = Array.from(new Set(allRows.map(function(x){return canonicalSubject(x.subject);}))).sort();
     for(var i=0;i<subjects.length;i++){
       var opt = document.createElement("option");
       opt.value = subjects[i];
