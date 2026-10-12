@@ -37,34 +37,28 @@ document.addEventListener("DOMContentLoaded", function(){
 
 var allRows = [];
 
-// Normalize subject labels so minor naming differences are grouped as one subject.
+// Consolidate dashboard results into the six official subjects.
+// Malayalam submissions and any unclassified subjects are excluded.
 function canonicalSubject(value){
   var raw = String(value == null ? "" : value).trim();
-  if(!raw) return "Unknown";
+  if(!raw) return null;
   var key = raw.toLowerCase()
     .replace(/&/g, " and ")
     .replace(/[’']/g, "")
     .replace(/[^a-z0-9]+/g, " ")
-    .replace(/\b(mock|practice|online|offline|mcq|test|tests|quiz|exam|examination|assessment|final|finals)\b/g, " ")
-    .replace(/\s+/g, " ")
+    .replace(/\\b(mock|practice|online|offline|mcq|test|tests|quiz|exam|examination|assessment|final|finals|paper|question|questions|chapter|module|unit|part)\\b/g, " ")
+    .replace(/\\s+/g, " ")
     .trim();
-  var aliases = {
-    "sociology": "Sociology",
-    "ba sociology": "Sociology",
-    "introduction to sociology": "Sociology",
-    "english": "English",
-    "english language": "English",
-    "malayalam": "Malayalam",
-    "philosophy of ai": "Philosophy of AI",
-    "artificial intelligence": "Philosophy of AI",
-    "philosophy of artificial intelligence": "Philosophy of AI",
-    "philosophy of education": "Philosophy of Education",
-    "fundamentals of ethics": "Fundamentals of Ethics",
-    "ethics": "Fundamentals of Ethics",
-    "development issues in indian economy": "Development Issues in Indian Economy",
-    "development of indian economy": "Development Issues in Indian Economy"
-  };
-  return aliases[key] || raw.replace(/\s+/g, " ");
+
+  if(/\\bmalayalam\\b/.test(key)) return null;
+
+  if(key === "english" || key === "english language" || key === "functional english") return "English";
+  if(/\\b(sociology|sociological)\\b/.test(key) || key === "ba sociology") return "Sociology";
+  if(/\\b(philosophy of ai|philosophy of artificial intelligence|artificial intelligence|classical ai|symbolic ai|good old fashioned ai|ai philosophy)\\b/.test(key)) return "Philosophy of AI";
+  if(/\\b(philosophy of education|education philosophy)\\b/.test(key)) return "Philosophy of Education";
+  if(/\\b(fundamentals of ethics|ethics)\\b/.test(key)) return "Fundamentals of Ethics";
+  if(/\\b(development issues in indian economy|development of indian economy|indian economy|development economics)\\b/.test(key)) return "Development Issues in Indian Economy";
+  return null;
 }
 
 function renderRows(rows){
@@ -90,6 +84,7 @@ function renderSummary(rows){
   var subjects = {};
   for(var i=0;i<rows.length;i++){
     var s = canonicalSubject(rows[i].subject);
+    if(!s) continue;
     subjects[s] = (subjects[s] || 0) + 1;
   }
   document.getElementById("summary").innerHTML =
@@ -116,7 +111,7 @@ function renderSummary(rows){
 
 function applySubjectFilter(){
   var selected = document.getElementById("subjectFilter").value;
-  var rows = selected ? allRows.filter(function(x){return canonicalSubject(x.subject) === selected;}) : allRows.slice();
+  var rows = (selected ? allRows.filter(function(x){return canonicalSubject(x.subject) === selected;}) : allRows.filter(function(x){return canonicalSubject(x.subject) !== null;}));
   renderRows(rows);
   renderSummary(rows);
 }
@@ -149,7 +144,7 @@ async function loadResults(){
     var data = await response.json();
     var rows = Array.isArray(data.results) ? data.results : [];
 
-    allRows = Array.isArray(data.results) ? data.results : [];
+    allRows = (Array.isArray(data.results) ? data.results : []).filter(function(x){return canonicalSubject(x.subject) !== null;});
 
     var select = document.getElementById("subjectFilter");
     var current = select.value;
