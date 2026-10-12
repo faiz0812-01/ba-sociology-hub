@@ -6,13 +6,13 @@
 *{box-sizing:border-box}body{font-family:Poppins,Segoe UI,Arial,sans-serif;margin:0;background:linear-gradient(135deg,#eef2ff,#f5f3ff 45%,#ecfeff);color:#172554}.wrap{max-width:1200px;margin:auto;padding:22px}.card{background:rgba(255,255,255,.94);border-radius:18px;padding:20px;box-shadow:0 10px 30px rgba(30,41,100,.12);margin-bottom:18px;border:1px solid rgba(99,102,241,.12)}h1{color:#312e81;letter-spacing:.2px}input{padding:12px;border-radius:10px;border:1px solid #c7d2fe;font-family:inherit}button{padding:12px 18px;border-radius:10px;border:0;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;font-family:inherit;font-weight:700;cursor:pointer}button:hover{opacity:.92}table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}th,td{padding:11px;text-align:left;border-bottom:1px solid #e5e7eb;vertical-align:top}th{background:#eef2ff;color:#3730a3;font-weight:700;position:sticky;top:0;z-index:1}tr:hover td{background:#f8faff}.scroll{overflow:auto}.stat{display:inline-block;margin-right:24px;font-weight:700;color:#3730a3}.danger{color:#b91c1c}.country-cell{font-weight:700;white-space:nowrap}.flag{font-size:24px;vertical-align:middle;margin-right:7px}.ip{font-family:Consolas,monospace;font-size:13px}.details{color:#64748b;font-size:12px;line-height:1.5;max-width:300px;word-break:break-word}.details b{color:#334155}.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;background:#e0e7ff;color:#3730a3}.legend{margin-top:12px;color:#64748b;font-size:13px}</style></head>
 <body><div class="wrap">
 <div class="card"><h1>📊 BA Sociology Study Hub — Admin Monitoring</h1>
-<p>Admin-only results viewer. Results require the separate Admin Token; do not share this page publicly. Configure Cloudflare Access for this dashboard hostname before treating the page itself as private.</p>
+<p><strong>Admin results viewer.</strong> A valid Admin Token is required to fetch student results from the results API. This does not by itself make this webpage private. Keep the token secret and do not commit it to GitHub. For stronger protection, restrict this page with an authentication layer when available.</p><p class="legend">Monitoring links open Cloudflare. Select the matching Worker there: <b>ba-sociology-hub</b> for site traffic and <b>ba-sociology-results</b> for result API traffic and errors.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0">
-<a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #c7d2fe;color:#3730a3;text-decoration:none;font-weight:700">Open Cloudflare Analytics &amp; Traffic ↗</a>
-<a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #c7d2fe;color:#3730a3;text-decoration:none;font-weight:700">Open Worker Logs &amp; Errors ↗</a>
+<a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #c7d2fe;color:#3730a3;text-decoration:none;font-weight:700">Open Cloudflare Dashboard ↗</a>
+<a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #c7d2fe;color:#3730a3;text-decoration:none;font-weight:700">Open Worker Observability ↗</a>
 </div>
 <input id="api" value="https://ba-sociology-results.faiz0812.workers.dev" style="width:100%;box-sizing:border-box">
-<input id="token" type="password" placeholder="Admin token" style="width:100%;box-sizing:border-box;margin-top:8px">
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input id="token" type="password" autocomplete="current-password" placeholder="Admin token" aria-label="Admin token" style="flex:1;min-width:220px;width:100%;box-sizing:border-box"><button type="button" id="toggleToken" aria-pressed="false" style="background:#e0e7ff;color:#3730a3">Show token</button></div>
 <button type="button" id="loadBtn" style="margin-top:8px">Load Results</button>
 <select id="subjectFilter" style="margin-top:8px;width:100%;padding:12px;border-radius:10px;border:1px solid #c7d2fe;font-family:inherit">
 <option value="">All Subjects</option>
@@ -26,6 +26,13 @@
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("loadBtn").addEventListener("click", loadResults);
   document.getElementById("subjectFilter").addEventListener("change", applySubjectFilter);
+  document.getElementById("toggleToken").addEventListener("click", function(){
+    var field = document.getElementById("token");
+    var reveal = field.type === "password";
+    field.type = reveal ? "text" : "password";
+    this.textContent = reveal ? "Hide token" : "Show token";
+    this.setAttribute("aria-pressed", reveal ? "true" : "false");
+  });
 });
 
 var allRows = [];
