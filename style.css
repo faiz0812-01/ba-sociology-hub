@@ -119,3 +119,26 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
   .resource-list a.language-tab>.language-badge{width:39px;height:39px;flex-basis:39px}
   .resource-list a.language-tab .language-choice{padding:7px 6px;gap:5px}
 }
+
+/* Keep the text and action chip separate from the compact resource icon sizing. */
+.resource-list a.language-tab>.language-copy{
+  display:grid;
+  flex:1 1 auto;
+  width:auto;
+  height:auto;
+  min-width:0;
+  padding:0;
+  border-radius:0;
+  background:transparent;
+  color:inherit;
+  font-size:initial;
+  font-weight:initial;
+  place-items:initial;
+}
+.resource-list a.language-tab>.language-choice{
+  display:inline-flex;
+  flex:0 0 auto;
+  width:auto;
+  height:auto;
+  border-radius:8px;
+}
