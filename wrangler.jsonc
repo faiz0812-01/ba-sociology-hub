@@ -19,6 +19,10 @@
       {
         "name": "CHAT_ROOM",
         "class_name": "StudyHubChat"
+      },
+      {
+        "name": "TRAFFIC_ROOM",
+        "class_name": "OwnerTraffic"
       }
     ]
   },
@@ -27,6 +31,12 @@
       "tag": "v1",
       "new_sqlite_classes": [
         "StudyHubChat"
+      ]
+    },
+    {
+      "tag": "v2-owner-traffic",
+      "new_sqlite_classes": [
+        "OwnerTraffic"
       ]
     }
   ]

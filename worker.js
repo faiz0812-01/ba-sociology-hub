@@ -22,7 +22,7 @@ function json(payload, status = 200) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const room = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
+    const room = env.TRAFFIC_ROOM.get(env.TRAFFIC_ROOM.idFromName("academic-hub-owner-traffic"));
     if (url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/admin/")) {
       if (!["/admin/login", "/admin/traffic", "/api/admin/login", "/api/admin/logout", "/api/admin/traffic", "/api/admin/session"].includes(url.pathname)) return json({error:"Not found"},404);
       if (request.method === "POST" && request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
@@ -37,7 +37,8 @@ export default {
     }
     if (url.pathname === CHAT_PATH) {
       if (request.method !== "GET" && request.method !== "POST") return json({error:"Method not allowed."},405);
-      return room.fetch(request);
+      const chat = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
+      return chat.fetch(request);
     }
     if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/internal/")) return json({error:"Not found"},404);
     let response = await env.ASSETS.fetch(request);
@@ -230,3 +231,6 @@ async function adminRequest(request, env, url) {
   }
   return internal;
 }
+
+// A dedicated namespace owned by this Worker keeps admin storage separate from legacy chat.
+export class OwnerTraffic extends StudyHubChat {}
