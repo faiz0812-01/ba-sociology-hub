@@ -43,7 +43,7 @@ export default {
     if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/internal/")) return json({error:"Not found"},404);
     let response = await env.ASSETS.fetch(request);
     if (request.method === "GET" && response.ok && response.headers.get("Content-Type")?.includes("text/html")) {
-      const task = room.fetch(new Request("https://internal/internal/visit", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ip:request.headers.get("CF-Connecting-IP") || "Unavailable",path:url.pathname})})).catch(()=>{});
+      const task = room.fetch(new Request("https://internal/internal/visit", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ip:request.headers.get("CF-Connecting-IP") || "Unavailable",path:url.pathname,country:request.cf?.country || "XX"})})).catch(()=>{});
       ctx.waitUntil(task);
       const session = await room.fetch(await adminRequest(request, env, "https://internal/admin/api/admin/session"));
       if (session.ok) {
@@ -142,7 +142,7 @@ export class StudyHubChat {
       const entry = await request.json();
       let records = (await this.state.storage.get("traffic")) || [];
       records = records.filter(r=>r.time > now - RETENTION_MS);
-      records.push({time:now,ip:String(entry.ip).slice(0,64),path:String(entry.path).slice(0,200)});
+      records.push({time:now,ip:String(entry.ip).slice(0,64),path:String(entry.path).slice(0,200),country:typeof entry.country === "string" && /^(?:[A-Z]{2}|T1)$/.test(entry.country) ? entry.country : "XX"});
       await this.state.storage.put("traffic", records.slice(-1000));
       await this.state.storage.setAlarm(now + RETENTION_MS);
       return json({ok:true});
@@ -210,9 +210,10 @@ async function digest(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value))),v=>v.toString(16).padStart(2,"0")).join("");
 }
 function adminPage(authorized) {
-  const content=authorized ? '<h1>Traffic</h1><p>Private owner dashboard · Latest 1,000 page views within 7 days. IP addresses may be shared or change; they do not identify a person.</p><div class="actions"><a href="/">Back to Academic Hub</a><button id="refresh">Refresh</button><button id="logout">Log out</button></div><h2 id="summary">Loading…</h2><p id="status" role="status"></p><div class="table"><table><thead><tr><th>Time (India)</th><th>Visitor IP</th><th>Page</th></tr></thead><tbody id="rows"></tbody></table></div>' : '<h1>Owner login</h1><p>Sign in to view Academic Hub traffic.</p><form id="login"><label for="password">Admin password</label><input id="password" type="password" autocomplete="current-password" required maxlength="1024"><button>Sign in</button></form><p id="status" role="status"></p><a href="/">Back to Academic Hub</a>';
+  const content=authorized ? '<h1>Traffic</h1><p>Private owner dashboard · Latest 1,000 page views within 7 days. Country is based on the visiting IP; VPNs and proxies may show a different country. Older visits show Unknown.</p><div class="actions"><a href="/">Back to Academic Hub</a><button id="refresh">Refresh</button><button id="logout">Log out</button></div><h2 id="summary">Loading…</h2><p id="status" role="status"></p><div class="table"><table><thead><tr><th>Time (India)</th><th>Visitor IP</th><th>Country</th><th>Page</th></tr></thead><tbody id="rows"></tbody></table></div>' : '<h1>Owner login</h1><p>Sign in to view Academic Hub traffic.</p><form id="login"><label for="password">Admin password</label><input id="password" type="password" autocomplete="current-password" required maxlength="1024"><button>Sign in</button></form><p id="status" role="status"></p><a href="/">Back to Academic Hub</a>';
   const script=authorized ? `
-    async function refresh(){try{const r=await fetch('/api/admin/traffic',{cache:'no-store'});if(r.status===401){location.href='/admin/login';return;}const d=await r.json();if(!r.ok)throw Error(d.error);document.getElementById('summary').textContent=d.views+' page views · '+d.uniqueIPs+' distinct IPs';const rows=document.getElementById('rows');rows.replaceChildren();for(const v of d.records){const tr=document.createElement('tr');for(const text of [new Date(v.time).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),v.ip,v.path]){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.append(tr);}document.getElementById('status').textContent=d.views?'':'No visits recorded yet.';}catch(e){document.getElementById('status').textContent=e.message||'Could not load traffic.';}}
+    function countryName(code){if(!code || code==='XX')return 'Unknown';if(code==='T1')return 'Tor network';try{return new Intl.DisplayNames(['en'],{type:'region'}).of(code)+' ('+code+')';}catch{return code;}}
+    async function refresh(){try{const r=await fetch('/api/admin/traffic',{cache:'no-store'});if(r.status===401){location.href='/admin/login';return;}const d=await r.json();if(!r.ok)throw Error(d.error);document.getElementById('summary').textContent=d.views+' page views · '+d.uniqueIPs+' distinct IPs';const rows=document.getElementById('rows');rows.replaceChildren();for(const v of d.records){const tr=document.createElement('tr');for(const text of [new Date(v.time).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),v.ip,countryName(v.country),v.path]){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.append(tr);}document.getElementById('status').textContent=d.views?'':'No visits recorded yet.';}catch(e){document.getElementById('status').textContent=e.message||'Could not load traffic.';}}
     document.getElementById('refresh').onclick=refresh;
     document.getElementById('logout').onclick=async()=>{const r=await fetch('/api/admin/logout',{method:'POST'});if(r.ok)location.href='/admin/login';};
     refresh();` : `
