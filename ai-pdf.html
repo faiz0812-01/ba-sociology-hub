@@ -15,51 +15,254 @@
     .hero{display:block;min-height:0;grid-template-columns:none;gap:0;background:#fff;color:#0f172a;text-align:center;padding:18px 16px 24px;border:1px solid #e2e8f0;border-radius:18px;margin:0 0 26px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
     .hero h1{display:block;font-size:clamp(25px,4vw,38px);line-height:1.55;color:#0f172a;background:transparent;padding:0;margin:0 0 8px}
     .hero p{font-size:16px;line-height:1.9;color:#334155;margin:0}
+    .module-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 0 30px}
+    .module-nav a{display:inline-block;padding:9px 15px;border:1px solid #c7d2fe;border-radius:999px;background:#eef2ff;color:#1e293b;text-decoration:none;font-weight:700}
+    .module{scroll-margin-top:20px;margin:28px 0 38px}
+    .module-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;border-bottom:2px solid #e2e8f0;margin-bottom:16px;padding:0 2px 10px}
+    .module-heading h2{font-size:21px;line-height:1.6;color:#0f172a;margin:0}
+    .module-heading p{font-size:14px;line-height:1.6;color:#334155;margin:0;white-space:nowrap}
     .chapter-list{display:grid;grid-template-columns:1fr;gap:18px}
     .chapter{border:1px solid #e2e8f0;border-radius:20px;padding:22px;display:grid;grid-template-columns:74px 1fr auto;align-items:center;gap:18px;background:linear-gradient(120deg,#fff,#f8fafc)}
     .num{height:64px;width:64px;border-radius:18px;display:grid;place-items:center;color:#fff;font-size:21px;font-weight:700;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 6px 14px color-mix(in srgb,var(--c1),transparent 68%)}
-    .chapter h2{font-size:19px;line-height:1.7;color:var(--c1);margin:0 0 2px}
-    .chapter p{font-size:13px;color:#334155;line-height:1.8;margin:0}
+    .chapter-copy h3{font-size:18px;line-height:1.65;color:var(--c1);margin:0 0 2px}
+    .chapter-copy p{font-size:13px;color:#334155;line-height:1.8;margin:0}
     .actions{display:flex;gap:10px;align-items:center}
     .actions a{display:inline-block;padding:12px 16px;border:2px solid var(--c1);border-radius:12px;text-align:center;text-decoration:none;font-weight:700;white-space:nowrap;transition:transform .15s,filter .15s}
     .read-online{background:var(--c1);color:#fff}
     .download{background:#fff;color:var(--c1)}
     .actions a:hover{filter:brightness(.92);transform:translateY(-1px)}
     .back{display:block;text-align:center;margin:28px auto 0;padding:13px 18px;max-width:240px;border-radius:14px;background:#0f172a;color:white;text-decoration:none;font-weight:700}
-    @media(max-width:680px){body{padding:14px}.page-box{padding:22px}.chapter{grid-template-columns:58px 1fr;gap:12px;padding:16px}.num{width:52px;height:52px}.actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.actions a{padding:11px 8px;white-space:normal;font-size:14px}.chapter h2{font-size:16px}}
+    @media(max-width:680px){body{padding:14px}.page-box{padding:22px}.chapter{grid-template-columns:58px 1fr;gap:12px;padding:16px}.num{width:52px;height:52px}.actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.actions a{padding:11px 8px;white-space:normal;font-size:14px}.chapter-copy h3{font-size:16px}}
   </style>
 </head>
 <body>
   <main class="page-box">
     <header class="hero">
       <h1>കൃത്രിമബുദ്ധിയുടെ തത്ത്വചിന്ത</h1>
-      <p>അധ്യായങ്ങൾ 1–3 · പൂർണ്ണ മലയാളം പഠനസാമഗ്രികൾ</p>
+      <p>മൊഡ്യൂൾ 1–5 · അധ്യായങ്ങൾ 1–22 · പൂർണ്ണ മലയാളം പഠനസാമഗ്രികൾ</p>
     </header>
-    <section class="chapter-list" aria-label="മലയാളം അധ്യായങ്ങൾ">
-      <article class="chapter" style="--c1:#0f766e;--c2:#14b8a6">
+    <nav class="module-nav" aria-label="മൊഡ്യൂളുകളിലേക്കുള്ള കണ്ണികൾ">
+      <a href="#module-1">മൊഡ്യൂൾ 1</a>
+      <a href="#module-2">മൊഡ്യൂൾ 2</a>
+      <a href="#module-3">മൊഡ്യൂൾ 3</a>
+      <a href="#module-4">മൊഡ്യൂൾ 4</a>
+      <a href="#module-5">മൊഡ്യൂൾ 5</a>
+    </nav>
+    <section class="module" id="module-1" aria-labelledby="module-1-title">
+      <header class="module-heading">
+        <h2 id="module-1-title">മൊഡ്യൂൾ 1 — AI തത്ത്വചിന്തയുടെ അടിസ്ഥാനങ്ങൾ</h2>
+        <p>അധ്യായങ്ങൾ 1–3</p>
+      </header>
+      <div class="chapter-list">
+      <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
         <div class="num">01</div>
-        <div><h2>കൃത്രിമബുദ്ധിയുടെ ചരിത്രവും അടിത്തറയും</h2><p>അഭ്യാസങ്ങളും അറിവ് പരിശോധിക്കാനുള്ള ചോദ്യങ്ങളും ഉൾപ്പെടുന്നു.</p></div>
+        <div class="chapter-copy"><h3>കൃത്രിമബുദ്ധിയുടെ ചരിത്രവും അടിത്തറയും</h3><p>അഭ്യാസങ്ങളും അറിവ് പരിശോധിക്കാനുള്ള ചോദ്യങ്ങളും ഉൾപ്പെടുന്നു.</p></div>
         <div class="actions">
           <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_1_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
           <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_1_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
         </div>
       </article>
-      <article class="chapter" style="--c1:#4f46e5;--c2:#8b5cf6">
+      <article class="chapter" style="--c1:#4f46e5;--c2:#4f46e5">
         <div class="num">02</div>
-        <div><h2>ഒരു യന്ത്രത്തിന് ചിന്തിക്കാൻ കഴിയുമോ?</h2><p>പഠനഭാഗം, അഭ്യാസങ്ങൾ, അവലോകന ചോദ്യങ്ങൾ എന്നിവ ഉൾപ്പെടുന്നു.</p></div>
+        <div class="chapter-copy"><h3>ഒരു യന്ത്രത്തിന് ചിന്തിക്കാൻ കഴിയുമോ?</h3><p>പഠനഭാഗം, അഭ്യാസങ്ങൾ, അവലോകന ചോദ്യങ്ങൾ എന്നിവ ഉൾപ്പെടുന്നു.</p></div>
         <div class="actions">
           <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_2_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
           <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_2_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
         </div>
       </article>
-      <article class="chapter" style="--c1:#be185d;--c2:#f97316">
+      <article class="chapter" style="--c1:#be185d;--c2:#be185d">
         <div class="num">03</div>
-        <div><h2>AI-യുടെ വെളിച്ചത്തിൽ തത്ത്വചിന്ത</h2><p>പൂർണ്ണ അധ്യായവും അവസാനത്തെ അഭ്യാസങ്ങളും ഉൾപ്പെടുന്നു.</p></div>
+        <div class="chapter-copy"><h3>AI-യുടെ വെളിച്ചത്തിൽ തത്ത്വചിന്ത</h3><p>പൂർണ്ണ അധ്യായവും അവസാനത്തെ അഭ്യാസങ്ങളും ഉൾപ്പെടുന്നു.</p></div>
         <div class="actions">
           <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_3_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
           <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_3_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
         </div>
       </article>
+      </div>
+    </section>
+    <section class="module" id="module-2" aria-labelledby="module-2-title">
+      <header class="module-heading">
+        <h2 id="module-2-title">മൊഡ്യൂൾ 2 — AI മാതൃകകൾ, ട്യൂറിംഗ് ടെസ്റ്റ്, മനസ്സിന്റെ തത്ത്വചിന്ത</h2>
+        <p>അധ്യായങ്ങൾ 4–8</p>
+      </header>
+      <div class="chapter-list">
+      <article class="chapter" style="--c1:#0369a1;--c2:#0369a1">
+        <div class="num">04</div>
+        <div class="chapter-copy"><h3>AI-യുടെ ക്ലാസിക്കൽ മാതൃകയിലെ പ്രശ്നങ്ങൾ</h3><p>പ്രതീകാത്മക AI ഉൾപ്പെടുന്നു.</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_4_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_4_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#7c3aed;--c2:#7c3aed">
+        <div class="num">05</div>
+        <div class="chapter-copy"><h3>അലൻ ട്യൂറിംഗ് ടെസ്റ്റ്</h3><p>മലയാളം PDF · 16 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_5_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_5_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#b45309;--c2:#b45309">
+        <div class="num">06</div>
+        <div class="chapter-copy"><h3>ചൈനീസ് റൂം പരീക്ഷണം</h3><p>മലയാളം PDF · 14 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_6_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_6_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#166534;--c2:#166534">
+        <div class="num">07</div>
+        <div class="chapter-copy"><h3>ഡെസ്കാർട്ടസും മനസ്സിന്റെ തത്ത്വചിന്തയുടെ ഉത്ഭവവും</h3><p>മലയാളം PDF · 12 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_7_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_7_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
+        <div class="num">08</div>
+        <div class="chapter-copy"><h3>ശരീരമില്ലാത്ത ബുദ്ധിശക്തി</h3><p>മലയാളം PDF · 13 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_8_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_8_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="module" id="module-3" aria-labelledby="module-3-title">
+      <header class="module-heading">
+        <h2 id="module-3-title">മൊഡ്യൂൾ 3 — ജ്ഞാനശാസ്ത്രവും മനസ്സിന്റെ സിദ്ധാന്തങ്ങളും</h2>
+        <p>അധ്യായങ്ങൾ 9–13</p>
+      </header>
+      <div class="chapter-list">
+      <article class="chapter" style="--c1:#4f46e5;--c2:#4f46e5">
+        <div class="num">09</div>
+        <div class="chapter-copy"><h3>ബുദ്ധമതം</h3><p>മലയാളം PDF · 12 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_9_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_9_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#be185d;--c2:#be185d">
+        <div class="num">10</div>
+        <div class="chapter-copy"><h3>ജ്ഞാനശാസ്ത്രം</h3><p>മലയാളം PDF · 22 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_10_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_10_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#0369a1;--c2:#0369a1">
+        <div class="num">11</div>
+        <div class="chapter-copy"><h3>പാശ്ചാത്യ ജ്ഞാനശാസ്ത്രം</h3><p>മലയാളം PDF · 28 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_11_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_11_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#7c3aed;--c2:#7c3aed">
+        <div class="num">12</div>
+        <div class="chapter-copy"><h3>പ്രവർത്തനപരത</h3><p>മലയാളം PDF · 11 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_12_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_12_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#b45309;--c2:#b45309">
+        <div class="num">13</div>
+        <div class="chapter-copy"><h3>കൃത്രിമബുദ്ധിയിലെ ജ്ഞാനശാസ്ത്രപരമായ പ്രത്യാഘാതങ്ങൾ</h3><p>മലയാളം PDF · 17 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_13_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_13_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="module" id="module-4" aria-labelledby="module-4-title">
+      <header class="module-heading">
+        <h2 id="module-4-title">മൊഡ്യൂൾ 4 — AI നൈതികതയും സാമൂഹിക ഉത്തരവാദിത്തവും</h2>
+        <p>അധ്യായങ്ങൾ 14–20</p>
+      </header>
+      <div class="chapter-list">
+      <article class="chapter" style="--c1:#166534;--c2:#166534">
+        <div class="num">14</div>
+        <div class="chapter-copy"><h3>സ്വയംഭരണ AI സംവിധാനങ്ങളുടെ ലക്ഷ്യങ്ങളെ നമ്മുടെ ലക്ഷ്യങ്ങളുമായി എങ്ങനെ യോജിപ്പിക്കാം?</h3><p>മലയാളം PDF · 8 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_14_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_14_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
+        <div class="num">15</div>
+        <div class="chapter-copy"><h3>AI-യുടെ ഭാവി മനുഷ്യരാശിക്ക് ഭീഷണിയാണോ?</h3><p>മലയാളം PDF · 11 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_15_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_15_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#4f46e5;--c2:#4f46e5">
+        <div class="num">16</div>
+        <div class="chapter-copy"><h3>അൽഗോരിതങ്ങൾ പഠിക്കുമ്പോൾ ഉണ്ടാകുന്ന പക്ഷപാതം എങ്ങനെ തടയാം?</h3><p>മലയാളം PDF · 8 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_16_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_16_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#be185d;--c2:#be185d">
+        <div class="num">17</div>
+        <div class="chapter-copy"><h3>നമ്മുടെ സാമൂഹിക ബന്ധങ്ങളിൽ AI സംവിധാനങ്ങളെ എങ്ങനെ ഉൾപ്പെടുത്തണം?</h3><p>മലയാളം PDF · 9 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_17_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_17_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#0369a1;--c2:#0369a1">
+        <div class="num">18</div>
+        <div class="chapter-copy"><h3>സ്വയം ഓടിക്കുന്ന കാറുകൾക്കുള്ള AI നൈതിക നിയമങ്ങൾ</h3><p>മലയാളം PDF · 15 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_18_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_18_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#7c3aed;--c2:#7c3aed">
+        <div class="num">19</div>
+        <div class="chapter-copy"><h3>AI സംവിധാനങ്ങൾക്ക് ധാർമ്മിക ദോഷം സംഭവിക്കുമോ?</h3><p>മലയാളം PDF · 23 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_19_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_19_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#b45309;--c2:#b45309">
+        <div class="num">20</div>
+        <div class="chapter-copy"><h3>AI സംവിധാനങ്ങൾക്ക് ധാർമ്മിക ഏജന്റുമാരാകാനാകുമോ?</h3><p>മലയാളം PDF · 11 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_20_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_20_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="module" id="module-5" aria-labelledby="module-5-title">
+      <header class="module-heading">
+        <h2 id="module-5-title">മൊഡ്യൂൾ 5 — AI-യുടെ തത്ത്വചിന്താപരമായ അടിത്തറയും ചർച്ചകളും</h2>
+        <p>അധ്യായങ്ങൾ 21–22</p>
+      </header>
+      <div class="chapter-list">
+      <article class="chapter" style="--c1:#166534;--c2:#166534">
+        <div class="num">21</div>
+        <div class="chapter-copy"><h3>AI-യുടെ തത്ത്വചിന്താപരമായ അടിത്തറയും മനുഷ്യരാശിയുടെ ഭാവിയും</h3><p>മലയാളം PDF · 1 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_21_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_21_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
+        <div class="num">22</div>
+        <div class="chapter-copy"><h3>AI-യെക്കുറിച്ചുള്ള ചർച്ചാവിഷയങ്ങൾ</h3><p>മലയാളം PDF · 5 പേജുകൾ</p></div>
+        <div class="actions">
+          <a class="read-online" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_22_Malayalam.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
+          <a class="download" href="Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_22_Malayalam.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+        </div>
+      </article>
+      </div>
     </section>
     <a class="back" href="index.html">ഹോം പേജിലേക്ക് മടങ്ങുക</a>
   </main>
