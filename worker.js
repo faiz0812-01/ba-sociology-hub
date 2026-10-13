@@ -27,6 +27,8 @@ export default {
       if (!["/admin/login", "/admin/traffic", "/api/admin/login", "/api/admin/logout", "/api/admin/traffic", "/api/admin/session"].includes(url.pathname)) return json({error:"Not found"},404);
       if (request.method === "POST" && request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
       if (url.pathname === "/admin/login" && request.method === "GET") return adminPage(false);
+      if (typeof env.ADMIN_PASSWORD !== "string" || !env.ADMIN_PASSWORD) return json({error:"The active Worker is missing its ADMIN_PASSWORD runtime secret."},503);
+      if (env.ADMIN_PASSWORD.length < 16) return json({error:"The saved ADMIN_PASSWORD is shorter than 16 characters. Update the runtime secret to a longer password."},503);
       const result = await room.fetch(await adminRequest(request, env, "https://internal/admin" + url.pathname));
       if (url.pathname === "/admin/traffic" && request.method === "GET") {
         return result.ok ? adminPage(true) : new Response(null,{status:303,headers:{Location:"/admin/login","Cache-Control":"no-store"}});
