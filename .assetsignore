@@ -1,0 +1,9 @@
+worker.js
+assessment-worker.js
+wrangler.jsonc
+.git/
+.github/
+node_modules/
+.dev.vars*
+.env*
+ADMIN-TRAFFIC.md
