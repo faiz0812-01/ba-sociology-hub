@@ -142,3 +142,52 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
   height:auto;
   border-radius:8px;
 }
+
+/* Compact language tabs for a calmer subject-card layout. */
+.resource-list a.language-tab{
+  grid-template-columns:32px minmax(0,1fr) auto;
+  gap:8px;
+  min-height:49px;
+  padding:6px 8px;
+  border-radius:11px;
+}
+.resource-list a.language-tab>.language-badge{
+  width:32px;
+  height:32px;
+  flex-basis:32px;
+  border-radius:9px;
+  font-size:9px;
+}
+.resource-list a.language-tab .language-copy strong{
+  font-size:9px;
+  line-height:1.25;
+  white-space:nowrap;
+}
+.language-copy small{
+  font-size:7px;
+  line-height:1.2;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.resource-list a.language-tab .language-choice{
+  gap:5px;
+  padding:5px 6px;
+  border-radius:7px;
+  font-size:7px;
+}
+.resource-list a.language-tab .language-choice b{font-size:10px}
+@media(max-width:700px){
+  .resource-list a.language-tab{
+    min-height:47px;
+    grid-template-columns:30px minmax(0,1fr) auto;
+    gap:7px;
+    padding:6px 7px;
+  }
+  .resource-list a.language-tab>.language-badge{
+    width:30px;
+    height:30px;
+    flex-basis:30px;
+  }
+  .resource-list a.language-tab .language-choice{padding:5px;gap:4px}
+}
