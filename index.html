@@ -437,8 +437,10 @@
             ? 'Your uploaded Malayalam AI PDFs are grouped by module and open here for reading.'
             : subject==='Philosophy of Education' && medium==='Malayalam'
               ? 'Choose a module to read its Malayalam PDF here without leaving Academic Hub.'
-              : medium==='Malayalam'
-                ? 'Uploaded Malayalam PDFs open here for reading without leaving Academic Hub.'
+              : subject==='Development Issues in Indian Economy' && medium==='English'
+                ? 'English PDFs are available for Module 2: Poverty and Module 3: Inequality.'
+                : medium==='Malayalam'
+                  ? 'Uploaded Malayalam PDFs open here for reading without leaving Academic Hub.'
                 : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';
       moduleTabs.replaceChildren();
       modules.forEach((module,moduleIndex)=>{
