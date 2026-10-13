@@ -36,9 +36,16 @@ export class StudyHubChat {
     this.state = state;
     this.sessionRates = new Map();
     this.roomRate = [];
+    this.serial = Promise.resolve();
   }
 
-  async fetch(request) {
+  fetch(request) {
+    const response = this.serial.then(() => this.handle(request));
+    this.serial = response.then(() => undefined, () => undefined);
+    return response;
+  }
+
+  async handle(request) {
     const now = Date.now();
     const stored = (await this.state.storage.get("messages")) || [];
     const recent = stored.filter((message) =>
