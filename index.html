@@ -368,11 +368,13 @@
       const modules=getSubjectModules(subject,medium);
       lastLanguageTab=trigger;
       moduleTitle.textContent=subject+' · '+medium+' PDFs';
-      moduleDescription.textContent=subject==='Sociology' && medium==='Malayalam'
-        ? 'Browse all four modules and their Malayalam submodules. Only Module 1–4 tabs are opened here.'
-        : subject==='Philosophy of AI' && medium==='Malayalam'
-          ? 'Your uploaded Malayalam AI PDFs are grouped by module below.'
-          : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';
+      moduleDescription.textContent=subject==='Malayalam' && medium==='Malayalam'
+        ? 'All four uploaded Malayalam course modules are available here.'
+        : subject==='Sociology' && medium==='Malayalam'
+          ? 'Browse all four modules and their Malayalam submodules. Only PDFs stored in Academic Hub are opened here.'
+          : subject==='Philosophy of AI' && medium==='Malayalam'
+            ? 'Your uploaded Malayalam AI PDFs are grouped by module below.'
+            : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';
       moduleTabs.replaceChildren();
       modules.forEach((module,moduleIndex)=>{
         const button=document.createElement('button');
