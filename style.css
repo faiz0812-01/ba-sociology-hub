@@ -286,3 +286,55 @@ body{
 .search-wrap{background:#fff}
 .support-section{background:linear-gradient(110deg,#edf2ff,#f3edff);border-color:#dfe4fa}
 footer{background:#142f2a}
+
+
+/* Bold, colourful typography refresh — keeps all existing page content and layout */
+body, body * {
+  font-weight: 700 !important;
+}
+body { color: #33415f; }
+.brand, .nav-links a { color: #354b8c; }
+.nav-links a:hover, .nav-links a.active { color: #7652b5; }
+.hero h1 { color: #fffdfd; }
+.hero h1 span, .section-heading h2 {
+  background: linear-gradient(100deg,#4169c9 0%,#8656c7 48%,#d45d91 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.eyebrow { color: #b04e87; }
+.hero p, .hero .hero-footnote { color: #e6eaff; }
+.quick-stats .stat:nth-child(4n+1) strong,
+.quick-stats .stat:nth-child(4n+1) .stat-label { color: #4966c8; }
+.quick-stats .stat:nth-child(4n+2) strong,
+.quick-stats .stat:nth-child(4n+2) .stat-label { color: #8a55b8; }
+.quick-stats .stat:nth-child(4n+3) strong,
+.quick-stats .stat:nth-child(4n+3) .stat-label { color: #c05a83; }
+.quick-stats .stat:nth-child(4n) strong,
+.quick-stats .stat:nth-child(4n) .stat-label { color: #238878; }
+.subject-card h3 { color: #3d559c; }
+.subject-card:nth-child(4n+2) h3 { color: #8052b3; }
+.subject-card:nth-child(4n+3) h3 { color: #bd557f; }
+.subject-card:nth-child(4n) h3 { color: #218777; }
+.subject-card p, .test-card p, .resource-list a { color: #46516f; }
+.subject-tag, .tests-pill { color: #8b4b9e; }
+.test-card h3 { color: #3e5db0; }
+.test-card:nth-child(4n+2) h3 { color: #8254b8; }
+.test-card:nth-child(4n+3) h3 { color: #bf557f; }
+.test-card:nth-child(4n) h3 { color: #218777; }
+.section-heading p { color: #5d6680; }
+.search-wrap input { color: #34415e; font-weight: 700 !important; }
+.resource-list a:nth-child(5n+1) { color: #3568a8; }
+.resource-list a:nth-child(5n+2) { color: #8252ac; }
+.resource-list a:nth-child(5n+3) { color: #b64d7b; }
+.resource-list a:nth-child(5n+4) { color: #a36a22; }
+.resource-list a:nth-child(5n) { color: #217f75; }
+.study-banner h2, .study-banner p { color: #fffdf6; }
+.support-section h2 { color: #3f5ba6; }
+.support-section p { color: #4e5b78; }
+footer { color: #eef0ff; }
+footer a { color: #f4c8e4; }
+button, .button, .nav-cta, .test-card>a, .study-banner>a, .support-section>a {
+  font-weight: 800 !important;
+}
+::selection { background: #d8c9ff; color: #2f285b; }
