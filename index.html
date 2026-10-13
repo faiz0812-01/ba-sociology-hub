@@ -282,10 +282,17 @@
       {name:'Module 3',items:[{label:'Chapter 3 PDF',title:'AI-യുടെ വെളിച്ചത്തിൽ തത്ത്വചിന്ത',description:'പൂർണ്ണ അധ്യായവും അവസാനത്തെ അഭ്യാസങ്ങളും ഉൾപ്പെടുന്നു.',href:'Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_3_Malayalam.pdf'}]},
       {name:'Module 4',items:[{label:'Module 4 PDF'}]}
     ];
+    const educationMalayalamModules = [
+      {name:'Module 1',items:[{label:'Module 1 PDF'}]},
+      {name:'Module 2',items:[{label:'Module 2 PDF'}]},
+      {name:'Module 3',items:[{label:'Module 3 PDF',title:'Philosophy of Education · Malayalam · Module 3',description:'Uploaded Malayalam study guide.',href:'Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_3.pdf'}]},
+      {name:'Module 4',items:[{label:'Module 4 PDF'}]}
+    ];
     function getSubjectModules(subject,medium) {
       if(subject==='Malayalam' && medium==='Malayalam') return malayalamCourseModules;
       if(subject==='Sociology' && medium==='Malayalam') return sociologyMalayalamModules;
       if(subject==='Philosophy of AI' && medium==='Malayalam') return aiMalayalamModules;
+      if(subject==='Philosophy of Education' && medium==='Malayalam') return educationMalayalamModules;
       return [1,2,3,4].map(number => ({name:'Module '+number,items:[{label:'Module '+number+' PDF'}]}));
     }
     function showModuleItem(subject,medium,moduleName,item) {
