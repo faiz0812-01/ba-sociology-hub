@@ -7,3 +7,6 @@ node_modules/
 .dev.vars*
 .env*
 ADMIN-TRAFFIC.md
+study-helper-backend.js
+AI-STUDY-HELPER.md
+

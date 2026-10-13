@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#173f35">
   <meta name="description" content="Academic Hub — exam-focused notes, MCQ practice tests, videos and study resources for Calicut University students.">
   <title>Academic Hub | Learn • Practise • Succeed</title>
-  <link rel="stylesheet" href="style.css?v=20261013-inline-malayalam-pdf-reader">
+  <link rel="stylesheet" href="style.css?v=20261014-ai-study-helper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
       <a href="#top">Overview</a>
       <a href="#subjects">Semester subjects</a>
       <a href="#tests">Practice tests</a>
+      <a href="#ai-study">AI Study Helper</a>
       <a href="#community-chat">Student chat</a>
     </div>
     <a class="nav-cta" href="#tests">Start practising <span aria-hidden="true">↗</span></a>
@@ -106,6 +107,34 @@
     </section>
 
     <section class="study-banner"><div class="banner-symbol">✦</div><div><span>SMALL STEPS. BIG PROGRESS.</span><h2>Your next good result starts with today's practice.</h2><p>Choose a subject, review a topic and keep moving forward.</p></div><a href="#subjects">Start learning <span>→</span></a></section>
+
+    <section id="ai-study" class="ai-study-section" aria-labelledby="ai-study-title">
+      <div class="ai-study-intro">
+        <div class="ai-study-eyebrow"><span aria-hidden="true">✦</span> A LITTLE HELP TO UNDERSTAND MORE</div>
+        <h2 id="ai-study-title">AI Study Helper</h2>
+        <p>Stuck on a concept? Get a simple explanation, practise a few questions or build a quick revision plan.</p>
+        <div class="ai-study-features"><span>English</span><span lang="ml">മലയാളം</span><span>Your semester subjects</span></div>
+        <div class="ai-study-note"><span aria-hidden="true">↗</span><div><strong>A separate space for your questions</strong><p>Your questions are not posted to the community chat.</p></div></div>
+        <details class="ai-study-privacy"><summary>How your questions are handled</summary><p>Your question and recent replies are sent to Cloudflare AI to generate an answer. Academic Hub does not save conversation history on its server. This conversation stays in memory in this tab and clears when you reload or leave. Avoid sharing personal information.</p></details>
+        <p class="ai-study-caution">AI can make mistakes. Check explanations against your class notes; the helper does not read the hub’s PDFs.</p>
+      </div>
+      <div class="ai-study-panel">
+        <div class="ai-study-header"><div class="ai-study-avatar" aria-hidden="true">✦</div><div><strong>Let’s work through it</strong><small>Explain · Practise · Revise</small></div><button id="ai-clear" class="ai-study-clear" type="button" disabled>Clear chat</button></div>
+        <div class="ai-study-options">
+          <label for="ai-subject">Subject<select id="ai-subject" name="subject"><option value="Sociology">Sociology</option><option value="Philosophy of AI">Philosophy of AI</option><option value="Philosophy of Education">Philosophy of Education</option><option value="Development Issues in Indian Economy">Development Issues in Indian Economy</option><option value="Fundamentals of Ethics">Fundamentals of Ethics</option><option value="Microeconomic Foundation">Microeconomic Foundation</option><option value="History of Keralam">History of Keralam</option><option value="Mathematics">Mathematics</option><option value="Malayalam">Malayalam</option><option value="English">English</option><option value="Arabic">Arabic</option></select></label>
+          <label for="ai-language">Answer language<select id="ai-language" name="language"><option value="auto">Match my question</option><option value="en">English</option><option value="ml" lang="ml">മലയാളം</option></select></label>
+        </div>
+        <div id="ai-messages" class="ai-study-messages" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Your AI study conversation" tabindex="0"><div id="ai-empty" class="ai-study-empty"><span aria-hidden="true">✧</span><strong>Start with something you’re learning</strong><p>Ask in English or Malayalam, or try a suggestion below.</p></div></div>
+        <div class="ai-study-prompts" aria-label="Question suggestions"><button type="button" data-ai-prompt="explain">Explain simply <span aria-hidden="true">↗</span></button><button type="button" data-ai-prompt="mcqs">Make 3 MCQs <span aria-hidden="true">↗</span></button><button type="button" data-ai-prompt="revise">Quick revision <span aria-hidden="true">↗</span></button></div>
+        <form id="ai-form" class="ai-study-form">
+          <label for="ai-question">What would you like to understand?</label>
+          <textarea id="ai-question" name="question" maxlength="1200" rows="3" placeholder="For example: Explain socialisation with a real-life example…" aria-describedby="ai-input-help ai-status" required></textarea>
+          <div class="ai-study-compose-footer"><span id="ai-input-help">Enter to send · Shift + Enter for a new line <span id="ai-count">0 / 1200</span></span><button id="ai-send" type="submit" disabled>Ask helper <span aria-hidden="true">→</span></button></div>
+          <div class="ai-study-status-row"><p id="ai-status" role="status">Checking helper availability…</p><button id="ai-retry" type="button" hidden>Try again</button></div>
+        </form>
+        <noscript><p class="ai-study-noscript">Turn on JavaScript to use the AI Study Helper.</p></noscript>
+      </div>
+    </section>
 
     <section id="community-chat" class="community-section">
       <div class="community-intro"><div class="eyebrow">LEARN TOGETHER</div><h2>Academic Hub community</h2><p>Ask a question, share a helpful tip or encourage another student.</p><div class="community-note"><span>↗</span><div><strong>A shared student space</strong><small>Your name and message are public; messages are removed after 7 days.</small></div></div></div>
@@ -434,5 +463,6 @@
     loadChat();
     window.setInterval(loadChat, 6000);
   </script>
+  <script src="ai-study.js?v=20261014-ai-study-helper" defer></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+import {handleStudyHelper} from './study-helper-backend.js';
+export {StudyHelperQuota} from './study-helper-backend.js';
 const CHAT_PATH = "/api/chat";
 const MAX_NAME = 32;
 const MAX_MESSAGE = 500;
@@ -22,6 +24,7 @@ function json(payload, status = 200) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/study-helper' || url.pathname === '/api/study-helper/status') return handleStudyHelper(request, env);
     const room = env.TRAFFIC_ROOM.get(env.TRAFFIC_ROOM.idFromName("academic-hub-owner-traffic"));
     if (url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/admin/")) {
       if (!["/admin/login", "/admin/traffic", "/api/admin/login", "/api/admin/logout", "/api/admin/traffic", "/api/admin/session"].includes(url.pathname)) return json({error:"Not found"},404);
@@ -283,3 +286,4 @@ function groupTrafficByIP(records) {
   }
   return Array.from(groups.values());
 }
+

@@ -23,6 +23,10 @@
       {
         "name": "TRAFFIC_ROOM",
         "class_name": "OwnerTraffic"
+      },
+      {
+        "name": "STUDY_QUOTA",
+        "class_name": "StudyHelperQuota"
       }
     ]
   },
@@ -38,6 +42,16 @@
       "new_sqlite_classes": [
         "OwnerTraffic"
       ]
+    },
+    {
+      "tag": "v3-study-helper-quota",
+      "new_sqlite_classes": [
+        "StudyHelperQuota"
+      ]
     }
-  ]
+  ],
+  "ai": {
+    "binding": "AI"
+  }
 }
+
