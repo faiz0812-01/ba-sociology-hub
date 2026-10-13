@@ -27,7 +27,7 @@ export default {
       if (!["/admin/login", "/admin/traffic", "/api/admin/login", "/api/admin/logout", "/api/admin/traffic", "/api/admin/session"].includes(url.pathname)) return json({error:"Not found"},404);
       if (request.method === "POST" && request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
       if (url.pathname === "/admin/login" && request.method === "GET") return adminPage(false);
-      const result = await room.fetch(new Request("https://internal/admin" + url.pathname, request));
+      const result = await room.fetch(await adminRequest(request, env, "https://internal/admin" + url.pathname));
       if (url.pathname === "/admin/traffic" && request.method === "GET") {
         return result.ok ? adminPage(true) : new Response(null,{status:303,headers:{Location:"/admin/login","Cache-Control":"no-store"}});
       }
@@ -42,7 +42,7 @@ export default {
     if (request.method === "GET" && response.ok && response.headers.get("Content-Type")?.includes("text/html")) {
       const task = room.fetch(new Request("https://internal/internal/visit", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ip:request.headers.get("CF-Connecting-IP") || "Unavailable",path:url.pathname})})).catch(()=>{});
       ctx.waitUntil(task);
-      const session = await room.fetch(new Request("https://internal/admin/api/admin/session", request));
+      const session = await room.fetch(await adminRequest(request, env, "https://internal/admin/api/admin/session"));
       if (session.ok) {
         response = new HTMLRewriter().on("body",{element(el){el.append('<a href="/admin/traffic" style="position:fixed;bottom:20px;right:20px;z-index:9999;padding:12px 18px;background:#173b35;color:white;border-radius:12px;text-decoration:none;font:600 16px system-ui">Traffic ↗</a>',{html:true});}}).transform(response);
       }
@@ -130,7 +130,9 @@ export class StudyHubChat {
     return json({ message, messages });
   }
   async handleAdmin(request, path, now) {
-    const configured = typeof this.env.ADMIN_PASSWORD === "string" && this.env.ADMIN_PASSWORD.length >= 16;
+    // Only the entry Worker supplies this header on private Durable Object calls.
+    const passwordHash = request.headers.get("X-Hub-Admin-Hash") || "";
+    const configured = /^[a-f0-9]{64}$/.test(passwordHash);
     const ttl = 8 * 60 * 60 * 1000;
     if (path === "/internal/visit") {
       if (request.method !== "POST") return json({},405);
@@ -153,7 +155,7 @@ export class StudyHubChat {
       await this.state.storage.put(rateKey,attempts);
       await this.state.storage.setAlarm(now + RETENTION_MS);
       let input; try { input = await request.json(); } catch { return json({error:"Invalid request."},400); }
-      const expected = await digest(this.env.ADMIN_PASSWORD);
+      const expected = passwordHash;
       const actual = await digest(typeof input.password === "string" && input.password.length<=1024 ? input.password : "");
       let mismatch=0; for(let i=0;i<expected.length;i++) mismatch |= expected.charCodeAt(i)^actual.charCodeAt(i);
       if(mismatch) return json({error:"Incorrect password."},401);
@@ -167,7 +169,7 @@ export class StudyHubChat {
     const token = request.headers.get("Cookie")?.match(/(?:^|;\s*)__Host-hub_admin=([a-f0-9]{64})(?:;|$)/)?.[1];
     const key = token ? "session:" + await digest(token) : "";
     const session = key ? await this.state.storage.get(key) : null;
-    if (!session || session.expires<=now || session.passwordHash !== await digest(this.env.ADMIN_PASSWORD)) return json({error:"Owner login required."},401);
+    if (!session || session.expires<=now || session.passwordHash !== passwordHash) return json({error:"Owner login required."},401);
     if (path === "/admin/api/admin/logout" && request.method === "POST") {
       await this.state.storage.delete(key);
       const response=json({ok:true});
@@ -213,4 +215,16 @@ function adminPage(authorized) {
     refresh();` : `
     document.getElementById('login').onsubmit=async e=>{e.preventDefault();const button=e.target.querySelector('button');button.disabled=true;try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('password').value})});const d=await r.json();document.getElementById('password').value='';if(!r.ok)throw Error(d.error);location.href='/admin/traffic';}catch(e){document.getElementById('status').textContent=e.message||'Sign-in failed.';}finally{button.disabled=false;}};`;
   return new Response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Academic Hub · Owner</title><style>body{background:#f2f6f3;color:#183b35;font:18px/1.6 system-ui;margin:0}main{max-width:1050px;margin:5vh auto;padding:28px}h1{font-size:40px}a{color:#28594e}form{max-width:420px;display:grid;gap:16px}input,button{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:12px}button{background:#183b35;color:white;cursor:pointer}.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.table{overflow:auto;background:white;border-radius:12px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:14px;border-bottom:1px solid #e1e9e4}td{overflow-wrap:anywhere}#status{color:#914023}</style></head><body><main>'+content+'</main><script>'+script+'</script></body></html>',{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"private, no-store","X-Robots-Tag":"noindex, nofollow","X-Content-Type-Options":"nosniff","Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'","Referrer-Policy":"no-referrer"}});
+}
+
+// Read secrets from the current entry Worker on every request, not from a
+// retained Durable Object instance or a namespace owned by another Worker.
+// Never forward a client-supplied verification header.
+async function adminRequest(request, env, url) {
+  const internal = new Request(url, request);
+  internal.headers.delete("X-Hub-Admin-Hash");
+  if (typeof env.ADMIN_PASSWORD === "string" && env.ADMIN_PASSWORD.length >= 16) {
+    internal.headers.set("X-Hub-Admin-Hash", await digest(env.ADMIN_PASSWORD));
+  }
+  return internal;
 }
