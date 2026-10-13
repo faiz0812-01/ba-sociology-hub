@@ -6,9 +6,30 @@
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*"
+    ]
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "main": "worker.js",
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CHAT_ROOM",
+        "class_name": "StudyHubChat"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "StudyHubChat"
+      ]
+    }
   ]
 }
