@@ -142,6 +142,7 @@ export class StudyHubChat {
       const entry = await request.json();
       let records = (await this.state.storage.get("traffic")) || [];
       records = records.filter(r=>r.time > now - RETENTION_MS);
+      await this.countVisit(now, String(entry.ip).slice(0,64), records);
       records.push({time:now,ip:String(entry.ip).slice(0,64),path:String(entry.path).slice(0,200),country:typeof entry.country === "string" && /^(?:[A-Z]{2}|T1)$/.test(entry.country) ? entry.country : "XX",region:cleanText(entry.region,100),city:cleanText(entry.city,100)});
       await this.state.storage.put("traffic", records.slice(-1000));
       await this.state.storage.setAlarm(now + RETENTION_MS);
@@ -182,16 +183,44 @@ export class StudyHubChat {
     if (request.method !== "GET") return json({},405);
     if (path === "/admin/api/admin/traffic") {
       const records=((await this.state.storage.get("traffic")) || []).filter(r=>r.time>now-RETENTION_MS);
-      return json({records:records.slice().reverse(),views:records.length,uniqueIPs:new Set(records.map(r=>r.ip)).size});
+      const today = await this.countVisit(now, null, records);
+      return json({records:records.slice().reverse(),views:records.length,uniqueIPs:new Set(records.map(r=>r.ip)).size,today,updatedAt:now});
     }
     if (path === "/admin/api/admin/session" || path === "/admin/admin/traffic") return json({ok:true});
     return json({error:"Not found"},404);
+  }
+
+
+  async countVisit(now, ip, records) {
+    const day = indiaDay(now);
+    return this.state.storage.transaction(async storage => {
+      let totals = await storage.get("daily:" + day);
+      if (!totals) {
+        const existing = records.filter(r=>indiaDay(r.time) === day);
+        const ips = new Set(existing.map(r=>r.ip).filter(value=>value && value!=="Unavailable"));
+        totals = {day,views:existing.length,visitors:ips.size};
+        for (const address of ips) await storage.put("visitor:" + day + ":" + await digest(address), true);
+      }
+      if (ip !== null) {
+        totals.views++;
+        if (ip && ip !== "Unavailable") {
+          const visitorKey = "visitor:" + day + ":" + await digest(ip);
+          if (!(await storage.get(visitorKey))) {
+            totals.visitors++;
+            await storage.put(visitorKey, true);
+          }
+        }
+      }
+      await storage.put("daily:" + day, totals);
+      return totals;
+    });
   }
 
   async alarm() {
     const now=Date.now();
     const all=await this.state.storage.list();
     for(const [key,value] of all) {
+      if ((key.startsWith("daily:") || key.startsWith("visitor:")) && key.split(":")[1] < indiaDay(now-RETENTION_MS)) await this.state.storage.delete(key);
       if(key==="traffic" || key==="messages") await this.state.storage.put(key,value.filter(r=>(r.time || r.createdAt)>now-RETENTION_MS));
       if(key.startsWith("session:") && value.expires<=now) await this.state.storage.delete(key);
       if(key.startsWith("login:") && !value.some(t=>t>now-15*60*1000)) await this.state.storage.delete(key);
@@ -210,13 +239,13 @@ async function digest(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value))),v=>v.toString(16).padStart(2,"0")).join("");
 }
 function adminPage(authorized) {
-  const content=authorized ? '<h1>Traffic</h1><p>Private owner dashboard · Latest 1,000 page views within 7 days. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class="actions"><a href="/">Back to Academic Hub</a><button id="refresh">Refresh</button><button id="logout">Log out</button></div><h2 id="summary">Loading…</h2><p id="status" role="status"></p><div class="table"><table><thead><tr><th>Time (India)</th><th>Visitor IP</th><th>Country</th><th>State / Region</th><th>City</th><th>Page</th></tr></thead><tbody id="rows"></tbody></table></div>' : '<h1>Owner login</h1><p>Sign in to view Academic Hub traffic.</p><form id="login"><label for="password">Admin password</label><input id="password" type="password" autocomplete="current-password" required maxlength="1024"><button>Sign in</button></form><p id="status" role="status"></p><a href="/">Back to Academic Hub</a>';
+  const content=authorized ? '<h1>Traffic</h1><p>Private owner dashboard · Latest 1,000 page views within 7 days. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class="actions"><a href="/">Back to Academic Hub</a><button id="refresh">Refresh</button><button id="logout">Log out</button></div><h2 id="today-summary" aria-live="polite">Today: loading…</h2><p>Live · Updates every 15 seconds · India time · Visitors counted by distinct IP address</p><h2 id="summary">Loading…</h2><p id="status" role="status"></p><div class="table"><table><thead><tr><th>Time (India)</th><th>Visitor IP</th><th>Country</th><th>State / Region</th><th>City</th><th>Page</th></tr></thead><tbody id="rows"></tbody></table></div>' : '<h1>Owner login</h1><p>Sign in to view Academic Hub traffic.</p><form id="login"><label for="password">Admin password</label><input id="password" type="password" autocomplete="current-password" required maxlength="1024"><button>Sign in</button></form><p id="status" role="status"></p><a href="/">Back to Academic Hub</a>';
   const script=authorized ? `
     function countryName(code){if(!code || code==='XX')return 'Unknown';if(code==='T1')return 'Tor network';try{return new Intl.DisplayNames(['en'],{type:'region'}).of(code)+' ('+code+')';}catch{return code;}}
-    async function refresh(){try{const r=await fetch('/api/admin/traffic',{cache:'no-store'});if(r.status===401){location.href='/admin/login';return;}const d=await r.json();if(!r.ok)throw Error(d.error);document.getElementById('summary').textContent=d.views+' page views · '+d.uniqueIPs+' distinct IPs';const rows=document.getElementById('rows');rows.replaceChildren();for(const v of d.records){const tr=document.createElement('tr');for(const text of [new Date(v.time).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),v.ip,countryName(v.country),v.region || "Unknown",v.city || "Unknown",v.path]){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.append(tr);}document.getElementById('status').textContent=d.views?'':'No visits recorded yet.';}catch(e){document.getElementById('status').textContent=e.message||'Could not load traffic.';}}
+    async function refresh(){try{const r=await fetch('/api/admin/traffic',{cache:'no-store'});if(r.status===401){location.href='/admin/login';return;}const d=await r.json();if(!r.ok)throw Error(d.error);document.getElementById('today-summary').textContent='Today ('+d.today.day+'): '+d.today.visitors+' visitors · '+d.today.views+' page views';document.getElementById('summary').textContent=d.views+' page views · '+d.uniqueIPs+' distinct IPs';const rows=document.getElementById('rows');rows.replaceChildren();for(const v of d.records){const tr=document.createElement('tr');for(const text of [new Date(v.time).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),v.ip,countryName(v.country),v.region || "Unknown",v.city || "Unknown",v.path]){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.append(tr);}document.getElementById('status').textContent=d.views?'':'No visits recorded yet.';}catch(e){document.getElementById('status').textContent=e.message||'Could not load traffic.';}}
     document.getElementById('refresh').onclick=refresh;
     document.getElementById('logout').onclick=async()=>{const r=await fetch('/api/admin/logout',{method:'POST'});if(r.ok)location.href='/admin/login';};
-    refresh();` : `
+    refresh();setInterval(()=>{if(!document.hidden)refresh();},15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh();});` : `
     document.getElementById('login').onsubmit=async e=>{e.preventDefault();const button=e.target.querySelector('button');button.disabled=true;try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('password').value})});const d=await r.json();document.getElementById('password').value='';if(!r.ok)throw Error(d.error);location.href='/admin/traffic';}catch(e){document.getElementById('status').textContent=e.message||'Sign-in failed.';}finally{button.disabled=false;}};`;
   return new Response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Academic Hub · Owner</title><style>body{background:#f2f6f3;color:#183b35;font:18px/1.6 system-ui;margin:0}main{max-width:1050px;margin:5vh auto;padding:28px}h1{font-size:40px}a{color:#28594e}form{max-width:420px;display:grid;gap:16px}input,button{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:12px}button{background:#183b35;color:white;cursor:pointer}.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.table{overflow:auto;background:white;border-radius:12px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:14px;border-bottom:1px solid #e1e9e4}td{overflow-wrap:anywhere}#status{color:#914023}</style></head><body><main>'+content+'</main><script>'+script+'</script></body></html>',{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"private, no-store","X-Robots-Tag":"noindex, nofollow","X-Content-Type-Options":"nosniff","Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'","Referrer-Policy":"no-referrer"}});
 }
@@ -235,3 +264,5 @@ async function adminRequest(request, env, url) {
 
 // A dedicated namespace owned by this Worker keeps admin storage separate from legacy chat.
 export class OwnerTraffic extends StudyHubChat {}
+
+function indiaDay(time) { return new Date(time + 330*60*1000).toISOString().slice(0,10); }
