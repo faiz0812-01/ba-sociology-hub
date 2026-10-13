@@ -318,11 +318,18 @@
       {name:'Module 3',items:[{label:'Module 3 PDF',title:'Philosophy of Education · Malayalam · Module 3',description:'Uploaded Malayalam study guide.',href:'Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_3.pdf'}]},
       {name:'Module 4',items:[{label:'Module 4 PDF'}]}
     ];
+    const indianEconomyEnglishModules = [
+      {name:'Module 1',items:[{label:'Module 1 PDF'}]},
+      {name:'Module 2',items:[{label:'Module 2 · Poverty',title:'Development Issues in Indian Economy · Poverty',description:'English study notes for Module 2.',href:'Development%20Issues%20in%20Indian%20Economy/English/Module%202%20-%20Poverty.pdf'}]},
+      {name:'Module 3',items:[{label:'Module 3 · Inequality',title:'Development Issues in Indian Economy · Inequality',description:'English study notes for Module 3.',href:'Development%20Issues%20in%20Indian%20Economy/English/Module%203%20-%20Inequality.pdf'}]},
+      {name:'Module 4',items:[{label:'Module 4 PDF'}]}
+    ];
     function getSubjectModules(subject,medium) {
       if(subject==='Malayalam' && medium==='Malayalam') return malayalamCourseModules;
       if(subject==='Sociology' && medium==='Malayalam') return sociologyMalayalamModules;
       if(subject==='Philosophy of AI' && medium==='Malayalam') return aiMalayalamModules;
       if(subject==='Philosophy of Education' && medium==='Malayalam') return educationMalayalamModules;
+      if(subject==='Development Issues in Indian Economy' && medium==='English') return indianEconomyEnglishModules;
       return [1,2,3,4].map(number => ({name:'Module '+number,items:[{label:'Module '+number+' PDF'}]}));
     }
     function showModuleItem(subject,medium,moduleName,item) {
