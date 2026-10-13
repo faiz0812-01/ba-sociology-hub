@@ -290,5 +290,133 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 .ai-study-status-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:10px;min-height:20px}.ai-study-status-row p{color:#72866d;font-size:10px;line-height:1.65}.ai-study-status-row p[data-state="error"]{color:#9a7031}.ai-study-status-row button{flex-shrink:0;border:0;border-bottom:1px solid #b2c2a2;background:transparent;color:#4b7244;font-size:10px;cursor:pointer}.ai-study-status-row button[hidden]{display:none}.ai-study-noscript{margin-top:9px;color:#916735;font-size:12px}
 @media(min-width:701px) and (max-width:1250px){.topbar{gap:10px;padding-inline:24px}.nav-links{gap:3px;font-size:12px}.nav-links a{padding-inline:7px}.nav-cta{padding-inline:10px;font-size:12px}}
 @media(max-width:1050px){.ai-study-section{grid-template-columns:1fr;gap:20px;padding:24px}.ai-study-intro{padding:24px}.ai-study-intro h2{font-size:31px}.ai-study-note{margin-top:20px;padding-top:16px}.ai-study-messages{height:280px}}
-@media(max-width:700px){.nav-links{flex-wrap:wrap;justify-content:flex-start;gap:1px 8px}.nav-links a{font-size:10px;padding:6px 3px}.ai-study-section{gap:14px;margin-bottom:28px;padding:14px;border-radius:17px}.ai-study-intro{padding:20px 17px;border-radius:13px}.ai-study-eyebrow{font-size:8px;letter-spacing:.8px}.ai-study-intro h2{font-size:29px}.ai-study-intro>p{font-size:13px}.ai-study-features{margin-top:15px}.ai-study-features>span{font-size:10px}.ai-study-panel{padding:14px;border-radius:13px}.ai-study-header strong{font-size:13px}.ai-study-clear{font-size:9px}.ai-study-options{grid-template-columns:1fr;gap:9px}.ai-study-options select{font-size:13px}.ai-study-messages{height:280px;margin-top:12px;padding:9px}.ai-study-empty{padding:8px}.ai-study-empty strong{font-size:13px}.ai-study-prompts{gap:5px}.ai-study-prompts button{padding:7px 8px;font-size:10px}.ai-study-form textarea{font-size:16px}.ai-study-compose-footer{gap:8px}.ai-study-compose-footer>span{font-size:8px}.ai-study-compose-footer button{padding:9px 10px;font-size:11px}}
+@media(max-width:700px){.nav-links{flex-wrap:wrap;justify-content:flex-start;gap:1px 8px}.nav-links a{font-size:10px;padding:6px 3px}.ai-study-section{gap:14px;margin-bottom:28px;padding:14px;border-radius:17px}.ai-study-intro{padding:20px 17px;border-radius:13px}.ai-study-eyebrow{font-size:8px;letter-spacing:.8px}.ai-study-intro h2{font-size:29px}.ai-study-intro>p{font-size:13px}.ai-study-features{margin-top:15px}.ai-study-features>span{font-size:10px}.ai-study-panel{padding:14px;border-radius:13px}.ai-study-header strong{font-size:13px}.ai-study-clear{font-size:9px}.ai-study-options{grid-template-columns:1fr;gap:9px}.ai-study-options select{font-size:13px}.ai-study-messages{height:280px;margin-top:12px;padding:9px}.ai-study-empty{padding:8px}.ai-study-empty strong{font-size:13px}.ai-study-prompts{gap:5px}.ai-study-prompts button{padding:7px 8px;font-size:10px}.ai-study-form textarea{font-size:16px}.ai-study-compose-footer{gap:8px}.ai-study-compose-footer>span{font-size:8px}.ai-study-compose-footer button{padding:9px 10px;font-size:11px}}/* Keep every Malayalam subject library consistent with the colorful AI chapter page. */
+.module-dialog--malayalam .module-backdrop{
+  background:rgba(49,46,129,.48);
+}
+.module-dialog--malayalam .module-panel{
+  width:min(960px,100%);
+  max-height:min(92vh,960px);
+  border:1px solid #c7d2fe;
+  border-radius:26px;
+  background:#fff;
+  color:#172554;
+  box-shadow:0 26px 90px rgba(49,46,129,.24);
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+}
+.module-dialog--malayalam .module-header{
+  align-items:flex-start;
+  padding:18px;
+  border:1px solid #c7d2fe;
+  border-radius:20px;
+  background:linear-gradient(115deg,#e0f2fe 0%,#eef2ff 52%,#fdf2f8 100%);
+}
+.module-dialog--malayalam .module-eyebrow{
+  color:#4f46e5;
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+  font-size:14px;
+  letter-spacing:0;
+}
+.module-dialog--malayalam .module-header h2{
+  color:#312e81;
+  font:700 clamp(26px,3vw,38px)/1.55 'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+  letter-spacing:0;
+}
+.module-dialog--malayalam .module-header p{
+  color:#334155;
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+  font-size:15px;
+  line-height:1.85;
+}
+.module-dialog--malayalam .module-close{
+  border-color:#c7d2fe;
+  background:#fff;
+  color:#312e81;
+}
+.module-dialog--malayalam .module-tabs{
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+}
+.module-dialog--malayalam .module-tabs button,
+.module-dialog--malayalam .module-subtabs button{
+  border-color:#c7d2fe;
+  border-radius:13px;
+  background:linear-gradient(120deg,#eff6ff,#f5f3ff,#fdf2f8);
+  color:#312e81;
+  font:700 15px/1.65 'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+}
+.module-dialog--malayalam .module-tabs button[aria-selected="true"]{
+  border-color:#4f46e5;
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:#fff;
+  box-shadow:0 5px 14px rgba(79,70,229,.2);
+}
+.module-dialog--malayalam .module-subtabs button[aria-selected="true"]{
+  border-color:#be185d;
+  background:#fce7f3;
+  color:#9d174d;
+}
+.module-dialog--malayalam .module-empty{
+  border-color:#c7d2fe;
+  background:linear-gradient(135deg,#eff6ff,#f5f3ff,#fdf2f8);
+}
+.module-dialog--malayalam .module-empty-icon{
+  background:#ede9fe;
+  color:#4f46e5;
+}
+.module-dialog--malayalam .module-empty strong,
+.module-dialog--malayalam .module-empty p{
+  color:#334155;
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+  line-height:1.8;
+}
+.module-dialog--malayalam .module-pdf-card{
+  border-color:#d9d6fe;
+  background:linear-gradient(120deg,#fff,#f8f7ff);
+  box-shadow:0 8px 22px rgba(79,70,229,.08);
+}
+.module-dialog--malayalam .module-pdf-badge{
+  background:linear-gradient(135deg,#4f46e5,#a855f7);
+  color:#fff;
+}
+.module-dialog--malayalam .module-pdf-copy h3{
+  color:#312e81;
+  font:700 17px/1.75 'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+}
+.module-dialog--malayalam .module-pdf-copy p{
+  color:#334155;
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+  line-height:1.8;
+}
+.module-dialog--malayalam .module-pdf-actions a{
+  border:1px solid #4f46e5;
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+}
+.module-dialog--malayalam .module-pdf-actions a+a{
+  border-color:#c7d2fe;
+  background:#fff;
+  color:#4338ca;
+}
+.module-dialog--malayalam .module-pdf-reader{
+  border-color:#c7d2fe;
+  background:#fff;
+}
+.module-dialog--malayalam .module-pdf-reader-heading{
+  border-bottom-color:#d9d6fe;
+  background:linear-gradient(120deg,#eff6ff,#f5f3ff,#fdf2f8);
+  color:#312e81;
+  font-family:'Noto Sans Malayalam','Noto Sans Malayalam UI',sans-serif;
+  line-height:1.8;
+}
+.module-dialog--malayalam .module-pdf-frame{
+  background:#fff;
+}
+@media(max-width:600px){
+  .module-dialog--malayalam .module-panel{max-height:94vh;padding:16px}
+  .module-dialog--malayalam .module-header{padding:14px}
+  .module-dialog--malayalam .module-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .module-dialog--malayalam .module-pdf-card{grid-template-columns:42px minmax(0,1fr);gap:10px;padding:14px}
+  .module-dialog--malayalam .module-pdf-badge{width:40px;height:40px}
+  .module-dialog--malayalam .module-pdf-actions{grid-column:1/-1}
+}
 
