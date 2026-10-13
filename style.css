@@ -338,3 +338,26 @@ button, .button, .nav-cta, .test-card>a, .study-banner>a, .support-section>a {
   font-weight: 800 !important;
 }
 ::selection { background: #d8c9ff; color: #2f285b; }
+
+
+/* Subject picture banners for mock-test cards */
+.test-card { overflow:hidden; padding-top:0; position:relative; }
+.test-card .test-image {
+  display:block;
+  width:calc(100% + 40px);
+  max-width:none;
+  height:145px;
+  object-fit:cover;
+  margin:0 -20px 16px;
+  border-radius:16px 16px 10px 10px;
+  box-shadow:inset 0 -24px 35px rgba(20,30,60,.12);
+}
+.test-card .test-icon { margin-top:0; }
+.test-card:nth-child(1) .test-image { object-position:center 54%; }
+.test-card:nth-child(2) .test-image { object-position:center 45%; }
+.test-card:nth-child(3) .test-image { object-position:center 40%; }
+.test-card:nth-child(4) .test-image { object-position:center 45%; }
+.test-card:nth-child(5) .test-image { object-position:center 50%; }
+@media(max-width:700px) {
+  .test-card .test-image { height:160px; }
+}
