@@ -251,6 +251,12 @@
       'Mathematics':'mathematics',
       'History of Keralam':'history-of-keralam'
     };
+    const malayalamCourseModules = [
+      {name:'Module 1',items:[{label:'Module 1 PDF',title:'Module 1 · Literary Practice in Malayalam',description:'Uploaded Malayalam study module.',href:'LiteraryPracticeinMalayalam-Module1_T1777700168876%20(1).pdf'}]},
+      {name:'Module 2',items:[{label:'Module 2 PDF',title:'Module 2 · Literary Practice in Malayalam',description:'Uploaded Malayalam study module.',href:'LiteraryPracticeinMalayalam-Module2_T1779269299389.pdf'}]},
+      {name:'Module 3',items:[{label:'Module 3 PDF',title:'Module 3 · മലയാളസാഹിത്യാനുശീലനം',description:'Uploaded Malayalam study module.',href:'Module3മലയാളസാഹിത്യാനുശീലനം_T1781936346875%20(1).pdf'}]},
+      {name:'Module 4',items:[{label:'Module 4 PDF',title:'Module 4 · Malayalam',description:'Uploaded Malayalam study module.',href:'MODULE4_T1783445288761.pdf'}]}
+    ];
     const sociologyMalayalamModules = [
       {name:'Module 1',items:[{label:'Module 1 PDF',title:'Sociology · Malayalam · Module 1',href:'Sociology/Malayalam_PDF/chapter1.pdf.pdf'}]},
       {name:'Module 2',items:[{label:'Module 2 PDF'}]},
@@ -277,6 +283,7 @@
       {name:'Module 4',items:[{label:'Module 4 PDF'}]}
     ];
     function getSubjectModules(subject,medium) {
+      if(subject==='Malayalam' && medium==='Malayalam') return malayalamCourseModules;
       if(subject==='Sociology' && medium==='Malayalam') return sociologyMalayalamModules;
       if(subject==='Philosophy of AI' && medium==='Malayalam') return aiMalayalamModules;
       return [1,2,3,4].map(number => ({name:'Module '+number,items:[{label:'Module '+number+' PDF'}]}));
