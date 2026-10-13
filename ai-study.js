@@ -54,6 +54,21 @@
     form.setAttribute('aria-busy', String(pending));
   }
 
+  function renderResponseText(paragraph, content) {
+    paragraph.replaceChildren();
+    const bold = /\*\*([^\n*]+)\*\*/g;
+    let cursor = 0;
+    let match;
+    while ((match = bold.exec(content)) !== null) {
+      paragraph.append(document.createTextNode(content.slice(cursor, match.index)));
+      const emphasis = document.createElement('strong');
+      emphasis.textContent = match[1];
+      paragraph.append(emphasis);
+      cursor = match.index + match[0].length;
+    }
+    paragraph.append(document.createTextNode(content.slice(cursor)));
+  }
+
   function appendMessage(role, content, type = '') {
     const empty = messages.querySelector('#ai-empty');
     if (empty) empty.remove();
@@ -62,7 +77,8 @@
     const label = document.createElement('strong');
     label.textContent = role === 'user' ? 'You' : '✦ AI Study Helper';
     const text = document.createElement('p');
-    text.textContent = content;
+    if (role === 'assistant') renderResponseText(text, content);
+    else text.textContent = content;
     article.append(label, text);
     messages.append(article);
     while (messages.querySelectorAll('.ai-study-message').length > 30) messages.firstElementChild.remove();
@@ -198,7 +214,7 @@
 
       const answer = result.answer.trim().slice(0, 6000);
       reply.classList.remove('ai-study-message--pending');
-      reply.querySelector('p').textContent = answer;
+      renderResponseText(reply.querySelector('p'), answer);
       history.push({ role: 'user', content: question }, { role: 'assistant', content: answer });
       history = history.slice(-8);
       questionInput.value = '';

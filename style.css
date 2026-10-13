@@ -420,3 +420,13 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
   .module-dialog--malayalam .module-pdf-actions{grid-column:1/-1}
 }
 
+
+/* Match the hub's larger study text, especially for Malayalam answers. */
+.ai-study-intro>p,.ai-study-message p,.ai-study-options select,.ai-study-form textarea{font-size:16px;line-height:1.75}
+.ai-study-header strong{font-size:19px}.ai-study-empty strong{font-size:17px}
+.ai-study-note strong,.ai-study-options label,.ai-study-form>label,.ai-study-clear,.ai-study-prompts button,.ai-study-compose-footer button{font-size:14px}
+.ai-study-eyebrow,.ai-study-features>span,.ai-study-privacy,.ai-study-caution,.ai-study-empty p,.ai-study-header small,.ai-study-note p,.ai-study-message>strong,.ai-study-status-row p,.ai-study-status-row button{font-size:13px;line-height:1.65}
+.ai-study-compose-footer>span{font-size:12px}.ai-study-compose-footer{flex-wrap:wrap}
+.ai-study-messages{height:300px}.ai-study-section select,.ai-study-section button{min-height:42px}
+.ai-study-section{scroll-margin-top:24px}
+
