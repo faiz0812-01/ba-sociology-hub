@@ -404,7 +404,7 @@
         frame.className='module-pdf-frame';
         frame.title=(item.title || item.label)+' PDF reader';
         frame.loading='lazy';
-        frame.src=readingOnly?item.href.split('#')[0]+'#toolbar=0&navpanes=0':item.href;
+        frame.src=readingOnly?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):item.href;
         reader.append(readerHeading,frame);
         moduleContent.append(reader);
       }
