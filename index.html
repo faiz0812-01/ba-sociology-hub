@@ -347,6 +347,24 @@
           embed:true
         }]:[{label:'Study guide',medium:'Bilingual'}]
       }));
+      if(subject==='Development Issues in Indian Economy') return [1,2,3,4].map(number=>({
+        name:'Module '+number,
+        items:number===2?[{
+          label:'Module 2 · Poverty',
+          title:'Development Issues in Indian Economy · Module 2 · Poverty',
+          medium:'English',
+          description:'English study guide · Module 2',
+          href:'Development%20Issues%20in%20Indian%20Economy/English/Module%202%20-%20Poverty.pdf',
+          embed:true
+        }]:number===3?[{
+          label:'Module 3 · Inequality',
+          title:'Development Issues in Indian Economy · Module 3 · Inequality',
+          medium:'English',
+          description:'English study guide · Module 3',
+          href:'Development%20Issues%20in%20Indian%20Economy/English/Module%203%20-%20Inequality.pdf',
+          embed:true
+        }]:[{label:'Study guide',medium:'Bilingual'}]
+      }));
       const english=getSubjectModules(subject,'English');
       const malayalam=getSubjectModules(subject,'Malayalam');
       const moduleCount=Math.max(4,english.length,malayalam.length);
@@ -468,7 +486,9 @@
       const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
       moduleDescription.textContent=studyGuide
         ? subject==='Philosophy of AI' ? 'Module 3 study guides: Buddhism, Western Epistemology, AI epistemology and chapter revision Q&A. Choose a document tab to read it here.'
-        : subject==='Sociology' ? 'Module 3 study guide: Individual and Society. Choose the document tab to read it here.'
+         : subject==='Sociology' ? 'Module 3 study guide: Individual and Society. Choose the document tab to read it here.'
+         : subject==='Development Issues in Indian Economy' ? 'English study guides are available for Module 2 · Poverty and Module 3 · Inequality. Choose a document tab to read.'
+         : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : subject==='Malayalam' && medium==='Malayalam'
         ? 'All four uploaded Malayalam course modules are available here. Read each PDF on this page.'
