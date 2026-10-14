@@ -351,20 +351,10 @@
       const english=getSubjectModules(subject,'English');
       const malayalam=getSubjectModules(subject,'Malayalam');
       const moduleCount=Math.max(4,english.length,malayalam.length);
-      return Array.from({length:moduleCount},(_,index)=>{
-        const moduleName='Module '+(index+1);
-        const englishItems=(english[index]?.items || [{label:moduleName+' PDF'}]).map(item=>({
-          ...item,
-          label:'English · '+item.label,
-          medium:'English'
-        }));
-        const malayalamItems=(malayalam[index]?.items || [{label:moduleName+' PDF'}]).map(item=>({
-          ...item,
-          label:'മലയാളം · '+item.label,
-          medium:'Malayalam'
-        }));
-        return {name:moduleName,items:[...englishItems,...malayalamItems]};
-      });
+      return Array.from({length:moduleCount},(_,index)=>({
+        name:'Module '+(index+1),
+        items:[{label:'Bilingual PDF',medium:'Bilingual'}]
+      }));
     }
     function showModuleItem(subject,medium,moduleName,item) {
       const itemMedium=item.medium || medium;
@@ -378,9 +368,11 @@
         icon.className='module-empty-icon';
         icon.textContent='▤';
         const heading=document.createElement('strong');
-        heading.textContent='No PDF uploaded to Academic Hub yet.';
+        heading.textContent=itemMedium==='Bilingual'?'No bilingual PDF uploaded to Academic Hub yet.':'No PDF uploaded to Academic Hub yet.';
         const copy=document.createElement('p');
-        copy.textContent='Add the '+(item.medium || medium)+' PDF for '+moduleName+' to make it available here.';
+        copy.textContent=itemMedium==='Bilingual'
+          ? 'Upload one combined English–Malayalam PDF for '+moduleName+'.'
+          : 'Add the '+itemMedium+' PDF for '+moduleName+' to make it available here.';
         empty.append(icon,heading,copy);
         moduleContent.append(empty);
         return;
@@ -411,7 +403,7 @@
       actions.append(open,download);
       card.append(badge,copy,actions);
       moduleContent.append(card);
-      if(itemMedium==='Malayalam') {
+      if(itemMedium==='Malayalam' || itemMedium==='Bilingual') {
         const reader=document.createElement('section');
         reader.className='module-pdf-reader';
         reader.setAttribute('aria-label',itemMedium+' PDF reader');
@@ -442,6 +434,7 @@
       const module=modules[moduleIndex];
       const firstAvailableItemIndex=Math.max(0,module.items.findIndex(item=>item.href));
       moduleSubtabs.replaceChildren();
+      moduleSubtabs.style.display=module.items.length>1?'':'none';
       module.items.forEach((item,itemIndex)=>{
         const button=document.createElement('button');
         button.type='button';
@@ -469,13 +462,9 @@
       moduleDialog.lang=medium==='Malayalam'?'ml':'en';
       lastLanguageTab=trigger;
       moduleTitle.textContent=studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
-      const availableModules=language=>modules.filter(module=>module.items.some(item=>item.medium===language && item.href)).map(module=>module.name);
-      const describeModules=language=>{
-        const available=availableModules(language);
-        return available.length?available.join(', '):'none uploaded yet';
-      };
+      const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
       moduleDescription.textContent=studyGuide
-        ? 'English PDFs: '+describeModules('English')+'. Malayalam PDFs: '+describeModules('Malayalam')+'.'
+        ? 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : subject==='Malayalam' && medium==='Malayalam'
         ? 'All four uploaded Malayalam course modules are available here. Read each PDF on this page.'
         : subject==='Sociology' && medium==='Malayalam'
