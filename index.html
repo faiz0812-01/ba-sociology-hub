@@ -347,9 +347,25 @@
           embed:true
         }]:[{label:'Study guide',medium:'Bilingual'}]
       }));
+      if(subject==='Philosophy of Education') return [1,2,3,4].map(number=>({
+        name:'Module '+number,
+        items:number===1?[{
+          label:'Part 4 · Philosophy of Education',
+          title:'Philosophy of Education · Module 1 · Part 4',
+          medium:'English',
+          description:'English study material · Module 1 · Part 4',
+          href:'Philosophy_of_Education_Module1_Part4-v5.pdf',
+          embed:true
+        }]:[{label:'Study guide',medium:'Bilingual'}]
+      }));
       if(subject==='Development Issues in Indian Economy') return [1,2,3,4].map(number=>({
         name:'Module '+number,
-        items:number===1?[{label:'Policy Regime · Part 9',title:'Indian Economy · Policy Regime and Economic Development · Part 9',medium:'English',description:'English study material · Part 9',href:'Policy%20Regime%20and%20Economic%20Development%20Part%209.pdf',embed:true}]:number===2?[
+        items:number===1?[
+          {label:'Part 1 · Meaning of Economic Development',title:'Indian Economy · Module 1 · Part 1 · Meaning of Economic Development',medium:'English',description:'English study notes · Module 1 · Part 1',href:'Meaning%20of%20economic%20Dev_Module1%20part%201.pdf',embed:true},
+          {label:'Parts 5–7 · Indian Economy',title:'Indian Economy · Module 1 · Parts 5–7',medium:'English',description:'English study notes · Module 1 · Parts 5–7',href:'indian_economy_module1_p5%2C6%2C7.pdf',embed:true},
+          {label:'Part 8 · Institutional Framework',title:'Indian Economy · Module 1 · Part 8 · Institutional Framework',medium:'English',description:'English study notes · Module 1 · Part 8',href:'institutional_framework_p8_module1.pdf',embed:true},
+          {label:'Policy Regime · Part 9',title:'Indian Economy · Module 1 · Policy Regime and Economic Development · Part 9',medium:'English',description:'English study material · Module 1 · Part 9',href:'Policy%20Regime%20and%20Economic%20Development%20Part%209.pdf',embed:true}
+        ]:number===2?[
           {label:'Poverty · Overview',title:'Development Issues in Indian Economy · Module 2 · Poverty',medium:'English',description:'English study notes · Module 2',href:'Development%20Issues%20in%20Indian%20Economy/English/Module%202%20-%20Poverty.pdf',embed:true},
           {label:'Unit 5 · Poverty',title:'Indian Economy · Module 2 · Unit 5 · Poverty',medium:'English',description:'English study notes · Unit 5',href:'Indian_economy_module2_unit5_poverty.pdf',embed:true},
           {label:'Unit 6 · Poverty Estimation',title:'Indian Economy · Module 2 · Unit 6 · Poverty Estimation',medium:'English',description:'English study notes · Unit 6',href:'Unit%206%20Poverty%20Estimation%20Module%202.pdf',embed:true},
@@ -490,7 +506,8 @@
       moduleDescription.textContent=studyGuide
         ? subject==='Philosophy of AI' ? 'Module 3 study guides: Buddhism, Western Epistemology, AI epistemology and chapter revision Q&A. Choose a document tab to read it here.'
          : subject==='Sociology' ? 'Module 3 study guide: Individual and Society. Choose the document tab to read it here.'
-         : subject==='Development Issues in Indian Economy' ? 'Module 1 has Policy Regime · Part 9. Module 2 has the Poverty overview and Units 5–11 study PDFs and lecture notes. Module 3 has Inequality. Choose a document tab to read.'
+         : subject==='Philosophy of Education' ? 'Module 1 includes Part 4 · Philosophy of Education. Choose the document tab to read it here.'
+         : subject==='Development Issues in Indian Economy' ? 'Module 1 has Parts 1, 5–9: Meaning of Economic Development, Indian Economy, Institutional Framework and Policy Regime. Module 2 has the Poverty overview and Units 5–11 study PDFs and lecture notes. Module 3 has Inequality. Choose a document tab to read.'
 
          : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : subject==='Malayalam' && medium==='Malayalam'
