@@ -57,6 +57,88 @@
     gtag('config', 'G-5WRBVFQK55');
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style id="mobile-malayalam-reading-card">
+    /* Mobile-first touch target for Malayalam Reading resource cards. */
+    @media (max-width: 700px) {
+      .resource-list a.language-tab--malayalam {
+        display: grid;
+        grid-template-columns: 36px minmax(0, 1fr) 28px;
+        align-items: center;
+        gap: 10px;
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        min-height: 64px;
+        padding: 9px 10px;
+        border: 1px solid #f0d8b8;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #fffaf1 0%, #fff2df 100%);
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .resource-list a.language-tab--malayalam > .language-badge {
+        display: grid;
+        place-items: center;
+        box-sizing: border-box;
+        width: 36px;
+        height: 36px;
+        flex: none;
+        border: 1px solid #f1d3a9;
+        border-radius: 10px;
+        background: #ffe8c5;
+        color: #8a4b12;
+        font-family: "Noto Sans Malayalam", sans-serif;
+        font-size: 18px;
+        line-height: 1;
+      }
+      .resource-list a.language-tab--malayalam .language-copy {
+        display: grid;
+        min-width: 0;
+        gap: 4px;
+      }
+      .resource-list a.language-tab--malayalam .language-copy strong {
+        display: block;
+        min-width: 0;
+        overflow: visible;
+        color: #653c16;
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 1.4;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-overflow: clip;
+      }
+      .resource-list a.language-tab--malayalam .language-copy small {
+        display: block;
+        min-width: 0;
+        overflow: visible;
+        color: #886b4d;
+        font-size: 10px;
+        line-height: 1.4;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-overflow: clip;
+      }
+      .resource-list a.language-tab--malayalam .language-arrow {
+        display: grid;
+        place-items: center;
+        box-sizing: border-box;
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        background: #f8dfba;
+        color: #8a4b12;
+        font-size: 18px;
+        line-height: 1;
+      }
+      .resource-list a.language-tab--malayalam:focus-visible {
+        outline: 3px solid #d99a48;
+        outline-offset: 3px;
+      }
+    }
+  </style>
+
 </head>
 <body id="top">
   <nav class="topbar">
