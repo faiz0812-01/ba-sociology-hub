@@ -494,7 +494,6 @@
          : subject==='Development Issues in Indian Economy' ? 'Module 2 has the Poverty overview and Units 5–11 study PDFs, lecture notes and policy material. Module 3 has Inequality. Choose a document tab to read.'
 
          : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
-        : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : subject==='Malayalam' && medium==='Malayalam'
         ? 'All four uploaded Malayalam course modules are available here. Read each PDF on this page.'
         : subject==='Sociology' && medium==='Malayalam'
@@ -519,7 +518,10 @@
         button.addEventListener('click',()=>renderModule(subject,medium,modules,moduleIndex));
         moduleTabs.append(button);
       });
-      renderModule(subject,medium,modules,studyGuide && subject==='Philosophy of AI'?2:0);
+      const defaultGuideModule=studyGuide
+        ? (subject==='Philosophy of AI'||subject==='Sociology'?2:subject==='Development Issues in Indian Economy'?1:0)
+        : 0;
+      renderModule(subject,medium,modules,defaultGuideModule);
       moduleDialog.hidden=false;
       document.body.style.overflow='hidden';
       moduleDialog.querySelector('.module-close').focus();
