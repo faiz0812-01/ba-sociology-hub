@@ -506,5 +506,32 @@
   <script src="ai-study.js?v=20261014-ai-study-helper" defer></script>
 
 
+
+  <script>
+  // Owner controls are created only after the server verifies the owner session.
+  (async function(){
+    try {
+      const response=await fetch('/api/admin/session',{credentials:'same-origin',cache:'no-store'});
+      if(!response.ok)return;
+      const session=await response.json();
+      if(session.ok!==true)return;
+      const panel=document.createElement('section');
+      panel.id='owner-upload-panel';
+      panel.className='section-block';
+      panel.setAttribute('aria-label','Owner file uploads');
+      panel.style.cssText='padding:24px;border:1px solid #cbdace;border-radius:20px;background:#f1f6ee;margin:24px 0';
+      const eyebrow=document.createElement('div');eyebrow.className='eyebrow';eyebrow.textContent='OWNER TOOLS';
+      const heading=document.createElement('h2');heading.textContent='Upload study materials';heading.style.margin='8px 0';
+      const detail=document.createElement('p');detail.textContent='Select PDFs from your laptop or phone. You can choose several files together, then save them with Commit changes on GitHub.';detail.style.cssText='line-height:1.6;margin:10px 0 18px';
+      const link=document.createElement('a');
+      link.href='https://github.com/faizz01fy/ba-sociology-hub/upload/main';link.target='_blank';link.rel='noopener';
+      link.className='nav-cta';link.textContent='Upload PDFs to GitHub ↗';link.style.cssText='display:inline-flex;min-height:48px;padding:12px 18px;border-radius:12px;background:#173f35;color:white;text-decoration:none;align-items:center';
+      const note=document.createElement('p');note.textContent='After uploading, the files need links in the correct subject and module to appear in the library.';note.style.cssText='font-size:13px;line-height:1.6;margin:14px 0 0;color:#526650';
+      panel.append(eyebrow,heading,detail,link,note);
+      document.querySelector('.quick-stats').after(panel);
+    }catch(error){/* Students and signed-out visitors see no owner controls. */}
+  })();
+  </script>
+
 </body>
 </html>
