@@ -444,7 +444,8 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
 
 
 
-/* Compact, centered semester highlight and distinct brand chip. */
+
+/* Centered semester ticker and distinct brand chip. */
 .semester-context{
   display:grid;grid-template-columns:24px minmax(0,1fr) 24px;align-items:center;gap:9px;
   box-sizing:border-box;width:100%;max-width:1280px;min-height:36px;margin:8px auto 0;padding:6px 10px;
@@ -458,10 +459,17 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   border-radius:8px;background:linear-gradient(145deg,#287052,#174b3a);color:#fff;
 }
 .semester-context-logo svg{display:block;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.semester-context p{flex:1;min-width:0;margin:0;font:inherit;text-align:center}
-.semester-context p strong{font-weight:800;color:#344e42}
-.semester-context-cursor{display:inline-block;width:2px;height:1em;margin-left:3px;border-radius:1px;background:#267154;vertical-align:-.12em;animation:semester-context-blink .9s steps(2,start) infinite}
-@keyframes semester-context-blink{to{opacity:0}}
+.semester-context::after{
+  content:"";display:block;justify-self:center;width:9px;height:9px;border-radius:50%;
+  background:#2c9b65;box-shadow:0 0 0 4px rgba(44,155,101,.14);
+  animation:semester-context-live 1.6s ease-in-out infinite;
+}
+.semester-context p{min-width:0;margin:0;overflow:hidden;font:inherit;text-align:center;white-space:nowrap}
+.semester-context-marquee{display:flex;width:max-content;animation:semester-context-scroll 28s linear infinite;will-change:transform}
+.semester-context-marquee span{display:block;flex:none;padding-right:3.5rem;white-space:nowrap}
+.semester-context:hover .semester-context-marquee{animation-play-state:paused}
+@keyframes semester-context-scroll{to{transform:translateX(-50%)}}
+@keyframes semester-context-live{50%{box-shadow:0 0 0 7px rgba(44,155,101,.04);opacity:.68}}
 /* Give the site identity its own soft mint highlight. */
 .brand{gap:10px;padding:5px 10px;border:1px solid #d6e5da;border-radius:15px;background:#e9f3ec}
 .brand-copy strong{font-size:21.2px}
@@ -472,7 +480,12 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .brand-copy small{margin-top:3px;font-size:11px}
   .semester-context{grid-template-columns:22px minmax(0,1fr) 22px;gap:8px;padding:7px 8px}
   .semester-context-logo{width:22px;height:22px}
+  .semester-context::after{width:8px;height:8px}
 }
 @media(prefers-reduced-motion:reduce){
-  .semester-context-cursor{animation:none}
+  .semester-context::after{animation:none}
+  .semester-context-marquee{display:block;width:100%;animation:none;transform:none;will-change:auto}
+  .semester-context-marquee span{display:block;padding:0;white-space:normal}
+  .semester-context-marquee span+span{display:none}
+  .semester-context p{overflow:visible;white-space:normal}
 }
