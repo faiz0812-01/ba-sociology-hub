@@ -42,8 +42,14 @@
     .download{background:var(--module-tint);color:var(--module-color)}
     .actions a:hover{filter:brightness(.94)}
     .back{display:block;width:fit-content;max-width:100%;margin:20px auto 0;padding:10px 16px;border:1px solid #dddff0;border-radius:9px;background:#f4f3fc;color:#443c84;text-align:center;text-decoration:none;font-size:13px;font-weight:700}
+    /* Module 3 card layout fix */
+    #module-3 .chapter-list{display:grid;grid-template-columns:minmax(0,1fr);width:100%;min-width:0}
+    #module-3 .chapter{display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-rows:auto auto;gap:12px;width:100%;min-width:0;height:auto;align-content:start}
+    #module-3 .chapter .chapter-copy{min-width:0;overflow-wrap:anywhere}
+    #module-3 .chapter .chapter-copy h3{min-height:0;white-space:normal;overflow-wrap:anywhere}
+    #module-3 .chapter .actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;min-width:0}
     @media(max-width:680px){body{padding:12px}.page-box{padding:16px;border-radius:16px}.hero{padding:12px}.module-nav{gap:6px;margin-bottom:16px}.module-nav a{font-size:12px;padding:7px 4px}.modules-grid{grid-template-columns:minmax(0,1fr);gap:12px}.chapter{padding:14px}.module-heading{padding:9px 14px}.hero p{font-size:13px}}
-    @media(max-width:420px){.chapter{grid-template-columns:36px minmax(0,1fr);gap:10px;padding:12px}.num{width:36px;height:36px;border-radius:9px;font-size:15px}.chapter-copy h3{min-height:0;font-size:15px;line-height:1.65}.actions{grid-template-columns:minmax(0,1fr);gap:7px}.actions a{min-height:42px;font-size:13px}}\n    @media(max-width:360px){.module-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:420px){.chapter{grid-template-columns:36px minmax(0,1fr);gap:10px;padding:12px}.num{width:36px;height:36px;border-radius:9px;font-size:15px}.chapter-copy h3{min-height:0;font-size:15px;line-height:1.65}.actions{grid-template-columns:minmax(0,1fr);gap:7px}.actions a{min-height:42px;font-size:13px}#module-3 .chapter{grid-template-columns:36px minmax(0,1fr);padding:12px}#module-3 .chapter .actions{grid-template-columns:minmax(0,1fr)}}\n    @media(max-width:360px){.module-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
   </style>
 </head>
