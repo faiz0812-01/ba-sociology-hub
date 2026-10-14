@@ -505,7 +505,7 @@
       if(subject==='Development Issues in Indian Economy' && medium==='English') return indianEconomyEnglishModules;
       return [1,2,3,4].map(number => ({name:'Module '+number,items:[{label:'Module '+number+' PDF'}]}));
     }
-    function getStudyGuideModules(subject) {
+    function getStudyGuideModulesSource(subject) {
       // Study Guide Eng - Mal: every subject opens four module tabs; each module
       // contains chapter/document tabs. Only link PDFs that exist in the repository.
       const item=(label,title,href,medium='Bilingual',description='Study guide PDF · English + Malayalam')=>({label,title,href,medium,description,embed:true});
@@ -606,6 +606,38 @@
       // Keep the module structure visible for subjects whose study-guide PDFs
       // have not been uploaded yet, rather than showing a single generic tab.
       return modules([[],[],[],[]]);
+    }
+    function getStudyGuideModules(subject) {
+      // Keep the Study guide Eng - Mal layout simple: four modules, four Malayalam
+      // chapter tabs per module. The first available study-guide PDF is placed in
+      // Module 1 · Chapter 1; Modules 2–4 remain empty until new PDFs are added.
+      const source=getStudyGuideModulesSource(subject);
+      let firstPdf=null;
+      for(const module of source) {
+        firstPdf=module.items.find(item=>item && item.href);
+        if(firstPdf) break;
+      }
+      const chapterNames=['അധ്യായം 1','അധ്യായം 2','അധ്യായം 3','അധ്യായം 4'];
+      return [1,2,3,4].map(moduleNumber=>({
+        name:'Module '+moduleNumber,
+        items:chapterNames.map((chapterName,chapterIndex)=>{
+          const isFirst=moduleNumber===1 && chapterIndex===0 && firstPdf;
+          if(isFirst) return {
+            ...firstPdf,
+            label:chapterName,
+            title:subject+' · Module 1 · '+chapterName,
+            description:'ആദ്യ പഠന PDF · English + Malayalam',
+            medium:firstPdf.medium || 'Bilingual',
+            embed:true
+          };
+          return {
+            label:chapterName,
+            title:subject+' · Module '+moduleNumber+' · '+chapterName,
+            medium:'Bilingual',
+            description:'ഈ അധ്യായത്തിന്റെ PDF പിന്നീട് ചേർക്കുന്നതാണ്.'
+          };
+        })
+      }));
     }
     function showModuleItem(subject,medium,moduleName,item) {
       const itemMedium=item.medium || medium;
