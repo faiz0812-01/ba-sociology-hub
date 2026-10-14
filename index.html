@@ -349,7 +349,7 @@
       }));
       if(subject==='Development Issues in Indian Economy') return [1,2,3,4].map(number=>({
         name:'Module '+number,
-        items:number===2?[
+        items:number===1?[{label:'Policy Regime · Part 9',title:'Indian Economy · Policy Regime and Economic Development · Part 9',medium:'English',description:'English study material · Part 9',href:'Policy%20Regime%20and%20Economic%20Development%20Part%209.pdf',embed:true}]:number===2?[
           {label:'Poverty · Overview',title:'Development Issues in Indian Economy · Module 2 · Poverty',medium:'English',description:'English study notes · Module 2',href:'Development%20Issues%20in%20Indian%20Economy/English/Module%202%20-%20Poverty.pdf',embed:true},
           {label:'Unit 5 · Poverty',title:'Indian Economy · Module 2 · Unit 5 · Poverty',medium:'English',description:'English study notes · Unit 5',href:'Indian_economy_module2_unit5_poverty.pdf',embed:true},
           {label:'Unit 6 · Poverty Estimation',title:'Indian Economy · Module 2 · Unit 6 · Poverty Estimation',medium:'English',description:'English study notes · Unit 6',href:'Unit%206%20Poverty%20Estimation%20Module%202.pdf',embed:true},
@@ -359,7 +359,6 @@
           {label:'Units 9–10 · Shortened notes',title:'Indian Economy · Module 2 · Units 9–10 · Shortened notes',medium:'English',description:'Shortened English study notes · Units 9–10',href:'Module%202%20Unit%209-10%20%20shortened.pdf',embed:true},
           {label:'Unit 11 · High-Poverty Groups',title:'Indian Economy · Module 2 · Unit 11 · Characteristics of High-Poverty Groups',medium:'English',description:'English study notes · Unit 11',href:'Unit%2011%20Characteristics%20of%20High-Poverty%20Groups.pdf',embed:true},
           {label:'Module 2 · Unit 5',title:'Indian Economy · Module 2 · Unit 5 · Poverty Lecture Notes',medium:'Bilingual',description:'English + Malayalam lecture notes',href:'Poverty_Lecture_Note_English_Malayalam.pdf',embed:true},
-          {label:'Policy Regime · Part 9',title:'Indian Economy · Policy Regime and Economic Development · Part 9',medium:'English',description:'English study material · Part 9',href:'Policy%20Regime%20and%20Economic%20Development%20Part%209.pdf',embed:true}
         ]:number===3?[{
           label:'Module 3 · Inequality',
           title:'Development Issues in Indian Economy · Module 3 · Inequality',
@@ -491,7 +490,7 @@
       moduleDescription.textContent=studyGuide
         ? subject==='Philosophy of AI' ? 'Module 3 study guides: Buddhism, Western Epistemology, AI epistemology and chapter revision Q&A. Choose a document tab to read it here.'
          : subject==='Sociology' ? 'Module 3 study guide: Individual and Society. Choose the document tab to read it here.'
-         : subject==='Development Issues in Indian Economy' ? 'Module 2 has the Poverty overview and Units 5–11 study PDFs, lecture notes and policy material. Module 3 has Inequality. Choose a document tab to read.'
+         : subject==='Development Issues in Indian Economy' ? 'Module 1 has Policy Regime · Part 9. Module 2 has the Poverty overview and Units 5–11 study PDFs and lecture notes. Module 3 has Inequality. Choose a document tab to read.'
 
          : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : subject==='Malayalam' && medium==='Malayalam'
