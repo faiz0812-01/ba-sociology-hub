@@ -443,23 +443,25 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
 .subject-card[data-subject="Malayalam"] .subject-cover{object-position:center 35%}
 
 
-/* Compact highlighted semester details and a distinct brand chip. */
+
+/* Compact, centered semester highlight and distinct brand chip. */
 .semester-context{
-  display:flex;align-items:center;gap:9px;box-sizing:border-box;
-  width:100%;max-width:1280px;min-height:36px;margin:8px auto 0;padding:6px 10px;
+  display:grid;grid-template-columns:24px minmax(0,1fr) 24px;align-items:center;gap:9px;
+  box-sizing:border-box;width:100%;max-width:1280px;min-height:36px;margin:8px auto 0;padding:6px 10px;
   border:1px solid #d7e6dd;border-radius:12px;
   background:linear-gradient(100deg,#edf7f1 0%,#f8f3e8 100%);
   box-shadow:0 4px 12px rgba(31,81,57,.07);
-  color:#596579;font-size:.8rem;line-height:1.45;letter-spacing:.01em;
+  color:#596579;font-size:calc(.8rem + 4px);line-height:1.45;letter-spacing:.01em;text-align:center;
 }
 .semester-context-logo{
   display:grid;place-items:center;flex:none;width:24px;height:24px;
   border-radius:8px;background:linear-gradient(145deg,#287052,#174b3a);color:#fff;
 }
 .semester-context-logo svg{display:block;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.semester-context p{flex:1;min-width:0;margin:0;font:inherit}
+.semester-context p{flex:1;min-width:0;margin:0;font:inherit;text-align:center}
 .semester-context p strong{font-weight:800;color:#344e42}
-
+.semester-context-cursor{display:inline-block;width:2px;height:1em;margin-left:3px;border-radius:1px;background:#267154;vertical-align:-.12em;animation:semester-context-blink .9s steps(2,start) infinite}
+@keyframes semester-context-blink{to{opacity:0}}
 /* Give the site identity its own soft mint highlight. */
 .brand{gap:10px;padding:5px 10px;border:1px solid #d6e5da;border-radius:15px;background:#e9f3ec}
 .brand-copy strong{font-size:21.2px}
@@ -468,6 +470,9 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .brand{gap:9px;padding:4px 8px}
   .brand-copy strong{font-size:16px}
   .brand-copy small{margin-top:3px;font-size:11px}
-  .semester-context{align-items:flex-start;gap:8px;padding:6px 9px}
+  .semester-context{grid-template-columns:22px minmax(0,1fr) 22px;gap:8px;padding:7px 8px}
   .semester-context-logo{width:22px;height:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .semester-context-cursor{animation:none}
 }
