@@ -39,6 +39,37 @@
     .actions a:hover{filter:brightness(.92);transform:translateY(-1px)}
     .back{display:block;text-align:center;margin:28px auto 0;padding:13px 18px;max-width:240px;border-radius:14px;background:linear-gradient(135deg,#312e81,#6d28d9);color:white;text-decoration:none;font-weight:700}
     @media(max-width:680px){body{padding:14px}.page-box{padding:22px}.module-heading{align-items:flex-start;flex-direction:column;gap:4px}.module-heading p{white-space:normal}.chapter{grid-template-columns:58px 1fr;gap:12px;padding:16px}.num{width:52px;height:52px}.actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.actions a{padding:11px 8px;white-space:normal;font-size:14px}.chapter-copy h3{font-size:16px}}
+  
+    /* Compact, consistent module cards. */
+    .page-box{max-width:840px;padding:28px}
+    .hero{padding:12px 14px 16px;margin-bottom:18px;border-radius:16px}
+    .hero h1{font-size:clamp(23px,3vw,32px);margin-bottom:4px}
+    .hero p{font-size:14px}
+    .module-nav{gap:8px;margin-bottom:18px}
+    .module-nav a{padding:7px 12px;font-size:13px}
+    .module{margin:16px 0 22px;scroll-margin-top:14px}
+    .module-heading{align-items:center;gap:10px;padding:8px 12px;margin-bottom:10px;border-radius:12px}
+    .module-heading h2{font-size:17px;line-height:1.45}
+    .module-heading p{font-size:12px}
+    .chapter-list{gap:10px}
+    .chapter{grid-template-columns:48px minmax(0,1fr) 300px;gap:12px;min-height:94px;padding:12px 14px;border-radius:15px}
+    .num{width:44px;height:44px;border-radius:13px;font-size:16px}
+    .chapter-copy{min-width:0}
+    .chapter-copy h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:3em;font-size:15px;line-height:1.5}
+    .chapter-copy p{font-size:12px;line-height:1.5}
+    .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .actions a{display:grid;place-items:center;min-height:42px;padding:8px 10px;border-radius:10px;font-size:12px;line-height:1.35;white-space:normal}
+    @media(max-width:760px){
+      body{padding:14px}
+      .page-box{padding:20px}
+      .module-heading{align-items:flex-start;flex-direction:column;gap:3px}
+      .chapter{grid-template-columns:42px minmax(0,1fr);gap:10px;min-height:0;padding:12px}
+      .num{width:40px;height:40px}
+      .actions{grid-column:1/-1}
+    }
+    @media(max-width:420px){
+      .actions{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
