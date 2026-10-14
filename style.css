@@ -666,3 +666,63 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .module-dialog--mathematics .module-pdf-badge{width:40px;height:40px}
   .module-dialog--mathematics .module-pdf-actions{grid-column:1/-1}
 }
+/* Six clear module stops for the Sociology of Education reading library. */
+.module-dialog--sociology .module-backdrop{
+  background:rgba(34,24,58,.62);
+}
+.module-dialog--sociology .module-panel{
+  width:min(980px,100%);
+  border-color:#ded6f1;
+  background:#fffdfd;
+  box-shadow:0 28px 96px rgba(44,30,76,.25);
+}
+.module-dialog--sociology .module-header{
+  padding:18px;
+  border:1px solid #e3dcf4;
+  border-radius:19px;
+  background:radial-gradient(circle at 92% 0,rgba(196,181,253,.22),transparent 35%),linear-gradient(115deg,#f5f3ff,#faf5ff 62%,#f0fdfa);
+}
+.module-dialog--sociology .module-eyebrow{color:#6d4ab2}
+.module-dialog--sociology .module-header h2{color:#30234c}
+.module-dialog--sociology .module-header p{color:#685f7d}
+.module-dialog--sociology .module-close{border-color:#e0d8f0;background:#fff;color:#48336f}
+.module-dialog--sociology .module-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.module-dialog--sociology .module-tabs button{
+  border-color:#e0d8f0;
+  background:#fff;
+  color:#594b75;
+}
+.module-dialog--sociology .module-tabs button[aria-selected="true"]{
+  border-color:#6d4ab2;
+  background:linear-gradient(135deg,#6842a6,#4f46a5);
+  color:#fff;
+  box-shadow:0 6px 16px rgba(104,66,166,.18);
+}
+.module-dialog--sociology .module-pdf-card{
+  border-color:#e2dbf2;
+  background:linear-gradient(120deg,#fff,#faf7ff);
+  box-shadow:0 10px 26px rgba(75,55,120,.07);
+}
+.module-dialog--sociology .module-pdf-badge{
+  background:linear-gradient(145deg,#ede9fe,#e0f2fe);
+  color:#6842a6;
+}
+.module-dialog--sociology .module-pdf-copy h3{color:#392a58}
+.module-dialog--sociology .module-pdf-copy p{color:#716987}
+.module-dialog--sociology .module-pdf-actions a{background:linear-gradient(135deg,#6842a6,#4f46a5)}
+.module-dialog--sociology .module-pdf-actions a+a{background:#f0ecf8;color:#514071}
+.module-dialog--sociology .module-pdf-reader{
+  border-color:#dfd8ef;
+  background:#fff;
+  box-shadow:0 12px 28px rgba(75,55,120,.06);
+}
+.module-dialog--sociology .module-pdf-reader-heading{
+  border-bottom-color:#e5def3;
+  background:linear-gradient(100deg,#f5f3ff,#f0fdfa);
+  color:#514071;
+}
+@media(max-width:600px){
+  .module-dialog--sociology .module-panel{max-height:94vh;padding:16px}
+  .module-dialog--sociology .module-header{padding:14px}
+  .module-dialog--sociology .module-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
