@@ -430,3 +430,14 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 .ai-study-messages{height:300px}.ai-study-section select,.ai-study-section button{min-height:42px}
 .ai-study-section{scroll-margin-top:24px}
 
+
+/* Subject photographs and clear heading hierarchy. */
+.subject-card{--subject-card-padding:17px;padding:var(--subject-card-padding)}
+.subject-cover{display:block;width:calc(100% + 2 * var(--subject-card-padding));height:auto;aspect-ratio:16/9;object-fit:cover;margin:calc(-1 * var(--subject-card-padding)) calc(-1 * var(--subject-card-padding)) 16px;background:#e5ebe0;filter:saturate(.94)}
+.subject-card:before{z-index:1}
+h1,h2,h3,h4,h5,h6{font-weight:800!important}
+strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eyebrow,.language-copy strong,.chat-header strong,.brand-copy strong{font-weight:800!important}
+.section-heading p,.hero-description,.subject-card>p,.test-card>p,.community-intro>p,.support-section p,.module-header p,.ai-study-intro>p,.overview-highlight small,.brand-copy small,.language-copy small,.chat-header small,.ai-study-header small{font-weight:700}
+@media(max-width:700px){.subject-cover{aspect-ratio:16/8}}
+
+.subject-card[data-subject="Malayalam"] .subject-cover{object-position:center 35%}
