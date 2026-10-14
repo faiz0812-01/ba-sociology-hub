@@ -4,32 +4,66 @@
 *{box-sizing:border-box}body{margin:0;background:#e9eee9;color:#173f35;font:14px/1.5 system-ui,sans-serif}
 .toolbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:10px;background:#f8faf7;border-bottom:1px solid #d6dfd5}
 button,input,select{font:inherit;color:inherit;background:white;border:1px solid #bdccbd;border-radius:8px;padding:7px 10px}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #b79e48;outline-offset:2px}input{width:62px}#pages{white-space:nowrap}
-main{padding:16px;overflow:auto;text-align:center}canvas{display:block;margin:0 auto;background:white;box-shadow:0 3px 14px #173f3518;max-width:none}#status{margin:0;padding:8px 16px;text-align:center;background:#f8faf7}[hidden]{display:none!important}
+main{padding:16px;overflow:auto;text-align:center}canvas{display:block;margin:0 auto;background:white;box-shadow:0 3px 14px #173f3518;max-width:none}.pdf-page{margin:0 auto 20px;scroll-margin-top:90px;background:white;box-shadow:0 3px 14px #173f3518;position:relative}.page-label{padding:6px;color:#52705b;font-size:12px}.page-loading{position:absolute;top:50%;left:0;right:0;color:#52705b}.pdf-page canvas{box-shadow:none}#status{margin:0;padding:8px 16px;text-align:center;background:#f8faf7}[hidden]{display:none!important}
 </style></head><body>
 <nav class="toolbar" aria-label="Reading controls">
-<button id="prev" disabled aria-label="Previous page">← Previous</button>
 <label>Page <input id="page" type="number" min="1" value="1" disabled></label><span id="pages">of …</span>
-<button id="next" disabled aria-label="Next page">Next →</button>
 <label>Zoom <select id="zoom" disabled><option value="fit">Fit width</option><option value=".75">75%</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
 </nav><p id="status" role="status" aria-live="polite">Loading study guide…</p>
-<main id="reader"><canvas id="canvas" role="img" aria-label="Study guide page" hidden></canvas></main>
+<main id="reader" aria-label="All study guide pages"></main>
 <script type="module">
 const el=id=>document.getElementById(id);
-let pdf,pageNumber=1,busy=false,pending=false;
-const canvas=el('canvas'),context=canvas.getContext('2d');
-function controls(){el('prev').disabled=!pdf||pageNumber===1;el('next').disabled=!pdf||pageNumber===pdf.numPages;el('page').disabled=!pdf;el('zoom').disabled=!pdf;el('page').value=pageNumber;el('pages').textContent='of '+(pdf?pdf.numPages:'…');}
+let pdf,pageNumber=1,generation=0,observer,activeTask,queue=Promise.resolve(),sections=[];
+function controls(){el('page').disabled=!pdf;el('zoom').disabled=!pdf;el('page').value=pageNumber;el('pages').textContent='of '+(pdf?pdf.numPages:'…');}
 async function render(){
- if(!pdf)return;if(busy){pending=true;return;}busy=true;controls();el('status').textContent='Loading page '+pageNumber+'…';
- try{
- const current=pageNumber,page=await pdf.getPage(current);
- const original=page.getViewport({scale:1});const scale=el('zoom').value==='fit'?Math.max(.25,Math.min(2,(el('reader').clientWidth-32)/original.width)):Number(el('zoom').value);const viewport=page.getViewport({scale});const ratio=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';await page.render({canvasContext:context,viewport,transform:ratio!==1?[ratio,0,0,ratio,0,0]:null}).promise;canvas.setAttribute('aria-label','Study guide page '+current+' of '+pdf.numPages);canvas.hidden=false;
- el('status').textContent='Page '+current+' of '+pdf.numPages;
- }catch(error){el('status').textContent='This page could not be displayed. Choose another page or refresh the reader.';}
- finally{busy=false;if(pending){pending=false;render();}}
+ if(!pdf)return;
+ const currentGeneration=++generation;
+ if(observer)observer.disconnect();
+ if(activeTask)activeTask.cancel();
+ el('reader').replaceChildren();sections=[];queue=Promise.resolve();
+ el('status').textContent=pdf.numPages+' pages · Scroll to read the complete guide';
+ observer=new IntersectionObserver(entries=>{
+  for(const entry of entries){
+   if(!entry.isIntersecting)continue;
+   observer.unobserve(entry.target);
+   queue=queue.then(async()=>{
+    if(currentGeneration!==generation)return;
+    const section=entry.target,number=Number(section.dataset.page);
+    try{
+     const page=await pdf.getPage(number);if(currentGeneration!==generation)return;
+     const viewport=page.getViewport({scale:Number(section.dataset.scale)});
+     const canvas=document.createElement('canvas');
+     const ratio=Math.min(window.devicePixelRatio||1,1.5);
+     canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);
+     canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';
+     canvas.setAttribute('role','img');canvas.setAttribute('aria-label','Study guide page '+number+' of '+pdf.numPages);
+     section.append(canvas);
+     const task=page.render({canvasContext:canvas.getContext('2d'),viewport,transform:ratio!==1?[ratio,0,0,ratio,0,0]:null});
+     activeTask=task;await task.promise;if(activeTask===task)activeTask=null;
+     section.querySelector('.page-loading')?.remove();
+    }catch(error){if(currentGeneration===generation)section.querySelector('.page-loading').textContent='Could not display this page. Refresh to try again.';}
+   });
+  }
+ },{rootMargin:'1000px 0px'});
+ for(let number=1;number<=pdf.numPages;number++){
+  const page=await pdf.getPage(number);if(currentGeneration!==generation)return;
+  const original=page.getViewport({scale:1});
+  const scale=el('zoom').value==='fit'?Math.max(.25,Math.min(2,(el('reader').clientWidth-32)/original.width)):Number(el('zoom').value);
+  const viewport=page.getViewport({scale});
+  const section=document.createElement('section');section.className='pdf-page';
+  section.dataset.page=number;section.dataset.scale=scale;
+  section.setAttribute('aria-label','Page '+number);
+  section.style.width=viewport.width+'px';section.style.minHeight=(viewport.height+30)+'px';
+  const label=document.createElement('div');label.className='page-label';label.textContent='Page '+number+' of '+pdf.numPages;
+  const loading=document.createElement('div');loading.className='page-loading';loading.textContent='Loading page '+number+'…';
+  section.append(label,loading);el('reader').append(section);sections.push(section);observer.observe(section);
+ }
+ controls();
 }
-function go(number){if(!pdf)return;pageNumber=Math.max(1,Math.min(pdf.numPages,Math.round(Number(number)||1)));render();}
-el('prev').onclick=()=>go(pageNumber-1);el('next').onclick=()=>go(pageNumber+1);el('page').onchange=event=>go(event.target.value);el('zoom').onchange=render;
-document.addEventListener('keydown',event=>{if(/INPUT|SELECT/.test(event.target.tagName))return;if(event.key==='ArrowRight')go(pageNumber+1);if(event.key==='ArrowLeft')go(pageNumber-1);});
+function go(number){if(!pdf)return;pageNumber=Math.max(1,Math.min(pdf.numPages,Math.round(Number(number)||1)));sections[pageNumber-1]?.scrollIntoView({block:'start'});controls();}
+el('page').onchange=event=>go(event.target.value);el('zoom').onchange=render;
+let scrolling=false;
+window.addEventListener('scroll',()=>{if(scrolling)return;scrolling=true;requestAnimationFrame(()=>{scrolling=false;const visible=sections.find(section=>section.getBoundingClientRect().bottom>90);if(visible&&document.activeElement!==el('page')){pageNumber=Number(visible.dataset.page);el('page').value=pageNumber;}});},{passive:true});
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(el('zoom').value==='fit')render();},200);});
 try{
  const file=new URL(new URLSearchParams(location.search).get('file')||'',location.origin+'/');
