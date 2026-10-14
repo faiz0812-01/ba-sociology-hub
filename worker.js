@@ -248,23 +248,36 @@ async function digest(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value))),v=>v.toString(16).padStart(2,"0")).join("");
 }
 function adminPage(authorized) {
-  const content=authorized ? '<h1>Traffic</h1><p>Private owner dashboard · One row per IP, with visit counts from the latest 1,000 page views within 7 days. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class="actions"><a href="/">Back to Academic Hub</a><button id="refresh">Refresh</button><button id="logout">Log out</button></div><h2 id="today-summary" aria-live="polite">Today: loading…</h2><p>Live · Updates every 15 seconds · India time · Visitors counted by distinct IP address</p><h2 id="summary">Loading…</h2><p id="status" role="status"></p><div class="table"><table><thead><tr><th>Last visit (India)</th><th>Visitor IP</th><th>Visits</th><th>Country</th><th>State / Region</th><th>City</th><th>Page</th></tr></thead><tbody id="rows"></tbody></table></div><section class=\"results-section\" aria-labelledby=\"results-title\"><h2 id=\"results-title\">Mock test results</h2><p>Attempt records and website traffic are together here. This private view includes every subject and shows student names and registration numbers.</p><div class=\"stats\" aria-live=\"polite\"><div class=\"metric\"><span>Total attempts</span><strong id=\"attempt-total\">Loading…</strong></div><div class=\"metric\"><span>Passed</span><strong id=\"attempt-passed\">—</strong></div><div class=\"metric\"><span>Failed</span><strong id=\"attempt-failed\">—</strong></div><div class=\"metric\"><span>Average score</span><strong id=\"attempt-average\">—</strong></div></div><div class=\"actions\"><label for=\"subject-filter\">Subject</label><select id=\"subject-filter\"><option value=\"\">All subjects</option></select><button id=\"refresh-results\" type=\"button\">Refresh mock tests</button></div><p id=\"results-status\" role=\"status\">Loading mock test results…</p><h3>Subject overview</h3><div class=\"table\"><table><thead><tr><th>Subject</th><th>Attempts</th><th>Passed</th><th>Failed</th><th>Average score</th></tr></thead><tbody id=\"subject-rows\"></tbody></table></div><h3>All attempts</h3><div class=\"table\"><table><thead><tr><th>ID</th><th>Name</th><th>Registration</th><th>Subject</th><th>Score</th><th>Total</th><th>%</th><th>Wrong</th><th>Unanswered</th><th>Status</th><th>Auto submitted</th><th>Submitted (India)</th></tr></thead><tbody id=\"result-rows\"></tbody></table></div></section>' : '<h1>Owner login</h1><p>Sign in to view Academic Hub traffic.</p><form id="login"><label for="password">Admin password</label><input id="password" type="password" autocomplete="current-password" required maxlength="1024"><button>Sign in</button></form><p id="status" role="status"></p><a href="/">Back to Academic Hub</a>';
+  const content=authorized ? "<h1>Traffic</h1><p>Private owner dashboard · One row per IP, with visit counts from the latest 1,000 page views within 7 days. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class=\"actions\"><a href=\"/\">Back to Academic Hub</a><button id=\"refresh\">Refresh</button><button id=\"logout\">Log out</button></div><h2 id=\"today-summary\" aria-live=\"polite\">Today: loading…</h2><p>Live · Updates every 15 seconds · India time · Visitors counted by distinct IP address</p><h2 id=\"summary\">Loading…</h2><p id=\"status\" role=\"status\"></p><div class=\"table\"><table><thead><tr><th>Last visit (India)</th><th>Visitor IP</th><th>Visits</th><th>Country</th><th>State / Region</th><th>City</th><th>Page</th></tr></thead><tbody id=\"rows\"></tbody></table></div><section class=\"results-section\" aria-labelledby=\"results-title\"><div class=\"results-heading\"><h2 id=\"results-title\">Mock test results</h2><p>Seven-subject overview, attempt details, and repeated-IP counts.</p></div><div class=\"stats\" aria-live=\"polite\"><div class=\"metric\"><span>Total attempts</span><strong id=\"attempt-total\">Loading…</strong></div><div class=\"metric\"><span>Passed</span><strong id=\"attempt-passed\">—</strong></div><div class=\"metric\"><span>Failed</span><strong id=\"attempt-failed\">—</strong></div><div class=\"metric\"><span>Average score</span><strong id=\"attempt-average\">—</strong></div><div class=\"metric\"><span>IP addresses with repeats</span><strong id=\"repeated-ip-total\">—</strong></div></div><div class=\"results-tabs\" role=\"tablist\" aria-label=\"Mock test result views\"><button class=\"results-tab active\" id=\"dashboard-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"dashboard-panel\">Dashboard</button><button class=\"results-tab\" id=\"attempts-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"attempts-panel\">Attempts</button></div><div id=\"dashboard-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"dashboard-tab\"><p class=\"panel-intro\">Seven subjects with test counts, attempts, pass and fail totals, and average marks.</p><div id=\"subject-rows\" class=\"subject-grid\"></div></div><div id=\"attempts-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"attempts-tab\" hidden><div class=\"actions attempt-actions\"><label for=\"subject-filter\">Subject</label><select id=\"subject-filter\"><option value=\"\">All subjects</option></select><button id=\"refresh-results\" type=\"button\">Refresh mock tests</button></div><p id=\"results-status\" role=\"status\">Loading mock test results…</p><div class=\"table attempt-table\"><table><thead><tr><th>ID</th><th>Name</th><th>Registration</th><th>Subject</th><th>Score</th><th>Total</th><th>Mark</th><th>Same-IP attempts</th><th>Wrong</th><th>Unanswered</th><th>Status</th><th>Auto submitted</th><th>Submitted (India)</th></tr></thead><tbody id=\"result-rows\"></tbody></table></div><div class=\"pagination\" aria-label=\"Attempt pagination\"><label class=\"page-size-label\" for=\"page-size\">Rows per page <select id=\"page-size\"><option value=\"25\">25</option><option value=\"50\" selected>50</option><option value=\"100\">100</option></select></label><span id=\"page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"prev-page\" type=\"button\" disabled>Previous</button><button id=\"next-page\" type=\"button\" disabled>Next</button></div></div></div></section>" : "<h1>Owner login</h1><p>Sign in to view Academic Hub traffic.</p><form id=\"login\"><label for=\"password\">Admin password</label><input id=\"password\" type=\"password\" autocomplete=\"current-password\" required maxlength=\"1024\"><button>Sign in</button></form><p id=\"status\" role=\"status\"></p><a href=\"/\">Back to Academic Hub</a>";
   const script=authorized ? `
     function countryName(code){if(!code || code==='XX')return 'Unknown';if(code==='T1')return 'Tor network';if(!/^[A-Z]{2}$/.test(code))return 'Unknown';const flag=String.fromCodePoint(...Array.from(code,c=>127397+c.charCodeAt(0)));try{return flag+' '+new Intl.DisplayNames(['en'],{type:'region'}).of(code)+' ('+code+')';}catch{return flag+' '+code;}}
     async function refresh(){try{const r=await fetch('/api/admin/traffic',{cache:'no-store'});if(r.status===401){location.href='/admin/login';return;}const d=await r.json();if(!r.ok)throw Error(d.error);document.getElementById('today-summary').textContent='Today ('+d.today.day+'): '+d.today.visitors+' visitors · '+d.today.views+' page views';document.getElementById('summary').textContent=d.views+' page views · '+d.uniqueIPs+' distinct IPs';const rows=document.getElementById('rows');rows.replaceChildren();for(const v of d.records){const tr=document.createElement('tr');for(const text of [new Date(v.time).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),v.ip,v.visits,countryName(v.country),v.region || "Unknown",v.city || "Unknown",v.path]){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.append(tr);}document.getElementById('status').textContent=d.views?'':'No visits recorded yet.';}catch(e){document.getElementById('status').textContent=e.message||'Could not load traffic.';}}
+    const SUBJECT_GROUPS=["Sociology","Education","Indian Economy","AI","Ethics","English","Malayalam"];
     let allResults=[];
+    let currentPage=1;
+    let repeatedIPTotal=0;
+    function subjectGroup(value){
+      const name=String(value||"").toLowerCase();
+      if(/sociology/.test(name))return "Sociology";
+      if(/education/.test(name))return "Education";
+      if(/economy/.test(name))return "Indian Economy";
+      if(/artificial intelligence|\bai\b|philosophy of mind/.test(name))return "AI";
+      if(/ethic/.test(name))return "Ethics";
+      if(/english/.test(name))return "English";
+      if(/malayalam/.test(name))return "Malayalam";
+      return "Other";
+    }
     function isPassed(result){return /pass/i.test(result.status||"") && !/fail/i.test(result.status||"");}
     function isFailed(result){return /fail/i.test(result.status||"");}
     function addCell(row,value){const cell=document.createElement('td');cell.textContent=value==null?"":String(value);row.append(cell);}
     function formatSubmitted(value){const date=new Date(value);return Number.isNaN(date.getTime())?String(value||"Unknown"):date.toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});}
     function renderResults(){
-      const filter=document.getElementById('subject-filter').value;
-      const subjects=Array.from(new Set(allResults.map(r=>r.subject||"Unspecified"))).sort((a,b)=>a.localeCompare(b));
       const select=document.getElementById('subject-filter');
       const previous=select.value;
       select.replaceChildren(new Option("All subjects",""));
-      for(const subject of subjects) select.add(new Option(subject,subject));
-      select.value=subjects.includes(previous)?previous:"";
+      for(const subject of SUBJECT_GROUPS) select.add(new Option(subject,subject));
+      select.value=SUBJECT_GROUPS.includes(previous)?previous:"";
+      const filter=select.value;
       const passed=allResults.filter(isPassed).length;
       const failed=allResults.filter(isFailed).length;
       const percentages=allResults.map(r=>Number(r.percentage)).filter(Number.isFinite);
@@ -273,26 +286,52 @@ function adminPage(authorized) {
       document.getElementById('attempt-passed').textContent=String(passed);
       document.getElementById('attempt-failed').textContent=String(failed);
       document.getElementById('attempt-average').textContent=average===null?"—":average.toFixed(1)+"%";
-      const groups=new Map();
-      for(const item of allResults){
-        const subject=item.subject||"Unspecified";
-        if(!groups.has(subject))groups.set(subject,[]);
-        groups.get(subject).push(item);
+      document.getElementById('repeated-ip-total').textContent=String(repeatedIPTotal);
+      const grid=document.getElementById('subject-rows');grid.replaceChildren();
+      for(const subject of SUBJECT_GROUPS){
+        const items=allResults.filter(item=>subjectGroup(item.subject)===subject);
+        const scores=items.map(item=>Number(item.percentage)).filter(Number.isFinite);
+        const tests=new Set(items.map(item=>item.subject||"Unspecified"));
+        const card=document.createElement('article');card.className='subject-card';
+        const title=document.createElement('h3');title.textContent=subject;card.append(title);
+        const subtitle=document.createElement('p');subtitle.className='subject-meta';subtitle.textContent=tests.size+" test"+(tests.size===1?"":"s");card.append(subtitle);
+        const metrics=document.createElement('div');metrics.className='subject-metrics';
+        const averageText=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1)+"%":"—";
+        for(const entry of [["Attempts",items.length],["Passed",items.filter(isPassed).length],["Failed",items.filter(isFailed).length],["Average marks",averageText]]){
+          const metric=document.createElement('div');const label=document.createElement('span');label.textContent=entry[0];const value=document.createElement('strong');value.textContent=String(entry[1]);metric.append(label,value);metrics.append(metric);
+        }
+        card.append(metrics);grid.append(card);
       }
-      const overview=document.getElementById('subject-rows');overview.replaceChildren();
-      for(const [subject,items] of Array.from(groups.entries()).sort((a,b)=>a[0].localeCompare(b[0]))){
-        const row=document.createElement('tr');const scores=items.map(r=>Number(r.percentage)).filter(Number.isFinite);
-        addCell(row,subject);addCell(row,items.length);addCell(row,items.filter(isPassed).length);addCell(row,items.filter(isFailed).length);
-        addCell(row,scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1)+"%":"—");overview.append(row);
-      }
+      const filtered=allResults.filter(item=>!filter||subjectGroup(item.subject)===filter);
+      const size=Math.max(1,Number(document.getElementById('page-size').value)||50);
+      const totalPages=Math.max(1,Math.ceil(filtered.length/size));
+      currentPage=Math.min(Math.max(1,currentPage),totalPages);
+      const start=(currentPage-1)*size;
+      const pageItems=filtered.slice(start,start+size);
       const body=document.getElementById('result-rows');body.replaceChildren();
-      const shown=allResults.filter(r=>!select.value||(r.subject||"Unspecified")===select.value);
-      for(const item of shown){
+      for(const item of pageItems){
         const row=document.createElement('tr');
-        for(const value of [item.id,item.name,item.reg,item.subject,item.score,item.total,Number.isFinite(Number(item.percentage))?Number(item.percentage).toFixed(1)+"%":"",item.wrong,item.unanswered,item.status,item.auto_submitted?"Yes":"No",formatSubmitted(item.submitted_at)])addCell(row,value);
+        for(const value of [item.id,item.name,item.reg,item.subject,item.score,item.total])addCell(row,value);
+        const markCell=document.createElement('td');
+        const mark=document.createElement('span');
+        mark.className='mark '+(isPassed(item)?'mark-pass':isFailed(item)?'mark-fail':'mark-neutral');
+        mark.textContent=Number.isFinite(Number(item.percentage))?Number(item.percentage).toFixed(1)+'%':'—';
+        markCell.append(mark);row.append(markCell);
+        const repeatCount=Number(item.same_ip_attempts);
+        const repeatCell=document.createElement('td');
+        const repeatBadge=document.createElement('span');
+        repeatBadge.className='repeat-count'+(Number.isFinite(repeatCount)&&repeatCount>1?' repeat-many':'');
+        repeatBadge.textContent=Number.isFinite(repeatCount)?String(repeatCount):'—';
+        repeatCell.append(repeatBadge);row.append(repeatCell);
+        for(const value of [item.wrong,item.unanswered,item.status,item.auto_submitted?"Yes":"No",formatSubmitted(item.submitted_at)])addCell(row,value);
         body.append(row);
       }
-      document.getElementById('results-status').textContent=allResults.length?(filter&&select.value?"Showing "+shown.length+" of "+allResults.length+" attempts.":"Showing all "+allResults.length+" attempts across "+subjects.length+" subjects."):"No mock test attempts recorded yet.";
+      const first=filtered.length?start+1:0;
+      const last=Math.min(start+pageItems.length,filtered.length);
+      document.getElementById('page-info').textContent="Showing "+first+"–"+last+" of "+filtered.length+" · Page "+currentPage+" of "+totalPages;
+      document.getElementById('prev-page').disabled=currentPage<=1;
+      document.getElementById('next-page').disabled=currentPage>=totalPages;
+      document.getElementById('results-status').textContent=allResults.length?(filter?"Showing "+filtered.length+" of "+allResults.length+" attempts for "+filter+".":"Showing "+allResults.length+" attempts across 7 subjects."):"No mock test attempts recorded yet.";
     }
     async function refreshResults(){
       const status=document.getElementById('results-status');status.textContent='Loading mock test results…';
@@ -302,17 +341,24 @@ function adminPage(authorized) {
         if(response.status===401){location.href='/admin/login';return;}
         const data=await response.json();if(!response.ok)throw Error(data.error||'Could not load mock test results.');
         allResults=Array.isArray(data.results)?data.results:[];
+        repeatedIPTotal=Number(data.repeated_ip_total)||0;
+        currentPage=1;
         renderResults();
       }catch(error){status.textContent=error.message||'Could not load mock test results.';if(!allResults.length){document.getElementById('attempt-total').textContent='—';document.getElementById('attempt-passed').textContent='—';document.getElementById('attempt-failed').textContent='—';document.getElementById('attempt-average').textContent='—';}}
       finally{button.disabled=false;}
     }
     document.getElementById('refresh-results').onclick=refreshResults;
-    document.getElementById('subject-filter').onchange=renderResults;
+    document.getElementById('subject-filter').onchange=()=>{currentPage=1;renderResults();};
+    document.getElementById('page-size').onchange=()=>{currentPage=1;renderResults();};
+    document.getElementById('prev-page').onclick=()=>{currentPage=Math.max(1,currentPage-1);renderResults();};
+    document.getElementById('next-page').onclick=()=>{currentPage++;renderResults();};
+    document.getElementById('dashboard-tab').onclick=()=>{document.getElementById('dashboard-panel').hidden=false;document.getElementById('attempts-panel').hidden=true;document.getElementById('dashboard-tab').setAttribute('aria-selected','true');document.getElementById('attempts-tab').setAttribute('aria-selected','false');};
+    document.getElementById('attempts-tab').onclick=()=>{document.getElementById('dashboard-panel').hidden=true;document.getElementById('attempts-panel').hidden=false;document.getElementById('dashboard-tab').setAttribute('aria-selected','false');document.getElementById('attempts-tab').setAttribute('aria-selected','true');};
     document.getElementById('refresh').onclick=refresh;
     document.getElementById('logout').onclick=async()=>{const r=await fetch('/api/admin/logout',{method:'POST'});if(r.ok)location.href='/admin/login';};
     refresh();refreshResults();setInterval(()=>{if(!document.hidden)refresh();},15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh();});` : `
     document.getElementById('login').onsubmit=async e=>{e.preventDefault();const button=e.target.querySelector('button');button.disabled=true;try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('password').value})});const d=await r.json();document.getElementById('password').value='';if(!r.ok)throw Error(d.error);location.href='/admin/traffic';}catch(e){document.getElementById('status').textContent=e.message||'Sign-in failed.';}finally{button.disabled=false;}};`;
-  return new Response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Academic Hub · Owner</title><style>body{background:#f2f6f3;color:#183b35;font:18px/1.6 system-ui;margin:0}main{max-width:1050px;margin:5vh auto;padding:28px}h1{font-size:40px}a{color:#28594e}form{max-width:420px;display:grid;gap:16px}input,button{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:12px}button{background:#183b35;color:white;cursor:pointer}.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.table{overflow:auto;background:white;border-radius:12px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:14px;border-bottom:1px solid #e1e9e4}td{overflow-wrap:anywhere}#status{color:#914023}.results-section{margin-top:32px;padding-top:10px;border-top:2px solid #dce8e1}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin:16px 0}.metric{display:grid;gap:4px;padding:14px;background:white;border:1px solid #dce8e1;border-radius:12px}.metric span{font-size:14px;color:#536a62}.metric strong{font-size:23px}.results-section select{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:10px;background:white;color:#183b35}h3{margin-top:28px}</style></head><body><main>'+content+'</main><script>'+script+'</script></body></html>',{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"private, no-store","X-Robots-Tag":"noindex, nofollow","X-Content-Type-Options":"nosniff","Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'","Referrer-Policy":"no-referrer"}});
+  return new Response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Academic Hub · Owner</title><style>body{background:#f2f6f3;color:#183b35;font:18px/1.6 system-ui;margin:0}main{max-width:1050px;margin:5vh auto;padding:28px}h1{font-size:40px}a{color:#28594e}form{max-width:420px;display:grid;gap:16px}input,button{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:12px}button{background:#183b35;color:white;cursor:pointer}.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.table{overflow:auto;background:white;border-radius:12px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:14px;border-bottom:1px solid #e1e9e4}td{overflow-wrap:anywhere}#status{color:#914023}.results-section{margin-top:32px;padding-top:10px;border-top:2px solid #dce8e1}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin:16px 0}.metric{display:grid;gap:4px;padding:14px;background:white;border:1px solid #dce8e1;border-radius:12px}.metric span{font-size:14px;color:#536a62}.metric strong{font-size:23px}.results-section select{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:10px;background:white;color:#183b35}h3{margin-top:28px}.results-heading h2{margin-bottom:4px}.results-heading p,.panel-intro{margin-top:0;color:#536a62;font-size:13px}.results-section{font-size:14px}.results-section h3{margin:0}.results-tabs{display:flex;gap:8px;margin:18px 0 12px;border-bottom:1px solid #dce8e1}.results-tab{font:600 14px/1.2 system-ui;border:1px solid #bdd2c7;border-bottom:0;border-radius:9px 9px 0 0;padding:9px 15px;background:#e8f0eb;color:#183b35}.results-tab[aria-selected=true],.results-tab.active{background:#183b35;color:#fff}.subject-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:10px}.subject-card{padding:14px;background:#fff;border:1px solid #dce8e1;border-radius:12px;box-shadow:0 2px 8px rgba(24,59,53,.04)}.subject-card h3{font-size:16px;margin:0}.subject-meta{font-size:12px;color:#64776f;margin:2px 0 10px}.subject-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}.subject-metrics div{display:grid;gap:2px;padding:7px 8px;background:#f5f8f6;border-radius:8px}.subject-metrics span{font-size:11px;color:#536a62}.subject-metrics strong{font-size:15px}.attempt-actions{gap:8px;margin:12px 0}.attempt-actions select{font-size:13px;padding:7px 9px}.attempt-table table{min-width:1180px}.attempt-table th,.attempt-table td{font-size:12px;white-space:nowrap;padding:8px 9px}.mark,.repeat-count{display:inline-block;min-width:46px;text-align:center;padding:2px 7px;border-radius:999px;font-weight:700}.mark-pass{background:#dcf5e5;color:#15542b}.mark-fail{background:#ffe0df;color:#8d1b17}.mark-neutral{background:#fff0cf;color:#805600}.repeat-count{background:#edf2ef;color:#475a52}.repeat-many{background:#fff0cf;color:#805600}.pagination{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 0 2px;font-size:12px;color:#435a51}.page-size-label{display:flex;align-items:center;gap:6px}.pagination select{font:inherit;padding:5px 7px}.pagination button{font:600 12px/1.2 system-ui;padding:7px 10px;border:1px solid #bfd0c7;border-radius:8px;background:#183b35;color:white}.pagination button:disabled{opacity:.45;cursor:not-allowed}.page-controls{display:flex;gap:6px}@media(max-width:600px){.results-tab{padding:8px 11px}.pagination{justify-content:flex-start}.page-info{flex:1 1 100%;order:2}.page-controls{margin-left:auto}}</style></head><body><main>'+content+'</main><script>'+script+'</script></body></html>',{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"private, no-store","X-Robots-Tag":"noindex, nofollow","X-Content-Type-Options":"nosniff","Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'","Referrer-Policy":"no-referrer"}});
 }
 
 async function fetchMockTestResults(env) {
@@ -335,7 +381,15 @@ async function fetchMockTestResults(env) {
   let payload;
   try { payload = await upstream.json(); } catch { return json({error:"The mock test results service returned invalid data."},502); }
   const results = Array.isArray(payload.results) ? payload.results : [];
-  return json({results:results.map((item) => ({
+  const ipCounts = new Map();
+  for (const item of results) {
+    const ip = typeof item.ip_address === "string" ? item.ip_address.trim().toLowerCase() : "";
+    if (ip) ipCounts.set(ip, (ipCounts.get(ip) || 0) + 1);
+  }
+  const repeatedIPTotal = Array.from(ipCounts.values()).filter(count => count > 1).length;
+  return json({repeated_ip_total:repeatedIPTotal,results:results.map((item) => {
+    const ip = typeof item.ip_address === "string" ? item.ip_address.trim().toLowerCase() : "";
+    return {
     id:Number.isFinite(Number(item.id)) ? Number(item.id) : "",
     name:typeof item.name === "string" ? item.name.slice(0,120) : "",
     reg:typeof item.reg === "string" ? item.reg.slice(0,80) : "",
@@ -343,12 +397,14 @@ async function fetchMockTestResults(env) {
     score:Number.isFinite(Number(item.score)) ? Number(item.score) : null,
     total:Number.isFinite(Number(item.total)) ? Number(item.total) : null,
     percentage:Number.isFinite(Number(item.percentage)) ? Number(item.percentage) : null,
+    same_ip_attempts:ip ? ipCounts.get(ip) : null,
     wrong:Number.isFinite(Number(item.wrong)) ? Number(item.wrong) : null,
     unanswered:Number.isFinite(Number(item.unanswered)) ? Number(item.unanswered) : null,
     status:typeof item.status === "string" ? item.status.slice(0,40) : "",
     auto_submitted:Boolean(Number(item.auto_submitted)),
     submitted_at:typeof item.submitted_at === "string" ? item.submitted_at.slice(0,100) : ""
-  }))});
+    };
+  })});
 }
 
 // Read secrets from the current entry Worker on every request, not from a
