@@ -234,6 +234,11 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 .module-subtabs:empty{display:none}
 .module-subtabs button{padding:9px 12px;font-size:13px}
 .module-subtabs button[aria-selected="true"]{border-color:#d9b760;background:#fbf1d5;color:#634e1e}
+.module-dialog--malayalam .module-subtabs button:nth-child(4n+1){border-color:#b7d8ff;background:#eaf4ff;color:#1d4e89}
+.module-dialog--malayalam .module-subtabs button:nth-child(4n+2){border-color:#b8e4cf;background:#e8f8ef;color:#176344}
+.module-dialog--malayalam .module-subtabs button:nth-child(4n+3){border-color:#f2d09b;background:#fff4df;color:#89520b}
+.module-dialog--malayalam .module-subtabs button:nth-child(4n){border-color:#dfc4f5;background:#f5edff;color:#693c91}
+.module-dialog--malayalam .module-subtabs button[aria-selected="true"]{outline:2px solid #284d3b;outline-offset:1px;font-weight:900}
 .module-content{min-height:150px;padding-top:4px}
 .module-empty{display:flex;min-height:150px;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:22px;border:1px dashed #d6dfd2;border-radius:16px;background:linear-gradient(135deg,#f8f9f4,#f1f5ed);text-align:center}
 .module-empty-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#e7efe3;color:#3f7658;font-size:21px}
