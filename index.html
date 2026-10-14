@@ -336,12 +336,6 @@
     }
     function getStudyGuideModules(subject) {
       if(subject==='Philosophy of AI') return [1,2,3,4].map(number=>({name:'Module '+number,items:number===3?[{"label":"Ch 1 · Buddhism — Study notes","title":"Philosophy of AI · Module 3 · Ch 1 · Buddhism — Study notes","medium":"Bilingual","description":"English + Malayalam · 10 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/Philosophy%20of%20AI_Module3_Buddhism_.pdf","embed":true},{"label":"Ch 1 · Buddhism — Class notes","title":"Philosophy of AI · Module 3 · Ch 1 · Buddhism — Class notes","medium":"Bilingual","description":"English + Malayalam · 8 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/AI_Module_3_Buddhism_Meera_New_Font.pdf","embed":true},{"label":"Ch 1 · Buddhism — Exam points","title":"Philosophy of AI · Module 3 · Ch 1 · Buddhism — Exam points","medium":"Bilingual","description":"English + Malayalam · 11 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/AI%20Module%203%20_Chap1_Exam-oriented%20Points.pdf","embed":true},{"label":"Ch 3 · Western Epistemology","title":"Philosophy of AI · Module 3 · Ch 3 · Western Epistemology","medium":"Bilingual","description":"English + Malayalam · 11 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/Western_Epistemology_Module3_Ch3.pdf","embed":true},{"label":"Ch 5 · AI Epistemology — Eng + Mal","title":"Philosophy of AI · Module 3 · Ch 5 · AI Epistemology — Eng + Mal","medium":"Bilingual","description":"English + Malayalam · 15 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/Epistemological_Implications_in_AI_mod3_chp5.pdf","embed":true},{"label":"Ch 5 · AI Epistemology — English","title":"Philosophy of AI · Module 3 · Ch 5 · AI Epistemology — English","medium":"English","description":"English · 15 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/Module_3_Chapter_5_Epistemological_Implications_in_AI_Deep_English_Study_Material.pdf","embed":true},{"label":"Revision · Complete chapter Q&A","title":"Philosophy of AI · Module 3 · Revision · Complete chapter Q&A","medium":"Bilingual","description":"English + Malayalam · 16 pages","href":"Philosophy%20of%20AI/Study%20Guide/Module%203/Artificial_Intelligence_Module_3_Complete_Q%26A.pdf","embed":true}]:[{label:'Study guide',medium:'Bilingual'}]}));
-      if(subject==='English') return englishCourseModules.map(module=>({
-        name:module.name,items:module.items.map(item=>Object.assign({},item,{medium:'English'}))
-      }));
-      if(subject==='Development Issues in Indian Economy') return indianEconomyEnglishModules.map(module=>({
-        name:module.name,items:module.items.map(item=>Object.assign({},item,{medium:'English'}))
-      }));
       const english=getSubjectModules(subject,'English');
       const malayalam=getSubjectModules(subject,'Malayalam');
       const moduleCount=Math.max(4,english.length,malayalam.length);
@@ -461,11 +455,8 @@
       lastLanguageTab=trigger;
       moduleTitle.textContent=studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
       const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
-      const availableEnglishModules=modules.filter(module=>module.items.some(item=>item.medium==='English' && item.href)).map(module=>module.name);
       moduleDescription.textContent=studyGuide
-        ? subject==='Philosophy of AI' ? 'Module 3 study guides: Buddhism, Western Epistemology, AI epistemology and chapter revision Q&A. Choose a document tab to read it here.'
-          : availableEnglishModules.length ? 'English study PDFs are ready in '+availableEnglishModules.join(', ')+'. Choose a module tab to read them here.'
-          : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
+        ? subject==='Philosophy of AI' ? 'Module 3 study guides: Buddhism, Western Epistemology, AI epistemology and chapter revision Q&A. Choose a document tab to read it here.' : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
         : subject==='Malayalam' && medium==='Malayalam'
         ? 'All four uploaded Malayalam course modules are available here. Read each PDF on this page.'
         : subject==='Sociology' && medium==='Malayalam'
