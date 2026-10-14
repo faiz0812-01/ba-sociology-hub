@@ -500,28 +500,6 @@
   </script>
   <script src="ai-study.js?v=20261014-ai-study-helper" defer></script>
 
-  <script>
-    (() => {
-      const copy = document.querySelector(".semester-context-copy");
-      const cursor = document.querySelector(".semester-context-cursor");
-      if (!copy || !cursor) return;
-      const fullText = copy.textContent.trim();
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        cursor.hidden = true;
-        return;
-      }
-      const lineBox = copy.parentElement;
-      if (lineBox) lineBox.style.minHeight = lineBox.getBoundingClientRect().height + "px";
-      copy.textContent = "";
-      cursor.hidden = false;
-      let index = 0;
-      const typeNext = () => {
-        index += 1;
-        copy.textContent = fullText.slice(0, index);
-        if (index < fullText.length) window.setTimeout(typeNext, 30);
-      };
-      typeNext();
-    })();
-  </script>
+
 </body>
 </html>
