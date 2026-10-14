@@ -10,3 +10,8 @@ ADMIN-TRAFFIC.md
 study-helper-backend.js
 AI-STUDY-HELPER.md
 
+# Local Wrangler state and repository metadata are not public site assets.
+/.wrangler/**
+/.gitignore
+/.assetsignore
+/schema.sql
