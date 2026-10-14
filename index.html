@@ -440,13 +440,14 @@
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
+      const firstAvailableItemIndex=Math.max(0,module.items.findIndex(item=>item.href));
       moduleSubtabs.replaceChildren();
       module.items.forEach((item,itemIndex)=>{
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
-        button.setAttribute('aria-selected',String(itemIndex===0));
-        button.tabIndex=itemIndex===0?0:-1;
+        button.setAttribute('aria-selected',String(itemIndex===firstAvailableItemIndex));
+        button.tabIndex=itemIndex===firstAvailableItemIndex?0:-1;
         button.textContent=item.label;
         button.addEventListener('click',()=>selectModuleItem(subject,medium,module,moduleIndex,itemIndex));
         moduleSubtabs.append(button);
@@ -455,7 +456,8 @@
         button.setAttribute('aria-selected',String(index===moduleIndex));
         button.tabIndex=index===moduleIndex?0:-1;
       });
-      showModuleItem(subject,module.items[0].medium || medium,module.name,module.items[0]);
+      const firstAvailableItem=module.items[firstAvailableItemIndex];
+      showModuleItem(subject,firstAvailableItem.medium || medium,module.name,firstAvailableItem);
     }
     function openModuleLibrary(trigger) {
       const card=trigger.closest('.subject-card');
