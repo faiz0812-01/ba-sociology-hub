@@ -489,3 +489,70 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .semester-context-marquee span+span{display:none}
   .semester-context p{overflow:visible;white-space:normal}
 }
+
+
+/* Compact chat panels: reduce vertical space while keeping controls touch-friendly. */
+.community-section{gap:22px;margin-bottom:28px;padding:22px}
+.chat-panel{padding:12px}
+.chat-header{gap:7px;padding-bottom:8px}
+.chat-avatar{width:31px;height:31px}
+.chat-messages{height:145px;gap:8px;padding:9px 3px}
+.chat-form{padding-top:8px}
+.chat-form>input{margin-bottom:6px}
+.chat-form>input,.chat-compose textarea{padding:7px 8px}
+.chat-compose textarea{min-height:42px;max-height:76px}
+.ai-study-section{gap:20px;margin-bottom:28px;padding:22px}
+.ai-study-intro{padding:20px}
+.ai-study-intro h2{font-size:clamp(25px,2.6vw,34px);margin:9px 0}
+.ai-study-intro>p{font-size:14px;line-height:1.65}
+.ai-study-features{margin-top:14px}
+.ai-study-note{margin-top:18px;padding-top:14px}
+.ai-study-panel{padding:14px}
+.ai-study-header{gap:8px;padding-bottom:10px}
+.ai-study-avatar{flex-basis:32px;height:32px;border-radius:10px;font-size:18px}
+.ai-study-options{gap:8px;padding-top:10px}
+.ai-study-options select{min-height:36px}
+.ai-study-messages{height:190px;gap:9px;margin:10px 0 8px;padding:9px}
+.ai-study-empty{padding:10px}
+.ai-study-prompts{gap:5px;margin-bottom:10px}
+.ai-study-prompts button{padding:6px 8px}
+.ai-study-form textarea{min-height:68px;max-height:150px;padding:9px 10px}
+.ai-study-compose-footer{gap:8px;padding-top:7px}
+.ai-study-compose-footer button{min-height:38px;padding:7px 10px}
+.ai-study-status-row{min-height:16px;margin-top:7px}
+@media(max-width:700px){
+  .community-section{gap:12px;margin-bottom:20px;padding:13px}
+  .community-intro h2{font-size:22px}
+  .community-intro>p{font-size:12px;line-height:1.6}
+  .community-note{margin-top:10px}
+  .chat-panel{padding:10px}
+  .chat-messages{height:118px}
+  .chat-compose textarea{min-height:40px;max-height:68px}
+  .ai-study-section{gap:10px;margin-bottom:20px;padding:12px;border-radius:14px}
+  .ai-study-intro{padding:14px 13px;border-radius:11px}
+  .ai-study-intro h2{font-size:23px;margin:8px 0}
+  .ai-study-intro>p{font-size:14px;line-height:1.55}
+  .ai-study-features{margin-top:10px}
+  .ai-study-note{gap:8px;margin-top:12px;padding-top:10px}
+  .ai-study-privacy{margin-top:10px;font-size:11px}
+  .ai-study-panel{padding:10px;border-radius:11px}
+  .ai-study-header{gap:7px;padding-bottom:8px}
+  .ai-study-avatar{flex-basis:29px;height:29px}
+  .ai-study-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding-top:9px}
+  .ai-study-options label{gap:4px}
+  .ai-study-options select{min-height:38px;padding:6px;font-size:14px}
+  .ai-study-messages{height:145px;gap:8px;margin:9px 0 7px;padding:8px}
+  .ai-study-empty{padding:7px}
+  .ai-study-empty>span{width:36px;height:36px;font-size:21px}
+  .ai-study-empty strong{font-size:15px}
+  .ai-study-empty p{font-size:13px}
+  .ai-study-message{padding:9px}
+  .ai-study-prompts{gap:5px;margin-bottom:8px}
+  .ai-study-prompts button{padding:6px 7px;font-size:13px}
+  .ai-study-form>label{margin-bottom:4px}
+  .ai-study-form textarea{min-height:62px;max-height:125px;padding:8px 9px;font-size:16px}
+  .ai-study-compose-footer{gap:6px;padding-top:6px}
+  .ai-study-compose-footer>span{font-size:11px}
+  .ai-study-compose-footer button{min-height:40px;padding:7px 9px}
+  .ai-study-status-row{gap:7px;margin-top:6px}
+}
