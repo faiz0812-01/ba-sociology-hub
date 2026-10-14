@@ -316,15 +316,17 @@ function adminPage(authorized) {
 }
 
 async function fetchMockTestResults(env) {
+  if (!env.RESULTS_API || typeof env.RESULTS_API.fetch !== "function") {
+    return json({error:"The mock test results service binding RESULTS_API is missing from the Academic Hub Worker."},503);
+  }
   if (typeof env.RESULTS_API_TOKEN !== "string" || !env.RESULTS_API_TOKEN) {
     return json({error:"Mock test results are not connected yet. Add the RESULTS_API_TOKEN secret to the Academic Hub Worker."},503);
   }
   let upstream;
   try {
-    upstream = await fetch("https://ba-sociology-results.faiz01cu.workers.dev/results?limit=2000", {
-      headers: {Authorization:"Bearer " + env.RESULTS_API_TOKEN, Accept:"application/json"},
-      cache:"no-store"
-    });
+    upstream = await env.RESULTS_API.fetch(new Request("https://results.internal/results?limit=2000", {
+      headers: {Authorization:"Bearer " + env.RESULTS_API_TOKEN, Accept:"application/json", "Cache-Control":"no-store"}
+    }));
   } catch {
     return json({error:"The mock test results service could not be reached."},502);
   }
