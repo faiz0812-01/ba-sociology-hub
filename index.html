@@ -378,6 +378,20 @@
         {label:'Optimism · Helen Keller',title:'English · Module 4 · Optimism · Helen Keller',description:'English reading PDF · Module 4',href:'optimism_helen_keller.pdf'}
       ]}
     ];
+    const mathematicsChapter = number => ({
+      label:'Chapter '+number,
+      title:'Mathematics · Chapter '+number,
+      medium:'English',
+      description:'Mathematics course reading · Chapter '+number,
+      href:'notesphere-MATHEMATICS-chapter-'+number+'.pdf',
+      embed:true
+    });
+    const mathematicsCourseModules = [
+      {name:'Module 1',items:[1,2,3,4].map(mathematicsChapter)},
+      {name:'Module 2',items:[5,6,7,8].map(mathematicsChapter)},
+      {name:'Module 3',items:[9,10,11,12].map(mathematicsChapter)},
+      {name:'Module 4',items:[13,14,15,16,17].map(mathematicsChapter)}
+    ];
         const indianEconomyEnglishModules = [
       {name:'Module 1',items:[{label:'Module 1 PDF'}]},
       {name:'Module 2',items:[{label:'Module 2 · Poverty',title:'Development Issues in Indian Economy · Poverty',description:'English study notes for Module 2.',href:'Development%20Issues%20in%20Indian%20Economy/English/Module%202%20-%20Poverty.pdf'}]},
@@ -385,6 +399,7 @@
       {name:'Module 4',items:[{label:'Module 4 PDF'}]}
     ];
     function getSubjectModules(subject,medium) {
+      if(subject==='Mathematics' && medium==='English') return mathematicsCourseModules;
       if(subject==='English' && medium==='English') return englishCourseModules;
       if(subject==='Malayalam' && medium==='Malayalam') return malayalamCourseModules;
       if(subject==='Sociology' && medium==='Malayalam') return sociologyMalayalamModules;
@@ -458,6 +473,7 @@
       const itemMedium=item.medium || medium;
       const readingOnly=moduleDialog.dataset.readingOnly==='true';
       moduleDialog.classList.toggle('module-dialog--malayalam',itemMedium==='Malayalam');
+      moduleDialog.classList.toggle('module-dialog--mathematics',subject==='Mathematics');
       moduleDialog.lang=itemMedium==='Malayalam'?'ml':'en';
       moduleContent.replaceChildren();
       if(!item.href) {
@@ -480,7 +496,8 @@
       card.className='module-pdf-card';
       const badge=document.createElement('span');
       badge.className='module-pdf-badge';
-      badge.textContent='PDF';
+      badge.textContent=subject==='Mathematics'?'∑':'PDF';
+      if(subject==='Mathematics') badge.setAttribute('aria-label','Mathematics PDF');
       const copy=document.createElement('div');
       copy.className='module-pdf-copy';
       const heading=document.createElement('h3');
@@ -582,6 +599,8 @@
               ? 'Choose a module to read its Malayalam PDF here without leaving Academic Hub.'
               : subject==='Development Issues in Indian Economy' && medium==='English'
                 ? 'English PDFs are available for Module 2: Poverty and Module 3: Inequality.'
+                : subject==='Mathematics' && medium==='English'
+                  ? '17 chapter PDFs are arranged across four modules. Select a chapter to read it here, or open and download the PDF.'
                 : medium==='Malayalam'
                   ? 'Uploaded Malayalam PDFs open here for reading without leaving Academic Hub.'
                 : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';

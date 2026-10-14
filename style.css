@@ -556,3 +556,113 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .ai-study-compose-footer button{min-height:40px;padding:7px 9px}
   .ai-study-status-row{gap:7px;margin-top:6px}
 }
+/* A focused, readable chapter library for the Mathematics LMS. */
+.module-dialog--mathematics .module-backdrop{
+  background:rgba(15,23,42,.66);
+}
+.module-dialog--mathematics .module-panel{
+  width:min(1040px,100%);
+  max-height:min(92vh,980px);
+  border:1px solid #cbdaf0;
+  border-radius:26px;
+  background:#f7faff;
+  box-shadow:0 28px 100px rgba(15,23,42,.28);
+}
+.module-dialog--mathematics .module-header{
+  padding:20px;
+  border:1px solid #d6e3f5;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 90% 0,rgba(45,212,191,.20),transparent 34%),
+    linear-gradient(118deg,#eff6ff 0%,#eef2ff 54%,#ecfeff 100%);
+}
+.module-dialog--mathematics .module-eyebrow{
+  color:#2563a8;
+  letter-spacing:1.2px;
+}
+.module-dialog--mathematics .module-header h2{
+  color:#142b4b;
+}
+.module-dialog--mathematics .module-header p{
+  color:#526782;
+}
+.module-dialog--mathematics .module-close{
+  border-color:#cbdaf0;
+  background:#fff;
+  color:#23476f;
+}
+.module-dialog--mathematics .module-tabs{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+.module-dialog--mathematics .module-tabs button,
+.module-dialog--mathematics .module-subtabs button{
+  border-color:#d3dfef;
+  background:#fff;
+  color:#355573;
+}
+.module-dialog--mathematics .module-tabs button[aria-selected="true"]{
+  border-color:#2563a8;
+  background:linear-gradient(135deg,#1d4ed8,#0f766e);
+  color:#fff;
+  box-shadow:0 6px 16px rgba(29,78,216,.18);
+}
+.module-dialog--mathematics .module-subtabs button{
+  border-radius:999px;
+  padding:9px 14px;
+  font-size:13px;
+}
+.module-dialog--mathematics .module-subtabs button[aria-selected="true"]{
+  border-color:#99d5dc;
+  background:#e6fbfa;
+  color:#0e5962;
+}
+.module-dialog--mathematics .module-pdf-card{
+  border-color:#d7e4f4;
+  border-radius:18px;
+  background:linear-gradient(120deg,#fff,#f1f7ff);
+  box-shadow:0 10px 26px rgba(30,64,110,.08);
+}
+.module-dialog--mathematics .module-pdf-badge{
+  border:1px solid #bfdbfe;
+  border-radius:15px;
+  background:linear-gradient(145deg,#dbeafe,#ccfbf1);
+  color:#1d4ed8;
+  font-size:21px;
+}
+.module-dialog--mathematics .module-pdf-copy h3{
+  color:#17365b;
+}
+.module-dialog--mathematics .module-pdf-copy p{
+  color:#61758d;
+}
+.module-dialog--mathematics .module-pdf-actions a{
+  background:linear-gradient(135deg,#1d4ed8,#0f766e);
+}
+.module-dialog--mathematics .module-pdf-actions a+a{
+  background:#e9f1fb;
+  color:#23476f;
+}
+.module-dialog--mathematics .module-pdf-reader{
+  border-color:#cbdaf0;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 12px 28px rgba(30,64,110,.07);
+}
+.module-dialog--mathematics .module-pdf-reader-heading{
+  padding:14px 17px;
+  border-bottom-color:#dce7f4;
+  background:linear-gradient(100deg,#eff6ff,#ecfeff);
+  color:#23476f;
+}
+.module-dialog--mathematics .module-pdf-frame{
+  height:min(70vh,780px);
+  background:#eaf1f8;
+}
+@media(max-width:600px){
+  .module-dialog--mathematics .module-panel{max-height:94vh;padding:16px}
+  .module-dialog--mathematics .module-header{padding:14px}
+  .module-dialog--mathematics .module-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .module-dialog--mathematics .module-pdf-card{grid-template-columns:42px minmax(0,1fr);gap:10px;padding:14px}
+  .module-dialog--mathematics .module-pdf-badge{width:40px;height:40px}
+  .module-dialog--mathematics .module-pdf-actions{grid-column:1/-1}
+}
