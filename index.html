@@ -346,6 +346,7 @@
     }
     function showModuleItem(subject,medium,moduleName,item) {
       const itemMedium=item.medium || medium;
+      const readingOnly=moduleDialog.dataset.readingOnly==='true';
       moduleDialog.classList.toggle('module-dialog--malayalam',itemMedium==='Malayalam');
       moduleDialog.lang=itemMedium==='Malayalam'?'ml':'en';
       moduleContent.replaceChildren();
@@ -389,9 +390,10 @@
       download.textContent='Download PDF ↓';
       copy.append(heading,detail);
       actions.append(open,download);
-      card.append(badge,copy,actions);
+      card.append(badge,copy);
+      if(!readingOnly) card.append(actions);
       moduleContent.append(card);
-      if(item.embed || itemMedium==='Malayalam' || itemMedium==='Bilingual') {
+      if(readingOnly || item.embed || itemMedium==='Malayalam' || itemMedium==='Bilingual') {
         const reader=document.createElement('section');
         reader.className='module-pdf-reader';
         reader.setAttribute('aria-label',itemMedium+' PDF reader');
@@ -402,7 +404,7 @@
         frame.className='module-pdf-frame';
         frame.title=(item.title || item.label)+' PDF reader';
         frame.loading='lazy';
-        frame.src=item.href;
+        frame.src=readingOnly?item.href.split('#')[0]+'#toolbar=0&navpanes=0':item.href;
         reader.append(readerHeading,frame);
         moduleContent.append(reader);
       }
@@ -445,6 +447,7 @@
       const subject=card.dataset.subject;
       const medium=trigger.classList.contains('language-tab--malayalam')?'Malayalam':trigger.classList.contains('language-tab--arabic')?'Arabic':'English';
       const studyGuide=trigger.classList.contains('language-tab--study-guide');
+      moduleDialog.dataset.readingOnly=String(studyGuide);
       const modules=studyGuide?getStudyGuideModules(subject):getSubjectModules(subject,medium);
       moduleDialog.classList.toggle('module-dialog--malayalam',medium==='Malayalam');
       moduleDialog.lang=medium==='Malayalam'?'ml':'en';
