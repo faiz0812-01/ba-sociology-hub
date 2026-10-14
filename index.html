@@ -521,13 +521,16 @@
       panel.setAttribute('aria-label','Owner file uploads');
       panel.style.cssText='padding:24px;border:1px solid #cbdace;border-radius:20px;background:#f1f6ee;margin:24px 0';
       const eyebrow=document.createElement('div');eyebrow.className='eyebrow';eyebrow.textContent='OWNER TOOLS';
-      const heading=document.createElement('h2');heading.textContent='Upload study materials';heading.style.margin='8px 0';
-      const detail=document.createElement('p');detail.textContent='Select PDFs from your laptop or phone. You can choose several files together, then save them with Commit changes on GitHub.';detail.style.cssText='line-height:1.6;margin:10px 0 18px';
+      const heading=document.createElement('h2');heading.textContent='Upload a PDF from your phone';heading.style.margin='8px 0';
+      const detail=document.createElement('p');detail.textContent='Use this secure GitHub upload. Sign in if asked, choose the PDF from your phone, then commit it directly to main.';detail.style.cssText='line-height:1.6;margin:10px 0 12px';
+      const steps=document.createElement('ol');steps.style.cssText='padding-left:22px;line-height:1.65;margin:10px 0 18px';
+      ['Tap the button and choose your PDF.','Keep the destination on main; scroll down and tap Commit changes.','Wait for GitHub to confirm, then return to the hub.'].forEach(text=>{const item=document.createElement('li');item.textContent=text;steps.append(item);});
       const link=document.createElement('a');
       link.href='https://github.com/faizz01fy/ba-sociology-hub/upload/main';link.target='_blank';link.rel='noopener';
-      link.className='nav-cta';link.textContent='Upload PDFs to GitHub ↗';link.style.cssText='display:inline-flex;min-height:48px;padding:12px 18px;border-radius:12px;background:#173f35;color:white;text-decoration:none;align-items:center';
-      const note=document.createElement('p');note.textContent='After uploading, the files need links in the correct subject and module to appear in the library.';note.style.cssText='font-size:13px;line-height:1.6;margin:14px 0 0;color:#526650';
-      panel.append(eyebrow,heading,detail,link,note);
+      link.className='nav-cta';link.textContent='Choose PDF on GitHub ↗';link.style.cssText='display:flex;box-sizing:border-box;justify-content:center;width:100%;max-width:430px;min-height:52px;padding:14px 18px;border-radius:12px;background:#173f35;color:white;text-decoration:none;align-items:center;font-weight:700';
+      const verify=document.createElement('a');verify.href='https://github.com/faizz01fy/ba-sociology-hub/commits/main';verify.target='_blank';verify.rel='noopener';verify.textContent='Check the latest commits on GitHub ↗';verify.style.cssText='display:inline-block;margin-top:12px';
+      const note=document.createElement('p');note.textContent='GitHub browser uploads are limited to 25 MB per file. A committed PDF is saved in the repository; to show it under a subject and module, the hub still needs that file linked there. Share the filename and module with me and I can add it.';note.style.cssText='font-size:13px;line-height:1.6;margin:14px 0 0;color:#526650';
+      panel.append(eyebrow,heading,detail,steps,link,verify,note);
       document.querySelector('.quick-stats').after(panel);
     }catch(error){/* Students and signed-out visitors see no owner controls. */}
   })();
