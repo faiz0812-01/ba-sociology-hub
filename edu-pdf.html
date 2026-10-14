@@ -38,12 +38,13 @@
     .download{background:#fff;color:var(--c1)}
     .actions a:hover{filter:brightness(.92);transform:translateY(-1px)}
     .back{display:block;text-align:center;margin:28px auto 0;padding:13px 18px;max-width:240px;border-radius:14px;background:linear-gradient(135deg,#312e81,#6d28d9);color:white;text-decoration:none;font-weight:700}
-    @media(max-width:680px){body{padding:14px}.page-box{padding:22px}.module-heading{align-items:flex-start;flex-direction:column;gap:4px}.module-heading p{white-space:normal}.chapter{grid-template-columns:58px 1fr;gap:12px;padding:16px}.num{width:52px;height:52px}.actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.actions a{padding:11px 8px;white-space:normal;font-size:14px}.chapter-copy h3{font-size:16px}}
+    @media(max-width:680px){body{padding:14px}.page-box{padding:22px}.module-heading{align-items:flex-start;flex-direction:column;gap:4px}.module-heading p{white-space:normal}.chapter{grid-template-columns:58px 1fr;gap:12px;padding:16px}.num{width:52px;height:52px}.actions{grid-column:1/-1;display:grid;grid-template-columns:1fr}.actions a{padding:11px 8px;white-space:normal;font-size:14px}.chapter-copy h3{font-size:16px}}
   
     .not-uploaded{display:inline-block;padding:10px 13px;border:1px solid #cbd5e1;border-radius:12px;background:#f8fafc;color:#475569;font-size:13px;font-weight:700}
     .chapter-unavailable{background:linear-gradient(120deg,#fff,#f8fafc);border-style:dashed}
     .chapter-unavailable .num{background:linear-gradient(135deg,#64748b,#94a3b8);box-shadow:none}
-  </style>
+  .pdf-dialog{width:96vw;max-width:1100px;height:92vh;max-height:92vh;padding:0;border:0;border-radius:18px;overflow:hidden;background:#f8fafc}.pdf-dialog::backdrop{background:rgba(15,23,42,.65)}.reader-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px;background:#fff;border-bottom:1px solid #cbd5e1}.reader-head h2{font-size:16px;margin:0}.reader-head button{border:0;border-radius:8px;background:#e2e8f0;padding:8px 14px;cursor:pointer}.pdf-dialog iframe{display:block;width:100%;height:calc(100% - 65px);border:0}
+</style>
 </head>
 <body>
   <main class="page-box">
@@ -67,8 +68,8 @@
           <div class="num">01</div>
           <div class="chapter-copy"><h3>വിദ്യാഭ്യാസ തത്ത്വചിന്ത — മൊഡ്യൂൾ 1</h3><p>മലയാളം പഠന PDF · 39 പേജുകൾ</p></div>
           <div class="actions">
-            <a class="read-online" href="Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_1.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
-            <a class="download" href="Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_1.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+            <a class="read-online" href="study-guide-reader.html?file=Philosophy%2520of%2520Education%2FMalayalam%2520PDF%2FPhilosophy_Education_Malayalam_Module_1.pdf">സൈറ്റിൽ വായിക്കുക</a>
+
           </div>
         </article>
       </div>
@@ -96,8 +97,8 @@
           <div class="num">03</div>
           <div class="chapter-copy"><h3>വിദ്യാഭ്യാസ തത്ത്വചിന്ത — മൊഡ്യൂൾ 3</h3><p>മലയാളം പഠന PDF</p></div>
           <div class="actions">
-            <a class="read-online" href="Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_3.pdf" target="_blank" rel="noopener">സൈറ്റിൽ വായിക്കുക</a>
-            <a class="download" href="Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_3.pdf" download>PDF ഡൗൺലോഡ് ചെയ്യുക</a>
+            <a class="read-online" href="study-guide-reader.html?file=Philosophy%2520of%2520Education%2FMalayalam%2520PDF%2FPhilosophy_Education_Malayalam_Module_3.pdf">സൈറ്റിൽ വായിക്കുക</a>
+
           </div>
         </article>
       </div>
@@ -117,5 +118,16 @@
     </section>
     <a class="back" href="index.html">ഹോം പേജിലേക്ക് മടങ്ങുക</a>
   </main>
+<dialog class="pdf-dialog" id="pdf-dialog" aria-labelledby="reader-title"><div class="reader-head"><h2 id="reader-title"></h2><button type="button" id="reader-close" aria-label="Close reader">✕</button></div><iframe id="pdf-frame" title="Malayalam study guide reader"></iframe></dialog>
+<script>
+const dialog=document.getElementById('pdf-dialog'),frame=document.getElementById('pdf-frame');
+document.querySelectorAll('.read-online').forEach(link=>link.addEventListener('click',event=>{
+ event.preventDefault();document.getElementById('reader-title').textContent=link.closest('.chapter').querySelector('h3').textContent;
+ frame.src=link.href;dialog.showModal();
+}));
+document.getElementById('reader-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('close',()=>frame.removeAttribute('src'));
+dialog.addEventListener('contextmenu',event=>event.preventDefault());
+</script>
 </body>
 </html>
