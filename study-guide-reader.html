@@ -13,6 +13,9 @@ main{padding:16px;overflow:auto;text-align:center}canvas{display:block;margin:0 
 <main id="reader" aria-label="All study guide pages"></main>
 <script type="module">
 const el=id=>document.getElementById(id);
+// Shared reading-only interaction for every subject study guide.
+document.addEventListener('contextmenu',event=>event.preventDefault());
+document.addEventListener('dragstart',event=>{if(event.target instanceof HTMLCanvasElement)event.preventDefault();});
 let pdf,pageNumber=1,generation=0,observer,activeTask,queue=Promise.resolve(),sections=[];
 function controls(){el('page').disabled=!pdf;el('zoom').disabled=!pdf;el('page').value=pageNumber;el('pages').textContent='of '+(pdf?pdf.numPages:'…');}
 async function render(){
