@@ -666,63 +666,115 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .module-dialog--mathematics .module-pdf-badge{width:40px;height:40px}
   .module-dialog--mathematics .module-pdf-actions{grid-column:1/-1}
 }
-/* Six clear module stops for the Sociology of Education reading library. */
-.module-dialog--sociology .module-backdrop{
-  background:rgba(34,24,58,.62);
+
+/* Highlight the four portal features as their own polished cards. */
+.quick-stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+  margin:20px 10px 0;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
 }
-.module-dialog--sociology .module-panel{
-  width:min(980px,100%);
-  border-color:#ded6f1;
-  background:#fffdfd;
-  box-shadow:0 28px 96px rgba(44,30,76,.25);
-}
-.module-dialog--sociology .module-header{
-  padding:18px;
-  border:1px solid #e3dcf4;
+.quick-stats .stat{
+  --feature-accent:#7655b8;
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+  min-height:104px;
+  overflow:hidden;
+  padding:18px 17px 18px 19px;
+  border:1px solid #e9e2f3;
   border-radius:19px;
-  background:radial-gradient(circle at 92% 0,rgba(196,181,253,.22),transparent 35%),linear-gradient(115deg,#f5f3ff,#faf5ff 62%,#f0fdfa);
+  background:linear-gradient(145deg,#fff 0%,#f8f4ff 100%);
+  box-shadow:0 10px 24px rgba(41,44,63,.055),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
 }
-.module-dialog--sociology .module-eyebrow{color:#6d4ab2}
-.module-dialog--sociology .module-header h2{color:#30234c}
-.module-dialog--sociology .module-header p{color:#685f7d}
-.module-dialog--sociology .module-close{border-color:#e0d8f0;background:#fff;color:#48336f}
-.module-dialog--sociology .module-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
-.module-dialog--sociology .module-tabs button{
-  border-color:#e0d8f0;
-  background:#fff;
-  color:#594b75;
+.quick-stats .stat::before{
+  position:absolute;
+  z-index:-1;
+  inset:0 auto 0 0;
+  width:5px;
+  border-radius:19px 0 0 19px;
+  background:linear-gradient(180deg,var(--feature-accent),rgba(255,255,255,.35));
+  content:"";
 }
-.module-dialog--sociology .module-tabs button[aria-selected="true"]{
-  border-color:#6d4ab2;
-  background:linear-gradient(135deg,#6842a6,#4f46a5);
-  color:#fff;
-  box-shadow:0 6px 16px rgba(104,66,166,.18);
+.quick-stats .stat::after{
+  position:absolute;
+  z-index:-1;
+  top:-48px;
+  right:-37px;
+  width:112px;
+  height:112px;
+  border-radius:50%;
+  background:rgba(118,85,184,.07);
+  content:"";
 }
-.module-dialog--sociology .module-pdf-card{
-  border-color:#e2dbf2;
-  background:linear-gradient(120deg,#fff,#faf7ff);
-  box-shadow:0 10px 26px rgba(75,55,120,.07);
+.quick-stats .stat:hover{
+  transform:translateY(-3px);
+  border-color:rgba(118,85,184,.27);
+  box-shadow:0 15px 30px rgba(41,44,63,.1),inset 0 1px 0 rgba(255,255,255,.95);
 }
-.module-dialog--sociology .module-pdf-badge{
-  background:linear-gradient(145deg,#ede9fe,#e0f2fe);
-  color:#6842a6;
+.quick-stats .stat-icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 48px;
+  width:48px;
+  height:48px;
+  border:1px solid rgba(118,85,184,.12);
+  border-radius:15px;
+  background:linear-gradient(145deg,#fff,#eee5ff);
+  color:var(--feature-accent);
+  box-shadow:0 7px 16px rgba(48,39,73,.09),inset 0 1px 0 rgba(255,255,255,.9);
+  font-size:23px;
+  line-height:1;
 }
-.module-dialog--sociology .module-pdf-copy h3{color:#392a58}
-.module-dialog--sociology .module-pdf-copy p{color:#716987}
-.module-dialog--sociology .module-pdf-actions a{background:linear-gradient(135deg,#6842a6,#4f46a5)}
-.module-dialog--sociology .module-pdf-actions a+a{background:#f0ecf8;color:#514071}
-.module-dialog--sociology .module-pdf-reader{
-  border-color:#dfd8ef;
-  background:#fff;
-  box-shadow:0 12px 28px rgba(75,55,120,.06);
+.quick-stats .stat>div{display:grid;gap:3px;min-width:0}
+.quick-stats .stat strong{
+  color:#283a35;
+  font:800 14px/1.25 Manrope,'DM Sans',sans-serif;
+  letter-spacing:-.2px;
 }
-.module-dialog--sociology .module-pdf-reader-heading{
-  border-bottom-color:#e5def3;
-  background:linear-gradient(100deg,#f5f3ff,#f0fdfa);
-  color:#514071;
+.quick-stats .stat small{
+  margin-top:0;
+  color:#687970;
+  font:500 11px/1.4 'DM Sans',sans-serif;
 }
-@media(max-width:600px){
-  .module-dialog--sociology .module-panel{max-height:94vh;padding:16px}
-  .module-dialog--sociology .module-header{padding:14px}
-  .module-dialog--sociology .module-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.quick-stats .stat:nth-child(1){--feature-accent:#7655b8;border-color:#e9e1f5;background:linear-gradient(145deg,#fff 0%,#f7f2ff 100%)}
+.quick-stats .stat:nth-child(1)::after{background:rgba(118,85,184,.08)}
+.quick-stats .stat:nth-child(1) .stat-icon{border-color:#e5d9fa;background:linear-gradient(145deg,#fff,#eee5ff)}
+.quick-stats .stat:nth-child(2){--feature-accent:#3273b8;border-color:#dce8f5;background:linear-gradient(145deg,#fff 0%,#f0f7ff 100%)}
+.quick-stats .stat:nth-child(2)::after{background:rgba(50,115,184,.08)}
+.quick-stats .stat:nth-child(2) .stat-icon{border-color:#d7e7f8;background:linear-gradient(145deg,#fff,#e2f0ff)}
+.quick-stats .stat:nth-child(3){--feature-accent:#bc7623;border-color:#f0e4ce;background:linear-gradient(145deg,#fff 0%,#fff7e9 100%)}
+.quick-stats .stat:nth-child(3)::after{background:rgba(188,118,35,.09)}
+.quick-stats .stat:nth-child(3) .stat-icon{border-color:#f0dfc1;background:linear-gradient(145deg,#fff,#ffefd1)}
+.quick-stats .stat:nth-child(4){--feature-accent:#287955;border-color:#dcece1;background:linear-gradient(145deg,#fff 0%,#eff9f1 100%)}
+.quick-stats .stat:nth-child(4)::after{background:rgba(40,121,85,.08)}
+.quick-stats .stat:nth-child(4) .stat-icon{border-color:#d6ebdc;background:linear-gradient(145deg,#fff,#def2e4)}
+@media(max-width:1050px){
+  .quick-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-inline:0}
+  .quick-stats .stat{min-height:98px}
 }
+@media(max-width:700px){
+  .quick-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px;padding:0}
+  .quick-stats .stat{gap:10px;min-height:92px;padding:13px 11px 13px 14px}
+  .quick-stats .stat-icon{flex-basis:39px;width:39px;height:39px;border-radius:12px;font-size:19px}
+  .quick-stats .stat strong{font-size:12px}
+  .quick-stats .stat small{font-size:9.5px}
+}
+@media(max-width:390px){
+  .quick-stats{gap:8px}
+  .quick-stats .stat{gap:8px;min-height:88px;padding:11px 9px 11px 12px}
+  .quick-stats .stat-icon{flex-basis:35px;width:35px;height:35px;font-size:17px}
+  .quick-stats .stat strong{font-size:11px}
+  .quick-stats .stat small{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.quick-stats .stat{transition:none}}
+
