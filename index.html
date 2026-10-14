@@ -747,8 +747,8 @@
       moduleDialog.dataset.readingOnly=String(studyGuide);
       moduleDialog.oncontextmenu=studyGuide?event=>event.preventDefault():null;
       const modules=studyGuide?getStudyGuideModules(subject):getSubjectModules(subject,medium);
-      moduleDialog.classList.toggle('module-dialog--malayalam',medium==='Malayalam');
-      moduleDialog.lang=medium==='Malayalam'?'ml':'en';
+      moduleDialog.classList.toggle('module-dialog--malayalam',studyGuide || medium==='Malayalam');
+      moduleDialog.lang=studyGuide || medium==='Malayalam'?'ml':'en';
       lastLanguageTab=trigger;
       moduleTitle.textContent=studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
       const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
