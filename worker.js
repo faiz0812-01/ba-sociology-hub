@@ -62,6 +62,31 @@ export default {
       const chat = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
       return chat.fetch(request);
     }
+    if (url.pathname === "/api/test-results/submit") {
+      if (request.method !== "POST") return json({error:"Method not allowed."},405);
+      if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
+      const declaredLength = Number(request.headers.get("Content-Length") || 0);
+      if (declaredLength > 16384) return json({error:"Request too large."},413);
+      let body;
+      try { body = await request.text(); } catch { return json({error:"Invalid request."},400); }
+      if (body.length > 16384) return json({error:"Request too large."},413);
+      let payload;
+      try { payload = JSON.parse(body); } catch { return json({error:"Invalid JSON."},400); }
+      if (!payload || typeof payload !== "object" || Array.isArray(payload)) return json({error:"Invalid result."},400);
+      if (!env.RESULTS_API || typeof env.RESULTS_API.fetch !== "function") return json({error:"The mock test results service is not connected."},503);
+      let upstream;
+      try {
+        upstream = await env.RESULTS_API.fetch(new Request("https://results.internal/submit", {
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(payload)
+        }));
+      } catch {
+        return json({error:"The mock test results service could not be reached."},502);
+      }
+      const responseBody = await upstream.text();
+      return new Response(responseBody, {status:upstream.status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});
+    }
     if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/internal/")) return json({error:"Not found"},404);
     let response = await env.ASSETS.fetch(request);
     if (request.method === "GET" && response.ok && response.headers.get("Content-Type")?.includes("text/html")) {
