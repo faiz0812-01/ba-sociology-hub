@@ -18,15 +18,15 @@
     .hero{text-align:center;margin:0 0 18px;padding:14px 18px;border:1px solid #dde3f1;border-radius:14px;background:linear-gradient(110deg,#eef8fb,#f3f0fd,#fdf2f7)}
     .hero h1{margin:0 0 4px;font:800 clamp(26px,4vw,34px)/1.6 'Noto Sans Malayalam',sans-serif;letter-spacing:0;color:#312e81}
     .hero p{margin:0;font-size:14px;font-weight:700;line-height:1.8;color:#5b6680}
-    .module-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:20px}
-    .module-nav a{display:flex;align-items:center;justify-content:center;min-width:0;min-height:42px;padding:8px 6px;border:1px solid #dce2ee;border-radius:9px;background:#f5f7fd;text-decoration:none;font-size:14px;font-weight:700;color:#433b8c}
+    .module-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:16px}
+    .module-nav a{display:flex;align-items:center;justify-content:center;min-width:0;min-height:34px;padding:5px 6px;border:1px solid #dce2ee;border-radius:8px;background:#f5f7fd;text-decoration:none;font-size:12px;font-weight:700;line-height:1.5;color:#433b8c;overflow-wrap:anywhere;text-align:center}
     .module-nav a:hover{background:#ececfb}
     .modules-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:16px}
     .module{display:flex;flex-direction:column;min-width:0;margin:0;scroll-margin-top:20px;overflow:hidden;border:1px solid #e1e7ee;border-top:4px solid var(--module-color);border-radius:14px;background:#fff;box-shadow:0 4px 14px rgba(30,41,59,.04)}
     #module-1{--module-color:#0f766e;--module-tint:#edf9f5}
     #module-2{--module-color:#4f46e5;--module-tint:#f1f0fd}
     #module-3{--module-color:#be185d;--module-tint:#fcf0f5}
-    #module-4{--module-color:#0369a1;--module-tint:#eef7fc}
+    #module-4{--module-color:#0369a1;--module-tint:#eef7fc}\n    #study-guide{--module-color:#0f766e;--module-tint:#edf9f5}
     .module-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1px solid #e7ebf2;background:var(--module-tint)}
     .module-heading h2{margin:0;min-width:0;font-size:18px;font-weight:800;line-height:1.6;color:var(--module-color)}
     .module-heading p{margin:0;padding:3px 8px;border-radius:6px;background:#fff;color:var(--module-color);font-size:11px;font-weight:700;line-height:1.6;white-space:nowrap}
@@ -48,8 +48,8 @@
     #module-3 .chapter .chapter-copy{min-width:0;overflow-wrap:anywhere}
     #module-3 .chapter .chapter-copy h3{min-height:0;white-space:normal;overflow-wrap:anywhere}
     #module-3 .chapter .actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;min-width:0}
-    @media(max-width:680px){body{padding:12px}.page-box{padding:16px;border-radius:16px}.hero{padding:12px}.module-nav{gap:6px;margin-bottom:16px}.module-nav a{font-size:12px;padding:7px 4px}.modules-grid{grid-template-columns:minmax(0,1fr);gap:12px}.chapter{padding:14px}.module-heading{padding:9px 14px}.hero p{font-size:13px}}
-    @media(max-width:420px){.chapter{grid-template-columns:36px minmax(0,1fr);gap:10px;padding:12px}.num{width:36px;height:36px;border-radius:9px;font-size:15px}.chapter-copy h3{min-height:0;font-size:15px;line-height:1.65}.actions{grid-template-columns:minmax(0,1fr);gap:7px}.actions a{min-height:42px;font-size:13px}#module-3 .chapter{grid-template-columns:36px minmax(0,1fr);padding:12px}#module-3 .chapter .actions{grid-template-columns:minmax(0,1fr)}}\n    @media(max-width:360px){.module-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){body{padding:10px}.page-box{padding:12px;border-radius:14px}.hero{padding:10px}.module-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px}.module-nav a{min-height:32px;font-size:11px;padding:5px 3px;border-radius:7px}.modules-grid{grid-template-columns:minmax(0,1fr);gap:10px}.chapter{padding:12px}.module-heading{padding:8px 12px}.module-heading h2{font-size:16px}.hero p{font-size:12px}}
+    @media(max-width:420px){.chapter{grid-template-columns:36px minmax(0,1fr);gap:10px;padding:12px}.num{width:36px;height:36px;border-radius:9px;font-size:15px}.chapter-copy h3{min-height:0;font-size:15px;line-height:1.65}.actions{grid-template-columns:minmax(0,1fr);gap:7px}.actions a{min-height:42px;font-size:13px}#module-3 .chapter{grid-template-columns:36px minmax(0,1fr);padding:12px}#module-3 .chapter .actions{grid-template-columns:minmax(0,1fr)}}\n    @media(max-width:360px){.module-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.module-nav a{font-size:11px;min-height:30px;padding:4px 3px}}
 
   </style>
 </head>
@@ -64,6 +64,7 @@
       <a href="#module-2">മൊഡ്യൂൾ 2</a>
       <a href="#module-3">മൊഡ്യൂൾ 3</a>
       <a href="#module-4">മൊഡ്യൂൾ 4</a>
+      <a href="#study-guide">സ്റ്റഡി ഗൈഡ്</a>
     </nav>
 
     <div class="modules-grid">
@@ -115,30 +116,9 @@
             <a class="download" href="Module3മലയാളസാഹിത്യാനുശീലനം_T1781936346875%20(1).pdf" download>PDF ഡൗൺലോഡ് ↓</a>
           </div>
         </article>
-        <article class="chapter" style="--c1:#be185d;--c2:#be185d">
-          <div class="num">03</div>
-          <div class="chapter-copy"><h3>ഇവനെ കൂടി</h3><p>മൊഡ്യൂൾ 3 · മലയാളം പഠന PDF</p></div>
-          <div class="actions">
-            <a class="read-online" href="%E0%B4%87%E0%B4%B5%E0%B4%A8%E0%B5%86%20%E0%B4%95%E0%B5%82%E0%B4%9F%E0%B4%BF%20chap3%20_Module3.pdf" target="_blank" rel="noopener">വായിക്കുക ↗</a>
-            <a class="download" href="%E0%B4%87%E0%B4%B5%E0%B4%A8%E0%B5%86%20%E0%B4%95%E0%B5%82%E0%B4%9F%E0%B4%BF%20chap3%20_Module3.pdf" download>PDF ഡൗൺലോഡ് ↓</a>
-          </div>
-        </article>
-        <article class="chapter" style="--c1:#be185d;--c2:#be185d">
-          <div class="num">03</div>
-          <div class="chapter-copy"><h3>ചിന്താവിഷ്ടയായ സീത</h3><p>മൊഡ്യൂൾ 3 · മലയാളം പഠന PDF</p></div>
-          <div class="actions">
-            <a class="read-online" href="%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B4%BE%E0%B4%B5%E0%B4%BF%E0%B4%B7%E0%B5%8D%E0%B4%9F%E0%B4%AF%E0%B4%BE%E0%B4%AF%20%E0%B4%B8%E0%B5%80%E0%B4%A4%20_Module3.pdf" target="_blank" rel="noopener">വായിക്കുക ↗</a>
-            <a class="download" href="%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B4%BE%E0%B4%B5%E0%B4%BF%E0%B4%B7%E0%B5%8D%E0%B4%9F%E0%B4%AF%E0%B4%BE%E0%B4%AF%20%E0%B4%B8%E0%B5%80%E0%B4%A4%20_Module3.pdf" download>PDF ഡൗൺലോഡ് ↓</a>
-          </div>
-        </article>
-        <article class="chapter" style="--c1:#be185d;--c2:#be185d">
-          <div class="num">03</div>
-          <div class="chapter-copy"><h3>സമുദ്രലംഘനം</h3><p>മൊഡ്യൂൾ 3 · മലയാളം പഠന PDF</p></div>
-          <div class="actions">
-            <a class="read-online" href="%E0%B4%B8%E0%B4%AE%E0%B5%81%E0%B4%A6%E0%B5%8D%E0%B4%B0%E0%B4%B2%E0%B4%82%E0%B4%98%E0%B4%A8%E0%B4%82%20_chp1_Module3.pdf" target="_blank" rel="noopener">വായിക്കുക ↗</a>
-            <a class="download" href="%E0%B4%B8%E0%B4%AE%E0%B5%81%E0%B4%A6%E0%B5%8D%E0%B4%B0%E0%B4%B2%E0%B4%82%E0%B4%98%E0%B4%A8%E0%B4%82%20_chp1_Module3.pdf" download>PDF ഡൗൺലോഡ് ↓</a>
-          </div>
-        </article>
+
+
+
       </div>
     </section>
 
@@ -159,6 +139,38 @@
       </div>
     </section>
     </div>
+    <section class="module" id="study-guide" aria-labelledby="study-guide-title">
+      <header class="module-heading">
+        <h2 id="study-guide-title">സ്റ്റഡി ഗൈഡ്</h2>
+        <p>പഠന സഹായികൾ</p>
+      </header>
+      <div class="chapter-list">
+        <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
+          <div class="num">01</div>
+          <div class="chapter-copy"><h3>ഇവനെ കൂടി</h3><p>സ്റ്റഡി ഗൈഡ് · മലയാളം PDF</p></div>
+          <div class="actions">
+            <a class="read-online" href="%E0%B4%87%E0%B4%B5%E0%B4%A8%E0%B5%86%20%E0%B4%95%E0%B5%82%E0%B4%9F%E0%B4%BF%20chap3%20_Module3.pdf" target="_blank" rel="noopener">വായിക്കുക ↗</a>
+            <a class="download" href="%E0%B4%87%E0%B4%B5%E0%B4%A8%E0%B5%86%20%E0%B4%95%E0%B5%82%E0%B4%9F%E0%B4%BF%20chap3%20_Module3.pdf" download>PDF ഡൗൺലോഡ് ↓</a>
+          </div>
+        </article>
+        <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
+          <div class="num">02</div>
+          <div class="chapter-copy"><h3>ചിന്താവിഷ്ടയായ സീത</h3><p>സ്റ്റഡി ഗൈഡ് · മലയാളം PDF</p></div>
+          <div class="actions">
+            <a class="read-online" href="%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B4%BE%E0%B4%B5%E0%B4%BF%E0%B4%B7%E0%B5%8D%E0%B4%9F%E0%B4%AF%E0%B4%BE%E0%B4%AF%20%E0%B4%B8%E0%B5%80%E0%B4%A4%20_Module3.pdf" target="_blank" rel="noopener">വായിക്കുക ↗</a>
+            <a class="download" href="%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B4%BE%E0%B4%B5%E0%B4%BF%E0%B4%B7%E0%B5%8D%E0%B4%9F%E0%B4%AF%E0%B4%BE%E0%B4%AF%20%E0%B4%B8%E0%B5%80%E0%B4%A4%20_Module3.pdf" download>PDF ഡൗൺലോഡ് ↓</a>
+          </div>
+        </article>
+        <article class="chapter" style="--c1:#0f766e;--c2:#0f766e">
+          <div class="num">03</div>
+          <div class="chapter-copy"><h3>സമുദ്രലംഘനം</h3><p>സ്റ്റഡി ഗൈഡ് · മലയാളം PDF</p></div>
+          <div class="actions">
+            <a class="read-online" href="%E0%B4%B8%E0%B4%AE%E0%B5%81%E0%B4%A6%E0%B5%8D%E0%B4%B0%E0%B4%B2%E0%B4%82%E0%B4%98%E0%B4%A8%E0%B4%82%20_chp1_Module3.pdf" target="_blank" rel="noopener">വായിക്കുക ↗</a>
+            <a class="download" href="%E0%B4%B8%E0%B4%AE%E0%B5%81%E0%B4%A6%E0%B5%8D%E0%B4%B0%E0%B4%B2%E0%B4%82%E0%B4%98%E0%B4%A8%E0%B4%82%20_chp1_Module3.pdf" download>PDF ഡൗൺലോഡ് ↓</a>
+          </div>
+        </article>
+      </div>
+    </section>
     <a class="back" href="index.html">ഹോം പേജിലേക്ക് മടങ്ങുക</a>
   </main>
 </body>
