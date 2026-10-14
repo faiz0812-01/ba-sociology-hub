@@ -303,7 +303,7 @@ function adminPage(authorized) {
         const data=await response.json();if(!response.ok)throw Error(data.error||'Could not load mock test results.');
         allResults=Array.isArray(data.results)?data.results:[];
         renderResults();
-      }catch(error){status.textContent=error.message||'Could not load mock test results.';}
+      }catch(error){status.textContent=error.message||'Could not load mock test results.';if(!allResults.length){document.getElementById('attempt-total').textContent='—';document.getElementById('attempt-passed').textContent='—';document.getElementById('attempt-failed').textContent='—';document.getElementById('attempt-average').textContent='—';}}
       finally{button.disabled=false;}
     }
     document.getElementById('refresh-results').onclick=refreshResults;
@@ -329,7 +329,7 @@ async function fetchMockTestResults(env) {
     return json({error:"The mock test results service could not be reached."},502);
   }
   if (upstream.status === 401) return json({error:"The results service rejected the configured secret. Match RESULTS_API_TOKEN on Academic Hub with ADMIN_TOKEN on the results Worker."},503);
-  if (!upstream.ok) return json({error:"The mock test results service returned an error."},502);
+  if (!upstream.ok) return json({error:"The mock test results service returned HTTP " + upstream.status + "."},502);
   let payload;
   try { payload = await upstream.json(); } catch { return json({error:"The mock test results service returned invalid data."},502); }
   const results = Array.isArray(payload.results) ? payload.results : [];
