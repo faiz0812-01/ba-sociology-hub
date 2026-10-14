@@ -441,3 +441,33 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
 @media(max-width:700px){.subject-cover{aspect-ratio:16/8}}
 
 .subject-card[data-subject="Malayalam"] .subject-cover{object-position:center 35%}
+
+
+/* Compact highlighted semester details and a distinct brand chip. */
+.semester-context{
+  display:flex;align-items:center;gap:9px;box-sizing:border-box;
+  width:100%;max-width:1280px;min-height:36px;margin:8px auto 0;padding:6px 10px;
+  border:1px solid #d7e6dd;border-radius:12px;
+  background:linear-gradient(100deg,#edf7f1 0%,#f8f3e8 100%);
+  box-shadow:0 4px 12px rgba(31,81,57,.07);
+  color:#596579;font-size:.8rem;line-height:1.45;letter-spacing:.01em;
+}
+.semester-context-logo{
+  display:grid;place-items:center;flex:none;width:24px;height:24px;
+  border-radius:8px;background:linear-gradient(145deg,#287052,#174b3a);color:#fff;
+}
+.semester-context-logo svg{display:block;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.semester-context p{flex:1;min-width:0;margin:0;font:inherit}
+.semester-context p strong{font-weight:800;color:#344e42}
+
+/* Give the site identity its own soft mint highlight. */
+.brand{gap:10px;padding:5px 10px;border:1px solid #d6e5da;border-radius:15px;background:#e9f3ec}
+.brand-copy strong{font-size:21.2px}
+.brand-copy small{margin-top:3px;color:#63786c;font-size:14px}
+@media(max-width:700px){
+  .brand{gap:9px;padding:4px 8px}
+  .brand-copy strong{font-size:16px}
+  .brand-copy small{margin-top:3px;font-size:11px}
+  .semester-context{align-items:flex-start;gap:8px;padding:6px 9px}
+  .semester-context-logo{width:22px;height:22px}
+}
