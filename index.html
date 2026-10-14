@@ -753,12 +753,7 @@
       moduleTitle.textContent=studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
       const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
       moduleDescription.textContent=studyGuide
-        ? subject==='Philosophy of AI' ? 'Module 3 study guides: Buddhism, Western Epistemology, AI epistemology and chapter revision Q&A. Choose a document tab to read it here.'
-         : subject==='Sociology' ? 'Module 2 has two PDFs covering pages 1–30 and 30–45. Module 3 has Individual and Society, Social Groups and Social Interaction. Choose a document tab to read it here.'
-         : subject==='Philosophy of Education' ? 'Module 1 includes Part 4 · Philosophy of Education. Choose the document tab to read it here.'
-         : subject==='Development Issues in Indian Economy' ? 'Module 1 has Parts 1, 5–9: Meaning of Economic Development, Indian Economy, Institutional Framework and Policy Regime. Module 2 has the Poverty overview and Units 5–11 study PDFs and lecture notes. Module 3 has Inequality. Choose a document tab to read.'
-
-         : 'One combined English–Malayalam PDF per module. Available PDFs: '+(availableBilingualModules.length?availableBilingualModules.join(', '):'none uploaded yet')+'.'
+        ? 'ഓരോ Module-ലും നാല് മലയാളം Chapter tabs ഉണ്ട്. ആദ്യ PDF Module 1 · അധ്യായം 1-ൽ ലഭ്യമാണ്; മറ്റ് അധ്യായങ്ങളിലെ PDF-കൾ പിന്നീട് ചേർക്കാം.'
         : subject==='Malayalam' && medium==='Malayalam'
         ? 'All four uploaded Malayalam course modules are available here. Read each PDF on this page.'
         : subject==='Arabic' && medium==='Arabic'
