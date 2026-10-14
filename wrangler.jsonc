@@ -50,6 +50,12 @@
       ]
     }
   ],
+  "services": [
+    {
+      "binding": "RESULTS_API",
+      "service": "ba-sociology-results"
+    }
+  ],
   "ai": {
     "binding": "AI"
   }
