@@ -321,7 +321,7 @@ async function fetchMockTestResults(env) {
   }
   let upstream;
   try {
-    upstream = await fetch("https://ba-sociology-results.faiz0812.workers.dev/results?limit=2000", {
+    upstream = await fetch("https://ba-sociology-results.faiz01cu.workers.dev/results?limit=2000", {
       headers: {Authorization:"Bearer " + env.RESULTS_API_TOKEN, Accept:"application/json"},
       cache:"no-store"
     });
