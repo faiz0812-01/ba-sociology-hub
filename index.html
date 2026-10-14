@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#173f35">
   <meta name="description" content="Academic Hub — exam-focused notes, MCQ practice tests, videos and study resources for Calicut University students.">
   <title>Academic Hub | Learn • Practise • Succeed</title>
-  <link rel="stylesheet" href="style.css?v=20261014-semester-brand">
+  <link rel="stylesheet" href="style.css?v=20261014-semester-typewriter">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,11 +36,11 @@
   </nav>
 
   <main>
-    <div class="semester-context" aria-label="Calicut University BA Sociology and History study resources">
+    <div class="semester-context" role="note" aria-label="Calicut University · BA Sociology and History · 11 subjects · Notes, PDFs, revision and mock tests">
       <span class="semester-context-logo" aria-hidden="true">
         <svg viewBox="0 0 24 24" focusable="false"><path d="m3 9.5 9-4.5 9 4.5-9 4.5-9-4.5Z"></path><path d="M6.5 11.5v4.2c3.3 2.1 7.7 2.1 11 0v-4.2M21 10v5"></path></svg>
       </span>
-      <p><strong>CALICUT UNIVERSITY</strong> · BA SOCIOLOGY &amp; HISTORY · 11 subjects · Notes, PDFs, revision &amp; mock tests</p>
+      <p><span class="semester-context-copy" aria-hidden="true">CALICUT UNIVERSITY · BA SOCIOLOGY &amp; HISTORY · 11 subjects · Notes, PDFs, revision &amp; mock tests</span><span class="semester-context-cursor" aria-hidden="true" hidden></span></p>
     </div>
 
     <section class="quick-stats" aria-label="Portal features">
@@ -499,5 +499,29 @@
     window.setInterval(loadChat, 6000);
   </script>
   <script src="ai-study.js?v=20261014-ai-study-helper" defer></script>
+
+  <script>
+    (() => {
+      const copy = document.querySelector(".semester-context-copy");
+      const cursor = document.querySelector(".semester-context-cursor");
+      if (!copy || !cursor) return;
+      const fullText = copy.textContent.trim();
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        cursor.hidden = true;
+        return;
+      }
+      const lineBox = copy.parentElement;
+      if (lineBox) lineBox.style.minHeight = lineBox.getBoundingClientRect().height + "px";
+      copy.textContent = "";
+      cursor.hidden = false;
+      let index = 0;
+      const typeNext = () => {
+        index += 1;
+        copy.textContent = fullText.slice(0, index);
+        if (index < fullText.length) window.setTimeout(typeNext, 30);
+      };
+      typeNext();
+    })();
+  </script>
 </body>
 </html>
