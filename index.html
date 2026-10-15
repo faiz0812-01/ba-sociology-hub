@@ -1125,15 +1125,15 @@
         'Unit 11 · High-Poverty Groups':'യൂണിറ്റ് 11 · ഉയർന്ന ദാരിദ്ര്യമുള്ള വിഭാഗങ്ങൾ'
       };
       if(chapterNames[raw]) return chapterNames[raw];
-      const moduleMatch=raw.match(/^Module\\s+(\\d+)$/i);
+      const moduleMatch=raw.match(/^Module\s+(\d+)$/i);
       if(moduleMatch) return 'മൊഡ്യൂൾ '+moduleMatch[1];
-      const chapterWithTitleMatch=raw.match(/^Chapter\\s+(\\d+)\\s*[·:.-]\\s*(.+)$/i);
+      const chapterWithTitleMatch=raw.match(/^Chapter\s+(\d+)\s*[·:.-]\s*(.+)$/i);
       if(chapterWithTitleMatch) return 'അധ്യായം '+chapterWithTitleMatch[1]+' · '+chapterWithTitleMatch[2];
-      const chapterMatch=raw.match(/^Chapter\\s+(\\d+)(?:\\s+PDF)?$/i);
+      const chapterMatch=raw.match(/^Chapter\s+(\d+)(?:\s+PDF)?$/i);
       if(chapterMatch) return 'അധ്യായം '+chapterMatch[1];
-      const partMatch=raw.match(/^Part\\s+([\\d–-]+)\\s*[·:.-]?\\s*(.*)$/i);
+      const partMatch=raw.match(/^Part\s+([\d–-]+)\s*[·:.-]?\s*(.*)$/i);
       if(partMatch) return 'ഭാഗം '+partMatch[1]+(partMatch[2]?' · '+partMatch[2]:'');
-      const unitMatch=raw.match(/^Unit\\s+(\\d+)\\s*[·:.-]?\\s*(.*)$/i);
+      const unitMatch=raw.match(/^Unit\s+(\d+)\s*[·:.-]?\s*(.*)$/i);
       if(unitMatch) return 'യൂണിറ്റ് '+unitMatch[1]+(unitMatch[2]?' · '+unitMatch[2]:'');
       return raw;
     }
