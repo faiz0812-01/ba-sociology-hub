@@ -1209,14 +1209,23 @@
       const chapters=[];
       module.items.forEach(item=>{
         const label=String(item.label || item.title || '').trim();
-        const match=label.match(/^(Chapter\\s+\\d+)/i);
-        const chapterName=match?match[1]:label;
-        let chapter=chapters.find(entry=>entry.name===chapterName);
+        const match=label.match(/^(Chapter\s+\d+)(?:\s*[·:.-]\s*(.*))?/i);
+        const chapterKey=match?match[1]:label;
+        const chapterTitle=match?String(match[2] || '').trim():label;
+        let chapter=chapters.find(entry=>entry.key===chapterKey);
         if(!chapter) {
-          chapter={name:chapterName,items:[]};
+          chapter={key:chapterKey,name:chapterKey,items:[],displayName:''};
           chapters.push(chapter);
         }
         chapter.items.push(item);
+        // Prefer a real chapter title (including Malayalam titles) over generic
+        // PDF labels such as Notes, Exam Notes, or Module PDF.
+        if(chapterTitle && !/^(notes|exam notes|module\s*\d*\s*pdf|pdf)$/i.test(chapterTitle)) {
+          chapter.displayName=chapterKey+' · '+chapterTitle;
+        }
+      });
+      chapters.forEach(chapter=>{
+        if(chapter.displayName) chapter.name=chapter.displayName;
       });
       moduleSubtabs.replaceChildren();
       moduleSubtabs.setAttribute('role','tablist');
