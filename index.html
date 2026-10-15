@@ -1171,7 +1171,7 @@
       moduleSubtabs.setAttribute('role','tablist');
       moduleSubtabs.setAttribute('aria-label','Chapters');
       moduleSubtabs.style.display='';
-      moduleDescription.textContent=module.summary+'. Choose a chapter, then a PDF version.';
+      moduleDescription.textContent=module.summary+'. Choose a chapter and PDF version, then click Load PDF.';
       const selectChapter=chapterIndex=>{
         Array.from(moduleSubtabs.children).forEach((button,index)=>{
           button.setAttribute('aria-selected',String(index===chapterIndex));
@@ -1394,6 +1394,7 @@
       moduleDialog.querySelector('.module-close').focus();
     }
     function closeModuleLibrary() {
+      moduleContent.replaceChildren();
       moduleDialog.hidden=true;
       document.body.style.overflow='';
       if(lastLanguageTab) lastLanguageTab.focus();
