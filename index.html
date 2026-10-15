@@ -975,97 +975,37 @@
         [empty('Module 5 · Open Ended')]
       ]);
       if(subject==='English') return [
-  {
-    "name": "Module 1 · Listening",
-    "items": [
-      {
-        "label": "Chapter 1 · I Have a Dream",
-        "title": "English · Module 1 · I Have a Dream",
-        "href": "English/LMS_PDF/Ch1-Ihaveadream.pdf",
-        "medium": "English",
-        "description": "Martin Luther King, Jr. · English lesson PDF · Module 1",
-        "embed": true
-      },
-      {
-        "label": "Chapter 3 · Art as a Social Work · English + Malayalam",
-        "title": "English · Module 1 · Chapter 3 · Art as a Social Work",
-        "href": "Chapter_3_Art_as_a_Social_with%20malayalam.pdf",
-        "medium": "Bilingual",
-        "description": "Chapter 3 study guide · English + Malayalam",
-        "embed": true
-      },
-      {
-        "label": "Chapter 3 · Art as a Social Work · Q&A",
-        "title": "English · Module 1 · Chapter 3 · Art as a Social Work · Questions and Answers",
-        "href": "Chapter_3_Art_as_a_Social_Work_QA.pdf",
-        "medium": "English",
-        "description": "Chapter 3 question-and-answer PDF",
-        "embed": true
-      }
-    ]
-  },
-  {
-    "name": "Module 2 · Speaking",
-    "items": [
-      {
-        "label": "Study guide PDF awaiting upload",
-        "title": "English · Module 2 · Study guide",
-        "medium": "Bilingual",
-        "description": "No study guide PDF has been uploaded for this module."
-      }
-    ]
-  },
-  {
-    "name": "Module 3 · Reading",
-    "items": [
-      {
-        "label": "Chapter 2 · The Frog Prince",
-        "title": "English · Module 3 · Chapter 2 · The Frog Prince",
-        "href": "The_Frog_Prince_James_Finn_Garner_NoSpace.pdf",
-        "medium": "Bilingual",
-        "description": "James Finn Garner · English + Malayalam · 7 pages",
-        "embed": true
-      },
-      {
-        "label": "Chapter 3 · Optimism: An Essay",
-        "title": "English · Module 3 · Chapter 3 · Optimism: An Essay",
-        "href": "optimism_helen_keller.pdf",
-        "medium": "Bilingual",
-        "description": "Helen Keller · English + Malayalam · 12 pages",
-        "embed": true
-      }
-    ]
-  },
-  {
-    "name": "Module 4 · Writing",
-    "items": [
-      {
-        "label": "Chapter 1 · Ambedkar’s Speech",
-        "title": "English · Module 4 · Chapter 1 · Speech Prepared by Dr. B.R. Ambedkar for the 1936 Annual Conference of Jat-Pat-Todak Mandal of Lahore",
-        "href": "Module4_Ambedkar_Speech_.pdf",
-        "medium": "Bilingual",
-        "description": "Dr. B.R. Ambedkar · English + Malayalam · 14 pages",
-        "embed": true
-      },
-      {
-        "label": "Chapter 2 · The World-Renowned Nose",
-        "title": "English · Module 4 · Chapter 2 · The World-Renowned Nose",
-        "href": "Chap_2mod_4The_World_Renowned_Nose_.pdf",
-        "medium": "Bilingual",
-        "description": "Vaikom Muhammad Basheer · English + Malayalam · 7 pages",
-        "embed": true
-      },
-      {
-        "label": "Chapter 3 · For the Love of Cinema · Cinema Paradiso",
-        "title": "English · Module 4 · Chapter 3 · For the Love of Cinema: A Review of Cinema Paradiso (1988)",
-        "href": "Cinema_Paradiso_Review.pdf",
-        "medium": "Bilingual",
-        "description": "Kusali Rupasinghe · English + Malayalam · 10 pages",
-        "embed": true
-      }
-    ]
-  }
-];
+        {
+          name:'Module 1 · Listening',
+          items:[
+            item('Chapter 1 · I Have a Dream','English · Module 1 · Chapter 1 · I Have a Dream','English/LMS_PDF/Ch1-Ihaveadream.pdf','English','English PDF currently available; Malayalam version can be added when uploaded'),
+            item('Chapter 3 · Art as a Social Work · English + Malayalam','English · Module 1 · Chapter 3 · Art as a Social Work','Chapter_3_Art_as_a_Social_with%20malayalam.pdf','Bilingual','Bilingual study guide · English + Malayalam'),
+            item('Chapter 3 · Art as a Social Work · Q&A','English · Module 1 · Chapter 3 · Art as a Social Work · Questions and Answers','Chapter_3_Art_as_a_Social_Work_QA.pdf','English','Question-and-answer PDF currently available')
+          ]
+        },
+        {
+          name:'Module 2 · Speaking',
+          items:[
+            item('Chapter · George Carlin on Soft Language','English · Module 2 · George Carlin on Soft Language','GeorgeCarlinonSoftLanguage-Econtent_T1780566680504.pdf','Bilingual','Module 2 study guide PDF'),
+            item('Chapter · Rip it Out','English · Module 2 · Rip it Out','RipitOut_T1.pdf','Bilingual','Module 2 study guide PDF')
+          ]
+        },
+        {
+          name:'Module 3 · Reading',
+          items:[
+            item('Chapter 2 · The Frog Prince · English + Malayalam','English · Module 3 · Chapter 2 · The Frog Prince','The_Frog_Prince_James_Finn_Garner_NoSpace.pdf','Bilingual','James Finn Garner · English + Malayalam'),
+            item('Chapter 3 · Optimism: An Essay · English + Malayalam','English · Module 3 · Chapter 3 · Optimism: An Essay','optimism_helen_keller.pdf','Bilingual','Helen Keller · English + Malayalam')
+          ]
+        },
+        {
+          name:'Module 4 · Writing',
+          items:[
+            item('Chapter 1 · Ambedkar’s Speech · English + Malayalam','English · Module 4 · Chapter 1 · Ambedkar’s Speech','Module4_Ambedkar_Speech_.pdf','Bilingual','Dr. B.R. Ambedkar · English + Malayalam'),
+            item('Chapter 2 · The World-Renowned Nose · English + Malayalam','English · Module 4 · Chapter 2 · The World-Renowned Nose','Chap_2mod_4The_World_Renowned_Nose_.pdf','Bilingual','Vaikom Muhammad Basheer · English + Malayalam'),
+            item('Chapter 3 · Cinema Paradiso · English + Malayalam','English · Module 4 · Chapter 3 · Cinema Paradiso','Cinema_Paradiso_Review.pdf','Bilingual','English + Malayalam study guide')
+          ]
+        }
+      ];
       if(subject==='History' || subject==='History of Keralam') return modules([
         [item('Kerala History · Up to 12th Century','History · Kerala History up to 12th Century','Kerala_History_Upto_12th_Century.pdf','English','Kerala history study PDF')],
         [empty('Module 2')],[empty('Module 3')],[empty('Module 4')]
