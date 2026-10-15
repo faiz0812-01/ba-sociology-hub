@@ -1053,6 +1053,20 @@
         moduleContent.append(reader);
       }
     }
+    function showStudyGuideNavigationPrompt(moduleName) {
+      moduleContent.replaceChildren();
+      const prompt=document.createElement('div');
+      prompt.className='study-guide-navigation-prompt';
+      const icon=document.createElement('span');
+      icon.className='study-guide-navigation-icon';
+      icon.textContent='▤';
+      const heading=document.createElement('strong');
+      heading.textContent=moduleName+' · Chapter list';
+      const copy=document.createElement('p');
+      copy.textContent='Choose a chapter above to open its PDF. The reader will stay closed until you select a chapter.';
+      prompt.append(icon,heading,copy);
+      moduleContent.append(prompt);
+    }
     function selectModuleItem(subject,medium,module,moduleIndex,itemIndex) {
       Array.from(moduleTabs.children).forEach((button,index)=>{
         button.setAttribute('aria-selected',String(index===moduleIndex));
@@ -1114,6 +1128,8 @@
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
+        button.setAttribute('aria-selected','false');
+        button.tabIndex=-1;
         button.textContent=chapter.name;
         button.addEventListener('click',()=>selectChapter(index));
         moduleSubtabs.append(button);
@@ -1122,7 +1138,7 @@
         button.setAttribute('aria-selected',String(index===moduleIndex));
         button.tabIndex=index===moduleIndex?0:-1;
       });
-      selectChapter(0);
+      showStudyGuideNavigationPrompt(module.name);
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
@@ -1139,8 +1155,9 @@
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
-        button.setAttribute('aria-selected',String(itemIndex===firstAvailableItemIndex));
-        button.tabIndex=itemIndex===firstAvailableItemIndex?0:-1;
+        const readingOnly=moduleDialog.dataset.readingOnly==='true';
+        button.setAttribute('aria-selected',String(!readingOnly && itemIndex===firstAvailableItemIndex));
+        button.tabIndex=!readingOnly && itemIndex===firstAvailableItemIndex?0:-1;
         button.textContent=item.label;
         button.addEventListener('click',()=>selectModuleItem(subject,medium,module,moduleIndex,itemIndex));
         moduleSubtabs.append(button);
@@ -1149,6 +1166,10 @@
         button.setAttribute('aria-selected',String(index===moduleIndex));
         button.tabIndex=index===moduleIndex?0:-1;
       });
+      if(moduleDialog.dataset.readingOnly==='true') {
+        showStudyGuideNavigationPrompt(module.name);
+        return;
+      }
       const firstAvailableItem=module.items[firstAvailableItemIndex];
       showModuleItem(subject,firstAvailableItem.medium || medium,module.name,firstAvailableItem);
     }
