@@ -1450,8 +1450,9 @@
       moduleDialog.dataset.readingOnly=String(studyGuide);
       moduleDialog.oncontextmenu=studyGuide?event=>event.preventDefault():null;
       const modules=mcqPdf?getMcqPdfModules(subject):studyGuide?getStudyGuideModules(subject):getSubjectModules(subject,medium);
-      moduleDialog.classList.toggle('module-dialog--malayalam',studyGuide || medium==='Malayalam');
-      moduleDialog.lang=studyGuide || medium==='Malayalam'?'ml':'en';
+      const englishStudyGuide=studyGuide && subject==='English';
+      moduleDialog.classList.toggle('module-dialog--malayalam',(!englishStudyGuide && studyGuide) || medium==='Malayalam');
+      moduleDialog.lang=englishStudyGuide?'en':(studyGuide || medium==='Malayalam'?'ml':'en');
       lastLanguageTab=trigger;
       moduleTitle.textContent=mcqPdf?subject+' · MCQ PDF':studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
       const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
