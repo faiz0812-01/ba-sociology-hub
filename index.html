@@ -966,6 +966,64 @@
       // have not been uploaded yet, rather than showing a single generic tab.
       return modules([[],[],[],[]]);
     }
+    function getMalayalamChapterLabel(value) {
+      const raw=String(value || '').trim();
+      const chapterNames={
+        'Chapter 1 · History and Foundations of Artificial Intelligence':'അധ്യായം 1 · കൃത്രിമ ബുദ്ധിയുടെ ചരിത്രവും അടിസ്ഥാനങ്ങളും',
+        'Chapter 2 · Can a Machine Think?':'അധ്യായം 2 · ഒരു യന്ത്രത്തിന് ചിന്തിക്കാനാകുമോ?',
+        'Chapter 3 · Philosophy in the Light of AI':'അധ്യായം 3 · കൃത്രിമ ബുദ്ധിയുടെ വെളിച്ചത്തിൽ തത്ത്വചിന്ത',
+        'Chapter 1 · Issues in the Classical Model of AI':'അധ്യായം 1 · പരമ്പരാഗത കൃത്രിമ ബുദ്ധി മാതൃകയിലെ പ്രശ്നങ്ങൾ',
+        'Chapter 2 · Alan Turing Test':'അധ്യായം 2 · അലൻ ട്യൂറിങ് പരീക്ഷണം',
+        'Chapter 3 · Chinese Room Experiment':'അധ്യായം 3 · ചൈനീസ് റൂം പരീക്ഷണം',
+        'Chapter 4 · Descartes and the Origins of Philosophy of Mind':'അധ്യായം 4 · ഡെസ്കാർട്ടും മനസ്സിന്റെ തത്ത്വചിന്തയുടെ ഉത്ഭവവും',
+        'Chapter 5 · Disembodied Intelligence':'അധ്യായം 5 · ശരീരരഹിത ബുദ്ധി',
+        'Chapter 1 · Buddhism':'അധ്യായം 1 · ബുദ്ധമതം',
+        'Chapter 2 · Indian Epistemology (Nyaya and Vaisheshika)':'അധ്യായം 2 · ഭാരതീയ ജ്ഞാനശാസ്ത്രം (ന്യായവും വൈശേഷികവും)',
+        'Chapter 3 · Western Epistemology':'അധ്യായം 3 · പാശ്ചാത്യ ജ്ഞാനശാസ്ത്രം',
+        'Chapter 4 · Functionalism':'അധ്യായം 4 · പ്രവർത്തനവാദം',
+        'Chapter 5 · Epistemological Implications in Artificial Intelligence':'അധ്യായം 5 · കൃത്രിമ ബുദ്ധിയിലെ ജ്ഞാനശാസ്ത്രപരമായ പ്രത്യാഘാതങ്ങൾ',
+        'Module Revision':'മൊഡ്യൂൾ ആവർത്തനം',
+        'Chapter 1 · Aligning Autonomous AI with Human Goals':'അധ്യായം 1 · സ്വയംഭരണ AI-യെ മനുഷ്യലക്ഷ്യങ്ങളുമായി പൊരുത്തപ്പെടുത്തൽ',
+        'Chapter 2 · AI and Existential Risk to Humanity':'അധ്യായം 2 · AI-യും മനുഷ്യരാശിയുടെ നിലനിൽപ്പിനുള്ള ഭീഷണിയും',
+        'Chapter 3 · Preventing Bias in Learning Algorithms':'അധ്യായം 3 · പഠന അൽഗോരിതങ്ങളിലെ പക്ഷപാതം തടയൽ',
+        'Chapter 4 · AI Systems and Social Relationships':'അധ്യായം 4 · AI സംവിധാനങ്ങളും സാമൂഹിക ബന്ധങ്ങളും',
+        'Chapter 5 · Moral Rules for Self-Driving Cars':'അധ്യായം 5 · സ്വയം ഓടുന്ന കാറുകളുടെ ധാർമ്മിക നിയമങ്ങൾ',
+        'Chapter 6 · Can AI Systems Be Morally Harmed?':'അധ്യായം 6 · AI സംവിധാനങ്ങൾക്ക് ധാർമ്മികമായി ഹാനി സംഭവിക്കുമോ?',
+        'Chapter 7 · AI as Moral Agents and Accountability':'അധ്യായം 7 · ധാർമ്മിക പ്രവർത്തകരായി AI-യും ഉത്തരവാദിത്തവും',
+        'Module Overview':'മൊഡ്യൂൾ അവലോകനം',
+        'Chapter 1 · Discussion Topics':'അധ്യായം 1 · ചർച്ചാവിഷയങ്ങൾ',
+        'Chapter 1 · I Have a Dream':'അധ്യായം 1 · എനിക്ക് ഒരു സ്വപ്നമുണ്ട്',
+        'Chapter 2 · The World-Renowned Nose':'അധ്യായം 2 · ലോകപ്രശസ്തമായ മൂക്ക്',
+        'Cinema Paradiso · Review':'സിനിമ പാരഡീസോ · നിരൂപണം',
+        'Ambedkar · Speech':'അംബേദ്കർ · പ്രസംഗം',
+        'Optimism · Helen Keller':'ശുഭാപ്തിവിശ്വാസം · ഹെലൻ കെല്ലർ',
+        'The Frog Prince · Reading':'തവള രാജകുമാരൻ · വായന',
+        'Individual and Society':'വ്യക്തിയും സമൂഹവും',
+        'Part 2 · Individual and Society':'ഭാഗം 2 · വ്യക്തിയും സമൂഹവും',
+        'Part 3 · Social Group':'ഭാഗം 3 · സാമൂഹിക സംഘം',
+        'Part 3 (Second Part) · Social Group':'ഭാഗം 3 (രണ്ടാം ഭാഗം) · സാമൂഹിക സംഘം',
+        'Part 4 (First Part) · Socialization':'ഭാഗം 4 (ഒന്നാം ഭാഗം) · സാമൂഹികവൽക്കരണം',
+        'Part 5 · Stage of Socialization':'ഭാഗം 5 · സാമൂഹികവൽക്കരണത്തിന്റെ ഘട്ടങ്ങൾ',
+        'Part 1 · Meaning of Economic Development':'ഭാഗം 1 · സാമ്പത്തിക വികസനത്തിന്റെ അർത്ഥം',
+        'Part 8 · Institutional Framework':'ഭാഗം 8 · സ്ഥാപനപരമായ ചട്ടക്കൂട്',
+        'Part 9 · Policy Regime':'ഭാഗം 9 · നയവ്യവസ്ഥ',
+        'Poverty · Overview':'ദാരിദ്ര്യം · അവലോകനം',
+        'Unit 5 · Concepts of Poverty':'യൂണിറ്റ് 5 · ദാരിദ്ര്യത്തിന്റെ ആശയങ്ങൾ',
+        'Unit 6 · Poverty Estimation':'യൂണിറ്റ് 6 · ദാരിദ്ര്യനിർണ്ണയം',
+        'Unit 7 · Multidimensional Poverty Index':'യൂണിറ്റ് 7 · ബഹുമുഖ ദാരിദ്ര്യ സൂചിക',
+        'Unit 8 · Poverty':'യൂണിറ്റ് 8 · ദാരിദ്ര്യം',
+        'Unit 9 · Trends of Poverty':'യൂണിറ്റ് 9 · ദാരിദ്ര്യ പ്രവണതകൾ',
+        'Unit 11 · High-Poverty Groups':'യൂണിറ്റ് 11 · ഉയർന്ന ദാരിദ്ര്യമുള്ള വിഭാഗങ്ങൾ'
+      };
+      if(chapterNames[raw]) return chapterNames[raw];
+      const pdfMatch=raw.match(/^Chapter\\s+(\\d+)(?:\\s+PDF)?$/i);
+      if(pdfMatch) return 'അധ്യായം '+pdfMatch[1];
+      const partMatch=raw.match(/^Part\\s+([\\d–-]+)\\s*[·:.-]?\\s*(.*)$/i);
+      if(partMatch) return 'ഭാഗം '+partMatch[1]+(partMatch[2]?' · '+partMatch[2]:'');
+      const unitMatch=raw.match(/^Unit\\s+(\\d+)\\s*[·:.-]?\\s*(.*)$/i);
+      if(unitMatch) return 'യൂണിറ്റ് '+unitMatch[1]+(unitMatch[2]?' · '+unitMatch[2]:'');
+      return raw;
+    }
     function getStudyGuideModules(subject) {
       // Use the actual chapter-wise source lists so every uploaded PDF remains
       // available in its matching module/chapter tab.
@@ -1130,7 +1188,8 @@
         button.setAttribute('role','tab');
         button.setAttribute('aria-selected','false');
         button.tabIndex=-1;
-        button.textContent=chapter.name;
+        button.textContent=getMalayalamChapterLabel(chapter.name);
+        button.lang='ml';
         button.addEventListener('click',()=>selectChapter(index));
         moduleSubtabs.append(button);
       });
@@ -1158,7 +1217,8 @@
         const readingOnly=moduleDialog.dataset.readingOnly==='true';
         button.setAttribute('aria-selected',String(!readingOnly && itemIndex===firstAvailableItemIndex));
         button.tabIndex=!readingOnly && itemIndex===firstAvailableItemIndex?0:-1;
-        button.textContent=item.label;
+        button.textContent=readingOnly?getMalayalamChapterLabel(item.chapter || item.label || item.title):item.label;
+        button.lang=readingOnly?'ml':'en';
         button.addEventListener('click',()=>selectModuleItem(subject,medium,module,moduleIndex,itemIndex));
         moduleSubtabs.append(button);
       });
