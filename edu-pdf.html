@@ -82,7 +82,7 @@
           <div class="num">02</div>
           <div class="chapter-copy"><h3>വിദ്യാഭ്യാസ തത്ത്വചിന്ത — മൊഡ്യൂൾ 2</h3><p>മലയാളം പഠനരേഖ · Word ഡോക്യുമെന്റ്</p></div>
           <div class="actions">
-            <a class="read-online" href="#" data-docx="%E0%B4%B5%E0%B4%BF%E0%B4%A6%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%AD%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%B8%20%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%B5%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D1.docx">സൈറ്റിൽ വായിക്കുക</a>
+            <a class="read-online" href="https://docs.google.com/gview?embedded=1&url=https%3A%2F%2Ffaizz01fy.github.io%2Fba-sociology-hub%2F%25E0%25B4%25B5%25E0%25B4%25BF%25E0%25B4%25A6%25E0%25B5%258D%25E0%25B4%25AF%25E0%25B4%25BE%25E0%25B4%25AD%25E0%25B5%258D%25E0%25B4%25AF%25E0%25B4%25BE%25E0%25B4%25B8%2520%25E0%25B4%25A4%25E0%25B4%25A4%25E0%25B5%258D%25E0%25B4%25A4%25E0%25B5%258D%25E0%25B4%25B5%25E0%25B4%259A%25E0%25B4%25BF%25E0%25B4%25A8%25E0%25B5%258D1.docx" target="_blank" rel="noopener" data-external="true">പുതിയ ടാബിൽ വായിക്കുക</a>
             <a class="download" href="%E0%B4%B5%E0%B4%BF%E0%B4%A6%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%AD%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%B8%20%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%B5%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D1.docx" download>ഡൗൺലോഡ് ചെയ്യുക</a>
           </div>
         </article>
@@ -110,8 +110,8 @@
 <script>
 const dialog=document.getElementById('pdf-dialog'),frame=document.getElementById('pdf-frame');
 document.querySelectorAll('.read-online').forEach(link=>link.addEventListener('click',event=>{
- event.preventDefault();document.getElementById('reader-title').textContent=link.closest('.chapter').querySelector('h3').textContent;
- frame.src=link.dataset.docx?'https://docs.google.com/gview?embedded=1&url='+encodeURIComponent(new URL(link.dataset.docx,location.href).href):link.href;dialog.showModal();
+ if(link.dataset.external)return;event.preventDefault();document.getElementById('reader-title').textContent=link.closest('.chapter').querySelector('h3').textContent;
+ frame.src=link.href;dialog.showModal();
 }));
 document.getElementById('reader-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('close',()=>frame.removeAttribute('src'));
