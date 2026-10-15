@@ -1,58 +1,296 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111114">
-<title>Fundamentals of Ethics | Mock Test</title>
-<style>
-:root{color-scheme:light;--ink:#182033;--muted:#64748b;--purple:#6d28d9;--line:#e2e8f0}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f5f3ff,#eff6ff);font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.55}
-header{padding:28px 18px 20px;text-align:center;background:#171326;color:white;border-bottom:4px solid #8b5cf6}
-header .eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;color:#c4b5fd}h1{margin:8px 0;font-size:clamp(25px,5vw,38px)}header p{margin:0;color:#ddd6fe}
-main{max-width:850px;margin:22px auto;padding:0 14px 40px}.intro,.question,.result{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 6px 20px #1e1b4b0a}
-.intro{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{display:inline-block;background:#ede9fe;color:#5b21b6;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px}
-.question h2{font-size:17px;margin:0 0 12px}.options{display:grid;gap:8px}.option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;cursor:pointer}.option:hover{background:#f5f3ff;border-color:#c4b5fd}.option input{margin-top:5px;accent-color:var(--purple)}.option.correct{border-color:#16a34a;background:#f0fdf4}.option.wrong{border-color:#dc2626;background:#fef2f2}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.btn{border:0;border-radius:11px;padding:13px 18px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block}.primary{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white}.secondary{background:#e2e8f0;color:#1e293b}.result{display:none;border-left:5px solid #7c3aed}.result h2{margin:0 0 5px}.explanation{display:none;color:#475569;font-size:14px;margin:10px 0 0}.foot{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
-@media(max-width:520px){main{margin-top:14px}.intro,.question{padding:15px}.btn{width:100%;text-align:center}}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fundamentals of Ethics MCQ Internal Test</title><style>
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f4f7fb;margin:0;color:#17202a}.wrap{max-width:900px;margin:auto;padding:18px}.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 5px 20px #0001}.hidden{display:none}.btn{border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer}.primary{background:#2563eb;color:#fff}.danger{background:#dc2626;color:#fff}.secondary{background:#e2e8f0}.field input{width:100%;padding:13px;box-sizing:border-box;border:1px solid #ccd6e2;border-radius:9px;font-size:16px}.info-field{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px 16px;margin:12px 0}.info-field .big-label{font-size:19px;color:#1d4ed8}.info-field input{margin-top:8px;font-size:19px;background:#fff}.subject-display{margin-top:8px;padding:13px;border:1px solid #bfdbfe;border-radius:9px;background:#fff;font-size:19px;font-weight:700;color:#1d4ed8}.result-person{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:6px 16px;margin-bottom:18px}.result-person p{font-size:19px;margin:10px 0}.result-person .big-label{color:#1d4ed8}.subject-result{font-weight:700;color:#1d4ed8;font-size:19px;background:#dbeafe;padding:7px 12px;border-radius:8px}.q{font-size:21px;font-weight:bold;margin:25px 0}.opt{display:block;padding:14px;margin:10px 0;border:1px solid #d7dee8;border-radius:10px}.top{display:flex;justify-content:space-between}.timer{color:#dc2626;font-weight:bold;font-size:20px}.actions{display:flex;justify-content:space-between;gap:8px;margin-top:22px;flex-wrap:wrap}.result-actions{position:sticky;top:0;z-index:20;background:#fff;padding:12px 0;border-bottom:1px solid #e2e8f0;box-shadow:0 4px 12px #00000010;animation:slideDown .45s ease}.result-actions .btn{transition:transform .2s ease,box-shadow .2s ease}.result-actions .btn:hover{transform:translateY(-1px);box-shadow:0 4px 10px #0002}@keyframes slideDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}.score{text-align:center;font-size:48px;font-weight:bold;color:#2563eb}.student-name{font-family:"Times New Roman",Times,serif;font-size:24px;font-weight:700;color:#dc2626;text-decoration:underline;text-transform:uppercase;background:#dbeafe;padding:9px 18px;border-radius:12px;border:1px solid #93c5fd;box-shadow:0 4px 12px #2563eb22;padding:7px 12px;border-radius:8px;display:inline-block}.status-badge{font-weight:900;padding:6px 12px;border-radius:8px;display:inline-block}.status-excellent{color:#166534;background:#dcfce7}.status-good{color:#1d4ed8;background:#dbeafe}.status-pass{color:#a16207;background:#fef3c7}.status-needs{color:#b91c1c;background:#fee2e2}.main-title{color:#7c3aed;font-weight:900}.greeting{text-align:center;margin:18px 0 22px;padding:18px 20px;border-radius:14px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:20px;font-weight:800}.motivation{text-align:center;margin:18px 0;padding:16px 20px;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;font-size:19px;font-weight:700}.review-card{padding:16px;margin:12px 0;border-radius:12px;background:#fff;border:1px solid #e2e8f0}.review-q{font-weight:700;font-size:17px;line-height:1.45;margin-bottom:12px}.review-line{display:flex;justify-content:space-between;gap:15px;padding:8px 0;border-top:1px solid #e2e8f0}.review-line span{color:#64748b}.result-badge{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:20px;font-weight:700}.review-card.correct{border-left:6px solid #16a34a;background:#f0fdf4}.review-card.wrong{border-left:6px solid #dc2626;background:#fef2f2}.review-card.not-answered{border-left:6px solid #f59e0b;background:#fffbeb}.nav{display:flex;gap:4px;flex-wrap:wrap;margin:15px 0}.nav button{width:34px;height:30px;border:1px solid #ccd6e2;background:#fff;border-radius:5px}.answered{background:#dcfce7!important}.current{outline:2px solid #2563eb}.opt.locked,.option.locked{pointer-events:none;cursor:default}.opt.correct-reveal,.option.correct-reveal{background:#dcfce7!important;border:2px solid #16a34a!important;color:#14532d!important;box-shadow:inset 0 0 0 2px #86efac,0 0 0 3px #bbf7d0;animation:answerBlink .65s ease-in-out 0s 4}@keyframes answerBlink{0%,100%{background:#dcfce7;box-shadow:inset 0 0 0 2px #86efac,0 0 0 3px #bbf7d0}50%{background:#86efac;box-shadow:inset 0 0 0 3px #16a34a,0 0 0 5px #bbf7d0}}.time-label{color:#a855f7;font-weight:800}.time-label .time-word{color:#a855f7;font-weight:900}
+/* Unified blue-and-green digital countdown clock */
+.timer{display:inline-flex;align-items:center;justify-content:center;min-width:108px;padding:8px 15px;border:2px solid #38bdf8;border-radius:12px;background:linear-gradient(135deg,#0f172a,#123c6a);color:#4ade80;font-family:"Courier New",monospace;font-size:24px;font-weight:900;letter-spacing:2px;font-variant-numeric:tabular-nums;text-shadow:0 0 9px #22c55e99;box-shadow:0 0 0 3px #dbeafe,0 5px 14px #2563eb22;animation:clockGlow 2s ease-in-out infinite}@keyframes clockGlow{0%,100%{box-shadow:0 0 0 3px #dbeafe,0 5px 14px #2563eb22}50%{box-shadow:0 0 0 4px #bfdbfe,0 0 18px #22c55e66}}
+
+/* RESPONSIVE_TIMER_V1: keep the digital countdown clock inside mobile and desktop screens */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;min-width:0}
+.top>*{min-width:0;max-width:100%}
+.time-label{display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:nowrap;white-space:nowrap;max-width:100%;min-width:0}
+.timer{box-sizing:border-box;min-width:clamp(76px,10vw,108px);max-width:100%;padding:clamp(4px,.6vw,8px) clamp(6px,1vw,15px);font-size:clamp(16px,2.4vw,24px);letter-spacing:clamp(.5px,.2vw,2px);line-height:1.2;white-space:nowrap}
+@media(max-width:480px){.wrap{box-sizing:border-box;width:100%;max-width:100%;padding:8px}.card{box-sizing:border-box;min-width:0;max-width:100%;padding:14px}.top{gap:8px}.time-label{font-size:13px;gap:5px}.timer{min-width:74px;padding:4px 6px;font-size:16px;letter-spacing:1px;border-width:1px}}
+@media(max-width:360px){.wrap{padding:5px}.card{padding:10px}.top{align-items:center;gap:6px}.time-label{font-size:12px;gap:4px}.timer{min-width:68px;padding:4px 5px;font-size:15px;letter-spacing:.5px}}
+
+/* COMPACT_TEST_VIEW_V1: keep the full question and action buttons visible with minimal scrolling */
+#test.card{box-sizing:border-box;min-width:0;max-width:100%;padding:clamp(8px,1vw,14px)!important}
+#test .top{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;margin-bottom:3px}
+#test #counter{font-size:clamp(14px,1.25vw,18px)!important;line-height:1.15}
+#test .q,#test #q,#test #qtext{font-size:clamp(16px,1.35vw,19px)!important;line-height:1.22!important;margin:7px 0 9px!important}
+#test .opt,#test .option{box-sizing:border-box;min-width:0;padding:clamp(6px,.65vw,9px) clamp(8px,.9vw,12px)!important;margin:5px 0!important;font-size:clamp(13px,1.05vw,16px)!important;line-height:1.22!important;overflow-wrap:anywhere}
+#test #options,#test #opts{min-width:0;max-width:100%}
+#test #nav,#test .nav{display:flex;flex-wrap:wrap;gap:3px!important;max-width:100%;margin:6px 0!important;min-width:0}
+#test #nav button,#test .nav button{box-sizing:border-box;width:clamp(24px,2vw,30px)!important;min-width:24px;height:clamp(24px,2vw,28px)!important;padding:0!important;font-size:clamp(11px,.95vw,13px)!important;line-height:1}
+#test .actions{display:flex;align-items:center;justify-content:space-between;gap:6px!important;flex-wrap:wrap;margin-top:8px!important}
+#test .actions .btn{padding:7px 11px!important;min-height:32px;font-size:14px!important;line-height:1.15}
+@media(max-width:600px){
+  #test.card{padding:9px!important}
+  #test .top{gap:5px}
+  #test #counter{font-size:14px!important}
+  #test .q,#test #q,#test #qtext{font-size:17px!important;line-height:1.2!important;margin:6px 0 8px!important}
+  #test .opt,#test .option{font-size:14px!important;line-height:1.2!important;padding:7px 9px!important;margin:4px 0!important}
+  #test #nav,#test .nav{flex-wrap:nowrap!important;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:2px 2px 5px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  #test #nav button,#test .nav button{flex:0 0 27px;width:27px!important;min-width:27px;height:27px!important;font-size:12px!important}
+  #test .actions{gap:5px!important;margin-top:7px!important}
+  #test .actions .btn{padding:7px 9px!important;min-height:32px;font-size:13px!important}
+}
+@media(max-width:360px){
+  #test.card{padding:7px!important}
+  #test #counter{font-size:13px!important}
+  #test .q,#test #q,#test #qtext{font-size:16px!important}
+  #test .opt,#test .option{font-size:13px!important;padding:6px 8px!important}
+  #test .actions .btn{padding:6px 8px!important;font-size:12px!important}
+}
+@media(max-height:760px) and (min-width:601px){
+  #test.card{padding:7px 12px!important}
+  #test .q,#test #q,#test #qtext{font-size:16px!important;line-height:1.18!important;margin:5px 0 7px!important}
+  #test .opt,#test .option{padding:5px 9px!important;margin:3px 0!important;font-size:14px!important;line-height:1.18!important}
+  #test #nav,#test .nav{margin:4px 0!important;gap:2px!important}
+  #test #nav button,#test .nav button{height:24px!important;width:27px!important}
+  #test .actions{margin-top:5px!important}
+  #test .actions .btn{min-height:28px;padding:5px 9px!important}
+}
+
+/* MOBILE_NAV_WRAP_PURPLE_20261009 */
+#test .q,#test #q,#test #qtext{color:#7c3aed!important}
+@media(max-width:600px){
+ #test #nav,#test .nav{display:flex!important;flex-wrap:wrap!important;overflow-x:visible!important;overflow-y:visible!important;white-space:normal!important;gap:3px!important;scrollbar-width:none}
+ #test #nav button,#test .nav button{flex:0 0 25px!important;box-sizing:border-box;width:25px!important;min-width:25px!important;height:25px!important;margin:0!important;padding:0!important;font-size:12px!important;line-height:1!important}
+}
+
+/* Result-page template refresh: styles are scoped to the result page only */
+#result{padding:0;overflow:hidden;border:1px solid #dbe4f0}
+#result .result-actions{padding:14px 22px;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;flex-wrap:wrap;gap:10px}
+#result .report-header{background:linear-gradient(135deg,#102a56,#1e40af);color:#fff;padding:28px 24px;text-align:center;border-bottom:5px solid #22c55e}
+#result .report-brand{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.95}
+#result .report-series{font-size:12px;letter-spacing:1.2px;margin-top:8px;color:#dbeafe;font-weight:700}
+#result .report-title{font-size:27px;line-height:1.2;margin:12px 0 5px;font-weight:900;letter-spacing:.5px}
+#result .report-subtitle{font-size:12px;color:#dbeafe;letter-spacing:1.5px;font-weight:700}
+#result .report-body{padding:22px}
+#result .student-info-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:16px;background:#f8fafc;border:1px solid #dbe4f0;border-left:4px solid #2563eb;border-radius:10px;margin-bottom:18px}
+#result .student-info-card .info-label{display:block;color:#64748b;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px}
+#result .student-info-card .info-value{font-weight:800;color:#172554;overflow-wrap:anywhere}
+#result .performance-heading{margin:18px 0 12px;color:#102a56;font-size:15px;font-weight:900;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid #22c55e;padding-bottom:8px}
+#result .final-score-card{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px;text-align:center;margin-bottom:14px}
+#result .final-score-label{font-size:12px;color:#1d4ed8;letter-spacing:1.3px;font-weight:900;text-transform:uppercase}
+#result .final-score-value{font-size:38px;line-height:1.2;font-weight:900;color:#102a56;margin:7px 0}
+#result .final-score-value .score-divider{color:#94a3b8;font-size:25px}
+#result .final-score-meta{font-size:15px;font-weight:800;color:#166534}
+#result .performance-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+#result .performance-stat{padding:13px 8px;border:1px solid #e2e8f0;border-radius:10px;text-align:center;background:#fff}
+#result .performance-stat .stat-number{font-size:24px;font-weight:900;line-height:1.2}
+#result .performance-stat .stat-label{font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
+#result .performance-stat.correct .stat-number{color:#15803d}
+#result .performance-stat.incorrect .stat-number{color:#b91c1c}
+#result .performance-stat.unanswered .stat-number{color:#64748b}
+#result .analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+#result .analysis-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:13px}
+#result .analysis-item b{display:block;color:#334155;font-size:11px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+#result .analysis-item span{font-weight:800;color:#0f172a;overflow-wrap:anywhere}
+#result .report-footer{background:#102a56;color:#fff;text-align:center;padding:17px 12px;border-top:4px solid #22c55e;font-size:12px}
+#result .report-footer strong{display:block;font-size:14px;letter-spacing:1px;margin-bottom:5px}
+#result #message,#result #motivation{margin:12px 0}
+#result .review-heading{margin:22px 22px 12px;padding:12px 14px;background:#f1f5f9;border-left:4px solid #2563eb;color:#102a56;font-size:19px}
+#result #review{padding:0 22px 24px}
+@media(max-width:560px){#result .report-header{padding:22px 14px}#result .report-title{font-size:23px}#result .report-body{padding:14px}#result .student-info-card{grid-template-columns:1fr}#result .performance-stats{gap:6px}#result .performance-stat{padding:11px 4px}#result .performance-stat .stat-number{font-size:20px}#result .analysis-grid{grid-template-columns:1fr}#result .review-heading{margin:18px 14px 10px}#result #review{padding:0 14px 18px}#result .result-actions{padding:12px}#result .result-actions .btn{padding:10px 12px}}
+@media print{#result .result-actions{display:none!important}#result{box-shadow:none;border:0}#result .report-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}#result .report-footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style> <style id="name-display-adjustment">#rname{color:#000!important;background:#dcfce7!important;border:1px solid #86efac;border-radius:8px;padding:6px 10px;display:inline-block;font-weight:900;text-transform:uppercase;}</style>
+<style id="motivation-random-colors">#motivation{font-weight:900!important}#motivation strong,#motivation b{font-weight:900!important}</style>
+<style id="mobile-compact-results">
+/* Compact mobile results further; preserve report content, scoring, and desktop layout */
+@media screen and (max-width:600px){
+#result{padding:6px!important;margin:0!important;border-radius:9px!important}
+#result .report-header{padding:9px 7px!important;border-bottom-width:3px!important}
+#result .report-brand{font-size:12px!important;line-height:1.15!important;letter-spacing:.5px!important}
+#result .report-series{font-size:8px!important;letter-spacing:.2px!important;margin-top:3px!important}
+#result .report-title{font-size:16px!important;line-height:1.1!important;margin:4px 0!important}
+#result .report-body{padding:7px 6px!important}
+#result .performance-heading,#result .review-heading{font-size:12px!important;margin:8px 0 5px!important;padding-bottom:4px!important}
+#result .student-info-card{gap:4px!important;padding:6px!important;margin-bottom:8px!important;border-left-width:3px!important}
+#result .student-info-card>div{padding:3px 4px!important;gap:2px!important}
+#result .info-label{font-size:8px!important;letter-spacing:.3px!important;margin-bottom:2px!important}
+#result .info-value{font-size:10px!important;line-height:1.2!important;overflow-wrap:anywhere}
+#result .final-score-card{padding:7px 5px!important;margin:6px 0!important;border-radius:8px!important}
+#result .final-score-label{font-size:9px!important;letter-spacing:.5px!important}
+#result .final-score-value{font-size:24px!important;line-height:1.05!important;margin:4px 0!important}
+#result .final-score-value .score-divider{font-size:16px!important}
+#result .final-score-meta{font-size:11px!important}
+#result .performance-stats{gap:4px!important;margin:5px 0!important}
+#result .performance-stat{padding:5px 2px!important;border-radius:6px!important}
+#result .stat-number{font-size:15px!important;line-height:1.1!important}
+#result .stat-label{font-size:8px!important;letter-spacing:0!important;margin-top:3px!important}
+#result .analysis-grid{gap:4px!important;margin:5px 0!important}
+#result .analysis-item{padding:5px 6px!important;font-size:9px!important;gap:3px!important;border-radius:6px!important}
+#result .analysis-item b,#result .analysis-item span{font-size:9px!important;line-height:1.2!important;margin-bottom:2px!important;overflow-wrap:anywhere}
+#result #message{font-size:10px!important;margin:5px 0!important}
+#result #motivation{font-size:11px!important;line-height:1.25!important;padding:6px 7px!important;margin:6px 0!important;border-radius:7px!important}
+#result .report-footer{padding:6px 5px!important;font-size:8px!important;line-height:1.25!important;border-top-width:2px!important}
+#result .report-footer strong{font-size:10px!important;margin-bottom:2px!important}
+#result .review-heading{margin:10px 7px 5px!important;padding:7px 8px!important}
+#result #review{padding:0 7px 9px!important}
+#result .review-card{padding:6px!important;margin:5px 0!important;border-radius:6px!important;border-left-width:3px!important}
+#result .review-q{font-size:10px!important;line-height:1.25!important;margin-bottom:4px!important}
+#result .review-line{gap:5px!important;padding:3px 0!important;font-size:9px!important;line-height:1.2!important}
+#result .review-line span,#result .review-line b{font-size:9px!important;overflow-wrap:anywhere}
+#result .result-badge{font-size:8px!important;padding:3px 6px!important;margin-top:5px!important}
+#result .result-actions{gap:4px!important;padding:6px!important}
+#result .result-actions .btn{font-size:10px!important;padding:6px 7px!important;border-radius:6px!important;line-height:1.15!important}
+}
+@media screen and (max-width:380px){
+#result .report-title{font-size:14px!important}
+#result .report-body{padding:5px 4px!important}
+#result .final-score-value{font-size:21px!important}
+#result .info-value{font-size:9px!important}
+#result .analysis-item{grid-template-columns:1fr!important}
+#result .result-actions .btn{font-size:9px!important;padding:5px 6px!important}
+#result .review-q{font-size:9px!important}
+}
+
+/* mobile-results-override-v2 */
+@media screen and (max-width:600px){
+html body .wrap{padding:3px!important}
+html body #result.card{padding:3px!important;border-radius:6px!important}
+html body #result .report-header{padding:7px 5px!important}
+html body #result .report-brand{font-size:11px!important}
+html body #result .report-series{font-size:7px!important;margin-top:2px!important}
+html body #result .report-title{font-size:14px!important;margin:3px 0!important}
+html body #result .report-body{padding:5px 4px!important}
+html body #result .performance-heading,html body #result .review-heading{font-size:11px!important;margin:6px 0 4px!important;padding:4px 0!important}
+html body #result .student-info-card{padding:4px!important;gap:3px!important;margin-bottom:5px!important}
+html body #result .student-info-card>div{padding:2px 3px!important}
+html body #result .info-label{font-size:7px!important;margin-bottom:1px!important}
+html body #result .info-value{font-size:9px!important;line-height:1.15!important}
+html body #result .final-score-card{padding:5px 3px!important;margin:4px 0!important}
+html body #result .final-score-label{font-size:8px!important}
+html body #result .final-score-value{font-size:20px!important;margin:2px 0!important}
+html body #result .final-score-value .score-divider{font-size:13px!important}
+html body #result .final-score-meta{font-size:9px!important}
+html body #result .performance-stats{gap:3px!important;margin:4px 0!important}
+html body #result .performance-stat{padding:4px 1px!important}
+html body #result .stat-number{font-size:13px!important}
+html body #result .stat-label{font-size:7px!important;margin-top:2px!important}
+html body #result .analysis-grid{gap:3px!important;margin:4px 0!important}
+html body #result .analysis-item{padding:4px!important}
+html body #result .analysis-item b,html body #result .analysis-item span{font-size:8px!important;line-height:1.15!important}
+html body #result #message{font-size:9px!important;margin:4px 0!important}
+html body #result #motivation{font-size:10px!important;padding:4px 5px!important;margin:4px 0!important;line-height:1.2!important}
+html body #result .report-footer{padding:5px 3px!important;font-size:7px!important}
+html body #result .report-footer strong{font-size:9px!important;margin-bottom:1px!important}
+html body #result .review-heading{margin:6px 4px 4px!important;padding:5px!important}
+html body #result #review{padding:0 4px 6px!important}
+html body #result .review-card{padding:4px!important;margin:4px 0!important;border-left-width:2px!important}
+html body #result .review-q{font-size:9px!important;line-height:1.2!important;margin-bottom:3px!important}
+html body #result .review-line{padding:2px 0!important;gap:3px!important}
+html body #result .review-line span,html body #result .review-line b{font-size:8px!important;line-height:1.15!important}
+html body #result .result-badge{font-size:7px!important;padding:2px 4px!important;margin-top:3px!important}
+html body #result .result-actions{padding:4px!important;gap:3px!important}
+html body #result .result-actions .btn{font-size:9px!important;padding:5px!important}
+}
+@media screen and (max-width:380px){
+html body #result .report-title{font-size:13px!important}
+html body #result .final-score-value{font-size:18px!important}
+html body #result .result-actions .btn{font-size:8px!important;padding:4px!important}
+}
+
 </style>
-</head>
-<body>
-<header><div class="eyebrow">ACADEMIC HUB · EXAM PRACTICE</div><h1>Fundamentals of Ethics</h1><p>Mock Test · 20 Multiple-Choice Questions</p></header>
-<main>
-<section class="intro"><div><strong>Instructions</strong><div style="color:#64748b;font-size:14px">Choose one answer for each question, then select Submit Test to see your score and explanations.</div></div><span class="pill">20 Questions · 20 Marks</span></section>
-<form id="quiz"><div id="questions"></div><div class="actions"><button class="btn primary" type="submit">Submit Test</button><button class="btn secondary" type="button" id="reset">Try Again</button><a class="btn secondary" href="index.html">Back to Hub</a></div></form>
-<section class="result" id="result" aria-live="polite"><h2 id="score"></h2><p id="feedback"></p></section>
-<p class="foot">Practice resource for learning. Review your answers after submitting.</p>
-</main>
+
+<style id="final-motivation-green-override">
+/* Requested change: final-page motivational messages only */
+html body #result #message{
+  font-size:12px!important;
+  line-height:1.4!important;
+  background:#dcfce7!important;
+  color:#166534!important;
+  border:1px solid #86efac!important;
+  border-radius:8px!important;
+  padding:8px 10px!important;
+}
+html body #result #motivation{
+  font-size:13px!important;
+  line-height:1.4!important;
+  background:#dcfce7!important;
+  color:#166534!important;
+  border:1px solid #86efac!important;
+  border-radius:10px!important;
+  padding:10px 12px!important;
+}
+</style>
+<style id="compact-student-info-final">
+/* Compact student information on the final results page only */
+#result .student-info-card{gap:5px!important;padding:8px 10px!important;margin-bottom:10px!important}
+#result .student-info-card>div{min-width:0;padding:2px 4px!important}
+#result .student-info-card .info-label{margin-bottom:2px!important;line-height:1.15!important}
+#result .student-info-card .info-value{line-height:1.2!important}
+@media(max-width:560px){
+ #result .student-info-card{gap:2px!important;padding:4px 6px!important;margin-bottom:6px!important}
+ #result .student-info-card>div{padding:1px 3px!important}
+ #result .student-info-card .info-label{margin-bottom:1px!important}
+}
+</style><style id="student-info-single-row-compact">
+/* Keep the existing student information together in one compact heading/card row */
+#result .student-info-card{grid-template-columns:repeat(4,minmax(0,1fr))!important;align-items:center!important;gap:5px!important;padding:7px 9px!important;margin-bottom:8px!important}
+#result .student-info-card>div{min-width:0!important;padding:2px 3px!important}
+#result .student-info-card .info-label{font-size:9px!important;letter-spacing:.35px!important;margin-bottom:2px!important;line-height:1.1!important}
+#result .student-info-card .info-value{font-size:11px!important;line-height:1.15!important;overflow-wrap:anywhere!important}
+@media(max-width:560px){
+ #result .student-info-card{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px 6px!important;padding:5px 6px!important;margin-bottom:6px!important}
+ #result .student-info-card>div{padding:2px!important}
+ #result .student-info-card .info-label{font-size:8px!important;margin-bottom:1px!important}
+ #result .student-info-card .info-value{font-size:10px!important}
+}
+</style>
+<style id="hide-empty-performance-analysis-message">
+/* Hide the empty message placeholder in Performance Analysis; keep all report content unchanged */
+html body #result #message:empty{display:none!important}
+</style>
+</head><body><div class="wrap">
+<section id="start" class="card"><h1 class="main-title">Fundamentals of Ethics MCQ Internal Test</h1><div id="greeting" class="greeting"></div><p><b>60 Questions • 30 Minutes</b></p><div class="field info-field"><b class="big-label">Student Name</b><input id="name"></div><div class="field info-field"><b class="big-label">Subject</b><div class="subject-display">Fundamentals of Ethics</div></div><br><button id="startBtn" class="btn primary">Start Mock Test</button><p id="msg"></p></section>
+<section id="test" class="card hidden"><div class="top"><b id="counter"></b><span class="time-label"><b class="time-word">Time:</b> <span id="timer" class="timer">30:00</span></span></div><div id="nav" class="nav"></div><div id="question" class="q"></div><div id="options"></div><div class="actions"><button id="prev" class="btn secondary">Previous</button><button id="next" class="btn primary">Next</button><button id="submit" class="btn danger" style="display:none">Submit Test</button></div></section>
+<section id="result" class="card hidden">
+<div class="result-actions actions"><button id="save" class="btn primary">Save Analysis Report</button><button id="print" class="btn secondary">Print / Save PDF</button><button id="startAgain" type="button" class="btn danger" onclick="finish()">Start Again</button></div>
+<header class="report-header">
+<div class="report-brand">Academic Hub</div>
+<div class="report-series">UNIVERSITY INTERNAL EXAM PREPARATION SERIES</div>
+<div class="report-title">MOCK TEST RESULTS</div>
+
+</header>
+<div class="report-body">
+<h2 class="performance-heading">Student Information</h2>
+<div class="student-info-card">
+<div><span class="info-label">Student Name</span><span class="info-value" id="rname"></span></div>
+<div><span class="info-label">Subject</span><span class="info-value">Fundamentals of Ethics</span></div>
+<div><span class="info-label">Test</span><span class="info-value">Fundamentals of Ethics MCQ Internal Test</span></div>
+<div><span class="info-label">Duration</span><span class="info-value">30 Minutes</span></div>
+</div>
+<h2 class="performance-heading">Your Test Performance</h2>
+<div class="final-score-card">
+<div class="final-score-label">Final Score</div>
+<div class="final-score-value"><span id="score"></span></div>
+<div class="final-score-meta"><span id="pct"></span></div>
+</div>
+<div class="performance-stats">
+<div class="performance-stat correct"><div class="stat-number" id="correct"></div><div class="stat-label">Correct</div></div>
+<div class="performance-stat incorrect"><div class="stat-number" id="wrong"></div><div class="stat-label">Incorrect</div></div>
+<div class="performance-stat unanswered"><div class="stat-number" id="unanswered"></div><div class="stat-label">Unanswered</div></div>
+</div>
+<div class="analysis-grid">
+<div class="analysis-item"><b>Questions Attempted</b><span id="attempted"></span></div>
+<div class="analysis-item"><b>Accuracy</b><span id="accuracy"></span></div>
+<div class="analysis-item"><b>Performance Status</b><span id="status"></span></div>
+
+</div>
+<div id="message" style="display:none!important" aria-hidden="true"></div>
+<div id="motivation"></div>
+</div>
+<footer class="report-footer"><strong>KEEP LEARNING. KEEP IMPROVING.</strong>Academic Hub · Your success is our mission!<br/>Result generated by BA Study Hub Mock Test System</footer>
+<h2 class="review-heading">Question-wise Review</h2><div id="review"></div>
+</section></div>
 <script>
-const questions = [
-{q:"What is the central concern of ethics?",o:["The study of stars","The study of right and wrong conduct","The study of numbers","The study of language only"],a:1,e:"Ethics examines moral values, principles, and judgments about right and wrong."},
-{q:"Which branch of ethics asks what moral terms mean?",o:["Meta-ethics","Applied ethics","Descriptive sociology","Aesthetics"],a:0,e:"Meta-ethics studies the meaning and foundations of moral concepts."},
-{q:"Normative ethics primarily seeks to:",o:["Record weather patterns","Explain grammar","Establish standards for right action","Classify rocks"],a:2,e:"Normative ethics develops principles and standards for moral conduct."},
-{q:"Applied ethics deals with:",o:["Only abstract symbols","Practical moral issues in real life","The movement of planets","Mathematical proofs only"],a:1,e:"Applied ethics considers issues such as medical, environmental, and professional ethics."},
-{q:"Who is associated with the principle of the greatest happiness?",o:["Jeremy Bentham","René Descartes","Auguste Comte","Thomas Hobbes"],a:0,e:"Bentham is a key founder of classical utilitarianism."},
-{q:"Utilitarianism judges actions mainly by their:",o:["Age","Consequences for overall happiness or welfare","Popularity alone","Tradition alone"],a:1,e:"Utilitarian theories assess actions by their consequences for well-being."},
-{q:"Immanuel Kant is most closely associated with:",o:["Deontological ethics","Ethical egoism only","Relativism only","Logical positivism"],a:0,e:"Kantian ethics emphasizes duty and principles that can be universalized."},
-{q:"In Kantian ethics, a categorical imperative is a:",o:["Personal preference","Moral command not dependent on a particular desire","Legal punishment","Scientific hypothesis"],a:1,e:"A categorical imperative applies unconditionally to rational agents."},
-{q:"Virtue ethics focuses mainly on:",o:["Character and virtues","Profit alone","Punishment alone","Public opinion"],a:0,e:"Virtue ethics asks what kind of person one should become."},
-{q:"Which philosopher is strongly linked with classical virtue ethics?",o:["Aristotle","Karl Marx","John Locke","Francis Bacon"],a:0,e:"Aristotle developed a major account of virtue and human flourishing."},
-{q:"Moral relativism generally holds that moral judgments:",o:["Are identical in every culture","May depend on cultural or individual frameworks","Are always mathematical","Never change"],a:1,e:"Relativism challenges the idea that all moral standards are universally fixed."},
-{q:"Ethical egoism argues that a person should:",o:["Always ignore personal interests","Act in their own self-interest","Never make choices","Follow every custom"],a:1,e:"Ethical egoism treats self-interest as the basis of moral action."},
-{q:"Which is an example of professional ethics?",o:["Maintaining confidentiality when required","Spreading private client information","Falsifying records","Accepting every gift without question"],a:0,e:"Professional ethics includes duties such as confidentiality, honesty, and responsibility."},
-{q:"Academic plagiarism is ethically problematic because it:",o:["Credits every source correctly","Presents another person's work as one's own","Improves citation quality","Is required in research"],a:1,e:"Plagiarism misrepresents authorship and undermines academic integrity."},
-{q:"Which value is most directly opposed to dishonesty?",o:["Integrity","Prejudice","Negligence","Greed"],a:0,e:"Integrity involves honesty and consistency between principles and actions."},
-{q:"The principle of justice is commonly concerned with:",o:["Fairness and equitable treatment","Avoiding all responsibility","Personal taste in art","Memorizing facts"],a:0,e:"Justice concerns fairness, rights, and the distribution of benefits and burdens."},
-{q:"In research ethics, informed consent means participants:",o:["Are forced to take part","Receive relevant information and voluntarily agree","Must hide their identity from researchers","Cannot withdraw under any circumstances"],a:1,e:"Informed consent requires adequate information and voluntary participation."},
-{q:"Environmental ethics examines moral responsibilities toward:",o:["Only financial markets","The natural environment and non-human life","Only historical documents","Grammar rules"],a:1,e:"Environmental ethics considers duties toward ecosystems, animals, and future generations."},
-{q:"Which action best demonstrates ethical leadership?",o:["Hiding mistakes","Applying rules fairly and accepting accountability","Taking credit for others' work","Discouraging questions"],a:1,e:"Ethical leadership requires fairness, transparency, and accountability."},
-{q:"Why is critical reflection important in ethical decision-making?",o:["It removes the need for evidence","It helps evaluate reasons, values, and likely consequences","It guarantees everyone will agree","It replaces responsibility"],a:1,e:"Reflection helps people consider competing values, reasons, and outcomes before acting."}
-];
-const root=document.getElementById("questions");
-function render(){root.innerHTML=questions.map((item,i)=>'<section class="question" data-question="'+i+'"><h2>'+(i+1)+'. '+item.q+'</h2><div class="options">'+item.o.map((option,j)=>'<label class="option"><input type="radio" name="q'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+'. '+option+'</span></label>').join('')+'</div><p class="explanation">'+item.e+'</p></section>').join('');document.getElementById("result").style.display="none";}
-document.getElementById("quiz").addEventListener("submit",function(event){event.preventDefault();let score=0,answered=0;questions.forEach((item,i)=>{const card=root.querySelector('[data-question="'+i+'"]');const chosen=card.querySelector('input:checked');const labels=card.querySelectorAll('.option');labels.forEach((label,j)=>{label.classList.remove('correct','wrong');if(j===item.a)label.classList.add('correct');});if(chosen){answered++;if(Number(chosen.value)===item.a)score++;else labels[Number(chosen.value)].classList.add('wrong');}card.querySelector('.explanation').style.display='block';});const result=document.getElementById("result");result.style.display="block";document.getElementById("score").textContent="Your Score: "+score+" / "+questions.length;document.getElementById("feedback").textContent="You answered "+answered+" of "+questions.length+" questions. "+(score>=16?"Excellent work!":score>=12?"Good effort—review the explanations and try again.":"Keep practising—read the explanations and attempt the test again.");result.scrollIntoView({behavior:"smooth",block:"start"});});
-document.getElementById("reset").addEventListener("click",()=>{render();window.scrollTo({top:0,behavior:"smooth"});});
-render();
-</script>
-</body>
-</html>
+const QUESTIONS=[{"id":1,"question":"What is the central concern of ethics?","options":[{"value":"A","text":"The study of stars"},{"value":"B","text":"The study of right and wrong conduct"},{"value":"C","text":"The study of numbers"},{"value":"D","text":"The study of language only"}],"answer":"B"},{"id":2,"question":"Which branch of ethics studies the meaning of moral terms?","options":[{"value":"A","text":"Meta-ethics"},{"value":"B","text":"Applied ethics"},{"value":"C","text":"Aesthetics"},{"value":"D","text":"Political science"}],"answer":"A"},{"id":3,"question":"Normative ethics primarily aims to:","options":[{"value":"A","text":"Predict weather"},{"value":"B","text":"Establish standards for right action"},{"value":"C","text":"Describe grammar"},{"value":"D","text":"Classify minerals"}],"answer":"B"},{"id":4,"question":"Applied ethics deals with:","options":[{"value":"A","text":"Practical moral problems"},{"value":"B","text":"Only abstract mathematics"},{"value":"C","text":"Astronomy"},{"value":"D","text":"Language structure"}],"answer":"A"},{"id":5,"question":"Who is closely associated with classical utilitarianism?","options":[{"value":"A","text":"Jeremy Bentham"},{"value":"B","text":"René Descartes"},{"value":"C","text":"Auguste Comte"},{"value":"D","text":"Thomas Hobbes"}],"answer":"A"},{"id":6,"question":"Utilitarianism evaluates actions mainly by their:","options":[{"value":"A","text":"Consequences for overall well-being"},{"value":"B","text":"Age"},{"value":"C","text":"Popularity alone"},{"value":"D","text":"Traditional status"}],"answer":"A"},{"id":7,"question":"Immanuel Kant is associated with:","options":[{"value":"A","text":"Deontological ethics"},{"value":"B","text":"Ethical egoism only"},{"value":"C","text":"Relativism only"},{"value":"D","text":"Hedonism only"}],"answer":"A"},{"id":8,"question":"A categorical imperative is a moral requirement that:","options":[{"value":"A","text":"Depends on personal desire"},{"value":"B","text":"Applies unconditionally"},{"value":"C","text":"Is merely a legal rule"},{"value":"D","text":"Changes with popularity"}],"answer":"B"},{"id":9,"question":"Virtue ethics focuses mainly on:","options":[{"value":"A","text":"Character and virtues"},{"value":"B","text":"Profit alone"},{"value":"C","text":"Punishment alone"},{"value":"D","text":"Public opinion"}],"answer":"A"},{"id":10,"question":"Which philosopher is strongly linked with classical virtue ethics?","options":[{"value":"A","text":"Aristotle"},{"value":"B","text":"Karl Marx"},{"value":"C","text":"John Locke"},{"value":"D","text":"Francis Bacon"}],"answer":"A"},{"id":11,"question":"Ethical egoism argues that people should:","options":[{"value":"A","text":"Act in their own self-interest"},{"value":"B","text":"Always ignore their interests"},{"value":"C","text":"Never make choices"},{"value":"D","text":"Follow every custom"}],"answer":"A"},{"id":12,"question":"Moral relativism generally suggests that moral judgments:","options":[{"value":"A","text":"May depend on cultural or individual frameworks"},{"value":"B","text":"Are always mathematical"},{"value":"C","text":"Never change"},{"value":"D","text":"Are identical in every society"}],"answer":"A"},{"id":13,"question":"Which value is most directly opposed to dishonesty?","options":[{"value":"A","text":"Integrity"},{"value":"B","text":"Negligence"},{"value":"C","text":"Prejudice"},{"value":"D","text":"Greed"}],"answer":"A"},{"id":14,"question":"The principle of justice is primarily concerned with:","options":[{"value":"A","text":"Fairness and equitable treatment"},{"value":"B","text":"Personal taste"},{"value":"C","text":"Avoiding responsibility"},{"value":"D","text":"Memorizing rules"}],"answer":"A"},{"id":15,"question":"Beneficence means:","options":[{"value":"A","text":"Acting to promote others' welfare"},{"value":"B","text":"Causing harm deliberately"},{"value":"C","text":"Ignoring others"},{"value":"D","text":"Keeping every secret regardless of risk"}],"answer":"A"},{"id":16,"question":"Non-maleficence is commonly expressed as:","options":[{"value":"A","text":"Do no harm"},{"value":"B","text":"Maximize personal profit"},{"value":"C","text":"Obey popularity"},{"value":"D","text":"Avoid all decisions"}],"answer":"A"},{"id":17,"question":"Respect for autonomy requires us to:","options":[{"value":"A","text":"Respect informed choices of persons"},{"value":"B","text":"Make every decision for others"},{"value":"C","text":"Ignore consent"},{"value":"D","text":"Force agreement"}],"answer":"A"},{"id":18,"question":"Informed consent means participants:","options":[{"value":"A","text":"Voluntarily agree after receiving relevant information"},{"value":"B","text":"Are forced to participate"},{"value":"C","text":"Cannot ask questions"},{"value":"D","text":"Must remain in a study forever"}],"answer":"A"},{"id":19,"question":"Academic plagiarism involves:","options":[{"value":"A","text":"Presenting another person's work as one's own"},{"value":"B","text":"Citing sources accurately"},{"value":"C","text":"Summarizing with attribution"},{"value":"D","text":"Using original analysis"}],"answer":"A"},{"id":20,"question":"Confidentiality in professional ethics means:","options":[{"value":"A","text":"Protecting private information appropriately"},{"value":"B","text":"Sharing all records publicly"},{"value":"C","text":"Inventing client details"},{"value":"D","text":"Ignoring privacy requests"}],"answer":"A"},{"id":21,"question":"An ethical leader should:","options":[{"value":"A","text":"Act fairly and accept accountability"},{"value":"B","text":"Hide mistakes"},{"value":"C","text":"Take credit for others' work"},{"value":"D","text":"Discourage questions"}],"answer":"A"},{"id":22,"question":"Which is an example of a conflict of interest?","options":[{"value":"A","text":"A decision-maker benefits personally from an official decision"},{"value":"B","text":"A teacher grades anonymously"},{"value":"C","text":"A researcher reports results accurately"},{"value":"D","text":"A nurse respects consent"}],"answer":"A"},{"id":23,"question":"Whistleblowing is generally the act of:","options":[{"value":"A","text":"Reporting serious wrongdoing"},{"value":"B","text":"Spreading rumours for fun"},{"value":"C","text":"Hiding safety violations"},{"value":"D","text":"Changing evidence"}],"answer":"A"},{"id":24,"question":"Which approach judges actions by duties and rules?","options":[{"value":"A","text":"Deontology"},{"value":"B","text":"Utilitarianism"},{"value":"C","text":"Virtue ethics"},{"value":"D","text":"Ethical relativism"}],"answer":"A"},{"id":25,"question":"The utilitarian principle of greatest happiness seeks to:","options":[{"value":"A","text":"Promote the greatest overall well-being"},{"value":"B","text":"Benefit only the decision-maker"},{"value":"C","text":"Preserve every tradition"},{"value":"D","text":"Avoid evaluating consequences"}],"answer":"A"},{"id":26,"question":"Aristotle's concept of the 'golden mean' refers to:","options":[{"value":"A","text":"A balanced virtue between extremes"},{"value":"B","text":"The greatest financial reward"},{"value":"C","text":"A fixed legal penalty"},{"value":"D","text":"Rejecting all emotions"}],"answer":"A"},{"id":27,"question":"The ethical idea of the Golden Rule is to:","options":[{"value":"A","text":"Treat others as you would wish to be treated"},{"value":"B","text":"Always seek revenge"},{"value":"C","text":"Follow orders without thought"},{"value":"D","text":"Choose the most profitable action"}],"answer":"A"},{"id":28,"question":"Moral reasoning involves:","options":[{"value":"A","text":"Giving reasons to support moral judgments"},{"value":"B","text":"Guessing without evidence"},{"value":"C","text":"Repeating opinions automatically"},{"value":"D","text":"Avoiding difficult choices"}],"answer":"A"},{"id":29,"question":"Which is a key feature of a moral dilemma?","options":[{"value":"A","text":"Competing moral duties or values"},{"value":"B","text":"A problem with one obvious answer only"},{"value":"C","text":"A purely arithmetic calculation"},{"value":"D","text":"A question with no consequences"}],"answer":"A"},{"id":30,"question":"Integrity is best shown by:","options":[{"value":"A","text":"Acting consistently with ethical principles"},{"value":"B","text":"Changing claims for personal gain"},{"value":"C","text":"Concealing mistakes"},{"value":"D","text":"Blaming others unfairly"}],"answer":"A"},{"id":31,"question":"Empathy helps ethical decision-making by:","options":[{"value":"A","text":"Helping us understand others' perspectives"},{"value":"B","text":"Guaranteeing every choice is correct"},{"value":"C","text":"Replacing evidence entirely"},{"value":"D","text":"Removing all responsibility"}],"answer":"A"},{"id":32,"question":"Discrimination is ethically problematic because it:","options":[{"value":"A","text":"Treats people unfairly based on irrelevant characteristics"},{"value":"B","text":"Ensures equal opportunity"},{"value":"C","text":"Protects human dignity"},{"value":"D","text":"Uses fair criteria"}],"answer":"A"},{"id":33,"question":"Human rights are best understood as:","options":[{"value":"A","text":"Basic rights and freedoms belonging to people"},{"value":"B","text":"Rewards given only to wealthy people"},{"value":"C","text":"Privileges for one profession"},{"value":"D","text":"Rules that apply only online"}],"answer":"A"},{"id":34,"question":"Social responsibility requires individuals and organizations to:","options":[{"value":"A","text":"Consider effects on society and stakeholders"},{"value":"B","text":"Focus only on short-term profit"},{"value":"C","text":"Ignore environmental impact"},{"value":"D","text":"Avoid accountability"}],"answer":"A"},{"id":35,"question":"Environmental ethics considers duties toward:","options":[{"value":"A","text":"Nature, ecosystems, and future generations"},{"value":"B","text":"Only financial markets"},{"value":"C","text":"Only historical documents"},{"value":"D","text":"Grammar rules"}],"answer":"A"},{"id":36,"question":"Sustainable development aims to:","options":[{"value":"A","text":"Meet present needs without compromising future generations"},{"value":"B","text":"Use all resources immediately"},{"value":"C","text":"Ignore future costs"},{"value":"D","text":"Stop all economic activity"}],"answer":"A"},{"id":37,"question":"Animal ethics examines:","options":[{"value":"A","text":"Moral consideration owed to non-human animals"},{"value":"B","text":"Only human political rights"},{"value":"C","text":"The classification of stars"},{"value":"D","text":"Business accounting"}],"answer":"A"},{"id":38,"question":"Research ethics requires researchers to:","options":[{"value":"A","text":"Be honest, protect participants, and report methods responsibly"},{"value":"B","text":"Invent results to fit a theory"},{"value":"C","text":"Hide risks from participants"},{"value":"D","text":"Copy another study without credit"}],"answer":"A"},{"id":39,"question":"Fabrication in research means:","options":[{"value":"A","text":"Making up data or results"},{"value":"B","text":"Checking calculations"},{"value":"C","text":"Citing sources"},{"value":"D","text":"Repeating a valid experiment"}],"answer":"A"},{"id":40,"question":"Falsification in research involves:","options":[{"value":"A","text":"Manipulating materials, processes, or data misleadingly"},{"value":"B","text":"Reporting all findings accurately"},{"value":"C","text":"Obtaining informed consent"},{"value":"D","text":"Peer review"}],"answer":"A"},{"id":41,"question":"A fair assessment should be based on:","options":[{"value":"A","text":"Relevant and consistently applied criteria"},{"value":"B","text":"Personal likes and dislikes"},{"value":"C","text":"A student's family background"},{"value":"D","text":"Rumours"}],"answer":"A"},{"id":42,"question":"Professional competence includes:","options":[{"value":"A","text":"Maintaining appropriate knowledge and skills"},{"value":"B","text":"Claiming expertise one does not have"},{"value":"C","text":"Refusing all training"},{"value":"D","text":"Ignoring safety procedures"}],"answer":"A"},{"id":43,"question":"Accountability means:","options":[{"value":"A","text":"Being answerable for decisions and actions"},{"value":"B","text":"Avoiding explanations"},{"value":"C","text":"Blaming the public"},{"value":"D","text":"Keeping decisions secret in every case"}],"answer":"A"},{"id":44,"question":"Transparency supports ethics by:","options":[{"value":"A","text":"Making relevant processes and decisions understandable"},{"value":"B","text":"Concealing all procedures"},{"value":"C","text":"Preventing scrutiny"},{"value":"D","text":"Replacing fairness"}],"answer":"A"},{"id":45,"question":"Which action demonstrates respect in disagreement?","options":[{"value":"A","text":"Listening and responding without personal attacks"},{"value":"B","text":"Mocking the other person"},{"value":"C","text":"Suppressing all discussion"},{"value":"D","text":"Sharing private information"}],"answer":"A"},{"id":46,"question":"Freedom of expression is ethically balanced with:","options":[{"value":"A","text":"Others' rights, safety, and responsibilities"},{"value":"B","text":"A duty to agree with everyone"},{"value":"C","text":"A ban on all criticism"},{"value":"D","text":"Personal profit alone"}],"answer":"A"},{"id":47,"question":"Ethical decision-making should consider:","options":[{"value":"A","text":"Facts, values, stakeholders, and consequences"},{"value":"B","text":"Only convenience"},{"value":"C","text":"Only the loudest opinion"},{"value":"D","text":"Only immediate reward"}],"answer":"A"},{"id":48,"question":"A stakeholder is:","options":[{"value":"A","text":"A person or group affected by a decision"},{"value":"B","text":"Only the business owner"},{"value":"C","text":"Always a government official"},{"value":"D","text":"Someone unrelated to the issue"}],"answer":"A"},{"id":49,"question":"Justice as fairness asks decision-makers to:","options":[{"value":"A","text":"Use fair procedures and consider equitable treatment"},{"value":"B","text":"Give every advantage to friends"},{"value":"C","text":"Ignore relevant differences in need"},{"value":"D","text":"Decide arbitrarily"}],"answer":"A"},{"id":50,"question":"Care ethics emphasizes:","options":[{"value":"A","text":"Relationships, care, and responsiveness to needs"},{"value":"B","text":"Rules without context only"},{"value":"C","text":"Financial gain alone"},{"value":"D","text":"Competition above all"}],"answer":"A"},{"id":51,"question":"Which theory emphasizes universal duties and respect for persons?","options":[{"value":"A","text":"Kantian ethics"},{"value":"B","text":"Ethical egoism"},{"value":"C","text":"Psychological hedonism"},{"value":"D","text":"Moral nihilism"}],"answer":"A"},{"id":52,"question":"Psychological egoism is the claim that people:","options":[{"value":"A","text":"In fact act from self-interest as a matter of motivation"},{"value":"B","text":"Morally ought always to help others"},{"value":"C","text":"Never consider themselves"},{"value":"D","text":"Must follow universal duties"}],"answer":"A"},{"id":53,"question":"Altruism involves:","options":[{"value":"A","text":"Concern for the welfare of others"},{"value":"B","text":"Only personal gain"},{"value":"C","text":"Deliberately causing harm"},{"value":"D","text":"Refusing all cooperation"}],"answer":"A"},{"id":54,"question":"Moral courage is the ability to:","options":[{"value":"A","text":"Do what is ethically right despite pressure or risk"},{"value":"B","text":"Avoid all responsibility"},{"value":"C","text":"Agree with authority every time"},{"value":"D","text":"Hide wrongdoing"}],"answer":"A"},{"id":55,"question":"A bribe is ethically troubling because it:","options":[{"value":"A","text":"Improperly influences a decision through an undue benefit"},{"value":"B","text":"Always improves fairness"},{"value":"C","text":"Is identical to a transparent salary"},{"value":"D","text":"Guarantees accountability"}],"answer":"A"},{"id":56,"question":"Fair use of power requires:","options":[{"value":"A","text":"Avoiding abuse and respecting legitimate limits"},{"value":"B","text":"Using authority for revenge"},{"value":"C","text":"Favouring friends regardless of rules"},{"value":"D","text":"Preventing accountability"}],"answer":"A"},{"id":57,"question":"Digital ethics includes concerns about:","options":[{"value":"A","text":"Privacy, security, fairness, and responsible technology use"},{"value":"B","text":"Only screen brightness"},{"value":"C","text":"Only computer hardware prices"},{"value":"D","text":"Unrelated historical dates"}],"answer":"A"},{"id":58,"question":"Algorithmic bias occurs when:","options":[{"value":"A","text":"A system produces unfair outcomes for some groups"},{"value":"B","text":"Every result is necessarily neutral"},{"value":"C","text":"Data is always perfect"},{"value":"D","text":"A program has no input"}],"answer":"A"},{"id":59,"question":"Data privacy requires:","options":[{"value":"A","text":"Responsible collection, use, and protection of personal information"},{"value":"B","text":"Publishing all personal records"},{"value":"C","text":"Collecting data without purpose or limits"},{"value":"D","text":"Ignoring consent and security"}],"answer":"A"},{"id":60,"question":"An ethical response to discovering an error in a report is to:","options":[{"value":"A","text":"Correct it promptly and communicate the correction"},{"value":"B","text":"Hide it permanently"},{"value":"C","text":"Blame an uninvolved colleague"},{"value":"D","text":"Delete all records"}],"answer":"A"},{"id":61,"question":"The purpose of ethical reflection is to:","options":[{"value":"A","text":"Evaluate reasons, values, duties, and likely consequences"},{"value":"B","text":"Guarantee everyone agrees"},{"value":"C","text":"Remove the need for judgment"},{"value":"D","text":"Replace facts with feelings alone"}],"answer":"A"}];
+const N=60,MIN=30,API='';let test=[],answers={},pos=0,seconds=MIN*60,interval=null,studentName='',submitted=false;const $=id=>document.getElementById(id);
+const GREETINGS=['Welcome! 📚🌟 You are ready for this! Read carefully and give your best! 💪','All the best! 🍀📝 Stay calm, stay focused, and trust your preparation! 🌟','You’ve got this! 💯🧠 Take one question at a time and keep moving forward! 🚀','Welcome to your Ethics test! 📚✨ Believe in yourself and do your very best! ❤️','Good luck! 🍀😊 Your hard work will show—stay confident and focused! 🎓','Stay positive! 🌈📖 Read every question carefully and choose wisely! 💡','Today is your chance to shine! 🌟🏆 Give every question your best effort! 💪','Focus + Confidence + Effort = Success! 🧠💯🚀 Let’s begin!','Believe in your preparation! 📚🔥 Stay relaxed and do your best! 🌟','You are capable of great things! ❤️🎓 Start strong and finish strong! 💪🏆'];function setGreeting(){$('greeting').textContent=GREETINGS[Math.floor(Math.random()*GREETINGS.length)]}function shuffle(a){let x=a.slice();for(let i=x.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}function screen(id){['start','test','result'].forEach(x=>$(x).classList.add('hidden'));$(id).classList.remove('hidden')}function startTest(){studentName=$('name').value.trim();if(!studentName){$('msg').textContent='Please enter Student Name.';return}test=shuffle(QUESTIONS).slice(0,N);answers={};pos=0;seconds=MIN*60;submitted=false;screen('test');render();clearInterval(interval);interval=setInterval(tick,1000);tick()}function tick(){seconds--;if(seconds<0)seconds=0;$('timer').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');if(seconds===0)submit(true)}function render(){let questionIndex=pos;let q=test[pos];$('counter').textContent='Question '+(pos+1)+' of '+N;$('question').textContent=q.question;$('options').innerHTML=q.options.map(o=>'<label class="opt"><input type="radio" name="answer" value="'+o.value+'" '+(answers[pos]===o.value?'checked':'')+'> '+o.value+') '+o.text+'</label>').join('');if(answers[questionIndex])lockAnswerOptions('#options');document.querySelectorAll('input[name=answer]').forEach(x=>x.addEventListener('change',()=>{if(answers[questionIndex]){x.checked=x.value===answers[questionIndex];lockAnswerOptions('#options');return}answers[questionIndex]=x.value;lockAnswerOptions('#options');paintAnswerFeedback(q,'#options',x.value);renderNav()}));$('prev').disabled=pos===0;$('next').disabled=pos===N-1;if((pos+1)===N){$('submit').style.display='inline-block'}else{$('submit').style.display='none'};renderNav()}function renderNav(){let h='';test.forEach((q,i)=>h+='<button class="'+(answers[i]?'answered ':'')+(i===pos?'current':'')+'" data-i="'+i+'">'+(i+1)+'</button>');$('nav').innerHTML=h;document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{pos=Number(b.dataset.i);render()})}function submit(auto){if(submitted)return;if(!auto&&!confirm('Are you sure you want to Finish & Submit the test?'))return;submitted=true;clearInterval(interval);let correct=0,wrong=0,unanswered=0;test.forEach((q,i)=>{if(!answers[i])unanswered++;else if(answers[i]===q.answer)correct++;else wrong++});let attempted=correct+wrong,pct=correct/N*100,accuracy=attempted?correct/attempted*100:0;showReport(correct,wrong,unanswered,attempted,pct,accuracy,auto);sendToCloudflare(correct,wrong,unanswered,pct,auto)}function sendToCloudflare(correct,wrong,unanswered,pct,auto){let payload={name:studentName,reg:'N/A',subject:'Fundamentals of Ethics MCQ Internal Test - 60Q',score:correct,total:N,percentage:Number(pct.toFixed(1)),wrong:wrong,unanswered:unanswered,status:pct>=40?'PASS':'NEEDS IMPROVEMENT',autoSubmitted:auto,submittedAt:new Date().toISOString()};fetch(API+'/api/test-results/submit',{method:'POST',headers:{'Content-Type':'application/json;charset=UTF-8'},body:JSON.stringify(payload)}).then(r=>{if(!r.ok)throw new Error('Cloudflare '+r.status);$('message').textContent=''}).catch(e=>{$('message').textContent='Final report ready. Cloudflare save failed; local report is still available.'})}function showReport(correct,wrong,unanswered,attempted,pct,accuracy,auto){$('rname').textContent=studentName;$('score').textContent=correct+' / '+N;$('pct').textContent=pct.toFixed(1)+'%';$('attempted').textContent=attempted+' / '+N;$('correct').textContent=correct;$('wrong').textContent=wrong;$('unanswered').textContent=unanswered;$('accuracy').textContent=accuracy.toFixed(1)+'%';$('status').textContent=pct>=80?'EXCELLENT':pct>=60?'VERY GOOD':pct>=40?'PASS':'NEEDS IMPROVEMENT';$('status').className='status-badge '+(pct>=80?'status-excellent':pct>=60?'status-good':pct>=40?'status-pass':'status-needs');$('message').textContent=auto?'Time expired — submitted automatically.':'Test submitted successfully.';const praise=["Stay confident! 🧠✨ Practice makes progress!","Every question you practise makes you stronger. Keep going! 💪📚","Believe in your ability to learn, improve, and succeed. 🌟","Progress matters more than perfection. Take the next step! 🚀","Your effort today is building tomorrow’s success. 🌱","Stay curious, stay focused, and keep learning. 📖✨","One test never defines you; your persistence does. 💚","Learn from every mistake and return even stronger. 💪","Small daily improvements lead to remarkable results. 🌟","You are capable of more than you think. Keep trying! 🙌","Keep your confidence high and your goals clear. 🎯","Every attempt is valuable practice for your next success. 📚","Be proud that you showed up and gave it a try. 👏","Consistency is the secret ingredient to progress. 🔑","Turn difficult questions into opportunities to learn. 🧠","Your journey is unique—keep moving at your pace. 🌈","Stay positive, revise smartly, and practise regularly. ✨","Success grows from patience, practice, and determination. 🌿","Do not fear mistakes; use them as lessons. 💡","Keep building your knowledge one concept at a time. 🧱","Focus on improvement, not comparison. You can do this! 💚","Every page you revise brings you closer to your goal. 📘","Take a breath, trust your preparation, and keep going. 🌟","Strong learners keep asking questions and seeking answers. 🔍","Your hard work will add up—stay consistent. 💪","Challenge yourself today and celebrate your progress. 🎉","Be patient with yourself while you grow. 🌱","Learning is a journey, and you are moving forward. 🚶‍♂️","Review, reflect, retry, and rise higher. 🚀","Keep your mind open and your determination strong. 🧠","Your next result can be better with focused practice. 🎯","Stay disciplined, stay hopeful, and keep learning. 📚","Every correct answer begins with understanding and practice. 💡","Use today’s experience to prepare for a brighter tomorrow. ☀️","Confidence comes from preparation—keep practising. 💪","Your potential grows whenever you refuse to give up. 🌟","Give yourself credit for every step forward. 👏","Read carefully, think clearly, and trust your learning. 📖","Let determination be louder than doubt. 🔊","Keep revising the basics; they build strong foundations. 🏗️","Your effort counts, even when progress feels slow. 🌿","Be brave enough to try and wise enough to learn. 💚","Stay focused on the goal, one question at a time. 🎯","Knowledge grows when you practise and reflect. 📚","Keep going—your future self will thank you. 🌟","Every challenge is a chance to discover what you can do. ✨","Make your mistakes your teachers, not your limits. 💡","Prepare with purpose and approach each test with calm. 🧘","Hard work and steady practice create lasting confidence. 💪","Keep learning, keep improving, and keep believing. 🌈"];const selectedPraise=praise[Math.floor(Math.random()*praise.length)];const motivationBox=$('motivation');motivationBox.innerHTML='<strong>'+esc(selectedPraise)+'</strong>';const motivationColors=["#e11d48","#7c3aed","#0369a1","#047857","#c2410c","#a21caf","#1d4ed8","#0f766e","#b91c1c","#6d28d9","#15803d","#be123c","#4338ca","#0e7490","#a16207","#9d174d","#166534","#5b21b6","#075985","#9f1239","#4d7c0f","#c026d3","#1e40af","#b45309","#065f46"];motivationBox.style.color=motivationColors[Math.floor(Math.random()*motivationColors.length)];let h='';test.forEach((q,i)=>{let your=answers[i]||'Not answered',yourOpt=q.options.find(o=>o.value===your),ok=your===q.answer,res=ok?'Correct':your==='Not answered'?'Unanswered':'Wrong',co=q.options.find(o=>o.value===q.answer),cl=ok?'correct':your==='Not answered'?'not-answered':'wrong';h+='<div class="review-card '+cl+'"><div class="review-q">Q'+(i+1)+'. '+q.question+'</div>'+(ok?'<div class="review-line"><span>Your answer</span><b>'+esc(your+') '+yourOpt.text)+'</b></div><div class="review-line"><b style="color:#16a34a;font-size:18px">✓ Your answer is correct</b></div>':'<div class="review-line"><span>Your answer</span><b>'+esc(your==='Not answered'?'Not answered':your+') '+yourOpt.text)+'</b></div><div class="review-line"><span>Correct answer</span><b>'+q.answer+') '+co.text+'</b></div><div class="result-badge">'+res+'</div>')+'</div>'});$('review').innerHTML=h;screen('result');window.scrollTo({top:0,behavior:'smooth'})}function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}function saveReport(){let rows=test.map((q,i)=>{let your=answers[i]||'Not answered',yourOpt=q.options.find(o=>o.value===your),co=q.options.find(o=>o.value===q.answer),res=your===q.answer?'Correct':your==='Not answered'?'Unanswered':'Wrong';return '<tr><td>'+(i+1)+'</td><td>'+esc(q.question)+'</td><td>'+esc(your==='Not answered'?'Not answered':your+') '+yourOpt.text)+'</td><td>'+esc(q.answer+') '+co.text)+'</td><td>'+res+'</td></tr>'}).join('');let html='<!doctype html><html><body><h1>Fundamentals of Ethics MCQ Internal Test – Final Report</h1><p><b>Student Name :</b> '+esc(studentName)+'</p><p><b>Score:</b> '+$('score').textContent+' | <b>Percentage:</b> '+$('pct').textContent+' | <b>Status:</b> '+$('status').textContent+'</p><table border="1" cellpadding="7"><tr><th>No.</th><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></tr>'+rows+'</table></body></html>';let blob=new Blob([html],{type:'text/html'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Fundamentals_of_Ethics_Final_Report.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}function finish(){clearInterval(interval);submitted=false;test=[];answers={};pos=0;studentName='';$('name').value='';screen('start');setGreeting()}setGreeting();$('startBtn').onclick=startTest;$('prev').onclick=()=>{if(pos>0){pos--;render()}};$('next').onclick=()=>{if(pos<N-1){pos++;render()}};$('submit').onclick=()=>submit(false);$('save').onclick=saveReport;$('print').onclick=()=>window.print();$('startAgain').onclick=finish;
+
+function lockAnswerOptions(selector){const box=document.querySelector(selector);if(!box)return;box.querySelectorAll('input[type="radio"]').forEach(input=>input.disabled=true);box.querySelectorAll('.opt,.option').forEach(label=>label.classList.add('locked'));}
+function paintAnswerFeedback(q,selector,selected){const box=document.querySelector(selector);if(!box)return;box.querySelectorAll('.opt,.option').forEach(label=>label.classList.remove('correct-reveal'));if(!selected||selected===q.answer)return;box.querySelectorAll('input[type="radio"]').forEach(input=>{if(input.value===q.answer){const label=input.closest('.opt,.option');if(label)label.classList.add('correct-reveal');}});}
+
+
+</script></body></html>
