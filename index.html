@@ -162,6 +162,38 @@
     #module-dialog .module-home:focus-visible{outline:3px solid #8bb99a;outline-offset:2px}
     @media(max-width:560px){#module-dialog .module-header-actions{gap:6px}#module-dialog .module-home{min-height:36px;padding:7px 9px;font-size:12px}}
   </style>
+  <style id="all-chapter-tab-purple-magenta">
+    /* Bold purple/magenta chapter tabs consistently across every subject and resource window. */
+    #module-dialog .module-subtabs button {
+      box-sizing: border-box;
+      border: 1px solid #d8b4fe !important;
+      border-radius: 10px !important;
+      background: linear-gradient(135deg, #faf5ff 0%, #fdf2f8 100%) !important;
+      color: #86198f !important;
+      font-weight: 850 !important;
+      box-shadow: 0 2px 7px rgba(147, 51, 234, .10);
+      transition: background .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;
+    }
+    #module-dialog .module-subtabs button:hover {
+      border-color: #c026d3 !important;
+      background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%) !important;
+      color: #701a75 !important;
+    }
+    #module-dialog .module-subtabs button[aria-selected="true"] {
+      border-color: #a21caf !important;
+      background: linear-gradient(120deg, #7e22ce 0%, #c026d3 55%, #db2777 100%) !important;
+      color: #fff !important;
+      font-weight: 900 !important;
+      box-shadow: 0 4px 12px rgba(162, 28, 175, .24);
+    }
+    #module-dialog .module-subtabs button:focus-visible {
+      outline: 3px solid #e879f9 !important;
+      outline-offset: 2px;
+    }
+    @media(prefers-reduced-motion:reduce) {
+      #module-dialog .module-subtabs button { transition: none; }
+    }
+  </style>
   <style id="all-subject-window-cleanup">
     /* Apply the clean chapter window consistently to every subject and every resource sub-tab. */
     #module-dialog .study-guide-navigation-prompt{display:none!important}
