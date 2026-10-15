@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Study Guide Reader · Academic Hub</title>
+<html lang="ml"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Malayalam Study Reader · Academic Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}html{overflow-anchor:none}body{margin:0;background:#e9eee9;color:#173f35;font:14px/1.5 system-ui,sans-serif}
 .toolbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:10px;background:#f8faf7;border-bottom:1px solid #d6dfd5}
 button,input,select{font:inherit;color:inherit;background:white;border:1px solid #bdccbd;border-radius:8px;padding:7px 10px}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #b79e48;outline-offset:2px}input{width:62px}#pages{white-space:nowrap}
 main{padding:16px;overflow:auto;text-align:center}canvas{display:block;margin:0 auto;background:white;box-shadow:0 3px 14px #173f3518;max-width:none}.pdf-page{margin:0 auto 20px;scroll-margin-top:90px;background:white;box-shadow:0 3px 14px #173f3518;position:relative}.page-label{padding:6px;color:#52705b;font-size:12px}.page-loading{position:absolute;top:50%;left:0;right:0;color:#52705b}.pdf-page canvas{box-shadow:none}#status{margin:0;padding:8px 16px;text-align:center;background:#f8faf7}[hidden]{display:none!important}
+body.docx-mode{font-family:"Noto Sans Malayalam",system-ui,sans-serif;background:#f1f5f9;color:#172554}body.docx-mode main{max-width:1100px;margin:0 auto;text-align:left}.docx-wrapper{padding:18px!important;background:transparent!important}.docx{margin:0 auto 18px!important;box-shadow:0 3px 14px #173f3520!important}
 </style></head><body>
 <nav class="toolbar" aria-label="Reading controls">
 <label>Page <input id="page" type="number" min="1" value="1" disabled></label><span id="pages">of …</span>
@@ -72,10 +74,23 @@ window.addEventListener('scroll',()=>{if(scrolling)return;scrolling=true;request
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(el('zoom').value==='fit')render();},200);});
 try{
  const file=new URL(new URLSearchParams(location.search).get('file')||'',location.origin+'/');
- if(file.origin!==location.origin||!file.pathname.toLowerCase().endsWith('.pdf'))throw Error('Invalid PDF');
- const lib=await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs');
- lib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
- pdf=await lib.getDocument({url:file.href,isEvalSupported:false}).promise;
- el('page').max=pdf.numPages;controls();await render();
-}catch(error){el('status').textContent='Could not load the study guide. Refresh this reader to try again.';}
+ if(file.origin!==location.origin)throw Error('Invalid study guide');
+ if(file.pathname.toLowerCase().endsWith('.docx')){
+  document.querySelector('.toolbar').hidden=true;
+  document.body.classList.add('docx-mode');
+  el('status').textContent='Loading Word document…';
+  const response=await fetch(file.href);
+  if(!response.ok)throw Error('Could not fetch Word document');
+  if(!window.docx?.renderAsync)throw Error('Word document viewer did not load');
+  await window.docx.renderAsync(await response.arrayBuffer(),el('reader'),el('reader'),{className:'docx',inWrapper:true,breakPages:true,ignoreLastRenderedPageBreak:false});
+  el('status').textContent='Word document loaded · Scroll to read the complete module';
+ }else if(file.pathname.toLowerCase().endsWith('.pdf')){
+  const lib=await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs');
+  lib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
+  pdf=await lib.getDocument({url:file.href,isEvalSupported:false}).promise;
+  el('page').max=pdf.numPages;controls();await render();
+ }else throw Error('Unsupported study guide format');
+}catch(error){console.error(error);el('status').textContent='Could not load the study guide. Refresh this reader to try again.';}
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.6/dist/docx-preview.min.js"></script>
 </script></body></html>
