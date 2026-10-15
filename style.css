@@ -259,13 +259,18 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 .language-tab[role="button"]{cursor:pointer}
 .module-pdf-frame{color-scheme:light}
 @media(max-width:600px){
-  .module-pdf-frame{height:62vh;min-height:360px}
-  .module-dialog{align-items:end;padding:8px}
-  .module-panel{max-height:92vh;padding:18px 14px;border-radius:20px}
-  .module-tabs{gap:6px}
+  .module-pdf-frame{height:72vh;min-height:360px}
+  /* Expand the resource window on phones instead of showing it as a short half-screen sheet. */
+  .module-dialog{align-items:stretch;justify-items:stretch;padding:2px}
+  .module-panel{box-sizing:border-box;width:100%;max-width:none;height:98dvh;max-height:98dvh;min-height:98dvh;margin:0;padding:14px 12px;border-radius:14px;overflow-y:auto}
+  .module-header{gap:10px;padding-bottom:12px}
+  .module-header h2{font-size:clamp(24px,6vw,32px)}
+  .module-header p{font-size:15px;line-height:1.45}
+  .module-tabs{gap:6px;padding:12px 0 10px}
   .module-tabs button{min-height:44px;padding:8px 6px}
-  .module-subtabs{gap:6px}
+  .module-subtabs{gap:6px;padding-bottom:12px}
   .module-subtabs button{padding:8px 9px}
+  .module-content{min-height:100px}
   .module-pdf-card{grid-template-columns:42px minmax(0,1fr);gap:11px;padding:14px}
   .module-pdf-badge{width:40px;height:40px}
   .module-pdf-actions{grid-column:1/-1}
