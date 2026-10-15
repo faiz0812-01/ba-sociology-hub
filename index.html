@@ -1051,20 +1051,9 @@
       return modules([[],[],[],[]]);
     }
     function getBilingualEnglishStudyGuideLabel(value) {
-      const raw=String(value || '').trim();
-      if(/[അ-ൿ]/.test(raw)) return raw;
-      const translated=getMalayalamChapterLabel(raw);
-      if(translated!==raw) return raw+' · '+translated;
-      const moduleMatch=raw.match(/^Module\s+(\d+)\s*[·-]\s*(.+)$/i);
-      if(moduleMatch) {
-        const moduleMalayalam={'Listening':'ശ്രവണം','Speaking':'സംസാരിക്കൽ','Reading':'വായന','Writing':'എഴുത്ത്'};
-        return raw+' · മൊഡ്യൂൾ '+moduleMatch[1]+' · '+(moduleMalayalam[moduleMatch[2].trim()]||moduleMatch[2].trim());
-      }
-      const chapterMatch=raw.match(/^Chapter\s+(\d+)\s*[·-]\s*(.+)$/i);
-      if(chapterMatch) return raw+' · അധ്യായം '+chapterMatch[1]+' · '+chapterMatch[2].replace(/\s*·\s*English\s*\+\s*Malayalam/ig,'');
-      const general={'George Carlin on Soft Language':'ജോർജ് കാർലിൻ · മൃദുഭാഷ','Rip it Out':'റിപ്പ് ഇറ്റ് ഔട്ട്','I Have a Dream':'എനിക്ക് ഒരു സ്വപ്നമുണ്ട്','Art as a Social Work':'സാമൂഹിക പ്രവർത്തനമായി കല','The Frog Prince':'തവള രാജകുമാരൻ','Optimism: An Essay':'ശുഭാപ്തിവിശ്വാസം: ഒരു ലേഖനം','Ambedkar’s Speech':'അംബേദ്കറുടെ പ്രസംഗം','The World-Renowned Nose':'ലോകപ്രശസ്തമായ മൂക്ക്','Cinema Paradiso':'സിനിമ പാരഡീസോ'};
-      for(const key of Object.keys(general)) if(raw.includes(key)) return raw+' · '+general[key];
-      return raw+' · മലയാളം വിവർത്തനം';
+      // English Study Guide tabs must remain English-only; Malayalam resources
+      // are available separately in their own subject/resource tabs.
+      return String(value || '').trim();
     }
     function getMalayalamChapterLabel(value) {
       const raw=String(value || '').trim();
@@ -1426,7 +1415,7 @@
         button.setAttribute('aria-selected',String(!readingOnly && itemIndex===firstAvailableItemIndex));
         button.tabIndex=!readingOnly && itemIndex===firstAvailableItemIndex?0:-1;
         button.textContent=readingOnly?(subject==='English'?getBilingualEnglishStudyGuideLabel(item.chapter || item.label || item.title):getMalayalamChapterLabel(item.chapter || item.label || item.title)):(subject==='English'?getBilingualEnglishStudyGuideLabel(item.label):item.label);
-        button.lang=readingOnly?'ml':'en';
+        button.lang=subject==='English'?'en':(readingOnly?'ml':'en');
         button.addEventListener('click',()=>selectModuleItem(subject,medium,module,moduleIndex,itemIndex));
         moduleSubtabs.append(button);
       });
@@ -1487,7 +1476,7 @@
         button.setAttribute('aria-selected',String(moduleIndex===0));
         button.tabIndex=moduleIndex===0?0:-1;
         button.textContent=studyGuide?(subject==='English'?getBilingualEnglishStudyGuideLabel(module.name):getMalayalamChapterLabel(module.name)):module.name;
-        if(studyGuide) button.lang='ml';
+        if(studyGuide) button.lang=subject==='English'?'en':'ml';
         button.addEventListener('click',()=>renderModule(subject,medium,modules,moduleIndex));
         moduleTabs.append(button);
       });
