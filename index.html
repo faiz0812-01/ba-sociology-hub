@@ -150,6 +150,11 @@
     .ai-guide-version-tabs button:focus-visible{outline:3px solid #b6a7ff;outline-offset:2px}
     @media(max-width:560px){.ai-guide-version-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.ai-guide-version-tabs button{padding:8px 6px;font-size:12px}}
   </style>
+  <style id="manual-document-reader">
+    .module-reader-load{display:inline-flex;align-items:center;justify-content:center;margin:20px;padding:13px 22px;border:0;border-radius:12px;background:#235944;color:white;font:inherit;font-weight:700;cursor:pointer}
+    .module-reader-load:hover{background:#194334}
+    .module-reader-load:focus-visible{outline:3px solid #b79e48;outline-offset:3px}
+  </style>
 </head>
 <body id="top">
   <nav class="topbar">
@@ -1109,12 +1114,21 @@
         const readerHeading=document.createElement('div');
         readerHeading.className='module-pdf-reader-heading';
         readerHeading.textContent=item.fileType==='DOCX'?'Read this document on Academic Hub':'Read this PDF on Academic Hub';
-        const frame=document.createElement('iframe');
-        frame.className='module-pdf-frame';
-        frame.title=(item.title || item.label)+' '+(item.fileType || 'PDF')+' reader';
-        frame.loading=(readingOnly||item.fileType==='DOCX')?'eager':'lazy';
-        frame.src=(readingOnly||item.fileType==='DOCX')?'study-guide-reader.html?v=20261015-fast-reader&file='+encodeURIComponent(item.href.split('#')[0]):item.href;
-        reader.append(readerHeading,frame);
+        const loadReader=document.createElement('button');
+        loadReader.type='button';
+        loadReader.className='module-reader-load';
+        loadReader.textContent=item.fileType==='DOCX'?'Load document':'Load PDF';
+        loadReader.setAttribute('aria-label','Load '+(item.title || item.label)+' reader');
+        loadReader.addEventListener('click',()=>{
+          const frame=document.createElement('iframe');
+          frame.className='module-pdf-frame';
+          frame.title=(item.title || item.label)+' '+(item.fileType || 'PDF')+' reader';
+          frame.loading='eager';
+          frame.src=(readingOnly||item.fileType==='DOCX')?'study-guide-reader.html?v=20261015-fast-reader&file='+encodeURIComponent(item.href.split('#')[0]):item.href;
+          loadReader.remove();
+          reader.append(frame);
+        },{once:true});
+        reader.append(readerHeading,loadReader);
         moduleContent.append(reader);
       }
     }
