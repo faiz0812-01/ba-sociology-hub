@@ -1147,6 +1147,17 @@
       return getStudyGuideModulesSource(subject);
     }
     function getMcqPdfModules(subject) {
+      if(subject==='English') return [{
+        name:'English MCQ',
+        items:[{
+          label:'English MCQ Full Module',
+          title:'English · MCQ Full Module',
+          href:'English_MCQ_full_module.pdf',
+          medium:'English',
+          description:'Full-module English MCQ question paper PDF.',
+          embed:true
+        }]
+      }];
       if(subject==='Microeconomic Foundation') return [{
         name:'Question Banks',
         items:[
