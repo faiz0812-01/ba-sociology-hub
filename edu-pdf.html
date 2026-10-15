@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="വിദ്യാഭ്യാസത്തിന്റെ തത്ത്വചിന്ത: ലഭ്യമായ മലയാളം മൊഡ്യൂൾ PDF-കൾ">
+  <meta name="description" content="വിദ്യാഭ്യാസത്തിന്റെ തത്ത്വചിന്ത: ലഭ്യമായ മലയാളം പഠനസാമഗ്രികൾ">
   <title>വിദ്യാഭ്യാസത്തിന്റെ തത്ത്വചിന്ത | മലയാളം</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
   <main class="page-box">
     <header class="hero">
       <h1>വിദ്യാഭ്യാസത്തിന്റെ തത്ത്വചിന്ത</h1>
-      <p>മൊഡ്യൂൾ 1–3 · ലഭ്യമായ മലയാളം പഠനസാമഗ്രികൾ: മൊഡ്യൂൾ 1, 3</p>
+      <p>മൊഡ്യൂൾ 1–3 · ലഭ്യമായ മലയാളം പഠനസാമഗ്രികൾ: മൊഡ്യൂൾ 1, 2, 3</p>
     </header>
     <nav class="module-nav" aria-label="മൊഡ്യൂളുകളിലേക്കുള്ള കണ്ണികൾ">
       <a href="#module-1">മൊഡ്യൂൾ 1</a>
@@ -75,13 +75,16 @@
     <section class="module" id="module-2" aria-labelledby="module-2-title">
       <header class="module-heading">
         <h2 id="module-2-title">മൊഡ്യൂൾ 2</h2>
-        <p>PDF ലഭ്യമല്ല</p>
+        <p>മലയാളം പഠനസാമഗ്രി ലഭ്യമാണ്</p>
       </header>
       <div class="chapter-list">
-        <article class="chapter chapter-unavailable" style="--c1:#64748b;--c2:#94a3b8">
+        <article class="chapter" style="--c1:#4f46e5;--c2:#7c3aed">
           <div class="num">02</div>
-          <div class="chapter-copy"><h3>വിദ്യാഭ്യാസ തത്ത്വചിന്ത — മൊഡ്യൂൾ 2</h3><p>ഈ മൊഡ്യൂളിന്റെ മലയാളം PDF ഇതുവരെ ലഭ്യമല്ല.</p></div>
-          <span class="not-uploaded">PDF ലഭ്യമല്ല</span>
+          <div class="chapter-copy"><h3>വിദ്യാഭ്യാസ തത്ത്വചിന്ത — മൊഡ്യൂൾ 2</h3><p>മലയാളം പഠനരേഖ · Word ഡോക്യുമെന്റ്</p></div>
+          <div class="actions">
+            <a class="read-online" href="#" data-docx="%E0%B4%B5%E0%B4%BF%E0%B4%A6%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%AD%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%B8%20%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%B5%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D1.docx">സൈറ്റിൽ വായിക്കുക</a>
+            <a class="download" href="%E0%B4%B5%E0%B4%BF%E0%B4%A6%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%AD%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%B8%20%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%B5%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D1.docx" download>ഡൗൺലോഡ് ചെയ്യുക</a>
+          </div>
         </article>
       </div>
     </section>
@@ -108,7 +111,7 @@
 const dialog=document.getElementById('pdf-dialog'),frame=document.getElementById('pdf-frame');
 document.querySelectorAll('.read-online').forEach(link=>link.addEventListener('click',event=>{
  event.preventDefault();document.getElementById('reader-title').textContent=link.closest('.chapter').querySelector('h3').textContent;
- frame.src=link.href;dialog.showModal();
+ frame.src=link.dataset.docx?'https://docs.google.com/gview?embedded=1&url='+encodeURIComponent(new URL(link.dataset.docx,location.href).href):link.href;dialog.showModal();
 }));
 document.getElementById('reader-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('close',()=>frame.removeAttribute('src'));
