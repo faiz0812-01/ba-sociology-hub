@@ -63,163 +63,266 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 
 
 /* NoteSphere-inspired language tabs */
-.resource-list a.language-tab{
-  display:grid;
-  grid-template-columns:34px minmax(0,1fr) auto;
-  align-items:center;
-  gap:9px;
-  min-height:50px;
-  padding:6px 9px;
-  background:#ffffff;
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  color:#1e293b;
-  box-shadow:0 1px 3px rgba(15,23,42,.03);
-  transition:all .22s cubic-bezier(.16,1,.3,1);
-  text-decoration:none;
+.subjects-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
 }
-.resource-list a.language-tab:hover{
-  transform:translateY(-2px);
-  background:#ffffff;
-  border-color:#cbd5e1;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
+@media (max-width: 1200px) {
+  .subjects-container { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 }
-.resource-list a.language-tab:focus-visible{
-  outline:2px solid #818cf8;
-  outline-offset:2px;
-  border-color:#6366f1;
+@media (max-width: 950px) {
+  .subjects-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+}
+@media (max-width: 650px) {
+  .subjects-container { grid-template-columns: 1fr; gap: 12px; }
 }
 
-/* Distinct luxury badge & hover treatments */
-.resource-list a.language-tab>.language-badge{
-  display:grid;
-  place-items:center;
-  flex:0 0 34px;
-  width:34px;
-  height:34px;
-  border-radius:9px;
-  font:800 11.5px/1 Manrope,sans-serif;
-  letter-spacing:.25px;
-  transition:all .2s;
+/* Premium Subject Card Architecture */
+.subject-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s, border-color 0.22s;
+  overflow: hidden;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.subject-card:before {
+  display: none !important;
+}
+.subject-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.03);
 }
 
-/* English / LMS PDF */
-.resource-list a.language-tab--english>.language-badge{
-  background:linear-gradient(135deg,#eff6ff,#dbeafe);
-  color:#1d4ed8;
-  border:1px solid #bfdbfe;
+/* Card Cover Image */
+.subject-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 0 12px 0;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  filter: saturate(0.96);
 }
-.resource-list a.language-tab--english:hover{
-  border-color:#93c5fd;
-  box-shadow:0 8px 22px rgba(37,99,235,.12);
+@media (max-width: 700px) {
+  .subject-cover { aspect-ratio: 16 / 8; }
 }
-.resource-list a.language-tab--english:hover .language-arrow{
-  background:#eff6ff;
-  color:#1d4ed8;
-  border-color:#bfdbfe;
-}
-
-/* Malayalam Reading */
-.resource-list a.language-tab--malayalam>.language-badge{
-  background:linear-gradient(135deg,#fffbeb,#fef3c7);
-  color:#b45309;
-  border:1px solid #fde68a;
-  font-family:"Noto Sans Malayalam",sans-serif;
-  font-size:14px;
-}
-.resource-list a.language-tab--malayalam:hover{
-  border-color:#fcd34d;
-  box-shadow:0 8px 22px rgba(217,119,6,.12);
-}
-.resource-list a.language-tab--malayalam:hover .language-arrow{
-  background:#fffbeb;
-  color:#b45309;
-  border-color:#fde68a;
+.subject-card[data-subject="Malayalam"] .subject-cover {
+  object-position: center 35%;
 }
 
-/* Study Guide */
-.resource-list a.language-tab--study-guide>.language-badge{
-  background:linear-gradient(135deg,#f5f3ff,#ede9fe);
-  color:#6d28d9;
-  border:1px solid #ddd6fe;
+/* Top Meta Row (Icon + Tag) */
+.subject-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
 }
-.resource-list a.language-tab--study-guide:hover{
-  border-color:#c4b5fd;
-  box-shadow:0 8px 22px rgba(124,58,237,.14);
+.subject-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
 }
-.resource-list a.language-tab--study-guide:hover .language-arrow{
-  background:#f5f3ff;
-  color:#6d28d9;
-  border-color:#ddd6fe;
-}
-
-/* MCQ PDF */
-.resource-list a.language-tab--mcq-pdf>.language-badge{
-  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
-  color:#047857;
-  border:1px solid #a7f3d0;
-  font-size:10.5px;
-}
-.resource-list a.language-tab--mcq-pdf:hover{
-  border-color:#6ee7b7;
-  box-shadow:0 8px 22px rgba(5,150,105,.12);
-}
-.resource-list a.language-tab--mcq-pdf:hover .language-arrow{
-  background:#ecfdf5;
-  color:#047857;
-  border-color:#a7f3d0;
-}
-
-/* Arabic */
-.resource-list a.language-tab--arabic>.language-badge{
-  background:linear-gradient(135deg,#fdf2f8,#fce7f3);
-  color:#be185d;
-  border:1px solid #fbcfe8;
-}
-.resource-list a.language-tab--arabic:hover{
-  border-color:#f472b6;
-  box-shadow:0 8px 22px rgba(190,24,93,.12);
-}
-.resource-list a.language-tab--arabic:hover .language-arrow{
-  background:#fdf2f8;
-  color:#be185d;
-  border-color:#fbcfe8;
+.subject-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* Language copy typography */
-.language-copy{display:grid;min-width:0;gap:2px}
-.resource-list a.language-tab .language-copy strong{
-  overflow:hidden;
-  color:#0f172a;
-  font:800 11.2px/1.3 Manrope,sans-serif;
-  letter-spacing:-.15px;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-.language-copy small{
-  color:#64748b;
-  font-size:8.8px;
-  font-weight:600;
-  line-height:1.2;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+/* Subject Card Heading */
+.subject-card h3 {
+  color: #0f172a;
+  font-family: 'Manrope', sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  margin: 0 0 12px 0;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
 }
 
-@media(max-width:700px){
-  .resource-list a.language-tab{
-    min-height:48px;
-    grid-template-columns:30px minmax(0,1fr) auto;
-    gap:7px;
-    padding:6px 8px;
-  }
-  .resource-list a.language-tab>.language-badge{
-    width:30px;
-    height:30px;
-    flex-basis:30px;
-    border-radius:8px;
-    font-size:10px;
-  }
+/* Resource Tabs List */
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* Resource Action Tab Item */
+.resource-list a.language-tab {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 6px 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  color: #1e293b;
+  text-decoration: none;
+  font-family: 'Manrope', sans-serif;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.resource-list a.language-tab:hover {
+  transform: translateY(-1px);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+.resource-list a.language-tab:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Unified Tab Badges */
+.resource-list a.language-tab > .language-badge {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+/* Specific Badge Palettes */
+.resource-list a.language-tab--english > .language-badge {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.resource-list a.language-tab--english:hover {
+  border-color: #93c5fd;
+}
+.resource-list a.language-tab--english:hover .language-arrow {
+  color: #1d4ed8;
+}
+
+.resource-list a.language-tab--malayalam > .language-badge {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+  font-family: 'Noto Sans Malayalam', 'Manrope', sans-serif;
+  font-size: 13px;
+}
+.resource-list a.language-tab--malayalam:hover {
+  border-color: #fcd34d;
+}
+.resource-list a.language-tab--malayalam:hover .language-arrow {
+  color: #b45309;
+}
+
+.resource-list a.language-tab--study-guide > .language-badge {
+  background: #f5f3ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+  font-size: 10px;
+}
+.resource-list a.language-tab--study-guide:hover {
+  border-color: #c4b5fd;
+}
+.resource-list a.language-tab--study-guide:hover .language-arrow {
+  color: #6d28d9;
+}
+
+.resource-list a.language-tab--mcq-pdf > .language-badge {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-size: 9.5px;
+}
+.resource-list a.language-tab--mcq-pdf:hover {
+  border-color: #6ee7b7;
+}
+.resource-list a.language-tab--mcq-pdf:hover .language-arrow {
+  color: #047857;
+}
+
+.resource-list a.language-tab--arabic > .language-badge {
+  background: #fdf2f8;
+  color: #be185d;
+  border: 1px solid #fbcfe8;
+}
+.resource-list a.language-tab--arabic:hover {
+  border-color: #f472b6;
+}
+.resource-list a.language-tab--arabic:hover .language-arrow {
+  color: #be185d;
+}
+
+/* Tab Text Hierarchy */
+.resource-list a.language-tab .language-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.resource-list a.language-tab .language-copy strong {
+  overflow: hidden;
+  color: #0f172a;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.resource-list a.language-tab .language-copy small {
+  color: #64748b;
+  font-family: 'Manrope', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tab Arrow Icon */
+.resource-list a.language-tab .language-arrow {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: transparent;
+  border: 0;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform 0.2s, color 0.2s;
+}
+.resource-list a.language-tab:hover .language-arrow {
+  transform: translateX(2px);
 }
 
 /* Four subject cards per row on wide screens, with compact spacing. */
@@ -473,11 +576,9 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 
 
 /* Subject photographs and clear heading hierarchy. */
-.subject-card{--subject-card-padding:17px;padding:var(--subject-card-padding)}
-.subject-cover{display:block;width:calc(100% + 2 * var(--subject-card-padding));height:auto;aspect-ratio:16/9;object-fit:cover;margin:calc(-1 * var(--subject-card-padding)) calc(-1 * var(--subject-card-padding)) 16px;background:#e5ebe0;filter:saturate(.94)}
-.subject-card:before{z-index:1}
+/* Subject card padding handled in primary rules */
 h1,h2,h3,h4,h5,h6{font-weight:800!important}
-strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eyebrow,.language-copy strong,.chat-header strong,.brand-copy strong{font-weight:800!important}
+strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eyebrow,.chat-header strong,.brand-copy strong{font-weight:800!important}
 .section-heading p,.hero-description,.subject-card>p,.test-card>p,.community-intro>p,.support-section p,.module-header p,.ai-study-intro>p,.overview-highlight small,.brand-copy small,.language-copy small,.chat-header small,.ai-study-header small{font-weight:700}
 @media(max-width:700px){.subject-cover{aspect-ratio:16/8}}
 
