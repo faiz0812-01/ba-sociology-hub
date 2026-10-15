@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111114">
+<title>Fundamentals of Ethics | Mock Test</title>
+<style>
+:root{color-scheme:light;--ink:#182033;--muted:#64748b;--purple:#6d28d9;--line:#e2e8f0}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f5f3ff,#eff6ff);font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.55}
+header{padding:28px 18px 20px;text-align:center;background:#171326;color:white;border-bottom:4px solid #8b5cf6}
+header .eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;color:#c4b5fd}h1{margin:8px 0;font-size:clamp(25px,5vw,38px)}header p{margin:0;color:#ddd6fe}
+main{max-width:850px;margin:22px auto;padding:0 14px 40px}.intro,.question,.result{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 6px 20px #1e1b4b0a}
+.intro{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{display:inline-block;background:#ede9fe;color:#5b21b6;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px}
+.question h2{font-size:17px;margin:0 0 12px}.options{display:grid;gap:8px}.option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;cursor:pointer}.option:hover{background:#f5f3ff;border-color:#c4b5fd}.option input{margin-top:5px;accent-color:var(--purple)}.option.correct{border-color:#16a34a;background:#f0fdf4}.option.wrong{border-color:#dc2626;background:#fef2f2}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.btn{border:0;border-radius:11px;padding:13px 18px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block}.primary{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white}.secondary{background:#e2e8f0;color:#1e293b}.result{display:none;border-left:5px solid #7c3aed}.result h2{margin:0 0 5px}.explanation{display:none;color:#475569;font-size:14px;margin:10px 0 0}.foot{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
+@media(max-width:520px){main{margin-top:14px}.intro,.question{padding:15px}.btn{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">ACADEMIC HUB · EXAM PRACTICE</div><h1>Fundamentals of Ethics</h1><p>Mock Test · 20 Multiple-Choice Questions</p></header>
+<main>
+<section class="intro"><div><strong>Instructions</strong><div style="color:#64748b;font-size:14px">Choose one answer for each question, then select Submit Test to see your score and explanations.</div></div><span class="pill">20 Questions · 20 Marks</span></section>
+<form id="quiz"><div id="questions"></div><div class="actions"><button class="btn primary" type="submit">Submit Test</button><button class="btn secondary" type="button" id="reset">Try Again</button><a class="btn secondary" href="index.html">Back to Hub</a></div></form>
+<section class="result" id="result" aria-live="polite"><h2 id="score"></h2><p id="feedback"></p></section>
+<p class="foot">Practice resource for learning. Review your answers after submitting.</p>
+</main>
+<script>
+const questions = [
+{q:"What is the central concern of ethics?",o:["The study of stars","The study of right and wrong conduct","The study of numbers","The study of language only"],a:1,e:"Ethics examines moral values, principles, and judgments about right and wrong."},
+{q:"Which branch of ethics asks what moral terms mean?",o:["Meta-ethics","Applied ethics","Descriptive sociology","Aesthetics"],a:0,e:"Meta-ethics studies the meaning and foundations of moral concepts."},
+{q:"Normative ethics primarily seeks to:",o:["Record weather patterns","Explain grammar","Establish standards for right action","Classify rocks"],a:2,e:"Normative ethics develops principles and standards for moral conduct."},
+{q:"Applied ethics deals with:",o:["Only abstract symbols","Practical moral issues in real life","The movement of planets","Mathematical proofs only"],a:1,e:"Applied ethics considers issues such as medical, environmental, and professional ethics."},
+{q:"Who is associated with the principle of the greatest happiness?",o:["Jeremy Bentham","René Descartes","Auguste Comte","Thomas Hobbes"],a:0,e:"Bentham is a key founder of classical utilitarianism."},
+{q:"Utilitarianism judges actions mainly by their:",o:["Age","Consequences for overall happiness or welfare","Popularity alone","Tradition alone"],a:1,e:"Utilitarian theories assess actions by their consequences for well-being."},
+{q:"Immanuel Kant is most closely associated with:",o:["Deontological ethics","Ethical egoism only","Relativism only","Logical positivism"],a:0,e:"Kantian ethics emphasizes duty and principles that can be universalized."},
+{q:"In Kantian ethics, a categorical imperative is a:",o:["Personal preference","Moral command not dependent on a particular desire","Legal punishment","Scientific hypothesis"],a:1,e:"A categorical imperative applies unconditionally to rational agents."},
+{q:"Virtue ethics focuses mainly on:",o:["Character and virtues","Profit alone","Punishment alone","Public opinion"],a:0,e:"Virtue ethics asks what kind of person one should become."},
+{q:"Which philosopher is strongly linked with classical virtue ethics?",o:["Aristotle","Karl Marx","John Locke","Francis Bacon"],a:0,e:"Aristotle developed a major account of virtue and human flourishing."},
+{q:"Moral relativism generally holds that moral judgments:",o:["Are identical in every culture","May depend on cultural or individual frameworks","Are always mathematical","Never change"],a:1,e:"Relativism challenges the idea that all moral standards are universally fixed."},
+{q:"Ethical egoism argues that a person should:",o:["Always ignore personal interests","Act in their own self-interest","Never make choices","Follow every custom"],a:1,e:"Ethical egoism treats self-interest as the basis of moral action."},
+{q:"Which is an example of professional ethics?",o:["Maintaining confidentiality when required","Spreading private client information","Falsifying records","Accepting every gift without question"],a:0,e:"Professional ethics includes duties such as confidentiality, honesty, and responsibility."},
+{q:"Academic plagiarism is ethically problematic because it:",o:["Credits every source correctly","Presents another person's work as one's own","Improves citation quality","Is required in research"],a:1,e:"Plagiarism misrepresents authorship and undermines academic integrity."},
+{q:"Which value is most directly opposed to dishonesty?",o:["Integrity","Prejudice","Negligence","Greed"],a:0,e:"Integrity involves honesty and consistency between principles and actions."},
+{q:"The principle of justice is commonly concerned with:",o:["Fairness and equitable treatment","Avoiding all responsibility","Personal taste in art","Memorizing facts"],a:0,e:"Justice concerns fairness, rights, and the distribution of benefits and burdens."},
+{q:"In research ethics, informed consent means participants:",o:["Are forced to take part","Receive relevant information and voluntarily agree","Must hide their identity from researchers","Cannot withdraw under any circumstances"],a:1,e:"Informed consent requires adequate information and voluntary participation."},
+{q:"Environmental ethics examines moral responsibilities toward:",o:["Only financial markets","The natural environment and non-human life","Only historical documents","Grammar rules"],a:1,e:"Environmental ethics considers duties toward ecosystems, animals, and future generations."},
+{q:"Which action best demonstrates ethical leadership?",o:["Hiding mistakes","Applying rules fairly and accepting accountability","Taking credit for others' work","Discouraging questions"],a:1,e:"Ethical leadership requires fairness, transparency, and accountability."},
+{q:"Why is critical reflection important in ethical decision-making?",o:["It removes the need for evidence","It helps evaluate reasons, values, and likely consequences","It guarantees everyone will agree","It replaces responsibility"],a:1,e:"Reflection helps people consider competing values, reasons, and outcomes before acting."}
+];
+const root=document.getElementById("questions");
+function render(){root.innerHTML=questions.map((item,i)=>'<section class="question" data-question="'+i+'"><h2>'+(i+1)+'. '+item.q+'</h2><div class="options">'+item.o.map((option,j)=>'<label class="option"><input type="radio" name="q'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+'. '+option+'</span></label>').join('')+'</div><p class="explanation">'+item.e+'</p></section>').join('');document.getElementById("result").style.display="none";}
+document.getElementById("quiz").addEventListener("submit",function(event){event.preventDefault();let score=0,answered=0;questions.forEach((item,i)=>{const card=root.querySelector('[data-question="'+i+'"]');const chosen=card.querySelector('input:checked');const labels=card.querySelectorAll('.option');labels.forEach((label,j)=>{label.classList.remove('correct','wrong');if(j===item.a)label.classList.add('correct');});if(chosen){answered++;if(Number(chosen.value)===item.a)score++;else labels[Number(chosen.value)].classList.add('wrong');}card.querySelector('.explanation').style.display='block';});const result=document.getElementById("result");result.style.display="block";document.getElementById("score").textContent="Your Score: "+score+" / "+questions.length;document.getElementById("feedback").textContent="You answered "+answered+" of "+questions.length+" questions. "+(score>=16?"Excellent work!":score>=12?"Good effort—review the explanations and try again.":"Keep practising—read the explanations and attempt the test again.");result.scrollIntoView({behavior:"smooth",block:"start"});});
+document.getElementById("reset").addEventListener("click",()=>{render();window.scrollTo({top:0,behavior:"smooth"});});
+render();
+</script>
+</body>
+</html>
