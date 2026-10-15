@@ -13,6 +13,8 @@ body.docx-mode{font-family:"Noto Sans Malayalam",system-ui,sans-serif;background
 <label>Zoom <select id="zoom" disabled><option value="fit">Fit width</option><option value=".75">75%</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
 </nav><p id="status" role="status" aria-live="polite">Loading study guide…</p>
 <main id="reader" aria-label="All study guide pages"></main>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.6/dist/docx-preview.min.js"></script>
 <script type="module">
 const el=id=>document.getElementById(id);
 // Shared reading-only interaction for every subject study guide.
@@ -91,6 +93,4 @@ try{
   el('page').max=pdf.numPages;controls();await render();
  }else throw Error('Unsupported study guide format');
 }catch(error){console.error(error);el('status').textContent='Could not load the study guide. Refresh this reader to try again.';}
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.6/dist/docx-preview.min.js"></script>
 </script></body></html>
