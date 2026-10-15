@@ -1233,17 +1233,18 @@
         moduleContent.append(reader);
       }
     }
-    function showStudyGuideNavigationPrompt(moduleName) {
+    function showStudyGuideNavigationPrompt(moduleName,malayalam=false) {
       moduleContent.replaceChildren();
       const prompt=document.createElement('div');
       prompt.className='study-guide-navigation-prompt';
       const icon=document.createElement('span');
       icon.className='study-guide-navigation-icon';
       icon.textContent='▤';
+      const displayName=malayalam?getMalayalamChapterLabel(moduleName):moduleName;
       const heading=document.createElement('strong');
-      heading.textContent=moduleName+' · Chapter list';
+      heading.textContent=malayalam?displayName+' · അധ്യായങ്ങളുടെ പട്ടിക':displayName+' · Chapter list';
       const copy=document.createElement('p');
-      copy.textContent='Choose a chapter above to open its PDF. The reader will stay closed until you select a chapter.';
+      copy.textContent=malayalam?'മുകളിലെ അധ്യായം തിരഞ്ഞെടുക്കുക. തുടർന്ന് അതിന്റെ PDF തുറക്കാം.':'Choose a chapter above to open its PDF. The reader will stay closed until you select a chapter.';
       prompt.append(icon,heading,copy);
       moduleContent.append(prompt);
     }
@@ -1347,7 +1348,7 @@
       moduleSubtabs.setAttribute('role','tablist');
       moduleSubtabs.setAttribute('aria-label','Malayalam chapters');
       moduleSubtabs.style.display='';
-      moduleDescription.textContent=module.summary+'. Choose a chapter, then select the Malayalam PDF you want to read.';
+      moduleDescription.textContent=getMalayalamChapterLabel(module.name)+' · ഒരു അധ്യായം തിരഞ്ഞെടുക്കുക, തുടർന്ന് വായിക്കാൻ മലയാളം PDF തിരഞ്ഞെടുക്കുക.';
       const selectChapter=chapterIndex=>{
         Array.from(moduleSubtabs.children).forEach((button,index)=>{
           button.setAttribute('aria-selected',String(index===chapterIndex));
@@ -1398,7 +1399,7 @@
         button.tabIndex=index===moduleIndex?0:-1;
       });
       // Keep the PDF reader closed until the student explicitly selects a chapter.
-      showStudyGuideNavigationPrompt(module.name);
+      showStudyGuideNavigationPrompt(module.name,true);
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
