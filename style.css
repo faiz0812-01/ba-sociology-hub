@@ -783,3 +783,41 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
 }
 @media(prefers-reduced-motion:reduce){.quick-stats .stat{transition:none}}
 
+
+
+/* Compact, navigation-first Study Guide layout (mobile friendly). */
+.study-guide-navigation-prompt{
+  display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;gap:8px 12px;
+  padding:16px;border:1px dashed #cbd8ce;border-radius:14px;background:linear-gradient(135deg,#f7fbf7,#f1f7f3);
+  color:#244d3a;
+}
+.study-guide-navigation-icon{
+  grid-row:span 2;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;
+  background:#e1f1e5;color:#256044;font-size:22px;font-weight:800;
+}
+.study-guide-navigation-prompt strong{font-size:15px;font-weight:850;line-height:1.35}
+.study-guide-navigation-prompt p{margin:0;color:#607568;font-size:13px;line-height:1.5}
+.module-panel{width:min(760px,100%);padding:clamp(16px,3vw,26px);gap:0}
+.module-header{gap:12px;padding-bottom:12px}
+.module-header h2{font-size:clamp(24px,2.6vw,32px)}
+.module-header p{font-size:14px;line-height:1.45}
+.module-tabs{gap:6px;padding:12px 0 9px}
+.module-tabs button{min-height:40px;padding:7px 8px;font-size:13px;line-height:1.25;border-radius:9px}
+.module-subtabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,155px),1fr));gap:6px;padding:3px 0 12px}
+.module-subtabs button{min-width:0;min-height:38px;padding:8px 9px;font-size:12px;line-height:1.35;overflow-wrap:anywhere;border-radius:9px}
+.module-content{min-height:90px}
+@media(max-width:560px){
+  .module-panel{padding:14px 12px;max-height:94vh;border-radius:17px}
+  .module-header{padding-bottom:10px}
+  .module-header h2{font-size:23px}
+  .module-header p{font-size:12px}
+  .module-eyebrow{font-size:9px}
+  .module-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:10px 0 8px}
+  .module-tabs button{min-height:36px;padding:6px 7px;font-size:12px}
+  .module-subtabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .module-subtabs button{min-height:36px;padding:7px 6px;font-size:11px}
+  .study-guide-navigation-prompt{grid-template-columns:34px minmax(0,1fr);padding:12px;gap:7px 10px}
+  .study-guide-navigation-icon{width:34px;height:34px;font-size:18px}
+  .study-guide-navigation-prompt strong{font-size:13px}
+  .study-guide-navigation-prompt p{font-size:11px}
+}
