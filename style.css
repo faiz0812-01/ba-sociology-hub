@@ -1038,3 +1038,18 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   background:transparent;
   box-shadow:none;
 }
+
+
+/* All subject tabs: remove the Academic Hub PDF Library title/instruction card, retaining close control. */
+#module-dialog > .module-panel > .module-header > div{
+  display:none !important;
+}
+#module-dialog > .module-panel > .module-header{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  min-height:0;
+  margin:0;
+  padding:0 0 6px;
+  gap:0;
+}
