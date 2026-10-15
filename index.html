@@ -1150,7 +1150,7 @@
       moduleSubtabs.setAttribute('aria-label','PDFs');
       const firstAvailableItemIndex=Math.max(0,module.items.findIndex(item=>item.href));
       moduleSubtabs.replaceChildren();
-      moduleSubtabs.style.display=module.items.length>1?'':'none';
+      moduleSubtabs.style.display=(module.items.length>1 || moduleDialog.dataset.readingOnly==='true')?'':'none';
       module.items.forEach((item,itemIndex)=>{
         const button=document.createElement('button');
         button.type='button';
