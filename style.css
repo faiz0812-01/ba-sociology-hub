@@ -919,3 +919,87 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .module-subtabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
   .module-subtabs button{min-height:34px;padding:6px 7px;font-size:11px}
 }
+
+
+/* Malayalam Study Guide: clean mobile module row, chapter row below, and generous vertical rhythm. */
+.module-dialog--malayalam[data-reading-only="true"] .module-tabs{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:stretch;
+  gap:10px;
+  margin:8px 0 20px;
+  padding:12px 0 16px;
+  border-bottom:1px solid #e7eaf1;
+}
+.module-dialog--malayalam[data-reading-only="true"] .module-tabs button{
+  min-width:0;
+  min-height:48px;
+  padding:9px 6px;
+  font-size:13px;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+.module-dialog--malayalam[data-reading-only="true"] .module-subtabs{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:10px;
+  margin:0 0 22px;
+  padding:4px 0 18px;
+  border-bottom:1px solid #e7eaf1;
+}
+.module-dialog--malayalam[data-reading-only="true"] .module-subtabs button{
+  min-width:0;
+  min-height:42px;
+  padding:9px 10px;
+  font-size:12px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
+  white-space:normal;
+}
+.module-dialog--malayalam[data-reading-only="true"] .module-subtabs button[aria-selected="true"]{
+  background:#e5f5eb;
+  color:#17633d;
+  border-color:#8fc9a4;
+  box-shadow:0 0 0 2px rgba(39,130,78,.08);
+}
+.module-dialog--malayalam[data-reading-only="true"] .module-content{
+  margin-top:8px;
+  padding-top:8px;
+}
+@media(max-width:560px){
+  .module-dialog--malayalam[data-reading-only="true"] .module-panel{
+    padding:16px 12px 22px;
+    max-height:92dvh;
+    overflow-y:auto;
+  }
+  .module-dialog--malayalam[data-reading-only="true"] .module-tabs{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:6px;
+    margin:6px 0 20px;
+    padding:10px 0 16px;
+  }
+  .module-dialog--malayalam[data-reading-only="true"] .module-tabs button{
+    min-height:44px;
+    padding:7px 3px;
+    font-size:clamp(9px,2.8vw,12px);
+    border-radius:9px;
+  }
+  .module-dialog--malayalam[data-reading-only="true"] .module-subtabs{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+    margin-bottom:22px;
+    padding-bottom:18px;
+  }
+  .module-dialog--malayalam[data-reading-only="true"] .module-subtabs button{
+    min-height:42px;
+    padding:9px 7px;
+    font-size:11px;
+    border-radius:9px;
+  }
+}
+@media(max-width:350px){
+  .module-dialog--malayalam[data-reading-only="true"] .module-tabs{gap:4px}
+  .module-dialog--malayalam[data-reading-only="true"] .module-tabs button{padding-inline:2px;font-size:9px}
+}
