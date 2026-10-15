@@ -1021,3 +1021,20 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
     padding-bottom:4px;
   }
 }
+
+
+/* Ensure the Malayalam Study Guide title/instruction card is fully removed; keep the close button. */
+#module-dialog.module-dialog--malayalam[data-reading-only="true"] > .module-panel > .module-header > div{
+  display:none !important;
+}
+#module-dialog.module-dialog--malayalam[data-reading-only="true"] > .module-panel > .module-header{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  min-height:0;
+  margin:0;
+  padding:0 0 6px;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+}
