@@ -926,7 +926,7 @@
       const modules=(sets)=>{const names=moduleNames[subject]||['Module 1','Module 2','Module 3','Module 4'];return names.map((name,i)=>({name,items:sets[i]?.length?sets[i]:[empty(name)]}));};
       if(subject==='Philosophy of AI') return getAiStudyGuideModules();
       if(subject==='Sociology') return modules([
-        [item('Syllabus · Introduction to Sociology','Sociology · Syllabus','Syllabus_Introduction_to_Sociology.pdf','English','Course syllabus PDF')],
+        [empty('Syllabus · Introduction to Sociology')],
         [empty('Module 1 · Introducing Sociology')],
         [empty('Module 2 · Practicing Sociology')],
         [
@@ -939,7 +939,7 @@
           item('Part 5 · Stages of Socialization','Sociology · Module 3 · Part 5 · Stages of Socialization','Stage_of_Socialization_Module_3-v3.pdf','English')
         ],
         [empty('Module 4 · Sociology and Society')],
-        [item('Course Assignment','Sociology · Module 5 · Course Assignment','Sociology_Course_Assignment.pdf','English','Course assignment PDF')]
+        [empty('Module 5 · Perceiving Social Dynamics · Course Assignment')]
       ]);
       if(subject==='Philosophy of Education') return modules([
         [
@@ -971,8 +971,8 @@
           item('Poverty · English + Malayalam lecture notes','Indian Economy · Module 2 · Bilingual Poverty Notes','Poverty_Lecture_Note_English_Malayalam.pdf')
         ],
         [item('Module 3 · Inequality','Indian Economy · Module 3 · Inequality','Development%20Issues%20in%20Indian%20Economy/English/Module%203%20-%20Inequality.pdf','English')],
-        [item('Module 4 · Unemployment','Indian Economy · Module 4 · Unemployment','Development%20Issues%20in%20Indian%20Economy/English/Module%204%20-%20Unemployment.pdf','English','Module 4 unemployment notes')],
-        [item('Module 5 · Open Ended','Indian Economy · Module 5 · Open Ended','Development%20Issues%20in%20Indian%20Economy/English/Module%205%20-%20Open%20Ended.pdf','English','Module 5 open-ended notes')]
+        [empty('Module 4 · Unemployment')],
+        [empty('Module 5 · Open Ended')]
       ]);
       if(subject==='English') return [
   {
