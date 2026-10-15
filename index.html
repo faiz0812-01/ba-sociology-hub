@@ -916,21 +916,30 @@
       // contains chapter/document tabs. Only link PDFs that exist in the repository.
       const item=(label,title,href,medium='Bilingual',description='Study guide PDF · English + Malayalam')=>({label,title,href,medium,description,embed:true});
       const empty=(module)=>({label:'Chapter PDFs awaiting upload',title:subject+' · '+module+' · Study guide files',medium:'Bilingual',description:'This module is ready for chapter-wise PDFs. No matching file is currently available in the repository.'});
-      const modules=(sets)=>[1,2,3,4].map(n=>({name:subject==='Sociology' && n===3?'Module 3 · Individual and Society':'Module '+n,items:sets[n-1]?.length?sets[n-1]:[empty('Module '+n)]}));
+      const moduleNames={
+        'Sociology':['Syllabus','Module 1 · Introducing Sociology','Module 2 · Practicing Sociology','Module 3 · Individual and Society','Module 4 · Sociology and Society','Module 5 · Perceiving Social Dynamics'],
+        'Development Issues in Indian Economy':['Module 1 · Historical Precedents of Development Issues of Indian Economy','Module 2 · Poverty','Module 3 · Inequality','Module 4 · Unemployment','Module 5 · Open Ended'],
+        'Philosophy of Education':['Module 1 · Philosophical Basis of Education','Module 2 · Western Approach to Educational Philosophy','Module 3 · Indian Approach to Educational Philosophy'],
+        'Malayalam':['Module 1 · Gadyam & Vivarthanam','Module 2 · Kadha & Novel','Module 3 · Kavitha','Module 4 · Drishya Kalasahithyam & Cinema'],
+        'English':['Module 1 · Listening','Module 2 · Speaking','Module 3 · Reading','Module 4 · Writing']
+      };
+      const modules=(sets)=>{const names=moduleNames[subject]||['Module 1','Module 2','Module 3','Module 4'];return names.map((name,i)=>({name,items:sets[i]?.length?sets[i]:[empty(name)]}));};
       if(subject==='Philosophy of AI') return getAiStudyGuideModules();
       if(subject==='Sociology') return modules([
-        [empty('Module 1')],
-        [empty('Module 2')],
+        [item('Syllabus · Introduction to Sociology','Sociology · Syllabus','Syllabus_Introduction_to_Sociology.pdf','English','Course syllabus PDF')],
+        [empty('Module 1 · Introducing Sociology')],
+        [empty('Module 2 · Practicing Sociology')],
         [
-          item('Individual and Society','Sociology · Module 3 · Individual and Society','Module_III_Individual_and_Society_.pdf','English','English study guide · Module 3'),
+          item('Chapter 3 · Individual and Society','Sociology · Module 3 · Individual and Society','Module_III_Individual_and_Society_.pdf','English','English study guide · Module 3'),
           item('Part 2 · Individual and Society','Sociology · Module 3 · Part 2 · Individual and Society','Module3_Individual_and_Society_Part2_.pdf','English'),
           item('Part 3 · Social Group','Sociology · Module 3 · Part 3 · Social Group','Social_Group_Module_3_Part_3_.pdf','English'),
           item('Part 3 (Second Part) · Social Group','Sociology · Module 3 · Part 3 (Second Part) · Social Group','Social_Group_Module_3_Part_3_Second_Part.pdf','English'),
-          item('വ്യക്തിയും സമൂഹവും: സാമൂഹിക ഇടപെടലുകളുടെ അടിസ്ഥാനങ്ങൾ','Sociology · Module 3 · വ്യക്തിയും സമൂഹവും: സാമൂഹിക ഇടപെടലുകളുടെ അടിസ്ഥാനങ്ങൾ','Social_Interaction_Dynamics.pdf','English'),
-          item('Part 4 (First Part) · Socialization','Sociology · Module 3 · Part 4 (First Part) · Socialization','module3_Socialization_part4.pdf','English'),
-          item('Part 5 · Stage of Socialization','Sociology · Module 3 · Part 5 · Stage of Socialization','Stage_of_Socialization_Module_3-v3.pdf','English')
+          item('Social Interaction Dynamics','Sociology · Module 3 · Social Interaction Dynamics','Social_Interaction_Dynamics.pdf','English'),
+          item('Part 4 · Socialization','Sociology · Module 3 · Part 4 · Socialization','module3_Socialization_part4.pdf','English'),
+          item('Part 5 · Stages of Socialization','Sociology · Module 3 · Part 5 · Stages of Socialization','Stage_of_Socialization_Module_3-v3.pdf','English')
         ],
-        [empty('Module 4')]
+        [empty('Module 4 · Sociology and Society')],
+        [item('Course Assignment','Sociology · Module 5 · Course Assignment','Sociology_Course_Assignment.pdf','English','Course assignment PDF')]
       ]);
       if(subject==='Philosophy of Education') return modules([
         [
@@ -939,8 +948,9 @@
           item('Part 4 · Study notes','Philosophy of Education · Module 1 · Part 4','Philosophy_of_Education_Module1_Part4-v5.pdf','English','English study material · Module 1 · Part 4')
         ],
         [empty('Module 2')],
-        [item('Module 3 · Malayalam PDF','Philosophy of Education · Module 3 · Malayalam','Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_3.pdf','Malayalam','Uploaded Malayalam module')],
-        [empty('Module 4')]
+        [
+          item('Module 3 · Course Document (Malayalam)','Philosophy of Education · Module 3 · Indian Approach · Malayalam','Philosophy%20of%20Education/Malayalam%20PDF/Philosophy_Education_Malayalam_Module_3.pdf','Malayalam','Module 3 Indian approach · Malayalam PDF')
+        ]
       ]);
       if(subject==='Development Issues in Indian Economy') return modules([
         [
@@ -961,7 +971,8 @@
           item('Poverty · English + Malayalam lecture notes','Indian Economy · Module 2 · Bilingual Poverty Notes','Poverty_Lecture_Note_English_Malayalam.pdf')
         ],
         [item('Module 3 · Inequality','Indian Economy · Module 3 · Inequality','Development%20Issues%20in%20Indian%20Economy/English/Module%203%20-%20Inequality.pdf','English')],
-        [empty('Module 4')]
+        [item('Module 4 · Unemployment','Indian Economy · Module 4 · Unemployment','Development%20Issues%20in%20Indian%20Economy/English/Module%204%20-%20Unemployment.pdf','English','Module 4 unemployment notes')],
+        [item('Module 5 · Open Ended','Indian Economy · Module 5 · Open Ended','Development%20Issues%20in%20Indian%20Economy/English/Module%205%20-%20Open%20Ended.pdf','English','Module 5 open-ended notes')]
       ]);
       if(subject==='English') return [
   {
