@@ -1280,8 +1280,8 @@
         button.setAttribute('aria-selected',String(index===moduleIndex));
         button.tabIndex=index===moduleIndex?0:-1;
       });
-      if(chapters.length) selectChapter(0);
-      else showStudyGuideNavigationPrompt(module.name);
+      // Keep the PDF reader closed until the student explicitly selects a chapter.
+      showStudyGuideNavigationPrompt(module.name);
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
