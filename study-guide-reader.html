@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="ml"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Malayalam Study Reader · Academic Hub</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+<html lang="ml"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Study Guide Reader · Academic Hub</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <style>
 *{box-sizing:border-box}html{overflow-anchor:none}body{margin:0;background:#e9eee9;color:#173f35;font:14px/1.5 system-ui,sans-serif}
 .toolbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:10px;background:#f8faf7;border-bottom:1px solid #d6dfd5}
@@ -11,10 +11,9 @@ body.docx-mode{font-family:"Noto Sans Malayalam",system-ui,sans-serif;background
 <nav class="toolbar" aria-label="Reading controls">
 <label>Page <input id="page" type="number" min="1" value="1" disabled></label><span id="pages">of …</span>
 <label>Zoom <select id="zoom" disabled><option value="fit">Fit width</option><option value=".75">75%</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
+<button id="retry" type="button" hidden>Retry loading</button>
 </nav><p id="status" role="status" aria-live="polite">Loading study guide…</p>
 <main id="reader" aria-label="All study guide pages"></main>
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.6/dist/docx-preview.min.js"></script>
 <script type="module">
 const el=id=>document.getElementById(id);
 // Shared reading-only interaction for every subject study guide.
@@ -25,55 +24,83 @@ function controls(){el('page').disabled=!pdf;el('zoom').disabled=!pdf;el('page')
 async function render(){
  if(!pdf)return;
  const currentGeneration=++generation;
+ const resumePage=Math.max(1,Math.min(pdf.numPages,pageNumber));
  if(observer)observer.disconnect();
- if(activeTask)activeTask.cancel();
+ if(activeTask){activeTask.cancel();activeTask=null;}
  el('reader').replaceChildren();sections=[];queue=Promise.resolve();
- el('status').textContent=pdf.numPages+' pages · Scroll to read the complete guide';
- observer=new IntersectionObserver(entries=>{
-  for(const entry of entries){
-   if(!entry.isIntersecting)continue;
-   observer.unobserve(entry.target);
-   queue=queue.then(async()=>{
-    if(currentGeneration!==generation)return;
-    const section=entry.target,number=Number(section.dataset.page);
-    try{
-     const page=await pdf.getPage(number);if(currentGeneration!==generation)return;
-     const viewport=page.getViewport({scale:Number(section.dataset.scale)});
-     const canvas=document.createElement('canvas');
-     const ratio=Math.min(window.devicePixelRatio||1,1.5);
-     canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);
-     canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';
-     canvas.setAttribute('role','img');canvas.setAttribute('aria-label','Study guide page '+number+' of '+pdf.numPages);
-     section.append(canvas);
-     const task=page.render({canvasContext:canvas.getContext('2d'),viewport,transform:ratio!==1?[ratio,0,0,ratio,0,0]:null});
-     activeTask=task;await task.promise;if(activeTask===task)activeTask=null;
-     section.querySelector('.page-loading')?.remove();
-    }catch(error){if(currentGeneration===generation)section.querySelector('.page-loading').textContent='Could not display this page. Refresh to try again.';}
-   });
-  }
- },{rootMargin:'1000px 0px'});
- for(let number=1;number<=pdf.numPages;number++){
-  const page=await pdf.getPage(number);if(currentGeneration!==generation)return;
+ el('status').textContent='Loading page '+resumePage+' of '+pdf.numPages+'…';
+ const firstPage=await pdf.getPage(1);
+ if(currentGeneration!==generation)return;
+ const fitScale=page=>{
   const original=page.getViewport({scale:1});
-  const scale=el('zoom').value==='fit'?Math.max(.25,Math.min(2,(el('reader').clientWidth-32)/original.width)):Number(el('zoom').value);
-  const viewport=page.getViewport({scale});
+  return el('zoom').value==='fit'?Math.max(.25,Math.min(2,(el('reader').clientWidth-32)/original.width)):Number(el('zoom').value);
+ };
+ const estimate=firstPage.getViewport({scale:fitScale(firstPage)});
+ async function renderPage(section,knownPage){
+  if(currentGeneration!==generation || section.dataset.rendered==='true')return;
+  const number=Number(section.dataset.page);
+  try{
+   const page=knownPage || await pdf.getPage(number);
+   if(currentGeneration!==generation)return;
+   const viewport=page.getViewport({scale:fitScale(page)});
+   section.style.width=viewport.width+'px';section.style.minHeight=(viewport.height+30)+'px';
+   const canvas=document.createElement('canvas');
+   const ratio=Math.min(window.devicePixelRatio||1,1.5);
+   canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);
+   canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';
+   canvas.setAttribute('role','img');canvas.setAttribute('aria-label','Study guide page '+number+' of '+pdf.numPages);
+   section.append(canvas);
+   const task=page.render({canvasContext:canvas.getContext('2d'),viewport,transform:ratio!==1?[ratio,0,0,ratio,0,0]:null});
+   activeTask=task;
+   try{await task.promise;}finally{if(activeTask===task)activeTask=null;}
+   if(currentGeneration!==generation)return;
+   section.dataset.rendered='true';
+   section.querySelector('.page-loading')?.remove();
+  }catch(error){
+   if(currentGeneration!==generation || error?.name==='RenderingCancelledException')return;
+   section.querySelector('canvas')?.remove();
+   const label=section.querySelector('.page-loading');
+   if(label)label.textContent='Could not display this page. Tap Retry loading to try again.';
+   el('retry').hidden=false;
+  }
+ }
+ // Placeholder creation is synchronous: page 1 no longer waits for every page's metadata.
+ for(let number=1;number<=pdf.numPages;number++){
   const section=document.createElement('section');section.className='pdf-page';
-  section.dataset.page=number;section.dataset.scale=scale;
-  section.setAttribute('aria-label','Page '+number);
-  section.style.width=viewport.width+'px';section.style.minHeight=(viewport.height+30)+'px';
+  section.dataset.page=number;section.setAttribute('aria-label','Page '+number);
+  section.style.width=estimate.width+'px';section.style.minHeight=(estimate.height+30)+'px';
   const label=document.createElement('div');label.className='page-label';label.textContent='Page '+number+' of '+pdf.numPages;
   const loading=document.createElement('div');loading.className='page-loading';loading.textContent='Loading page '+number+'…';
   section.append(label,loading);el('reader').append(section);sections.push(section);
  }
- window.scrollTo(0,0);pageNumber=1;
+ pageNumber=resumePage;controls();go(resumePage);
+ await renderPage(sections[resumePage-1],resumePage===1?firstPage:null);
+ if(currentGeneration!==generation)return;
+ el('status').textContent=sections[resumePage-1].dataset.rendered==='true'
+  ? pdf.numPages+' pages · Scroll to read the complete guide'
+  : 'Could not display page '+resumePage+'. Tap Retry loading to try again.';
+ observer=new IntersectionObserver(entries=>{
+  for(const entry of entries){
+   if(!entry.isIntersecting)continue;
+   observer.unobserve(entry.target);
+   queue=queue.then(()=>renderPage(entry.target)).catch(error=>console.error(error));
+  }
+ },{rootMargin:'600px 0px'});
  sections.forEach(section=>observer.observe(section));
- controls();
 }
 function go(number){if(!pdf)return;pageNumber=Math.max(1,Math.min(pdf.numPages,Math.round(Number(number)||1)));sections[pageNumber-1]?.scrollIntoView({block:'start'});controls();}
 el('page').onchange=event=>go(event.target.value);el('zoom').onchange=render;
 let scrolling=false;
 window.addEventListener('scroll',()=>{if(scrolling)return;scrolling=true;requestAnimationFrame(()=>{scrolling=false;const visible=sections.find(section=>section.getBoundingClientRect().bottom>90);if(visible&&document.activeElement!==el('page')){pageNumber=Number(visible.dataset.page);el('page').value=pageNumber;}});},{passive:true});
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(el('zoom').value==='fit')render();},200);});
+async function loadScript(src){
+ await new Promise((resolve,reject)=>{
+  const script=document.createElement('script');script.src=src;script.async=true;
+  script.onload=resolve;script.onerror=()=>reject(Error('Could not load the document viewer'));
+  document.head.append(script);
+ });
+}
+el('retry').onclick=()=>location.reload();
 try{
  const file=new URL(new URLSearchParams(location.search).get('file')||'',location.origin+'/');
  if(file.origin!==location.origin)throw Error('Invalid study guide');
@@ -81,16 +108,21 @@ try{
   document.querySelector('.toolbar').hidden=true;
   document.body.classList.add('docx-mode');
   el('status').textContent='Loading Word document…';
+  const font=document.createElement('link');font.rel='stylesheet';font.href='https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap';document.head.append(font);
+  if(!window.JSZip)await loadScript('https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js');
+  if(!window.docx?.renderAsync)await loadScript('https://cdn.jsdelivr.net/npm/docx-preview@0.3.6/dist/docx-preview.min.js');
   const response=await fetch(file.href);
   if(!response.ok)throw Error('Could not fetch Word document (HTTP '+response.status+')');
   if(!window.docx?.renderAsync)throw Error('Word document viewer did not load');
   await window.docx.renderAsync(await response.arrayBuffer(),el('reader'),el('reader'),{className:'docx',inWrapper:true,breakPages:true,ignoreLastRenderedPageBreak:false});
   el('status').textContent='Word document loaded · Scroll to read the complete module';
  }else if(file.pathname.toLowerCase().endsWith('.pdf')){
-  const lib=await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs');
-  lib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
-  pdf=await lib.getDocument({url:file.href,isEvalSupported:false}).promise;
+  let lib,cdn='https://cdn.jsdelivr.net/npm';
+  try{lib=await import(cdn+'/pdfjs-dist@4.10.38/build/pdf.mjs');}
+  catch(error){cdn='https://unpkg.com';lib=await import(cdn+'/pdfjs-dist@4.10.38/build/pdf.mjs');}
+  lib.GlobalWorkerOptions.workerSrc=cdn+'/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
+  pdf=await lib.getDocument({url:file.href,isEvalSupported:false,disableAutoFetch:true,rangeChunkSize:262144}).promise;
   el('page').max=pdf.numPages;controls();await render();
  }else throw Error('Unsupported study guide format');
-}catch(error){console.error(error);el('status').textContent='Reader error: '+(error?.message||'Unknown error');}
+}catch(error){console.error(error);document.querySelector('.toolbar').hidden=false;el('retry').hidden=false;el('status').textContent='Reader error: '+(error?.message||'Unknown error')+'. Tap Retry loading to try again.';}
 </script></body></html>

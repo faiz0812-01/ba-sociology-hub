@@ -1029,7 +1029,7 @@
       const actions=document.createElement('div');
       actions.className='module-pdf-actions';
       const open=document.createElement('a');
-      open.href=item.fileType==='DOCX'?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):item.href;
+      open.href=item.fileType==='DOCX'?'study-guide-reader.html?v=20261015-fast-reader&file='+encodeURIComponent(item.href.split('#')[0]):item.href;
       open.target='_blank';
       open.rel='noopener';
       open.textContent=item.fileType==='DOCX'?'സൈറ്റിൽ വായിക്കുക':(itemMedium==='Malayalam'?'Open in new tab ↗':'Open PDF ↗');
@@ -1052,8 +1052,8 @@
         const frame=document.createElement('iframe');
         frame.className='module-pdf-frame';
         frame.title=(item.title || item.label)+' '+(item.fileType || 'PDF')+' reader';
-        frame.loading='lazy';
-        frame.src=(readingOnly||item.fileType==='DOCX')?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):item.href;
+        frame.loading=(readingOnly||item.fileType==='DOCX')?'eager':'lazy';
+        frame.src=(readingOnly||item.fileType==='DOCX')?'study-guide-reader.html?v=20261015-fast-reader&file='+encodeURIComponent(item.href.split('#')[0]):item.href;
         reader.append(readerHeading,frame);
         moduleContent.append(reader);
       }
