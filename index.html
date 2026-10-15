@@ -1430,54 +1430,7 @@
   </script>
 
 
-  <script data-hourly-image-rotation>
-  (function () {
-    'use strict';
-    function setupHourlyImageRotation() {
-      const groups = [
-        { selector: '.subject-cover', alt: 'Academic subject cover image' },
-        { selector: '.test-image', alt: 'Mock test and exam practice cover image' }
-      ];
-      const rotations = groups.map(function (group) {
-        const images = Array.from(document.querySelectorAll(group.selector));
-        const pool = images.map(function (img) {
-          return img.getAttribute('src');
-        }).filter(Boolean);
-        return { images: images, pool: pool, alt: group.alt };
-      }).filter(function (group) {
-        return group.images.length > 1 && group.pool.length > 1;
-      });
-      if (!rotations.length) return;
 
-      let lastHour = '';
-      function applyForCurrentHour() {
-        const now = new Date();
-        const localHourStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours());
-        const hourKey = String(localHourStart.getTime());
-        if (hourKey === lastHour) return;
-        lastHour = hourKey;
-        rotations.forEach(function (group) {
-          const offset = 1 + (Math.floor(localHourStart.getTime() / 3600000) % (group.pool.length - 1));
-          group.images.forEach(function (img, index) {
-            const next = (index + offset) % group.pool.length;
-            img.src = group.pool[next];
-          });
-        });
-      }
-
-      applyForCurrentHour();
-      window.setInterval(applyForCurrentHour, 15000);
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) applyForCurrentHour();
-      });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupHourlyImageRotation, { once: true });
-    } else {
-      setupHourlyImageRotation();
-    }
-  })();
-  </script>
 
 </body>
 </html>
