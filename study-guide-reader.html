@@ -82,7 +82,7 @@ try{
   document.body.classList.add('docx-mode');
   el('status').textContent='Loading Word document…';
   const response=await fetch(file.href);
-  if(!response.ok)throw Error('Could not fetch Word document');
+  if(!response.ok)throw Error('Could not fetch Word document (HTTP '+response.status+')');
   if(!window.docx?.renderAsync)throw Error('Word document viewer did not load');
   await window.docx.renderAsync(await response.arrayBuffer(),el('reader'),el('reader'),{className:'docx',inWrapper:true,breakPages:true,ignoreLastRenderedPageBreak:false});
   el('status').textContent='Word document loaded · Scroll to read the complete module';
