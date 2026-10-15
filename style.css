@@ -65,131 +65,161 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 /* NoteSphere-inspired language tabs */
 .resource-list a.language-tab{
   display:grid;
-  grid-template-columns:42px minmax(0,1fr) auto;
+  grid-template-columns:34px minmax(0,1fr) auto;
   align-items:center;
-  gap:11px;
-  min-height:66px;
-  padding:9px 10px;
-  background:#fffefa;
-  border:1px solid #e4e9df;
-  border-radius:13px;
-  color:#29493b;
-  box-shadow:0 3px 10px rgba(30,57,43,.025);
-  transition:transform .18s,border-color .18s,background .18s,box-shadow .18s;
+  gap:9px;
+  min-height:50px;
+  padding:6px 9px;
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  color:#1e293b;
+  box-shadow:0 1px 3px rgba(15,23,42,.03);
+  transition:all .22s cubic-bezier(.16,1,.3,1);
+  text-decoration:none;
 }
+.resource-list a.language-tab:hover{
+  transform:translateY(-2px);
+  background:#ffffff;
+  border-color:#cbd5e1;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+}
+.resource-list a.language-tab:focus-visible{
+  outline:2px solid #818cf8;
+  outline-offset:2px;
+  border-color:#6366f1;
+}
+
+/* Distinct luxury badge & hover treatments */
 .resource-list a.language-tab>.language-badge{
   display:grid;
   place-items:center;
-  flex:0 0 42px;
-  width:42px;
-  height:42px;
-  border-radius:11px;
-  font:800 13.2px Manrope,sans-serif;
-  letter-spacing:.35px;
-}
-.resource-list a.language-tab--english>.language-badge{background:#eaf1f6;color:#527694}
-.resource-list a.language-tab--malayalam>.language-badge{background:#fff0dd;color:#b5742e}
-.resource-list a.language-tab--arabic>.language-badge{background:#efebf7;color:#74619e}
-.language-copy{display:grid;min-width:0;gap:3px}
-.resource-list a.language-tab .language-copy strong{overflow:hidden;color:#284638;font:800 12px/1.35 Manrope,sans-serif;text-overflow:ellipsis}
-.language-copy small{color:#899287;font-size:9.6px;line-height:1.4}
-.resource-list a.language-tab .language-choice{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:7px 8px;
-  border-radius:8px;
-  background:#f2f4ed;
-  color:#6e7e70;
-  font-size:9.6px;
-  font-weight:800;
-  white-space:nowrap;
-}
-.resource-list a.language-tab .language-choice b{margin:0;color:#67836d;font-size:12px}
-.resource-list a.language-tab:hover{
-  transform:translateY(-2px);
-  background:#fffdf7;
-  border-color:#dfbd72;
-  box-shadow:0 8px 18px rgba(87,73,40,.09);
-}
-.resource-list a.language-tab:hover .language-choice{background:#f5e9c9;color:#6b5120}
-.resource-list a.language-tab:focus-visible{outline:3px solid rgba(209,166,76,.34);outline-offset:2px;border-color:#c3953d}
-@media(max-width:700px){
-  .resource-list a.language-tab{min-height:68px;gap:9px;padding:9px}
-  .resource-list a.language-tab>.language-badge{width:39px;height:39px;flex-basis:39px}
-  .resource-list a.language-tab .language-choice{padding:7px 6px;gap:5px}
-}
-
-/* Keep the text and action chip separate from the compact resource icon sizing. */
-.resource-list a.language-tab>.language-copy{
-  display:grid;
-  flex:1 1 auto;
-  width:auto;
-  height:auto;
-  min-width:0;
-  padding:0;
-  border-radius:0;
-  background:transparent;
-  color:inherit;
-  font-size:initial;
-  font-weight:initial;
-  place-items:initial;
-}
-.resource-list a.language-tab>.language-choice{
-  display:inline-flex;
-  flex:0 0 auto;
-  width:auto;
-  height:auto;
-  border-radius:8px;
-}
-
-/* Compact language tabs for a calmer subject-card layout. */
-.resource-list a.language-tab{
-  grid-template-columns:32px minmax(0,1fr) auto;
-  gap:8px;
-  min-height:49px;
-  padding:6px 8px;
-  border-radius:11px;
-}
-.resource-list a.language-tab>.language-badge{
-  width:32px;
-  height:32px;
-  flex-basis:32px;
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
   border-radius:9px;
-  font-size:10.8px;
+  font:800 11.5px/1 Manrope,sans-serif;
+  letter-spacing:.25px;
+  transition:all .2s;
 }
+
+/* English / LMS PDF */
+.resource-list a.language-tab--english>.language-badge{
+  background:linear-gradient(135deg,#eff6ff,#dbeafe);
+  color:#1d4ed8;
+  border:1px solid #bfdbfe;
+}
+.resource-list a.language-tab--english:hover{
+  border-color:#93c5fd;
+  box-shadow:0 8px 22px rgba(37,99,235,.12);
+}
+.resource-list a.language-tab--english:hover .language-arrow{
+  background:#eff6ff;
+  color:#1d4ed8;
+  border-color:#bfdbfe;
+}
+
+/* Malayalam Reading */
+.resource-list a.language-tab--malayalam>.language-badge{
+  background:linear-gradient(135deg,#fffbeb,#fef3c7);
+  color:#b45309;
+  border:1px solid #fde68a;
+  font-family:"Noto Sans Malayalam",sans-serif;
+  font-size:14px;
+}
+.resource-list a.language-tab--malayalam:hover{
+  border-color:#fcd34d;
+  box-shadow:0 8px 22px rgba(217,119,6,.12);
+}
+.resource-list a.language-tab--malayalam:hover .language-arrow{
+  background:#fffbeb;
+  color:#b45309;
+  border-color:#fde68a;
+}
+
+/* Study Guide */
+.resource-list a.language-tab--study-guide>.language-badge{
+  background:linear-gradient(135deg,#f5f3ff,#ede9fe);
+  color:#6d28d9;
+  border:1px solid #ddd6fe;
+}
+.resource-list a.language-tab--study-guide:hover{
+  border-color:#c4b5fd;
+  box-shadow:0 8px 22px rgba(124,58,237,.14);
+}
+.resource-list a.language-tab--study-guide:hover .language-arrow{
+  background:#f5f3ff;
+  color:#6d28d9;
+  border-color:#ddd6fe;
+}
+
+/* MCQ PDF */
+.resource-list a.language-tab--mcq-pdf>.language-badge{
+  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+  color:#047857;
+  border:1px solid #a7f3d0;
+  font-size:10.5px;
+}
+.resource-list a.language-tab--mcq-pdf:hover{
+  border-color:#6ee7b7;
+  box-shadow:0 8px 22px rgba(5,150,105,.12);
+}
+.resource-list a.language-tab--mcq-pdf:hover .language-arrow{
+  background:#ecfdf5;
+  color:#047857;
+  border-color:#a7f3d0;
+}
+
+/* Arabic */
+.resource-list a.language-tab--arabic>.language-badge{
+  background:linear-gradient(135deg,#fdf2f8,#fce7f3);
+  color:#be185d;
+  border:1px solid #fbcfe8;
+}
+.resource-list a.language-tab--arabic:hover{
+  border-color:#f472b6;
+  box-shadow:0 8px 22px rgba(190,24,93,.12);
+}
+.resource-list a.language-tab--arabic:hover .language-arrow{
+  background:#fdf2f8;
+  color:#be185d;
+  border-color:#fbcfe8;
+}
+
+/* Language copy typography */
+.language-copy{display:grid;min-width:0;gap:2px}
 .resource-list a.language-tab .language-copy strong{
-  font-size:10.8px;
-  line-height:1.25;
+  overflow:hidden;
+  color:#0f172a;
+  font:800 11.2px/1.3 Manrope,sans-serif;
+  letter-spacing:-.15px;
   white-space:nowrap;
+  text-overflow:ellipsis;
 }
 .language-copy small{
-  font-size:8.4px;
+  color:#64748b;
+  font-size:8.8px;
+  font-weight:600;
   line-height:1.2;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
-.resource-list a.language-tab .language-choice{
-  gap:5px;
-  padding:5px 6px;
-  border-radius:7px;
-  font-size:8.4px;
-}
-.resource-list a.language-tab .language-choice b{font-size:10px}
+
 @media(max-width:700px){
   .resource-list a.language-tab{
-    min-height:47px;
+    min-height:48px;
     grid-template-columns:30px minmax(0,1fr) auto;
     gap:7px;
-    padding:6px 7px;
+    padding:6px 8px;
   }
   .resource-list a.language-tab>.language-badge{
     width:30px;
     height:30px;
     flex-basis:30px;
+    border-radius:8px;
+    font-size:10px;
   }
-  .resource-list a.language-tab .language-choice{padding:5px;gap:4px}
 }
 
 /* Four subject cards per row on wide screens, with compact spacing. */
@@ -210,30 +240,36 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;pa
 .resource-list a.language-tab .language-arrow{
   display:grid;
   place-items:center;
-  width:30px;
-  height:30px;
-  border-radius:9px;
-  background:#f1f3eb;
-  color:#69816d;
-  font-size:19.2px;
+  width:26px;
+  height:26px;
+  border-radius:8px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  color:#64748b;
+  font-size:13px;
   font-weight:800;
+  transition:all .2s;
 }
 .module-dialog{position:fixed;z-index:80;inset:0;display:grid;place-items:center;padding:20px}
-.module-backdrop{position:absolute;inset:0;background:rgba(15,35,29,.62);backdrop-filter:blur(6px)}
-.module-panel{position:relative;display:flex;flex-direction:column;width:min(820px,100%);max-height:min(88vh,900px);overflow:auto;padding:clamp(20px,4vw,34px);border:1px solid #e2e8df;border-radius:24px;background:#fffefa;box-shadow:0 26px 90px rgba(8,26,21,.3)}
-.module-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid #e9ece5}
-.module-eyebrow{color:#8c8062;font-size:13.2px;letter-spacing:1.4px;font-weight:900}
-.module-header h2{margin-top:5px;color:#173f35;font:800 clamp(30px,3vw,40.8px)/1.2 Manrope,sans-serif;letter-spacing:-.7px}
-.module-header p{margin-top:8px;color:#66776c;font-size:18px;line-height:1.6}
-.module-close{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:1px solid #e5e9e0;border-radius:12px;background:#f7f8f2;color:#334c3d;font-size:33.6px;cursor:pointer}
-.module-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:18px 0 13px}
-.module-tabs button,.module-subtabs button{border:1px solid #dfe6dc;border-radius:11px;background:#f5f7f0;color:#506457;font:800 16.8px/1.35 Manrope,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
-.module-tabs button{min-height:48px;padding:10px 12px}
-.module-tabs button[aria-selected="true"]{border-color:#265f49;background:#205842;color:#fff}
-.module-subtabs{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0 17px}
+.module-backdrop{position:absolute;inset:0;background:rgba(15,23,42,.68);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.module-panel{position:relative;display:flex;flex-direction:column;width:min(820px,100%);max-height:min(88vh,900px);overflow:auto;padding:clamp(20px,4vw,34px);border:1px solid #e2e8f0;border-radius:24px;background:#ffffff;box-shadow:0 26px 90px rgba(15,23,42,.25)}
+.module-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid #e2e8f0}
+.module-eyebrow{color:#6366f1;font-size:12px;letter-spacing:1.4px;font-weight:900}
+.module-header h2{margin-top:5px;color:#0f172a;font:800 clamp(28px,3vw,38px)/1.2 Manrope,sans-serif;letter-spacing:-.7px}
+.module-header p{margin-top:8px;color:#64748b;font-size:15px;line-height:1.6}
+.module-close{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;color:#475569;font-size:28px;cursor:pointer;transition:all .18s}
+.module-close:hover{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
+.module-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:6px;border-radius:14px;background:#f1f5f9;border:1px solid #e2e8f0;margin:14px 0 10px}
+.module-tabs button{min-height:42px;padding:8px 12px;border:1px solid transparent;border-radius:10px;background:transparent;color:#64748b;font:800 14px/1.3 Manrope,sans-serif;cursor:pointer;transition:all .18s}
+.module-tabs button:hover{background:rgba(255,255,255,.85);color:#0f172a}
+.module-tabs button[aria-selected="true"]{border-color:rgba(79,70,229,.5);background:linear-gradient(135deg,#4f46e5,#6366f1);color:#fff;box-shadow:0 4px 14px rgba(79,70,229,.32),inset 0 1px 0 rgba(255,255,255,.25)}
+.module-tabs button:focus-visible{outline:2px solid #818cf8;outline-offset:2px}
+.module-subtabs{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 16px}
 .module-subtabs:empty{display:none}
-.module-subtabs button{padding:9px 12px;font-size:13px}
-.module-subtabs button[aria-selected="true"]{border-color:#d9b760;background:#fbf1d5;color:#634e1e}
+.module-subtabs button{padding:8px 13px;font-size:12.5px;font-weight:700;border:1px solid #e2e8f0;border-radius:10px;background:#fff;color:#475569;cursor:pointer;transition:all .18s;box-shadow:0 1px 2px rgba(15,23,42,.03)}
+.module-subtabs button:hover{background:#f8fafc;border-color:#cbd5e1;color:#0f172a;transform:translateY(-1px);box-shadow:0 4px 10px rgba(15,23,42,.05)}
+.module-subtabs button[aria-selected="true"]{border-color:#a5b4fc;background:linear-gradient(135deg,#eef2ff,#e0e7ff);color:#3730a3;font-weight:800;box-shadow:0 3px 10px rgba(79,70,229,.18)}
+.module-subtabs button:focus-visible{outline:2px solid #818cf8;outline-offset:2px}
 .module-dialog--malayalam .module-subtabs button:nth-child(4n+1){border-color:#b7d8ff;background:#eaf4ff;color:#1d4e89}
 .module-dialog--malayalam .module-subtabs button:nth-child(4n+2){border-color:#b8e4cf;background:#e8f8ef;color:#176344}
 .module-dialog--malayalam .module-subtabs button:nth-child(4n+3){border-color:#f2d09b;background:#fff4df;color:#89520b}
