@@ -1003,3 +1003,21 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .module-dialog--malayalam[data-reading-only="true"] .module-tabs{gap:4px}
   .module-dialog--malayalam[data-reading-only="true"] .module-tabs button{padding-inline:2px;font-size:9px}
 }
+
+
+/* Remove the bulky title/instruction card from the Malayalam Study Guide to free screen space. */
+.module-dialog--malayalam[data-reading-only="true"] .module-header > div{
+  display:none;
+}
+.module-dialog--malayalam[data-reading-only="true"] .module-header{
+  justify-content:flex-end;
+  min-height:0;
+  padding:0 0 6px;
+  margin:0;
+  gap:0;
+}
+@media(max-width:560px){
+  .module-dialog--malayalam[data-reading-only="true"] .module-header{
+    padding-bottom:4px;
+  }
+}
