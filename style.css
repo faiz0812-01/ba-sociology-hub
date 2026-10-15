@@ -821,3 +821,44 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .study-guide-navigation-prompt strong{font-size:13px}
   .study-guide-navigation-prompt p{font-size:11px}
 }
+
+
+/* Consistent, roomier module and chapter buttons. Preserve existing module colours. */
+.module-tabs,
+.module-subtabs{
+  align-items:stretch;
+  gap:10px;
+}
+.module-tabs button,
+.module-subtabs button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-width:0;
+  min-height:48px;
+  padding:11px 13px;
+  font-size:14px;
+  line-height:1.4;
+  text-align:center;
+  overflow-wrap:anywhere;
+  border-radius:11px;
+}
+.module-tabs button{
+  font-weight:800;
+}
+.module-subtabs button{
+  font-weight:750;
+}
+@media(max-width:560px){
+  .module-tabs,
+  .module-subtabs{
+    gap:9px;
+  }
+  .module-tabs button,
+  .module-subtabs button{
+    min-height:46px;
+    padding:10px 9px;
+    font-size:13px;
+  }
+}
