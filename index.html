@@ -1449,22 +1449,24 @@
       });
       if (!rotations.length) return;
 
-      let lastHour = -1;
+      let lastHour = '';
       function applyForCurrentHour() {
-        const hour = Math.floor(Date.now() / 3600000);
-        if (hour === lastHour) return;
-        lastHour = hour;
+        const now = new Date();
+        const localHourStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours());
+        const hourKey = String(localHourStart.getTime());
+        if (hourKey === lastHour) return;
+        lastHour = hourKey;
         rotations.forEach(function (group) {
+          const offset = 1 + (Math.floor(localHourStart.getTime() / 3600000) % (group.pool.length - 1));
           group.images.forEach(function (img, index) {
-            const next = (index + (hour % group.pool.length)) % group.pool.length;
+            const next = (index + offset) % group.pool.length;
             img.src = group.pool[next];
-            img.alt = group.alt;
           });
         });
       }
 
       applyForCurrentHour();
-      window.setInterval(applyForCurrentHour, 30000);
+      window.setInterval(applyForCurrentHour, 15000);
       document.addEventListener('visibilitychange', function () {
         if (!document.hidden) applyForCurrentHour();
       });
