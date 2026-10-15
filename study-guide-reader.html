@@ -92,5 +92,5 @@ try{
   pdf=await lib.getDocument({url:file.href,isEvalSupported:false}).promise;
   el('page').max=pdf.numPages;controls();await render();
  }else throw Error('Unsupported study guide format');
-}catch(error){console.error(error);el('status').textContent='Could not load the study guide. Refresh this reader to try again.';}
+}catch(error){console.error(error);el('status').textContent='Reader error: '+(error?.message||'Unknown error');}
 </script></body></html>
