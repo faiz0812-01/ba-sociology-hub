@@ -1016,8 +1016,10 @@
         'Unit 11 · High-Poverty Groups':'യൂണിറ്റ് 11 · ഉയർന്ന ദാരിദ്ര്യമുള്ള വിഭാഗങ്ങൾ'
       };
       if(chapterNames[raw]) return chapterNames[raw];
-      const pdfMatch=raw.match(/^Chapter\\s+(\\d+)(?:\\s+PDF)?$/i);
-      if(pdfMatch) return 'അധ്യായം '+pdfMatch[1];
+      const moduleMatch=raw.match(/^Module\\s+(\\d+)$/i);
+      if(moduleMatch) return 'മൊഡ്യൂൾ '+moduleMatch[1];
+      const chapterMatch=raw.match(/^Chapter\\s+(\\d+)(?:\\s+PDF)?$/i);
+      if(chapterMatch) return 'അധ്യായം '+chapterMatch[1];
       const partMatch=raw.match(/^Part\\s+([\\d–-]+)\\s*[·:.-]?\\s*(.*)$/i);
       if(partMatch) return 'ഭാഗം '+partMatch[1]+(partMatch[2]?' · '+partMatch[2]:'');
       const unitMatch=raw.match(/^Unit\\s+(\\d+)\\s*[·:.-]?\\s*(.*)$/i);
@@ -1277,7 +1279,8 @@
         button.setAttribute('role','tab');
         button.setAttribute('aria-selected',String(moduleIndex===0));
         button.tabIndex=moduleIndex===0?0:-1;
-        button.textContent=module.name;
+        button.textContent=studyGuide?getMalayalamChapterLabel(module.name):module.name;
+        if(studyGuide) button.lang='ml';
         button.addEventListener('click',()=>renderModule(subject,medium,modules,moduleIndex));
         moduleTabs.append(button);
       });
