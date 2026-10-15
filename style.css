@@ -955,3 +955,63 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   .module-subtabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
   .module-subtabs button{min-height:34px;padding:6px 7px;font-size:11px}
 }
+
+
+/* Hotfix 2026-10-15: restore aligned resource tabs and compact subject covers */
+.resource-list a.language-tab{
+  display:grid !important;
+  grid-template-columns:36px minmax(0,1fr) 32px !important;
+  grid-template-rows:minmax(0,1fr) !important;
+  align-items:center !important;
+  justify-items:stretch !important;
+  column-gap:10px !important;
+  min-height:58px !important;
+  height:auto !important;
+  padding:7px 9px !important;
+  position:relative !important;
+  line-height:normal !important;
+  text-align:left !important;
+}
+.resource-list a.language-tab > .language-badge{
+  grid-column:1 !important; grid-row:1 !important;
+  position:static !important; inset:auto !important;
+  width:36px !important; height:36px !important; min-width:36px !important;
+  margin:0 !important; transform:none !important;
+  align-self:center !important; justify-self:center !important;
+  z-index:1 !important;
+}
+.resource-list a.language-tab > .language-copy{
+  grid-column:2 !important; grid-row:1 !important;
+  display:flex !important; flex-direction:column !important;
+  align-items:flex-start !important; justify-content:center !important;
+  position:static !important; min-width:0 !important; width:100% !important;
+  margin:0 !important; padding:0 !important; gap:2px !important;
+  transform:none !important; text-align:left !important; z-index:1 !important;
+}
+.resource-list a.language-tab .language-copy strong{
+  display:block !important; position:static !important; margin:0 !important;
+  padding:0 !important; font-size:13px !important; line-height:1.25 !important;
+  font-weight:700 !important; letter-spacing:0 !important; white-space:normal !important;
+}
+.resource-list a.language-tab .language-copy small{
+  display:block !important; position:static !important; margin:0 !important;
+  padding:0 !important; font-size:11px !important; line-height:1.25 !important;
+  font-weight:400 !important; white-space:normal !important;
+}
+.resource-list a.language-tab > .language-arrow{
+  grid-column:3 !important; grid-row:1 !important;
+  position:static !important; inset:auto !important; justify-self:end !important;
+  align-self:center !important; width:32px !important; height:32px !important;
+  margin:0 !important; transform:none !important; z-index:1 !important;
+}
+.subject-card{--subject-card-padding:16px !important; padding:16px !important;}
+.subject-card > .subject-cover{
+  display:block !important; width:100% !important; height:108px !important;
+  aspect-ratio:auto !important; object-fit:cover !important;
+  margin:0 0 14px !important; border-radius:12px !important;
+}
+@media(max-width:700px){
+  .resource-list a.language-tab{grid-template-columns:32px minmax(0,1fr) 30px !important;gap:8px !important;min-height:54px !important;}
+  .resource-list a.language-tab > .language-badge{width:32px !important;height:32px !important;min-width:32px !important;}
+  .subject-card > .subject-cover{height:88px !important;}
+}
