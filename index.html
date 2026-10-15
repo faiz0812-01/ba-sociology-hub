@@ -1239,19 +1239,8 @@
       }
     }
     function showStudyGuideNavigationPrompt(moduleName,malayalam=false) {
+      // Keep the module window clean: do not show the bottom chapter-list instruction card.
       moduleContent.replaceChildren();
-      const prompt=document.createElement('div');
-      prompt.className='study-guide-navigation-prompt';
-      const icon=document.createElement('span');
-      icon.className='study-guide-navigation-icon';
-      icon.textContent='▤';
-      const displayName=malayalam?getMalayalamChapterLabel(moduleName):moduleName;
-      const heading=document.createElement('strong');
-      heading.textContent=malayalam?displayName+' · അധ്യായങ്ങളുടെ പട്ടിക':displayName+' · Chapter list';
-      const copy=document.createElement('p');
-      copy.textContent=malayalam?'മുകളിലെ അധ്യായം തിരഞ്ഞെടുക്കുക. തുടർന്ന് അതിന്റെ PDF തുറക്കാം.':'Choose a chapter above to open its PDF. The reader will stay closed until you select a chapter.';
-      prompt.append(icon,heading,copy);
-      moduleContent.append(prompt);
     }
     function selectModuleItem(subject,medium,module,moduleIndex,itemIndex) {
       // Ignore stale chapter handlers from a module that is no longer selected.
