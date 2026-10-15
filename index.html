@@ -1041,15 +1041,15 @@
       ]);
       if(subject==='Malayalam') return modules([
         [
-          item('Chapter 1 · Notes','Malayalam Study Guide · Module 1 · Chapter 1 Notes','Malayalam_Notes_Chapter_1_Final.pdf','Malayalam','Malayalam chapter 1 notes'),
-          item('Chapter 1 · Exam Notes','Malayalam Study Guide · Module 1 · Chapter 1 Exam Notes','Malayalam_Exam_Notes_Final.pdf','Malayalam','Malayalam exam revision notes'),
-          item('Chapter 2 · S. K. Pottekkatt','Malayalam Study Guide · Module 1 · Chapter 2','SK_Pottekkatt_Study%20notes_chap2.pdf','Malayalam','Chapter 2 study notes'),
-          item('Chapter 4 · Notes','Malayalam Study Guide · Module 1 · Chapter 4 Notes','malayalam_chapter4_notes.pdf','Malayalam','Chapter 4 notes'),
-          item('Chapter 4 · Module 1 PDF','Malayalam Study Guide · Module 1 · Chapter 4 Module 1','malayalam_chapter4_module1.pdf','Malayalam','Chapter 4 module PDF'),
+          item('Chapter 1 · ആത്മകഥ','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 1 · അധ്യായം 1 · ആത്മകഥ','Malayalam_Notes_Chapter_1_Final.pdf','Malayalam','ആത്മകഥ · മലയാളം പഠനക്കുറിപ്പുകൾ'),
+          item('Chapter 1 · ആത്മകഥ','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 1 · അധ്യായം 1 · ആത്മകഥ','Malayalam_Exam_Notes_Final.pdf','Malayalam','ആത്മകഥ · പരീക്ഷാ കുറിപ്പുകൾ'),
+          item('Chapter 2 · കിഴവനും കൊക്കാത്തുവായും','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 1 · അധ്യായം 2 · കിഴവനും കൊക്കാത്തുവായും','SK_Pottekkatt_Study%20notes_chap2.pdf','Malayalam','കിഴവനും കൊക്കാത്തുവായും · പഠനക്കുറിപ്പുകൾ'),
+          item('Chapter 4 · അർമേനിയയിലെ ശോകഗാനം','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 1 · അധ്യായം 4 · അർമേനിയയിലെ ശോകഗാനം','malayalam_chapter4_notes.pdf','Malayalam','അർമേനിയയിലെ ശോകഗാനം · പഠനക്കുറിപ്പുകൾ'),
+          item('Chapter 4 · അർമേനിയയിലെ ശോകഗാനം','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 1 · അധ്യായം 4 · അർമേനിയയിലെ ശോകഗാനം','malayalam_chapter4_module1.pdf','Malayalam','അർമേനിയയിലെ ശോകഗാനം · മലയാളം PDF'),
         ],
         [
-          item('Chapter 2 · Poovampazham','Malayalam Study Guide · Module 2 · Poovampazham','Poovampazham_Class_Notes.pdf','Malayalam','Poovampazham class notes'),
-          item('Chapter 3 · Daivathinte Kannu','Malayalam Study Guide · Module 2 · Chapter 3','Module2_chapter3_%E0%B4%A6%E0%B5%88%E0%B4%B5%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%BF%E0%B4%A8%E0%B5%8D%E0%B4%B1%E0%B5%86_%E0%B4%95%E0%B4%A3%E0%B5%8D%E0%B4%A3%E0%B5%8D%20.pdf','Malayalam','Chapter 3 study PDF'),
+          item('Chapter 1 · പൂവമ്പഴം','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 2 · അധ്യായം 1 · പൂവമ്പഴം','Poovampazham_Class_Notes.pdf','Malayalam','പൂവമ്പഴം · ക്ലാസ് നോട്ടുകൾ'),
+          item('Chapter 3 · ദൈവത്തിന്റെ കണ്ണ്','മലയാളം പഠനസഹായി · മൊഡ്യൂൾ 2 · അധ്യായം 3 · ദൈവത്തിന്റെ കണ്ണ്','Module2_chapter3_%E0%B4%A6%E0%B5%88%E0%B4%B5%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%BF%E0%B4%A8%E0%B5%8D%E0%B4%B1%E0%B5%86_%E0%B4%95%E0%B4%A3%E0%B5%8D%E0%B4%A3%E0%B5%8D%20.pdf','Malayalam','ദൈവത്തിന്റെ കണ്ണ് · പഠനക്കുറിപ്പുകൾ'),
         ],
         [
           item('Chapter 1 · സമുദ്രലംഘനം','Malayalam Study Guide · Module 3 · Chapter 1 · സമുദ്രലംഘനം','%E0%B4%B8%E0%B4%AE%E0%B5%81%E0%B4%A6%E0%B5%8D%E0%B4%B0%E0%B4%B2%E0%B4%82%E0%B4%98%E0%B4%A8%E0%B4%82%20_chp1_Module3.pdf','Malayalam','Malayalam Module 3 · Chapter 1'),
@@ -1127,6 +1127,8 @@
       if(chapterNames[raw]) return chapterNames[raw];
       const moduleMatch=raw.match(/^Module\\s+(\\d+)$/i);
       if(moduleMatch) return 'മൊഡ്യൂൾ '+moduleMatch[1];
+      const chapterWithTitleMatch=raw.match(/^Chapter\\s+(\\d+)\\s*[·:.-]\\s*(.+)$/i);
+      if(chapterWithTitleMatch) return 'അധ്യായം '+chapterWithTitleMatch[1]+' · '+chapterWithTitleMatch[2];
       const chapterMatch=raw.match(/^Chapter\\s+(\\d+)(?:\\s+PDF)?$/i);
       if(chapterMatch) return 'അധ്യായം '+chapterMatch[1];
       const partMatch=raw.match(/^Part\\s+([\\d–-]+)\\s*[·:.-]?\\s*(.*)$/i);
@@ -1370,7 +1372,8 @@
           button.type='button';
           button.setAttribute('role','tab');
           const label=String(item.label || '');
-          button.textContent=/exam/i.test(label)?'പരീക്ഷാ കുറിപ്പുകൾ':/notes/i.test(label)?'മലയാളം കുറിപ്പുകൾ':/module/i.test(label)?'മലയാളം PDF':label;
+          const typeHint=label+' '+String(item.description || '');
+          button.textContent=/exam|പരീക്ഷാ/i.test(typeHint)?'പരീക്ഷാ കുറിപ്പുകൾ':/notes|കുറിപ്പുകൾ/i.test(typeHint)?'മലയാളം കുറിപ്പുകൾ':/module|pdf/i.test(typeHint)?'മലയാളം PDF':getMalayalamChapterLabel(label);
           button.lang='ml';
           button.setAttribute('aria-selected',String(itemIndex===0));
           button.tabIndex=itemIndex===0?0:-1;
