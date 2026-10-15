@@ -422,7 +422,7 @@
     const sociologyMalayalamModules = [
       {name:'Syllabus',items:[{label:'Syllabus PDF',title:'Sociology · Syllabus tab document',description:'Existing Module 1 file moved to the Syllabus tab.',href:'Sociology/Malayalam_PDF/chapter1.pdf.pdf'}]},
       {name:'Module 1',items:[{label:'Module 1 PDF'}]},
-      {name:'Module 2',items:[{label:'Module 2 PDF'}]},
+      {name:'Module 2',items:[{label:'Module 2 · Malayalam document',title:'Philosophy of Education · Malayalam · Module 2',description:'Uploaded Malayalam study document.',href:'%E0%B4%B5%E0%B4%BF%E0%B4%A6%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%AD%E0%B5%8D%E0%B4%AF%E0%B4%BE%E0%B4%B8%20%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%B5%E0%B4%9A%E0%B4%BF%E0%B4%A8%E0%B5%8D1.docx',fileType:'DOCX'}]},
       {name:'Module 3',items:[
         {label:'Module 3 PDF'},
         {label:'Submodule 3.1'},
@@ -662,7 +662,7 @@
       card.className='module-pdf-card';
       const badge=document.createElement('span');
       badge.className='module-pdf-badge';
-      badge.textContent=subject==='Mathematics'?'∑':'PDF';
+      badge.textContent=subject==='Mathematics'?'∑':(item.fileType || 'PDF');
       if(subject==='Mathematics') badge.setAttribute('aria-label','Mathematics PDF');
       const copy=document.createElement('div');
       copy.className='module-pdf-copy';
@@ -676,11 +676,11 @@
       open.href=item.href;
       open.target='_blank';
       open.rel='noopener';
-      open.textContent=itemMedium==='Malayalam'?'Open in new tab ↗':'Open PDF ↗';
+      open.textContent=item.fileType==='DOCX'?'Open document ↗':(itemMedium==='Malayalam'?'Open in new tab ↗':'Open PDF ↗');
       const download=document.createElement('a');
       download.href=item.href;
       download.setAttribute('download','');
-      download.textContent='Download PDF ↓';
+      download.textContent=item.fileType==='DOCX'?'Download document ↓':'Download PDF ↓';
       copy.append(heading,detail);
       actions.append(open,download);
       card.append(badge,copy);
@@ -692,12 +692,12 @@
         reader.setAttribute('aria-label',itemMedium+' PDF reader');
         const readerHeading=document.createElement('div');
         readerHeading.className='module-pdf-reader-heading';
-        readerHeading.textContent='Read this PDF on Academic Hub';
+        readerHeading.textContent=item.fileType==='DOCX'?'Read this document on Academic Hub':'Read this PDF on Academic Hub';
         const frame=document.createElement('iframe');
         frame.className='module-pdf-frame';
-        frame.title=(item.title || item.label)+' PDF reader';
+        frame.title=(item.title || item.label)+' '+(item.fileType || 'PDF')+' reader';
         frame.loading='lazy';
-        frame.src=readingOnly?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):item.href;
+        frame.src=readingOnly?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):(item.fileType==='DOCX'?'https://docs.google.com/gview?embedded=1&url='+encodeURIComponent(new URL(item.href,location.href).href):item.href);
         reader.append(readerHeading,frame);
         moduleContent.append(reader);
       }
