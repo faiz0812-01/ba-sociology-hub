@@ -520,7 +520,7 @@
       // contains chapter/document tabs. Only link PDFs that exist in the repository.
       const item=(label,title,href,medium='Bilingual',description='Study guide PDF · English + Malayalam')=>({label,title,href,medium,description,embed:true});
       const empty=(module)=>({label:'Chapter PDFs awaiting upload',title:subject+' · '+module+' · Study guide files',medium:'Bilingual',description:'This module is ready for chapter-wise PDFs. No matching file is currently available in the repository.'});
-      const modules=(sets)=>[1,2,3,4].map(n=>({name:'Module '+n,items:sets[n-1]?.length?sets[n-1]:[empty('Module '+n)]}));
+      const modules=(sets)=>[1,2,3,4].map(n=>({name:subject==='Sociology' && n===3?'Module 3 · Individual and Society':'Module '+n,items:sets[n-1]?.length?sets[n-1]:[empty('Module '+n)]}));
       if(subject==='Philosophy of AI') return modules([
         [1,2,3].map(n=>item('Chapter '+n+' · Malayalam PDF','Philosophy of AI · Module 1 · Chapter '+n,'Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_'+n+'_Malayalam.pdf','Malayalam','Uploaded chapter PDF · Malayalam')),
         [4,5,6,7,8].map(n=>item('Chapter '+n+' · Malayalam PDF','Philosophy of AI · Module 2 · Chapter '+n,'Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_'+n+'_Malayalam.pdf','Malayalam','Uploaded chapter PDF · Malayalam')),
@@ -539,13 +539,13 @@
         [empty('Module 1')],
         [empty('Module 2')],
         [
-          item('Chapter 1 · Individual and Society','Sociology · Module 3 · Individual and Society','Module_III_Individual_and_Society_.pdf','English','English study guide · Module 3'),
-          item('Chapter 1 · Individual and Society — Part 2','Sociology · Module 3 · Individual and Society Part 2','Module3_Individual_and_Society_Part2_.pdf','English'),
-          item('Chapter 3 · Social Groups — Part 1','Sociology · Module 3 · Social Groups Part 1','Social_Group_Module_3_Part_3_.pdf','English'),
-          item('Chapter 3 · Social Groups — Part 2','Sociology · Module 3 · Social Groups Part 2','Social_Group_Module_3_Part_3_Second_Part.pdf','English'),
-          item('Chapter 4 · Social Interaction Dynamics','Sociology · Module 3 · Social Interaction Dynamics','Social_Interaction_Dynamics.pdf','English'),
-          item('Chapter 5 · Socialization','Sociology · Module 3 · Socialization','module3_Socialization_part4.pdf','English'),
-          item('Part 5 · Stages of Socialization','Sociology · Module 3 · Part 5 · Stages of Socialization','Stage_of_Socialization_Module_3-v3.pdf','English')
+          item('Individual and Society','Sociology · Module 3 · Individual and Society','Module_III_Individual_and_Society_.pdf','English','English study guide · Module 3'),
+          item('Part 2 · Individual and Society','Sociology · Module 3 · Part 2 · Individual and Society','Module3_Individual_and_Society_Part2_.pdf','English'),
+          item('Part 3 · Social Group','Sociology · Module 3 · Part 3 · Social Group','Social_Group_Module_3_Part_3_.pdf','English'),
+          item('Part 3 (Second Part) · Social Group','Sociology · Module 3 · Part 3 (Second Part) · Social Group','Social_Group_Module_3_Part_3_Second_Part.pdf','English'),
+          item('വ്യക്തിയും സമൂഹവും: സാമൂഹിക ഇടപെടലുകളുടെ അടിസ്ഥാനങ്ങൾ','Sociology · Module 3 · വ്യക്തിയും സമൂഹവും: സാമൂഹിക ഇടപെടലുകളുടെ അടിസ്ഥാനങ്ങൾ','Social_Interaction_Dynamics.pdf','English'),
+          item('Part 4 (First Part) · Socialization','Sociology · Module 3 · Part 4 (First Part) · Socialization','module3_Socialization_part4.pdf','English'),
+          item('Part 5 · Stage of Socialization','Sociology · Module 3 · Part 5 · Stage of Socialization','Stage_of_Socialization_Module_3-v3.pdf','English')
         ],
         [empty('Module 4')]
       ]);
