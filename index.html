@@ -1051,9 +1051,15 @@
       return modules([[],[],[],[]]);
     }
     function getBilingualEnglishStudyGuideLabel(value) {
-      // English Study Guide tabs must remain English-only; Malayalam resources
-      // are available separately in their own subject/resource tabs.
-      return String(value || '').trim();
+      // Force every English Study Guide module/chapter tab to display English only,
+      // even if an older or mixed-language label is returned from the data source.
+      return String(value || '')
+        .replace(/[\u0D00-\u0D7F]+/g, '')
+        .replace(/\s*[·|/,:;-]\s*[·|/,:;-]?\s*/g, ' · ')
+        .replace(/(?:\s*·\s*){2,}/g, ' · ')
+        .replace(/^\s*[·|/,:;-]+\s*|\s*[·|/,:;-]+\s*$/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
     }
     function getMalayalamChapterLabel(value) {
       const raw=String(value || '').trim();
