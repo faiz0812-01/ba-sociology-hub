@@ -1156,7 +1156,73 @@
       moduleSubtabs.setAttribute('role','tablist');
       moduleSubtabs.setAttribute('aria-label','Chapters');
       moduleSubtabs.style.display='';
-      moduleDescription.textContent=module.summary+'. Choose a chapter, then select English, bilingual, or Malayalam PDF.';
+      moduleDescription.textContent=module.summary+'. Choose a chapter, then a PDF version.';
+      const selectChapter=chapterIndex=>{
+        Array.from(moduleSubtabs.children).forEach((button,index)=>{
+          button.setAttribute('aria-selected',String(index===chapterIndex));
+          button.tabIndex=index===chapterIndex?0:-1;
+        });
+        const chapter=chapters[chapterIndex];
+        const picker=document.createElement('label');
+        picker.className='ai-guide-document-picker';
+        const caption=document.createElement('span');
+        caption.textContent='PDF version';
+        const select=document.createElement('select');
+        select.setAttribute('aria-label',chapter.name+' PDF version');
+        chapter.items.forEach((item,index)=>{
+          const option=document.createElement('option');
+          option.value=String(index);
+          option.textContent=item.label;
+          select.append(option);
+        });
+        picker.append(caption,select);
+        const showDocument=index=>{
+          const item=chapter.items[index];
+          const keepFocus=document.activeElement===select;
+          showModuleItem(subject,item.medium || medium,module.name,item);
+          if(chapter.items.length>1) {
+            moduleContent.prepend(picker);
+            if(keepFocus) select.focus();
+          }
+        };
+        select.addEventListener('change',()=>showDocument(Number(select.value)));
+        showDocument(0);
+      };
+      chapters.forEach((chapter,index)=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.setAttribute('role','tab');
+        button.setAttribute('aria-selected','false');
+        button.tabIndex=-1;
+        button.textContent=getMalayalamChapterLabel(chapter.name);
+        button.lang='ml';
+        button.addEventListener('click',()=>selectChapter(index));
+        moduleSubtabs.append(button);
+      });
+      Array.from(moduleTabs.children).forEach((button,index)=>{
+        button.setAttribute('aria-selected',String(index===moduleIndex));
+        button.tabIndex=index===moduleIndex?0:-1;
+      });
+      showStudyGuideNavigationPrompt(module.name);
+    }
+    function renderMalayalamStudyGuideModule(subject,medium,module,moduleIndex) {
+      const chapters=[];
+      module.items.forEach(item=>{
+        const label=String(item.label || item.title || '').trim();
+        const match=label.match(/^(Chapter\\s+\\d+)/i);
+        const chapterName=match?match[1]:label;
+        let chapter=chapters.find(entry=>entry.name===chapterName);
+        if(!chapter) {
+          chapter={name:chapterName,items:[]};
+          chapters.push(chapter);
+        }
+        chapter.items.push(item);
+      });
+      moduleSubtabs.replaceChildren();
+      moduleSubtabs.setAttribute('role','tablist');
+      moduleSubtabs.setAttribute('aria-label','Malayalam chapters');
+      moduleSubtabs.style.display='';
+      moduleDescription.textContent=module.summary+'. Choose a chapter, then select the Malayalam PDF you want to read.';
       const selectChapter=chapterIndex=>{
         Array.from(moduleSubtabs.children).forEach((button,index)=>{
           button.setAttribute('aria-selected',String(index===chapterIndex));
@@ -1166,28 +1232,26 @@
         const versionTabs=document.createElement('div');
         versionTabs.className='ai-guide-version-tabs';
         versionTabs.setAttribute('role','tablist');
-        versionTabs.setAttribute('aria-label','PDF language versions');
-        const showDocument=(itemIndex,focusButton=false)=>{
+        versionTabs.setAttribute('aria-label','Malayalam PDF versions');
+        const showDocument=itemIndex=>{
           Array.from(versionTabs.children).forEach((button,index)=>{
             button.setAttribute('aria-selected',String(index===itemIndex));
             button.tabIndex=index===itemIndex?0:-1;
           });
           const item=chapter.items[itemIndex];
-          showModuleItem(subject,item.medium || medium,module.name,item);
+          showModuleItem(subject,item.medium || 'Malayalam',module.name,item);
           moduleContent.prepend(versionTabs);
-          if(focusButton) versionTabs.children[itemIndex]?.focus();
         };
         chapter.items.forEach((item,itemIndex)=>{
           const button=document.createElement('button');
           button.type='button';
           button.setAttribute('role','tab');
-          const isMalayalam=item.medium==='Malayalam' || /Malayalam/i.test(item.label);
-          const isEnglish=item.medium==='English' || /English/i.test(item.label);
-          button.textContent=isMalayalam?'മലയാളം PDF':isEnglish?'English PDF':'English + മലയാളം';
-          button.lang=isMalayalam?'ml':'en';
+          const label=String(item.label || '');
+          button.textContent=/exam/i.test(label)?'പരീക്ഷാ കുറിപ്പുകൾ':/notes/i.test(label)?'മലയാളം കുറിപ്പുകൾ':/module/i.test(label)?'മലയാളം PDF':label;
+          button.lang='ml';
           button.setAttribute('aria-selected',String(itemIndex===0));
           button.tabIndex=itemIndex===0?0:-1;
-          button.addEventListener('click',()=>showDocument(itemIndex,true));
+          button.addEventListener('click',()=>showDocument(itemIndex));
           versionTabs.append(button);
         });
         showDocument(0);
@@ -1212,6 +1276,10 @@
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
+      if(subject==='Malayalam' && moduleDialog.dataset.readingOnly==='true' && module.items.some(item=>item.href)) {
+        renderMalayalamStudyGuideModule(subject,medium,module,moduleIndex);
+        return;
+      }
       if(subject==='Philosophy of AI' && moduleDialog.dataset.readingOnly==='true' && module.items.every(item=>item.chapter)) {
         renderAiStudyGuideModule(subject,medium,module,moduleIndex);
         return;
