@@ -139,6 +139,13 @@
     }
   </style>
 
+  <style id="ai-study-guide-organization">
+    .ai-guide-document-picker{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 18px;padding:14px 16px;border:1px solid #ddd9f0;border-radius:14px;background:#f8f7ff}
+    .ai-guide-document-picker span{font-weight:700;color:#383267}
+    .ai-guide-document-picker select{flex:1;min-width:0;max-width:100%;padding:12px;border:1px solid #c9c3e3;border-radius:10px;background:#fff;color:#25213f;font:inherit}
+    .ai-guide-document-picker select:focus-visible{outline:3px solid #7457e8;outline-offset:2px}
+    @media(max-width:560px){.ai-guide-document-picker select{flex-basis:100%}}
+  </style>
 </head>
 <body id="top">
   <nav class="topbar">
@@ -515,26 +522,353 @@
       if(subject==='Development Issues in Indian Economy' && medium==='English') return indianEconomyEnglishModules;
       return [1,2,3,4].map(number => ({name:'Module '+number,items:[{label:'Module '+number+' PDF'}]}));
     }
+    function getAiStudyGuideModules() {
+      return [
+        {
+          "name": "Module 1",
+          "summary": "Module 1 · Foundations of AI",
+          "items": [
+            {
+              "chapter": "Chapter 1 · History and Foundations of Artificial Intelligence",
+              "label": "Chapter-end questions & answers · English + Malayalam",
+              "title": "Philosophy of AI · Module 1 · Chapter 1 · History and Foundations of Artificial Intelligence · Chapter-end questions & answers",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%201/Philosophy_of_AI_QA_Module_1_Chapter_1_.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 13 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 1 · History and Foundations of Artificial Intelligence",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 1 · Chapter 1 · History and Foundations of Artificial Intelligence · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_1_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 10 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 2 · Can a Machine Think?",
+              "label": "Chapter-end questions & answers · English + Malayalam",
+              "title": "Philosophy of AI · Module 1 · Chapter 2 · Can a Machine Think? · Chapter-end questions & answers",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%201/Philosophy_of_AI_QA_Module_1_Chapter_2.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 13 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 2 · Can a Machine Think?",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 1 · Chapter 2 · Can a Machine Think? · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_2_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 6 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Philosophy in the Light of AI",
+              "label": "Chapter-end questions & answers · English + Malayalam",
+              "title": "Philosophy of AI · Module 1 · Chapter 3 · Philosophy in the Light of AI · Chapter-end questions & answers",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%201/Philosophy_AI_QnA_Module_1_Chapter_3.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 12 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Philosophy in the Light of AI",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 1 · Chapter 3 · Philosophy in the Light of AI · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_3_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 14 pages",
+              "embed": true
+            }
+          ]
+        },
+        {
+          "name": "Module 2",
+          "summary": "Module 2 · Models of AI and Philosophy of Mind",
+          "items": [
+            {
+              "chapter": "Chapter 1 · Issues in the Classical Model of AI",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 1 · Issues in the Classical Model of AI · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_4_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 17 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 2 · Alan Turing Test",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 2 · Alan Turing Test · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_5_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 16 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Chinese Room Experiment",
+              "label": "Bilingual master study guide · English + Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 3 · Chinese Room Experiment · Bilingual master study guide",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%202/AI_MODULE2_CHAPTER3.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 7 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Chinese Room Experiment",
+              "label": "Malayalam illustrated notes · Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 3 · Chinese Room Experiment · Malayalam illustrated notes",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%202/Ai_Chap3_Chineseroom_experiment..pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 5 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Chinese Room Experiment",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 3 · Chinese Room Experiment · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_6_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 14 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 4 · Descartes and the Origins of Philosophy of Mind",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 4 · Descartes and the Origins of Philosophy of Mind · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_7_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 12 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 5 · Disembodied Intelligence",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 2 · Chapter 5 · Disembodied Intelligence · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_8_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 13 pages",
+              "embed": true
+            }
+          ]
+        },
+        {
+          "name": "Module 3",
+          "summary": "Module 3 · Epistemology and Philosophy of Mind",
+          "items": [
+            {
+              "chapter": "Chapter 1 · Buddhism",
+              "label": "Detailed class notes · English + Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 1 · Buddhism · Detailed class notes",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/Philosophy%20of%20AI_Module3_Buddhism_.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 10 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 1 · Buddhism",
+              "label": "Exam-oriented points, examples & MCQs · English + Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 1 · Buddhism · Exam-oriented points, examples & MCQs",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/AI%20Module%203%20_Chap1_Exam-oriented%20Points.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 11 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 1 · Buddhism",
+              "label": "Concise class notes (Meera font) · English + Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 1 · Buddhism · Concise class notes (Meera font)",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/AI_Module_3_Buddhism_Meera_New_Font.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 8 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 1 · Buddhism",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 1 · Buddhism · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_9_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 12 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 2 · Indian Epistemology (Nyaya and Vaisheshika)",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 2 · Indian Epistemology (Nyaya and Vaisheshika) · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_10_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 22 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Western Epistemology",
+              "label": "Study notes · English + Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 3 · Western Epistemology · Study notes",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/Western_Epistemology_Module3_Ch3.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 11 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Western Epistemology",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 3 · Western Epistemology · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_11_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 28 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 4 · Functionalism",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 4 · Functionalism · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_12_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 11 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 5 · Epistemological Implications in Artificial Intelligence",
+              "label": "Bilingual study notes · English + Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 5 · Epistemological Implications in Artificial Intelligence · Bilingual study notes",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/Epistemological_Implications_in_AI_mod3_chp5.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 15 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 5 · Epistemological Implications in Artificial Intelligence",
+              "label": "Deep English study material · English",
+              "title": "Philosophy of AI · Module 3 · Chapter 5 · Epistemological Implications in Artificial Intelligence · Deep English study material",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/Module_3_Chapter_5_Epistemological_Implications_in_AI_Deep_English_Study_Material.pdf",
+              "medium": "English",
+              "description": "English · 15 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 5 · Epistemological Implications in Artificial Intelligence",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 3 · Chapter 5 · Epistemological Implications in Artificial Intelligence · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_13_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 17 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Module Revision",
+              "label": "Complete chapter-end questions & answers · English + Malayalam",
+              "title": "Philosophy of AI · Module 3 · Module Revision · Complete chapter-end questions & answers",
+              "href": "Philosophy%20of%20AI/Study%20Guide/Module%203/Artificial_Intelligence_Module_3_Complete_Q%26A.pdf",
+              "medium": "Bilingual",
+              "description": "English + Malayalam · 16 pages",
+              "embed": true
+            }
+          ]
+        },
+        {
+          "name": "Module 4",
+          "summary": "Module 4 · AI Ethics",
+          "items": [
+            {
+              "chapter": "Chapter 1 · Aligning Autonomous AI with Human Goals",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 1 · Aligning Autonomous AI with Human Goals · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_14_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 8 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 2 · AI and Existential Risk to Humanity",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 2 · AI and Existential Risk to Humanity · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_15_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 11 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 3 · Preventing Bias in Learning Algorithms",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 3 · Preventing Bias in Learning Algorithms · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_16_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 8 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 4 · AI Systems and Social Relationships",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 4 · AI Systems and Social Relationships · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_17_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 9 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 5 · Moral Rules for Self-Driving Cars",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 5 · Moral Rules for Self-Driving Cars · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_18_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 15 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 6 · Can AI Systems Be Morally Harmed?",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 6 · Can AI Systems Be Morally Harmed? · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_19_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 23 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 7 · AI as Moral Agents and Accountability",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 4 · Chapter 7 · AI as Moral Agents and Accountability · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_20_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 11 pages",
+              "embed": true
+            }
+          ]
+        },
+        {
+          "name": "Module 5",
+          "summary": "Philosophical Underpinnings of AI and the Future of Humanity",
+          "items": [
+            {
+              "chapter": "Module Overview",
+              "label": "Module overview · Malayalam",
+              "title": "Philosophy of AI · Module 5 · Module Overview · Module overview",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_21_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 1 pages",
+              "embed": true
+            },
+            {
+              "chapter": "Chapter 1 · Discussion Topics",
+              "label": "Malayalam chapter reading · Malayalam",
+              "title": "Philosophy of AI · Module 5 · Chapter 1 · Discussion Topics · Malayalam chapter reading",
+              "href": "Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_22_Malayalam.pdf",
+              "medium": "Malayalam",
+              "description": "Malayalam · 5 pages",
+              "embed": true
+            }
+          ]
+        }
+      ];
+    }
     function getStudyGuideModulesSource(subject) {
       // Study Guide Eng - Mal: every subject opens four module tabs; each module
       // contains chapter/document tabs. Only link PDFs that exist in the repository.
       const item=(label,title,href,medium='Bilingual',description='Study guide PDF · English + Malayalam')=>({label,title,href,medium,description,embed:true});
       const empty=(module)=>({label:'Chapter PDFs awaiting upload',title:subject+' · '+module+' · Study guide files',medium:'Bilingual',description:'This module is ready for chapter-wise PDFs. No matching file is currently available in the repository.'});
       const modules=(sets)=>[1,2,3,4].map(n=>({name:subject==='Sociology' && n===3?'Module 3 · Individual and Society':'Module '+n,items:sets[n-1]?.length?sets[n-1]:[empty('Module '+n)]}));
-      if(subject==='Philosophy of AI') return modules([
-        [1,2,3].map(n=>item('Chapter '+n+' · Malayalam PDF','Philosophy of AI · Module 1 · Chapter '+n,'Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_'+n+'_Malayalam.pdf','Malayalam','Uploaded chapter PDF · Malayalam')),
-        [4,5,6,7,8].map(n=>item('Chapter '+n+' · Malayalam PDF','Philosophy of AI · Module 2 · Chapter '+n,'Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_'+n+'_Malayalam.pdf','Malayalam','Uploaded chapter PDF · Malayalam')),
-        [
-          item('Ch 1 · Buddhism — Study notes','Philosophy of AI · Module 3 · Buddhism — Study notes','Philosophy%20of%20AI/Study%20Guide/Module%203/Philosophy%20of%20AI_Module3_Buddhism_.pdf'),
-          item('Ch 1 · Buddhism — Class notes','Philosophy of AI · Module 3 · Buddhism — Class notes','Philosophy%20of%20AI/Study%20Guide/Module%203/AI_Module_3_Buddhism_Meera_New_Font.pdf'),
-          item('Ch 1 · Buddhism — Exam points','Philosophy of AI · Module 3 · Buddhism — Exam points','Philosophy%20of%20AI/Study%20Guide/Module%203/AI%20Module%203%20_Chap1_Exam-oriented%20Points.pdf'),
-          item('Ch 3 · Western Epistemology','Philosophy of AI · Module 3 · Western Epistemology','Philosophy%20of%20AI/Study%20Guide/Module%203/Western_Epistemology_Module3_Ch3.pdf'),
-          item('Ch 5 · AI Epistemology — English + Malayalam','Philosophy of AI · Module 3 · AI Epistemology','Philosophy%20of%20AI/Study%20Guide/Module%203/Epistemological_Implications_in_AI_mod3_chp5.pdf'),
-          item('Ch 5 · AI Epistemology — English','Philosophy of AI · Module 3 · AI Epistemology — English','Philosophy%20of%20AI/Study%20Guide/Module%203/Module_3_Chapter_5_Epistemological_Implications_in_AI_Deep_English_Study_Material.pdf','English','English study material · Module 3 · Chapter 5'),
-          item('Revision · Complete chapter Q&A','Philosophy of AI · Module 3 · Complete Q&A','Philosophy%20of%20AI/Study%20Guide/Module%203/Artificial_Intelligence_Module_3_Complete_Q%26A.pdf')
-        ],
-        [14,15,16,17,18,19,20,21,22].map(n=>item('Chapter '+n+' · Malayalam PDF','Philosophy of AI · Module 4 · Chapter '+n,'Philosophy%20of%20AI/Malayalam%20PDF/AI_Philosophy_Chapter_'+n+'_Malayalam.pdf','Malayalam','Uploaded chapter PDF · Malayalam'))
-      ]);
+      if(subject==='Philosophy of AI') return getAiStudyGuideModules();
       if(subject==='Sociology') return modules([
         [empty('Module 1')],
         [empty('Module 2')],
@@ -737,8 +1071,74 @@
       });
       showModuleItem(subject,module.items[itemIndex].medium || medium,module.name,module.items[itemIndex]);
     }
+    function renderAiStudyGuideModule(subject,medium,module,moduleIndex) {
+      const chapters=[];
+      module.items.forEach(item=>{
+        let chapter=chapters.find(entry=>entry.name===item.chapter);
+        if(!chapter) {
+          chapter={name:item.chapter,items:[]};
+          chapters.push(chapter);
+        }
+        chapter.items.push(item);
+      });
+      moduleSubtabs.replaceChildren();
+      moduleSubtabs.setAttribute('role','tablist');
+      moduleSubtabs.setAttribute('aria-label','Chapters');
+      moduleSubtabs.style.display='';
+      moduleDescription.textContent=module.summary+'. Choose a chapter, then a PDF version.';
+      const selectChapter=chapterIndex=>{
+        Array.from(moduleSubtabs.children).forEach((button,index)=>{
+          button.setAttribute('aria-selected',String(index===chapterIndex));
+          button.tabIndex=index===chapterIndex?0:-1;
+        });
+        const chapter=chapters[chapterIndex];
+        const picker=document.createElement('label');
+        picker.className='ai-guide-document-picker';
+        const caption=document.createElement('span');
+        caption.textContent='PDF version';
+        const select=document.createElement('select');
+        select.setAttribute('aria-label',chapter.name+' PDF version');
+        chapter.items.forEach((item,index)=>{
+          const option=document.createElement('option');
+          option.value=String(index);
+          option.textContent=item.label;
+          select.append(option);
+        });
+        picker.append(caption,select);
+        const showDocument=index=>{
+          const item=chapter.items[index];
+          const keepFocus=document.activeElement===select;
+          showModuleItem(subject,item.medium || medium,module.name,item);
+          if(chapter.items.length>1) {
+            moduleContent.prepend(picker);
+            if(keepFocus) select.focus();
+          }
+        };
+        select.addEventListener('change',()=>showDocument(Number(select.value)));
+        showDocument(0);
+      };
+      chapters.forEach((chapter,index)=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.setAttribute('role','tab');
+        button.textContent=chapter.name;
+        button.addEventListener('click',()=>selectChapter(index));
+        moduleSubtabs.append(button);
+      });
+      Array.from(moduleTabs.children).forEach((button,index)=>{
+        button.setAttribute('aria-selected',String(index===moduleIndex));
+        button.tabIndex=index===moduleIndex?0:-1;
+      });
+      selectChapter(0);
+    }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
+      if(subject==='Philosophy of AI' && moduleDialog.dataset.readingOnly==='true' && module.items.every(item=>item.chapter)) {
+        renderAiStudyGuideModule(subject,medium,module,moduleIndex);
+        return;
+      }
+      moduleSubtabs.setAttribute('role','tablist');
+      moduleSubtabs.setAttribute('aria-label','PDFs');
       const firstAvailableItemIndex=Math.max(0,module.items.findIndex(item=>item.href));
       moduleSubtabs.replaceChildren();
       moduleSubtabs.style.display=module.items.length>1?'':'none';
@@ -808,7 +1208,7 @@
         moduleTabs.append(button);
       });
       const defaultGuideModule=studyGuide
-        ? (subject==='Philosophy of AI'||subject==='Sociology'?2:subject==='Development Issues in Indian Economy'?1:0)
+        ? (subject==='Sociology'?2:subject==='Development Issues in Indian Economy'?1:0)
         : 0;
       renderModule(subject,medium,modules,defaultGuideModule);
       moduleDialog.hidden=false;
