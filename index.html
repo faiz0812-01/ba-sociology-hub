@@ -673,16 +673,16 @@
       const actions=document.createElement('div');
       actions.className='module-pdf-actions';
       const open=document.createElement('a');
-      open.href=item.href;
+      open.href=item.fileType==='DOCX'?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):item.href;
       open.target='_blank';
       open.rel='noopener';
-      open.textContent=item.fileType==='DOCX'?'Open document ↗':(itemMedium==='Malayalam'?'Open in new tab ↗':'Open PDF ↗');
+      open.textContent=item.fileType==='DOCX'?'സൈറ്റിൽ വായിക്കുക':(itemMedium==='Malayalam'?'Open in new tab ↗':'Open PDF ↗');
       const download=document.createElement('a');
       download.href=item.href;
       download.setAttribute('download','');
       download.textContent=item.fileType==='DOCX'?'Download document ↓':'Download PDF ↓';
       copy.append(heading,detail);
-      actions.append(open,download);
+      if(item.fileType==='DOCX') actions.append(open); else actions.append(open,download);
       card.append(badge,copy);
       if(!readingOnly) card.append(actions);
       moduleContent.append(card);
@@ -697,7 +697,7 @@
         frame.className='module-pdf-frame';
         frame.title=(item.title || item.label)+' '+(item.fileType || 'PDF')+' reader';
         frame.loading='lazy';
-        frame.src=readingOnly?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):(item.fileType==='DOCX'?'https://docs.google.com/gview?embedded=1&url='+encodeURIComponent(new URL(item.href,location.href).href):item.href);
+        frame.src=(readingOnly||item.fileType==='DOCX')?'study-guide-reader.html?file='+encodeURIComponent(item.href.split('#')[0]):item.href;
         reader.append(readerHeading,frame);
         moduleContent.append(reader);
       }
