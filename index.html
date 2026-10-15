@@ -144,7 +144,11 @@
     .ai-guide-document-picker span{font-weight:700;color:#383267}
     .ai-guide-document-picker select{flex:1;min-width:0;max-width:100%;padding:12px;border:1px solid #c9c3e3;border-radius:10px;background:#fff;color:#25213f;font:inherit}
     .ai-guide-document-picker select:focus-visible{outline:3px solid #7457e8;outline-offset:2px}
-    @media(max-width:560px){.ai-guide-document-picker select{flex-basis:100%}}
+    .ai-guide-version-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:8px;border:1px solid #ddd9f0;border-radius:12px;background:#f8f7ff}
+    .ai-guide-version-tabs button{min-height:40px;padding:9px 13px;border:1px solid #d6d0ea;border-radius:9px;background:#fff;color:#383267;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
+    .ai-guide-version-tabs button[aria-selected="true"]{border-color:#7457e8;background:#7457e8;color:#fff}
+    .ai-guide-version-tabs button:focus-visible{outline:3px solid #b6a7ff;outline-offset:2px}
+    @media(max-width:560px){.ai-guide-version-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.ai-guide-version-tabs button{padding:8px 6px;font-size:12px}}
   </style>
 </head>
 <body id="top">
@@ -1152,36 +1156,40 @@
       moduleSubtabs.setAttribute('role','tablist');
       moduleSubtabs.setAttribute('aria-label','Chapters');
       moduleSubtabs.style.display='';
-      moduleDescription.textContent=module.summary+'. Choose a chapter, then a PDF version.';
+      moduleDescription.textContent=module.summary+'. Choose a chapter, then select English, bilingual, or Malayalam PDF.';
       const selectChapter=chapterIndex=>{
         Array.from(moduleSubtabs.children).forEach((button,index)=>{
           button.setAttribute('aria-selected',String(index===chapterIndex));
           button.tabIndex=index===chapterIndex?0:-1;
         });
         const chapter=chapters[chapterIndex];
-        const picker=document.createElement('label');
-        picker.className='ai-guide-document-picker';
-        const caption=document.createElement('span');
-        caption.textContent='PDF version';
-        const select=document.createElement('select');
-        select.setAttribute('aria-label',chapter.name+' PDF version');
-        chapter.items.forEach((item,index)=>{
-          const option=document.createElement('option');
-          option.value=String(index);
-          option.textContent=item.label;
-          select.append(option);
-        });
-        picker.append(caption,select);
-        const showDocument=index=>{
-          const item=chapter.items[index];
-          const keepFocus=document.activeElement===select;
+        const versionTabs=document.createElement('div');
+        versionTabs.className='ai-guide-version-tabs';
+        versionTabs.setAttribute('role','tablist');
+        versionTabs.setAttribute('aria-label','PDF language versions');
+        const showDocument=(itemIndex,focusButton=false)=>{
+          Array.from(versionTabs.children).forEach((button,index)=>{
+            button.setAttribute('aria-selected',String(index===itemIndex));
+            button.tabIndex=index===itemIndex?0:-1;
+          });
+          const item=chapter.items[itemIndex];
           showModuleItem(subject,item.medium || medium,module.name,item);
-          if(chapter.items.length>1) {
-            moduleContent.prepend(picker);
-            if(keepFocus) select.focus();
-          }
+          moduleContent.prepend(versionTabs);
+          if(focusButton) versionTabs.children[itemIndex]?.focus();
         };
-        select.addEventListener('change',()=>showDocument(Number(select.value)));
+        chapter.items.forEach((item,itemIndex)=>{
+          const button=document.createElement('button');
+          button.type='button';
+          button.setAttribute('role','tab');
+          const isMalayalam=item.medium==='Malayalam' || /Malayalam/i.test(item.label);
+          const isEnglish=item.medium==='English' || /English/i.test(item.label);
+          button.textContent=isMalayalam?'മലയാളം PDF':isEnglish?'English PDF':'English + മലയാളം';
+          button.lang=isMalayalam?'ml':'en';
+          button.setAttribute('aria-selected',String(itemIndex===0));
+          button.tabIndex=itemIndex===0?0:-1;
+          button.addEventListener('click',()=>showDocument(itemIndex,true));
+          versionTabs.append(button);
+        });
         showDocument(0);
       };
       chapters.forEach((chapter,index)=>{
@@ -1199,7 +1207,8 @@
         button.setAttribute('aria-selected',String(index===moduleIndex));
         button.tabIndex=index===moduleIndex?0:-1;
       });
-      showStudyGuideNavigationPrompt(module.name);
+      if(chapters.length) selectChapter(0);
+      else showStudyGuideNavigationPrompt(module.name);
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       const module=modules[moduleIndex];
