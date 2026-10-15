@@ -911,7 +911,7 @@
       // Study Guide Eng - Mal: every subject opens four module tabs; each module
       // contains chapter/document tabs. Only link PDFs that exist in the repository.
       const item=(label,title,href,medium='Bilingual',description='Study guide PDF · English + Malayalam')=>({label,title,href,medium,description,embed:true});
-      const empty=(module)=>({label:'Chapter PDFs awaiting upload',title:subject+' · '+module+' · Study guide files',medium:'Bilingual',description:'This module is ready for chapter-wise PDFs. No matching file is currently available in the repository.'});
+      const empty=(module)=>({label:module,title:subject+' · '+module+' · Study guide files',medium:subject==='English'?'English':'Bilingual',description:'PDF not currently available in the repository. This chapter is listed in syllabus order; upload its matching study material when ready.'});
       const moduleNames={
         'Sociology':['Syllabus','Module 1 · Introducing Sociology','Module 2 · Practicing Sociology','Module 3 · Individual and Society','Module 4 · Sociology and Society','Module 5 · Perceiving Social Dynamics'],
         'Development Issues in Indian Economy':['Module 1 · Historical Precedents of Development Issues of Indian Economy','Module 2 · Poverty','Module 3 · Inequality','Module 4 · Unemployment','Module 5 · Open Ended'],
