@@ -403,9 +403,7 @@
         <section class="module-panel">
           <header class="module-header">
             <div><h2 id="module-title">Study modules</h2><p id="module-description">Choose a module and browse its PDFs.</p></div>
-            <div class="module-header-actions">
-              <button class="module-close" type="button" aria-label="Close module library" data-module-close>×</button>
-            </div>
+
           </header>
           <nav id="module-tabs" class="module-tabs" aria-label="Modules"></nav>
           <div id="module-subtabs" class="module-subtabs" aria-label="Submodules"></div>
@@ -1693,7 +1691,8 @@
       }
       moduleDialog.hidden=false;
       document.body.style.overflow='hidden';
-      moduleDialog.querySelector('.module-close').focus();
+      const firstModuleTab=moduleTabs.querySelector('button');
+      (firstModuleTab || moduleDialog.querySelector('.module-home')).focus();
     }
     function closeModuleLibrary() {
       moduleContent.replaceChildren();
