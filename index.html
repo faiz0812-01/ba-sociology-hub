@@ -2845,6 +2845,17 @@
           embed:true
         }]
       }];
+      if(subject==='Philosophy of Education') return [{
+        name:'Philosophy of Education MCQ',
+        items:[{
+          label:'Philosophy of Education MCQs',
+          title:'Philosophy of Education · MCQs',
+          href:'Philosophy%20of%20Education%20MCQs.pdf?v=2e0c361',
+          medium:'English',
+          description:'Philosophy of Education MCQ question paper PDF.',
+          embed:true
+        }]
+      }];
       if(subject==='Microeconomic Foundation') return [{
         name:'Question Banks',
         items:[
@@ -3180,7 +3191,9 @@
           ? 'Choose English or Malayalam to read your uploaded Microeconomics MCQ question banks.'
           : subject==='Philosophy of AI'
             ? 'Open the uploaded Philosophy of AI MCQ PDF in English and Malayalam.'
-            : 'MCQ PDF section. Add the subject’s question-paper PDFs to the matching module when ready.')
+            : subject==='Philosophy of Education'
+              ? 'Open the uploaded Philosophy of Education MCQ question paper PDF.'
+              : 'MCQ PDF section. Add the subject’s question-paper PDFs to the matching module when ready.')
         : studyGuide
         ? 'Choose a module, then select a chapter or document. PDFs open only after you select a chapter.'
         : subject==='Malayalam' && medium==='Malayalam'
