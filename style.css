@@ -1167,3 +1167,10 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
 .module-window-nav {
   margin-top: 4.5em !important;
 }
+
+
+/* Footer links for the site information pages. */
+footer{flex-wrap:wrap}
+footer .footer-nav{display:flex;flex:1 1 100%;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;font-size:12px}
+footer .footer-nav a{display:inline-flex;align-items:center;min-height:36px;padding:6px 4px;color:inherit;text-decoration:underline;text-underline-offset:3px}
+footer .footer-nav a:focus-visible{outline:2px solid #bfcfc3;outline-offset:3px}
