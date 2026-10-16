@@ -162,6 +162,42 @@
     #module-dialog .module-home:focus-visible{outline:3px solid #8bb99a;outline-offset:2px}
     @media(max-width:560px){#module-dialog .module-header-actions{gap:6px}#module-dialog .module-home{min-height:36px;padding:7px 9px;font-size:12px}}
   </style>
+  <style id="centered-home-button-after-chapters">
+    /* Keep the Home action centered below the chapter tabs in every English and Malayalam resource window. */
+    #module-dialog .module-home-row {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      box-sizing:border-box;
+      margin:0 0 16px;
+      padding:0 0 14px;
+      border-bottom:1px solid #d8e2ef;
+      order:3;
+    }
+    #module-dialog .module-home-row .module-home {
+      min-width:160px;
+      min-height:42px;
+      padding:10px 20px;
+      border:1px solid #9bbce0;
+      border-radius:11px;
+      background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
+      color:#173b67;
+      font-size:14px;
+      font-weight:850;
+      text-align:center;
+      box-shadow:0 3px 10px rgba(23,59,103,.10);
+    }
+    #module-dialog .module-home-row .module-home:hover {
+      background:#dbeafe;
+      border-color:#3569a8;
+    }
+    #module-dialog .module-content { order:4; }
+    @media(max-width:560px) {
+      #module-dialog .module-home-row { margin-bottom:13px;padding-bottom:12px; }
+      #module-dialog .module-home-row .module-home { min-width:150px;min-height:40px;padding:9px 17px;font-size:13px; }
+    }
+  </style>
   <style id="all-subject-window-cleanup">
     /* Apply the clean chapter window consistently to every subject and every resource sub-tab. */
     #module-dialog .study-guide-navigation-prompt{display:none!important}
@@ -372,12 +408,14 @@
           <header class="module-header">
             <div><h2 id="module-title">Study modules</h2><p id="module-description">Choose a module and browse its PDFs.</p></div>
             <div class="module-header-actions">
-              <a class="module-home" href="index.html#top" aria-label="Back to Academic Hub home page" title="Back to home page">⌂ <span>Back to Home</span></a>
               <button class="module-close" type="button" aria-label="Close module library" data-module-close>×</button>
             </div>
           </header>
           <nav id="module-tabs" class="module-tabs" aria-label="Modules"></nav>
           <div id="module-subtabs" class="module-subtabs" aria-label="Submodules"></div>
+          <div class="module-home-row">
+            <a class="module-home" href="index.html#top" aria-label="Back to Academic Hub home page" title="Back to home page">⌂ <span>Back to Home</span></a>
+          </div>
           <div id="module-content" class="module-content" aria-live="polite"></div>
         </section>
       </div>
