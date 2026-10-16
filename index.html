@@ -1389,6 +1389,19 @@
         // the repository does not yet contain a file for this syllabus entry.
         const chapterView=document.createElement('section');
         chapterView.className='module-chapter-open';
+        const windowNav=document.createElement('div');
+        windowNav.className='module-home-row module-window-nav';
+        const backWindow=document.createElement('button');
+        backWindow.type='button';
+        backWindow.className='module-home module-back-button';
+        backWindow.textContent='← Back';
+        backWindow.addEventListener('click',()=>document.getElementById('module-back-button')?.click());
+        const homeWindow=document.createElement('a');
+        homeWindow.className='module-home';
+        homeWindow.href='index.html#top';
+        homeWindow.textContent='⌂ Home Page';
+        windowNav.append(backWindow,homeWindow);
+        chapterView.append(windowNav);
         const heading=document.createElement('h3');
         heading.className='module-chapter-open-title';
         heading.textContent=item.title || item.label || moduleName;
@@ -1413,6 +1426,19 @@
       }
       const chapterView=document.createElement('section');
       chapterView.className='module-chapter-open';
+        const windowNav=document.createElement('div');
+        windowNav.className='module-home-row module-window-nav';
+        const backWindow=document.createElement('button');
+        backWindow.type='button';
+        backWindow.className='module-home module-back-button';
+        backWindow.textContent='← Back';
+        backWindow.addEventListener('click',()=>document.getElementById('module-back-button')?.click());
+        const homeWindow=document.createElement('a');
+        homeWindow.className='module-home';
+        homeWindow.href='index.html#top';
+        homeWindow.textContent='⌂ Home Page';
+        windowNav.append(backWindow,homeWindow);
+        chapterView.append(windowNav);
       const heading=document.createElement('h3');
       heading.className='module-chapter-open-title';
       heading.textContent=item.title || item.label || moduleName;
