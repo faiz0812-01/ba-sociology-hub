@@ -434,10 +434,6 @@
           </header>
           <nav id="module-tabs" class="module-tabs" aria-label="Modules"></nav>
           <div id="module-subtabs" class="module-subtabs" aria-label="Submodules"></div>
-          <div class="module-home-row">
-            <button class="module-home module-back-button" type="button" id="module-back-button" aria-label="Back to previous study window" title="Back to previous study window">← <span>Back</span></button>
-            <a class="module-home" href="index.html#top" aria-label="Go to Academic Hub home page" title="Go to home page">⌂ <span>Home Page</span></a>
-          </div>
           <div id="module-content" class="module-content" aria-live="polite"></div>
         </section>
       </div>
@@ -1395,7 +1391,16 @@
         backWindow.type='button';
         backWindow.className='module-home module-back-button';
         backWindow.textContent='← Back';
-        backWindow.addEventListener('click',()=>document.getElementById('module-back-button')?.click());
+        backWindow.addEventListener('click',()=>{
+          const content=document.getElementById('module-content');
+          if(!content) return;
+          content.replaceChildren();
+          const prompt=document.createElement('p');
+          prompt.className='module-empty';
+          prompt.textContent='Choose a chapter or PDF tab above to open one document at a time.';
+          content.append(prompt);
+          document.getElementById('module-subtabs')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+        });
         const homeWindow=document.createElement('a');
         homeWindow.className='module-home';
         homeWindow.href='index.html#top';
@@ -1432,7 +1437,16 @@
         backWindow.type='button';
         backWindow.className='module-home module-back-button';
         backWindow.textContent='← Back';
-        backWindow.addEventListener('click',()=>document.getElementById('module-back-button')?.click());
+        backWindow.addEventListener('click',()=>{
+          const content=document.getElementById('module-content');
+          if(!content) return;
+          content.replaceChildren();
+          const prompt=document.createElement('p');
+          prompt.className='module-empty';
+          prompt.textContent='Choose a chapter or PDF tab above to open one document at a time.';
+          content.append(prompt);
+          document.getElementById('module-subtabs')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+        });
         const homeWindow=document.createElement('a');
         homeWindow.className='module-home';
         homeWindow.href='index.html#top';
