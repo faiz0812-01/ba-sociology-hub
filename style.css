@@ -2143,3 +2143,42 @@ footer .footer-nav a:focus-visible{outline:2px solid #bfcfc3;outline-offset:3px}
   padding-top: 6px !important;
   border-top: 1px dashed #cbd5e1 !important;
 }
+
+/* Quiz Option Interactive Feedback States - Absolute High Priority */
+.option-btn.selected-correct,
+button.option-btn.selected-correct {
+  background: #ecfdf5 !important;
+  border: 2px solid #16a34a !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
+}
+.option-btn.selected-correct .option-letter,
+button.option-btn.selected-correct .option-letter {
+  background: #16a34a !important;
+  color: #ffffff !important;
+}
+.option-btn.selected-wrong,
+button.option-btn.selected-wrong {
+  background: #fef2f2 !important;
+  border: 2px solid #dc2626 !important;
+  color: #b91c1c !important;
+  font-weight: 700 !important;
+}
+.option-btn.selected-wrong .option-letter,
+button.option-btn.selected-wrong .option-letter {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+}
+.option-btn.revealed-correct,
+button.option-btn.revealed-correct {
+  background: #f0fdf4 !important;
+  border: 2px solid #16a34a !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
+}
+.option-btn.revealed-correct .option-letter,
+button.option-btn.revealed-correct .option-letter {
+  background: #16a34a !important;
+  color: #ffffff !important;
+}
+

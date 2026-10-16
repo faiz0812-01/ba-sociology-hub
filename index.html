@@ -1545,6 +1545,7 @@
       quizStats.className = 'quiz-stats';
       quizStats.innerHTML = '<span class="stat-badge">🎯 15 Questions per Session · Sourced from official Course PDF</span>';
       const scoreCounter = document.createElement('span');
+      scoreCounter.className = 'quiz-score-badge';
       scoreCounter.style.fontWeight = '700';
       scoreCounter.style.color = 'var(--subject-primary, #1b5e4a)';
       quizStats.append(scoreCounter);
@@ -1602,10 +1603,16 @@
           card.append(qTitle, optGrid, expBox);
 
           const letters = ['A', 'B', 'C', 'D'];
+          const letterMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+          const correctIdx = typeof q.answer === 'number' ? q.answer : (letterMap[String(q.answer).trim()] ?? parseInt(q.answer, 10));
+          card.dataset.correctIdx = String(correctIdx);
+
           (q.options || []).forEach((opt, optIdx) => {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'option-btn';
+            btn.dataset.optIdx = String(optIdx);
+            btn.dataset.isCorrect = (optIdx === correctIdx) ? 'true' : 'false';
             
             let enText = '';
             let malText = '';
@@ -1627,9 +1634,10 @@
             btn.onclick = () => {
               Array.from(optGrid.children).forEach((b, i) => {
                 b.disabled = true;
-                if (i === q.answer) b.classList.add('revealed-correct');
+                if (i === correctIdx) b.classList.add('revealed-correct');
               });
-              if (optIdx === q.answer) {
+              if (optIdx === correctIdx) {
+                btn.classList.remove('revealed-correct');
                 btn.classList.add('selected-correct');
                 currentQuiz.score++;
               } else {

@@ -175,7 +175,7 @@ window.ethicsLearningData = {
             "mal": "ഇറോസ് (Eros)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Ethics derives from the Greek word 'ethos', which signifies character, custom, or habitual conduct.",
         "explanationMal": "'എത്തിക്സ്' എന്ന പദം സ്വഭാവം അല്ലെങ്കിൽ ആചാരം എന്നർത്ഥം വരുന്ന 'ഈഥോസ്' (Ethos) എന്ന ഗ്രീക്ക് പദത്തിൽ നിന്നാണ് ഉത്ഭവിച്ചത്."
       },
@@ -205,7 +205,7 @@ window.ethicsLearningData = {
             "mal": "മനസ്സിന്റെ ശാസ്ത്രം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Philosophy combines the Greek words 'philia' (love) and 'sophia' (wisdom), meaning 'love of wisdom'.",
         "explanationMal": "'ഫിലിയ' (സ്നേഹം), 'സോഫിയ' (ജ്ഞാനം) എന്നീ ഗ്രീക്ക് പദങ്ങൾ ചേർന്നാണ് ഫിലോസഫി ഉണ്ടായത്; ഇതിനർത്ഥം 'ജ്ഞാനത്തോടുള്ള സ്നേഹം' എന്നാണ്."
       },
@@ -235,7 +235,7 @@ window.ethicsLearningData = {
             "mal": "ഉപബോധമനസ്സിലെയും സ്വപ്നങ്ങളിലെയും പെരുമാറ്റം"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Ethics evaluates only voluntary (volitional) human actions performed with moral awareness and deliberate choice.",
         "explanationMal": "അറിവോടും തിരഞ്ഞെടുക്കാനുള്ള സ്വാതന്ത്ര്യത്തോടും കൂടി മനുഷ്യൻ മനപ്പൂർവ്വം ചെയ്യുന്ന സന്നദ്ധ പ്രവൃത്തികളെ മാത്രമേ എത്തിക്സ് വിലയിരുത്തുന്നുള്ളൂ."
       },
@@ -265,7 +265,7 @@ window.ethicsLearningData = {
             "mal": "വ്യവസ്ഥകളില്ലാത്ത കേവലമായ ധർമ്മം"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "An instrumental good is valuable not for itself, but as an effective means to achieve another end (e.g., money or tools).",
         "explanationMal": "മറ്റൊരു കാര്യം നേടാനുള്ള ഉപാധിയായി ഉപയോഗിക്കുന്നതിനെയാണ് ഇൻസ്ട്രുമെന്റൽ ഗുഡ് എന്ന് പറയുന്നത് (ഉദാഹരണത്തിന് പണം)."
       },
@@ -295,7 +295,7 @@ window.ethicsLearningData = {
             "mal": "സങ്കീർണ്ണവും നിഗൂഢവുമായത്"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "'Rectus' means straight, indicating conformity to an authoritative moral standard, norm, or law.",
         "explanationMal": "'റെക്റ്റസ്' എന്നാൽ നേരായത് അല്ലെങ്കിൽ നിയമത്തിനും മാനദണ്ഡത്തിനും അനുസൃതമായത് എന്നാണ് അർത്ഥമാക്കുന്നത്."
       },
@@ -325,7 +325,7 @@ window.ethicsLearningData = {
             "mal": "അഹങ്കാരം"
           }
         ],
-        "answer": "D",
+        "answer": 3,
         "explanation": "The four Purusharthas are Dharma (righteousness), Artha (wealth), Kama (pleasure/desire), and Moksha (spiritual liberation). Ahankara (egoism) is an obstacle.",
         "explanationMal": "നാല് പുരുഷാർത്ഥങ്ങൾ ധർമ്മം, അർത്ഥം, കാമം, മോക്ഷം എന്നിവയാണ്. അഹങ്കാരം ഇതിൽ ഉൾപ്പെടുന്നില്ല."
       },
@@ -355,7 +355,7 @@ window.ethicsLearningData = {
             "mal": "സാമൂഹിക ആചാരങ്ങളെ കണ്ണടച്ച് അനുകരിക്കുക"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Nishkama Karma teaches performing duty purely for duty's sake without yearning for rewards or personal fruits of action.",
         "explanationMal": "കർമ്മഫലങ്ങളിൽ ആശ്രയിക്കാതെയും ഫലാഭിലാഷമില്ലാതെയും നിഷ്കാമമായി സ്വന്തം കടമകൾ നിർവഹിക്കുന്നതിനെയാണ് നിഷ്കാമ കർമ്മം എന്ന് പറയുന്നത്."
       },
@@ -385,7 +385,7 @@ window.ethicsLearningData = {
             "mal": "ധാർമ്മിക മൂല്യങ്ങൾ ഭൗതിക ഉപകരണങ്ങൾ വഴി അളക്കാം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Hume's Guillotine asserts that factual premises ('is') cannot logically entail normative or moral conclusions ('ought').",
         "explanationMal": "വസ്തുതകളെ വിവരിക്കുന്നതിൽ നിന്ന് ധാർമ്മികമായി ചെയ്യേണ്ട കടമകളെ നേരിട്ട് നിഗമനം ചെയ്യാൻ കഴിയില്ലെന്ന് ഹ്യൂം സ്ഥാപിച്ചു (Hume's Guillotine)."
       },
@@ -415,7 +415,7 @@ window.ethicsLearningData = {
             "mal": "ബെർട്രാൻഡ് റസ്സൽ (Bertrand Russell)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "G.E. Moore formulated the Naturalistic Fallacy in Principia Ethica (1903), arguing that 'good' is a simple, unanalyzable non-natural property.",
         "explanationMal": "1903-ൽ പ്രസിദ്ധീകരിച്ച 'പ്രിൻസിപ്പിയ എത്തിക്ക'യിൽ ജി.ഇ. മൂറാണ് നാച്ചുറലിസ്റ്റിക് ഫാലസി എന്ന യുക്തിപരമായ തകരാറ് വിശദീകരിച്ചത്."
       },
@@ -445,7 +445,7 @@ window.ethicsLearningData = {
             "mal": "പഞ്ചസാരയുടെ മധുരം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Moore argued that just as 'yellow' is a simple property known by direct perception and cannot be defined, 'good' is equally indefinable.",
         "explanationMal": "'മഞ്ഞ' എന്നത് നേരിട്ട് അനുഭവിച്ചറിയാവുന്ന ലളിതമായ ഒന്നാണെന്നും അതിനെ നിർവചിക്കാനാവില്ലെന്നും പോലെ 'നന്മ'യും നിർവചനാതീതമാണെന്ന് മൂർ വാദിച്ചു."
       },
@@ -475,7 +475,7 @@ window.ethicsLearningData = {
             "mal": "ഇവ രണ്ടും തമ്മിൽ യാതൊരു വ്യത്യാസവുമില്ല"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Positive sciences (physics, biology) describe actual facts as they are; normative sciences (ethics, logic, aesthetics) assess phenomena against normative ideals.",
         "explanationMal": "പോസിറ്റീവ് ശാസ്ത്രങ്ങൾ ഉള്ള കാര്യങ്ങളെ നിരീക്ഷിക്കുമ്പോൾ, നോർമേറ്റീവ് ശാസ്ത്രങ്ങൾ 'എന്തായിരിക്കണം' എന്ന ലക്ഷ്യത്തിന് അനുസൃതമായി വിലയിരുത്തുന്നു."
       },
@@ -505,7 +505,7 @@ window.ethicsLearningData = {
             "mal": "അവിദ്യ (Avidya)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Rta in Vedic philosophy represents the cosmic, moral, and physical order governing the natural world and human righteousness.",
         "explanationMal": "വേദകാലത്ത് പ്രപഞ്ചത്തിന്റെ താളത്തെയും ധാർമ്മിക വ്യവസ്ഥിതിയെയും പ്രതിനിധീകരിച്ചിരുന്ന സങ്കൽപ്പമാണ് 'ഋതം' (Rta)."
       },
@@ -535,7 +535,7 @@ window.ethicsLearningData = {
             "mal": "വാഹനത്തിന്റെ എഞ്ചിൻ"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Happiness is pursued for its own sake as an end in itself, making it an intrinsic good, unlike money or tools which are instruments.",
         "explanationMal": "സന്തോഷം എന്നത് മറ്റൊന്നിനു വേണ്ടിയല്ലാതെ സ്വന്തം നിലയിൽ ലക്ഷ്യമാക്കപ്പെടുന്ന ആന്തരിക നന്മയാണ്."
       },
@@ -565,7 +565,7 @@ window.ethicsLearningData = {
             "mal": "സംശയം, വിശ്വാസം, പ്രവൃത്തി"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Logic seeks Truth, Aesthetics seeks Beauty, and Ethics evaluates human actions against the ideal of Goodness.",
         "explanationMal": "ലോജിക് സത്യത്തെയും, സൗന്ദര്യശാസ്ത്രം സൗന്ദര്യത്തെയും, എത്തിക്സ് നന്മയെയുമാണ് തങ്ങളുടെ പരമോന്നത മാനദണ്ഡങ്ങളായി കാണുന്നത്."
       },
@@ -595,7 +595,7 @@ window.ethicsLearningData = {
             "mal": "ശാസ്ത്രീയ അന്വേഷണങ്ങളെയും പുരോഗതിയെയും തടയുക"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Ethics equips individuals and societies with structured reasoning to evaluate moral dilemmas, uphold justice, and cultivate harmonious living.",
         "explanationMal": "ധാർമ്മിക പ്രതിസന്ധികൾ തരണം ചെയ്യാനും നീതിപൂർവ്വമായ ഒരു സമൂഹത്തെ നയിക്കാനുമുള്ള യുക്തിസഹമായ മാർഗ്ഗനിർദ്ദേശങ്ങൾ നൽകുകയാണ് എത്തിക്സ് ചെയ്യുന്നത്."
       }
@@ -777,7 +777,7 @@ window.ethicsLearningData = {
             "mal": "സ്ഥാപനങ്ങളുടെ സമ്പത്ത് വർദ്ധിപ്പിക്കുക"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Virtue ethics is agent-centered, examining what kind of person one should become rather than focusing merely on discrete rules or consequences.",
         "explanationMal": "പ്രവൃത്തിയുടെ ഫലങ്ങളെയോ നിയമങ്ങളെയോ മാത്രം നോക്കാതെ, വ്യക്തിയുടെ സ്വഭാവ മഹിമയ്ക്കാണ് സദ്ഗുണ എത്തിക്സ് മുൻഗണന നൽകുന്നത്."
       },
@@ -807,7 +807,7 @@ window.ethicsLearningData = {
             "mal": "ഫ്രാൻസിസ് ബേക്കൺ (Francis Bacon)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Socrates held that moral virtue is fundamentally a form of knowledge—to truly know the good is to act accordingly.",
         "explanationMal": "നന്മയെക്കുറിച്ചുള്ള ശരിയായ അറിവാണ് സദ്ഗുണമെന്നും, അറിവുള്ളവൻ തെറ്റ് ചെയ്യില്ലെന്നും സോക്രട്ടീസ് വാദിച്ചു."
       },
@@ -837,7 +837,7 @@ window.ethicsLearningData = {
             "mal": "നീതി (Justice)"
           }
         ],
-        "answer": "C",
+        "answer": 2,
         "explanation": "Plato's four cardinal virtues are Wisdom, Courage, Temperance, and Justice. Wealth is an external material possession.",
         "explanationMal": "പ്ലേറ്റോയുടെ നാല് അടിസ്ഥാന സദ്ഗുണങ്ങൾ ജ്ഞാനം, ധൈര്യം, മിതത്വം, നീതി എന്നിവയാണ്. സമ്പത്ത് ഇതിൽ ഉൾപ്പെടുന്നില്ല."
       },
@@ -867,7 +867,7 @@ window.ethicsLearningData = {
             "mal": "അഭിലാഷം (Ambition)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Reason corresponds to Wisdom, Spirit corresponds to Courage, and Appetite corresponds to Temperance.",
         "explanationMal": "യുക്തിക്ക് അനുയോജ്യമായ സദ്ഗുണം ജ്ഞാനവും, വീര്യത്തിന് ധൈര്യവും, ഇച്ഛകൾക്ക് മിതത്വവുമാണ്."
       },
@@ -897,7 +897,7 @@ window.ethicsLearningData = {
             "mal": "വികാരങ്ങളെ പൂർണ്ണമായി അടിച്ചമർത്തൽ"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Justice is the harmony achieved when Reason rules, Spirit supports, and Appetites are moderated.",
         "explanationMal": "യുക്തിയുടെ നേതൃത്വത്തിൽ മനസ്സിന്റെ എല്ലാ തലങ്ങളും പൊരുത്തപ്പെട്ടു പ്രവർത്തിക്കുന്ന അവസ്ഥയാണ് പ്ലേറ്റോയുടെ കാഴ്ചപ്പാടിൽ നീതി."
       },
@@ -927,7 +927,7 @@ window.ethicsLearningData = {
             "mal": "ധ്യാനത്തിലൂടെ മാത്രം"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Aristotle argued that moral virtues are formed through habit (ethos)—we become just by doing just acts and courageous by doing brave acts.",
         "explanationMal": "നല്ല പ്രവൃത്തികൾ നിരന്തരം പരിശീലിക്കുന്നതിലൂടെയും ശീലമാക്കുന്നതിലൂടെയുമാണ് (Habituation) ധാർമ്മിക സദ്ഗുണങ്ങൾ കൈവരുന്നത്."
       },
@@ -957,7 +957,7 @@ window.ethicsLearningData = {
             "mal": "യാന്ത്രികമായ ശരാശരി കണക്കാക്കൽ"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Virtue is the mean relative to us between deficiency (too little) and excess (too much), guided by practical reason.",
         "explanationMal": "കുറവിനും (Deficiency) അതിരുകടക്കലിനും (Excess) ഇടയിലുള്ള ഉചിതമായ സന്തുലിതാവസ്ഥയാണ് സദ്ഗുണം."
       },
@@ -987,7 +987,7 @@ window.ethicsLearningData = {
             "mal": "നിസ്സംഗതയ്ക്കും അസൂയയ്ക്കും ഇടയിൽ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Courage is the mean: cowardice is having excessive fear (deficiency of confidence), while rashness is having reckless lack of fear.",
         "explanationMal": "ഭയം കാരണം ഓടിയൊളിക്കുന്ന ഭീരുത്വത്തിനും, ആലോചനയില്ലാതെ അപകടത്തിൽ ചാടുന്ന എടുത്തുചാട്ടത്തിനും നടുവിലാണ് ധൈര്യം."
       },
@@ -1017,7 +1017,7 @@ window.ethicsLearningData = {
             "mal": "യുദ്ധവിജയങ്ങൾ നേടൽ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Eudaimonia is the supreme good sought for its own sake, achieved through the active exercise of the soul's rational faculties in virtue.",
         "explanationMal": "മനുഷ്യന്റെ സകല പ്രവർത്തനങ്ങളുടെയും ആത്യന്തിക ലക്ഷ്യം യൂഡൈമോണിയ (Eudaimonia - ആത്മസാക്ഷാത്കാരം/ആനന്ദം) ആണ്."
       },
@@ -1047,7 +1047,7 @@ window.ethicsLearningData = {
             "mal": "ഭരണാധികാരികൾക്ക് അവകാശം മാത്രമേയുള്ളൂ, പ്രജകൾക്ക് കടമകൾ മാത്രമേയുള്ളൂ"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Rights and duties are two sides of the same coin: every claim of right by one individual imposes a reciprocal obligation upon society.",
         "explanationMal": "ഒരാളുടെ അവകാശം മറ്റൊരാളുടെ കടമയാണ്; പരസ്പരമുള്ള ബഹുമാനവും കടമയും ഇല്ലാതെ സമൂഹത്തിൽ അവകാശങ്ങൾ നിലനിൽക്കില്ല."
       },
@@ -1077,7 +1077,7 @@ window.ethicsLearningData = {
             "mal": "നിയമപരമായ അവകാശങ്ങൾക്ക് പോലീസോ കോടതികളോ ആവശ്യമില്ല"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Legal rights are codified and enforced by positive law and state sanctions; moral rights exist independently based on moral justice and human dignity.",
         "explanationMal": "നിയമപരമായ അവകാശങ്ങൾക്ക് ഭരണകൂടത്തിന്റെ അംഗീകാരവും പിന്തുണയുമുണ്ട്; എന്നാൽ ധാർമ്മിക അവകാശങ്ങൾ സാർവ്വലൗകിക നീതിബോധത്തിൽ അധിഷ്ഠിതമാണ്."
       },
@@ -1107,7 +1107,7 @@ window.ethicsLearningData = {
             "mal": "വ്യത്യസ്ത ഭാഷാശൈലികൾ തമ്മിൽ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Duty manifests when the rational higher self recognizes what is morally required despite the competing pull of lower impulses.",
         "explanationMal": "മനുഷ്യന്റെ യുക്തിപരമായ ഉയർന്ന ചിന്തയും ക്ഷണികമായ താഴ്ന്ന ഇച്ഛകളും തമ്മിലുള്ള സംഘർഷത്തിൽ നിന്നാണ് കടമ നിർവഹിക്കാനുള്ള ബോധം ജനിക്കുന്നത്."
       },
@@ -1137,7 +1137,7 @@ window.ethicsLearningData = {
             "mal": "മനുഷ്യരിൽ നിന്നുള്ള ഏകാന്തവാസം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Aristotle noted that exercising virtue can be impeded by extreme privation; external goods like health and community support flourishing.",
         "explanationMal": "സദ്ഗുണങ്ങൾ പ്രവർത്തികമാക്കാൻ ആരോഗ്യം, സൗഹൃദങ്ങൾ, ജീവിത സാഹചര്യങ്ങൾ തുടങ്ങിയ ബാഹ്യ നന്മകളും ആവശ്യമാണെന്ന് അരിസ്റ്റോട്ടിൽ വ്യക്തമാക്കുന്നു."
       },
@@ -1167,7 +1167,7 @@ window.ethicsLearningData = {
             "mal": "കടങ്ങൾക്ക് വലിയ പലിശ ഈടാക്കുക"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Temperance is self-restraint and moderation, ensuring bodily passions and appetites do not overthrow rational governance.",
         "explanationMal": "ശാരീരിക ഇച്ഛകളെയും പ്രവണതകളെയും യുക്തിയുടെ മാർഗ്ഗനിർദ്ദേശത്തിൽ നിയന്ത്രിച്ചു നിർത്തുന്നതാണ് മിതത്വം (Temperance)."
       },
@@ -1197,7 +1197,7 @@ window.ethicsLearningData = {
             "mal": "മനുഷ്യരെ നിയന്ത്രിക്കുന്നത് യന്ത്രങ്ങളാണ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Socrates maintained that humans always pursue what appears good to them; when they commit evil, it is due to moral blindness or ignorance.",
         "explanationMal": "മനുഷ്യർ തങ്ങൾക്ക് നല്ലതെന്ന് തോന്നുന്നത് മാത്രമേ ചെയ്യൂ; ഒരാൾ തെറ്റ് ചെയ്യുന്നത് അത് നല്ലതാണെന്ന തെറ്റായ അറിവില്ലായ്മ മൂലമാണ്."
       }
@@ -1383,7 +1383,7 @@ window.ethicsLearningData = {
             "mal": "എല്ലാ മനുഷ്യ പ്രവൃത്തികളും വിധിയാൽ മുൻകൂട്ടി നിശ്ചയിക്കപ്പെട്ടതാണ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Hedonism derives from Greek 'hedone' (delight/pleasure), holding that pleasure alone has intrinsic positive value.",
         "explanationMal": "ഗ്രീക്ക് പദമായ 'ഹെഡോൺ' (സുഖം) എന്നതിൽ നിന്നാണ് ഹെഡോണിസം ഉണ്ടായത്; സുഖം മാത്രമാണ് നന്മയെന്നും വേദന മാത്രമാണ് തിന്മയെന്നും ഇത് പഠിപ്പിക്കുന്നു."
       },
@@ -1413,7 +1413,7 @@ window.ethicsLearningData = {
             "mal": "ഡെക്കാർട്ട് (Descartes)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Jeremy Bentham founded classical utilitarianism with the fundamental axiom that the greatest happiness of the greatest number is the measure of right and wrong.",
         "explanationMal": "പരമാവധി ആളുകൾക്ക് പരമാവധി സന്തോഷം നൽകുന്നതാണ് ശരിയായ പ്രവൃത്തി എന്ന് ജെറമി ബെന്താം പ്രഖ്യാപിച്ചു."
       },
@@ -1443,7 +1443,7 @@ window.ethicsLearningData = {
             "mal": "പുരാതന ലിപികൾ വായിക്കാനുള്ള വിദ്യ"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Bentham's Felicific Calculus systematically measures net pleasure using variables like intensity, duration, certainty, and extent.",
         "explanationMal": "തീവ്രത, ദൈർഘ്യം, വ്യാപ്തി തുടങ്ങിയ ഘടകങ്ങൾ ഉപയോഗിച്ച് പ്രവൃത്തികൾ ഉണ്ടാക്കുന്ന സുഖദുഃഖങ്ങൾ കൃത്യമായി കണക്കാക്കുന്ന രീതിയാണിത്."
       },
@@ -1473,7 +1473,7 @@ window.ethicsLearningData = {
             "mal": "കവിത മനുഷ്യരെ ദുഃഖിപ്പിക്കുമെന്ന വിശ്വാസം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Bentham evaluated pleasures purely by quantitative magnitude, refusing to deem intellectual pursuits intrinsically superior to simple games.",
         "explanationMal": "സുഖങ്ങൾക്ക് ഗുണപരമായ വ്യത്യാസമില്ലെന്നും അവയുടെ അളവ് (Quantity) മാത്രമാണ് പ്രധാനമെന്നും ബെന്താം സമർത്ഥിച്ചു."
       },
@@ -1503,7 +1503,7 @@ window.ethicsLearningData = {
             "mal": "പ്രയോജനവാദത്തെ അപ്പാടെ ഉപേക്ഷിച്ചു"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Mill argued that intellectual, moral, and aesthetic pleasures possess a higher quality than base physical gratifications.",
         "explanationMal": "ശാരീരിക സുഖങ്ങളേക്കാൾ ബൗദ്ധികവും സർഗ്ഗാത്മകവുമായ ഉന്നത സുഖങ്ങൾക്ക് കൂടുതൽ ഗുണമേന്മയുണ്ടെന്ന് മിൽ വാദിച്ചു."
       },
@@ -1533,7 +1533,7 @@ window.ethicsLearningData = {
             "mal": "പാമ്പ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "'It is better to be a human being dissatisfied than a pig satisfied; better to be Socrates dissatisfied than a fool satisfied.'",
         "explanationMal": "'തൃപ്തിപ്പെട്ട പന്നിയാകുന്നതിനേക്കാൾ അസംതൃപ്തനായ മനുഷ്യനാകുന്നതാണ് ഉചിതം' എന്നാണ് മിൽ പറഞ്ഞത്."
       },
@@ -1563,7 +1563,7 @@ window.ethicsLearningData = {
             "mal": "പ്രകൃതി അല്ലെങ്കിൽ ജീവശാസ്ത്രം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "'Deon' is the Greek word for duty; deontology evaluates acts by conformity to moral duty, independent of results.",
         "explanationMal": "'ഡിയോൺ' എന്നാൽ കടമ എന്നാണ് അർത്ഥം; ഫലങ്ങൾ നോക്കാതെ സ്വന്തം കടമ നിർവഹിക്കാൻ ആവശ്യപ്പെടുന്നതാണ് ഡിയന്റോളജി."
       },
@@ -1593,7 +1593,7 @@ window.ethicsLearningData = {
             "mal": "ശാരീരിക ശക്തി"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Kant begins the Groundwork by declaring: 'Nothing in the world... can possibly be conceived which could be called good without qualification, except a Good Will.'",
         "explanationMal": "യാതൊരു വ്യവസ്ഥകളുമില്ലാതെ സ്വന്തം നിലയിൽ പൂർണ്ണമായും നല്ലതായിരിക്കുന്നത് 'സന്മനസ്സ്' (Good Will) മാത്രമാണ്."
       },
@@ -1623,7 +1623,7 @@ window.ethicsLearningData = {
             "mal": "ഇവ തമ്മിൽ യാതൊരു വ്യത്യാസവുമില്ല"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "A hypothetical imperative is conditional on desires ('If you want good grades, study'); the categorical imperative commands unconditionally ('Do not lie').",
         "explanationMal": "ഒരു ലക്ഷ്യം നേടാനായി നിർദ്ദേശിക്കുന്നതാണ് ഹൈപ്പോതെറ്റിക്കൽ; എന്നാൽ ലക്ഷ്യങ്ങൾ നോക്കാതെ എന്തുവന്നാലും അനുസരിക്കേണ്ടതാണ് കാറ്റഗറിക്കൽ ഇംപറേറ്റീവ്."
       },
@@ -1653,7 +1653,7 @@ window.ethicsLearningData = {
             "mal": "താൽക്കാലിക ഒത്തുതീർപ്പ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Kant demands that moral maxims must be universalizable without logical contradiction.",
         "explanationMal": "തന്റെ പ്രവൃത്തി എല്ലാവർക്കും ബാധകമായ സാർവ്വലൗകിക നിയമമായി (Universal Law) മാറാൻ സാധിക്കുന്നതാണെങ്കിൽ മാത്രമേ അത് ചെയ്യരുതെന്ന് കാന്റ് അനുശാസിക്കുന്നു."
       },
@@ -1683,7 +1683,7 @@ window.ethicsLearningData = {
             "mal": "പരസ്പര സമ്മതത്തോടെയുള്ള ഇടപാടുകൾ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Kant insists that rational beings are ends in themselves with intrinsic dignity, never mere tools for someone else's agenda.",
         "explanationMal": "മനുഷ്യൻ സ്വന്തം നിലയിൽ ആദരണീയനായ വ്യക്തിയാണ്; മറ്റൊരാളുടെ സ്വാർത്ഥ നേട്ടങ്ങൾക്കായുള്ള ഉപകരണമായി അവരെ ഉപയോഗിക്കരുത്."
       },
@@ -1713,7 +1713,7 @@ window.ethicsLearningData = {
             "mal": "നുണ പറയുന്നത് തൊണ്ടയ്ക്ക് വേദന ഉണ്ടാക്കും"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "If lying were universalized, no promise or statement could be believed, creating a self-defeating logical contradiction.",
         "explanationMal": "എല്ലാവരും കളവ് പറയാൻ തുടങ്ങിയാൽ സത്യം എന്ന സങ്കൽപ്പം തന്നെ ഇല്ലാതാകും; അതിനാൽ കളവ് പറയുന്നത് ഒരിക്കലും സാർവ്വലൗകിക നിയമമാക്കാനാവില്ല."
       },
@@ -1743,7 +1743,7 @@ window.ethicsLearningData = {
             "mal": "മൃഗീയ വാസനകൾക്ക് പൂർണ്ണമായി കീഴടങ്ങൽ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Moral agency requires autonomy: the rational will authors and submits to moral duty freely, unlike heteronomy where outside forces compel action.",
         "explanationMal": "മറ്റുള്ളവരുടെ പ്രേരണയാലല്ലാതെ സ്വന്തം യുക്തിയുടെ വെളിച്ചത്തിൽ സ്വതന്ത്രമായി ധാർമ്മിക നിയമം അനുസരിക്കുന്ന അവസ്ഥയാണിത്."
       },
@@ -1773,7 +1773,7 @@ window.ethicsLearningData = {
             "mal": "ഇത് ഗണിതശാസ്ത്രത്തെ എതിർക്കുന്നു"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Pure utilitarian calculus risks sacrificing individual human rights if the net pleasure of the crowd outweighs the victim's misery.",
         "explanationMal": "ഭൂരിപക്ഷത്തിന്റെ ആനന്ദം കൂടുന്നു എന്ന കാരണത്താൽ ഒരു നിരപരാധിയെ ഉപദ്രവിക്കുന്നതിനെ വരെ ഇത് ന്യായീകരിച്ചേക്കാം എന്നതാണ് പ്രധാന ന്യൂനത."
       },
@@ -1803,7 +1803,7 @@ window.ethicsLearningData = {
             "mal": "തിരഞ്ഞെടുപ്പ് വാഗ്ദാനങ്ങൾ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Mill identified the ultimate sanction as internal: the conscientious feelings of mankind and our deep social sentiment to live in harmony.",
         "explanationMal": "മനുഷ്യന്റെ ഉള്ളിലുള്ള മനസ്സാക്ഷിയുടെ വേദനയും സഹജീവികളോട് ഒത്തുചേർന്നു ജീവിക്കാനുള്ള ആഗ്രഹവുമാണ് ഏറ്റവും വലിയ പ്രചോദനം."
       }
@@ -1985,7 +1985,7 @@ window.ethicsLearningData = {
             "mal": "ജനാധിപത്യ നിയമങ്ങളെ ഗോത്രവഴക്കുകളാക്കി മാറ്റുക"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Applied ethics bridges philosophical moral theory with real-world domains such as medicine, business, environment, and technology.",
         "explanationMal": "ചികിത്സ, മാധ്യമം, പരിസ്ഥിതി തുടങ്ങിയ മേഖലകളിലെ യഥാർത്ഥ പ്രതിസന്ധികളിൽ ധാർമ്മിക തത്ത്വങ്ങൾ പ്രയോഗിച്ച് പരിഹാരം കാണുകയാണ് ഇതിന്റെ ലക്ഷ്യം."
       },
@@ -2015,7 +2015,7 @@ window.ethicsLearningData = {
             "mal": "സ്വപ്നങ്ങളെ അന്ധമായി പിന്തുടരൽ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Casuistry resolves specific dilemmas by analogizing them to well-analyzed paradigm cases rather than relying only on top-down abstractions.",
         "explanationMal": "മുമ്പ് സമാനമായി ഉണ്ടായ മാതൃകാ സംഭവങ്ങളുമായി താരതമ്യം ചെയ്ത് പുതിയ കേസുകളിൽ ഉചിതമായ തീരുമാനമെടുക്കുന്ന രീതിയാണിത്."
       },
@@ -2045,7 +2045,7 @@ window.ethicsLearningData = {
             "mal": "ആൽബർട്ട് ഐൻസ്റ്റീൻ (Albert Einstein)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Biochemist and oncologist Van Rensselaer Potter coined 'bioethics' to bridge biological science with human values for global survival.",
         "explanationMal": "ജീവശാസ്ത്രത്തെയും മനുഷ്യ മൂല്യങ്ങളെയും സംയോജിപ്പിച്ചുകൊണ്ട് വാൻ റെൻസലർ പോട്ടറാണ് 'ബയോഎത്തിക്സ്' എന്ന വാക്ക് ആദ്യമായി ഉപയോഗിച്ചത്."
       },
@@ -2075,7 +2075,7 @@ window.ethicsLearningData = {
             "mal": "ഇവ തമ്മിൽ യാതൊരു വ്യത്യാസവുമില്ല"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Active euthanasia directly causes death (e.g., lethal injection); passive euthanasia allows natural death by withholding life support.",
         "explanationMal": "സജീവ ദയാവധത്തിൽ ഒരു പദാർത്ഥം നൽകി മരണം വേഗത്തിലാക്കുന്നു; നിഷ്ക്രിയ ദയാവധത്തിൽ ചികിത്സ പിൻവലിച്ച് സ്വാഭാവിക മരണം അനുവദിക്കുന്നു."
       },
@@ -2105,7 +2105,7 @@ window.ethicsLearningData = {
             "mal": "ഒരു രഹസ്യ ഓൺലൈൻ വോട്ടെടുപ്പ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Voluntary euthanasia occurs when a mentally competent patient clearly and repeatedly requests the termination of unbearable suffering.",
         "explanationMal": "പൂർണ്ണ ബോധമുള്ള ഒരു രോഗി തന്റെ കഠിനമായ വേദനയിൽ നിന്ന് മോചനം നേടാൻ സ്വന്തം ഇഷ്ടപ്രകാരം ആവശ്യപ്പെടുമ്പോഴാണ് അത് വോളന്ററി ആകുന്നത്."
       },
@@ -2135,7 +2135,7 @@ window.ethicsLearningData = {
             "mal": "18 വയസ്സ് തികയുന്ന പ്രായപൂർത്തി"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Viability is the developmental stage where the fetus could potentially survive independently outside the maternal uterus.",
         "explanationMal": "ഗർഭപാത്രത്തിന് പുറത്ത് മെഡിക്കൽ സഹായത്തോടെയോ അല്ലാതെയോ കുഞ്ഞിന് സ്വതന്ത്രമായി ജീവിക്കാൻ സാധിക്കുന്ന ഘട്ടമാണിത്."
       },
@@ -2165,7 +2165,7 @@ window.ethicsLearningData = {
             "mal": "മൃഗങ്ങൾക്ക് വോട്ടവകാശം നൽകുന്നു"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Anthropocentrism is human-centered: nature matters morally only insofar as it serves human welfare and human needs.",
         "explanationMal": "മനുഷ്യനാണ് പ്രകൃതിയുടെ കേന്ദ്രമെന്നും, അവന്റെ ആവശ്യങ്ങൾ നിറവേറ്റാൻ മാത്രമാണ് പ്രകൃതി നിലനിൽക്കുന്നതെന്നും ഉള്ള കാഴ്ചപ്പാടാണിത്."
       },
@@ -2195,7 +2195,7 @@ window.ethicsLearningData = {
             "mal": "നിക്കോളോ മാക്കിയവെല്ലി (Machiavelli)"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Norwegian philosopher Arne Naess introduced Deep Ecology in 1973, asserting the equal intrinsic rights of all species to live and flourish.",
         "explanationMal": "1973-ൽ നോർവീജിയൻ തത്ത്വചിന്തകനായ ആർനെ നാസാണ് ഡീപ്പ് ഇക്കോളജി എന്ന ആശയം ആവിഷ്കരിച്ചത്."
       },
@@ -2225,7 +2225,7 @@ window.ethicsLearningData = {
             "mal": "മൃഗങ്ങളെ ഭൂമിയിൽ നിന്നും നാടുകടത്തണം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Leopold declared: 'A thing is right when it tends to preserve the integrity, stability, and beauty of the biotic community. It is wrong when it tends otherwise.'",
         "explanationMal": "പ്രകൃതിയിലെ സമസ്ത ജൈവ സമൂഹത്തിന്റെയും സമഗ്രതയെയും സുസ്ഥിരതയെയും സൗന്ദര്യത്തെയും സംരക്ഷിക്കുന്നതാണ് ശരിയായ പ്രവൃത്തി."
       },
@@ -2255,7 +2255,7 @@ window.ethicsLearningData = {
             "mal": "ഹംമുറാബിയുടെ നിയമങ്ങൾ"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "The Hippocratic Oath from ancient Greece established core duties of confidentiality, patient welfare, and 'doing no harm'.",
         "explanationMal": "പുരാതന ഗ്രീസിൽ ആരംഭിച്ച ഹിപ്പോക്രാറ്റിക് പ്രതിജ്ഞയാണ് ചികിത്സാ രംഗത്തെ രഹസ്യസ്വഭാവം, രോഗി സംരക്ഷണം എന്നിവയുടെ ആദ്യ മാതൃക."
       },
@@ -2285,7 +2285,7 @@ window.ethicsLearningData = {
             "mal": "രോഗനിർണ്ണയം, ശസ്ത്രക്രിയ, മരുന്ന്, ബില്ലിംഗ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "The four Georgetown principles are Respect for Autonomy, Beneficence (promoting good), Non-maleficence (inflicting no harm), and Justice (fair resource distribution).",
         "explanationMal": "രോഗിയുടെ സ്വയംനിർണ്ണയാവകാശം, നന്മ ചെയ്യൽ, ഉപദ്രവം ചെയ്യാതിരിക്കൽ, നീതി എന്നിവയാണ് ആധുനിക മെഡിക്കൽ എത്തിക്സിന്റെ നാല് സ്തംഭങ്ങൾ."
       },
@@ -2315,7 +2315,7 @@ window.ethicsLearningData = {
             "mal": "സർക്കാരിന് അവയവങ്ങൾ കണ്ടുകെട്ടാനുള്ള അനുവാദം"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Informed consent honors patient autonomy by requiring full disclosure of risks and benefits before receiving voluntary agreement.",
         "explanationMal": "ചികിത്സയെക്കുറിച്ചും അതിന്റെ അപകടസാധ്യതകളെക്കുറിച്ചും രോഗിക്ക് വ്യക്തമായ ധാരണ നൽകി അവരുടെ അനുവാദം വാങ്ങുന്നതിലൂടെ രോഗിയുടെ അവകാശം സംരക്ഷിക്കപ്പെടുന്നു."
       },
@@ -2345,7 +2345,7 @@ window.ethicsLearningData = {
             "mal": "വിമർശകരുടെ വായടപ്പിക്കുക"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "This represents the principle of Non-maleficence: a healthcare practitioner must first ensure their interventions do not inflict harm.",
         "explanationMal": "രോഗിയെ ചികിത്സിക്കുമ്പോൾ 'ആദ്യം അവരെ ദ്രോഹിക്കാതിരിക്കുക' എന്ന അതിപ്രധാനമായ കടമയാണിത്."
       },
@@ -2375,7 +2375,7 @@ window.ethicsLearningData = {
             "mal": "ബ്രേക്കിംഗ് ബാഡ്"
           }
         ],
-        "answer": "A",
+        "answer": 0,
         "explanation": "Sesame Street (1969) pioneered the collaboration between educators, child psychologists, and broadcasters to use mass media for positive early childhood education.",
         "explanationMal": "1969-ൽ കുട്ടികളുടെ വിദ്യാഭ്യാസം ലക്ഷ്യമാക്കി വിദഗ്ദ്ധരുടെ നേതൃത്വത്തിൽ ആരംഭിച്ച 'സെസമി സ്ട്രീറ്റ്' ഉത്തരവാദിത്തമുള്ള മാധ്യമ പ്രവർത്തനത്തിന് മികച്ച ഉദാഹരണമാണ്."
       },
@@ -2405,7 +2405,7 @@ window.ethicsLearningData = {
             "mal": "വ്യക്തികളുടെ അനുവാദമില്ലാതെ സ്വകാര്യ ചിത്രങ്ങൾ പ്രചരിപ്പിക്കുക"
           }
         ],
-        "answer": "B",
+        "answer": 1,
         "explanation": "Media ethics requires impartiality, rigorous verification, avoidance of conflicts of interest, and consideration of public welfare.",
         "explanationMal": "സത്യസന്ധമായ വിവരങ്ങൾ നിഷ്പക്ഷമായി ജനങ്ങളിലേക്ക് എത്തിക്കുകയും, പക്ഷപാതമില്ലാതെ വാർത്തകൾ നൽകുകയുമാണ് മാധ്യമ പ്രവർത്തകരുടെ ധർമ്മം."
       }
