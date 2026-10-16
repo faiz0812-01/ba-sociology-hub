@@ -1408,7 +1408,6 @@
         homeWindow.href='index.html#top';
         homeWindow.textContent='⌂ Home Page';
         windowNav.append(backWindow,homeWindow);
-        chapterView.append(windowNav);
         const heading=document.createElement('h3');
         heading.className='module-chapter-open-title';
         heading.textContent=item.title || item.label || moduleName;
@@ -1428,7 +1427,7 @@
         preview.title='Study material has not been uploaded for this chapter yet.';
         actions.append(open,preview);
         chapterView.append(heading,actions);
-        moduleContent.append(chapterView);
+        moduleContent.append(chapterView,windowNav);
         return;
       }
       const chapterView=document.createElement('section');
@@ -1455,7 +1454,6 @@
         homeWindow.href='index.html#top';
         homeWindow.textContent='⌂ Home Page';
         windowNav.append(backWindow,homeWindow);
-        chapterView.append(windowNav);
       const heading=document.createElement('h3');
       heading.className='module-chapter-open-title';
       heading.textContent=item.title || item.label || moduleName;
@@ -1493,7 +1491,8 @@
       });
       actions.append(open,preview);
       chapterView.append(heading,actions);
-      moduleContent.append(chapterView,reader);
+      // Keep navigation at the very end, after the document and its preview.
+      moduleContent.append(chapterView,reader,windowNav);
     }
     function showStudyGuideNavigationPrompt(moduleName,malayalam=false) {
       // Keep the module window clean: do not show the bottom chapter-list instruction card.
