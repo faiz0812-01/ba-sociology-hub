@@ -1556,8 +1556,9 @@
         button.setAttribute('aria-selected',String(index===moduleIndex));
         button.tabIndex=index===moduleIndex?0:-1;
       });
-      // Keep the PDF reader closed until the student explicitly selects a chapter.
-      showStudyGuideNavigationPrompt(module.name,true);
+      // Show the first uploaded Malayalam chapter immediately while keeping all chapter tabs visible.
+      // Do not clear moduleContent here: it contains the selected chapter's uploaded PDF controls/preview.
+      if(chapters.length) selectChapter(0);
     }
     function renderModule(subject,medium,modules,moduleIndex) {
       // Track one active module and rebuild only that module's chapter row.
