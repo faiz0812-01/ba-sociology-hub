@@ -1408,7 +1408,7 @@
       actions.className='module-pdf-actions';
       const open=document.createElement('a');
       open.className='module-chapter-open-link';
-      open.href='study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0]);
+      open.href=item.href.split('#')[0];
       open.target='_blank';
       open.rel='noopener';
       open.textContent='Open';
