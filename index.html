@@ -1392,14 +1392,11 @@
         backWindow.className='module-home module-back-button';
         backWindow.textContent='← Back';
         backWindow.addEventListener('click',()=>{
-          const content=document.getElementById('module-content');
-          if(!content) return;
-          content.replaceChildren();
-          const prompt=document.createElement('p');
-          prompt.className='module-empty';
-          prompt.textContent='Choose a chapter or PDF tab above to open one document at a time.';
-          content.append(prompt);
-          document.getElementById('module-subtabs')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+          if(window.history.length>1) {
+            window.history.back();
+          } else {
+            window.location.href='index.html#top';
+          }
         });
         const homeWindow=document.createElement('a');
         homeWindow.className='module-home';
@@ -1438,14 +1435,11 @@
         backWindow.className='module-home module-back-button';
         backWindow.textContent='← Back';
         backWindow.addEventListener('click',()=>{
-          const content=document.getElementById('module-content');
-          if(!content) return;
-          content.replaceChildren();
-          const prompt=document.createElement('p');
-          prompt.className='module-empty';
-          prompt.textContent='Choose a chapter or PDF tab above to open one document at a time.';
-          content.append(prompt);
-          document.getElementById('module-subtabs')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+          if(window.history.length>1) {
+            window.history.back();
+          } else {
+            window.location.href='index.html#top';
+          }
         });
         const homeWindow=document.createElement('a');
         homeWindow.className='module-home';
