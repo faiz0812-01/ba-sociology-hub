@@ -80,6 +80,19 @@
       transform: none !important;
     }
 
+    /* Universal Rule: NEVER show mode-switcher, chapter summary, or random MCQs for any syllabus tab or document */
+    [data-is-syllabus="true"] .mode-switcher,
+    [data-is-syllabus="true"] .view-summary-pane,
+    [data-is-syllabus="true"] .view-quiz-pane,
+    #module-dialog:has(.module-tab--syllabus[aria-selected="true"]) .mode-switcher,
+    #module-dialog:has(.module-tab--syllabus[aria-selected="true"]) .view-summary-pane,
+    #module-dialog:has(.module-tab--syllabus[aria-selected="true"]) .view-quiz-pane,
+    #module-dialog:has([data-is-syllabus="true"][aria-selected="true"]) .mode-switcher,
+    #module-dialog:has([data-is-syllabus="true"][aria-selected="true"]) .view-summary-pane,
+    #module-dialog:has([data-is-syllabus="true"][aria-selected="true"]) .view-quiz-pane {
+      display: none !important;
+    }
+
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -442,7 +455,7 @@
 
         <article class="subject-card" data-subject="Sociology"><img class="subject-cover" src="https://images.unsplash.com/photo-1548782033-3ac3a62ece8d?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Community members gathered together outdoors" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-purple">◎</span><span class="subject-tag">CORE SUBJECT</span></div><h3>Sociology</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Syllabus &amp; Module 1–5 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--malayalam" role="button" aria-haspopup="dialog" aria-label="Open Malayalam PDF reading modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Read PDFs on this page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
         <article class="subject-card" data-subject="Philosophy of AI"><img class="subject-cover" src="https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="AI microchip on an electronic circuit board" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-mint">✧</span><span class="subject-tag">PHILOSOPHY</span></div><h3>Philosophy of AI</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Module 1–5 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="ai-pdf.html?modules=59125b5b" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open Philosophy of AI Malayalam modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Open Malayalam module page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
-        <article class="subject-card" data-subject="Philosophy of Education"><img class="subject-cover" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Students learning with a teacher in a classroom" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-orange">✎</span><span class="subject-tag">PHILOSOPHY</span></div><h3>Philosophy of Education</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Module 1–3 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="edu-pdf.html" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open Philosophy of Education Malayalam modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Open Malayalam module page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
+        <article class="subject-card" data-subject="Philosophy of Education"><img class="subject-cover" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Students learning with a teacher in a classroom" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-orange">✎</span><span class="subject-tag">PHILOSOPHY</span></div><h3>Philosophy of Education</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Syllabus &amp; Module 1–3 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="edu-pdf.html" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open Philosophy of Education Malayalam modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Open Malayalam module page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
 <article class="subject-card" data-subject="Development Issues in Indian Economy"><img class="subject-cover" src="https://images.unsplash.com/photo-1565371767810-ef913a6c8315?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Indian rupee banknotes representing the Indian economy" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-green">₹</span><span class="subject-tag">ECONOMICS</span></div><h3>Development Issues in Indian Economy</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Module 1–5 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="econ-reading.html" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open Development Issues in Indian Economy Malayalam Reading module page"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>All 12 chapters in Malayalam</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
 
         <article class="subject-card" data-subject="Fundamentals of Ethics"><img class="subject-cover" src="https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Handshake representing trust and mutual respect" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-green">◇</span><span class="subject-tag">Minor Course</span></div><h3>Fundamentals of Ethics</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Module 1–5 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--malayalam" role="button" aria-haspopup="dialog" aria-label="Open Malayalam PDF reading modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Read PDFs on this page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
@@ -1071,6 +1084,25 @@
     ];
     const educationEnglishModules = [
       {
+        name: 'Syllabus',
+        items: [
+          {
+            label: 'Syllabus · Philosophy of Education',
+            title: 'Philosophy of Education · Syllabus · Multi-Disciplinary Course 1',
+            description: 'University of Calicut · CU-FYUGP · Multi-Disciplinary Course 1 (MDC 1) · Course Code PHL1FM 105 · Official University Syllabus (3 Pages)',
+            key: 'edu_syllabus',
+            href: 'Philosophy%20of%20Education/LMS_PDF/Syllabus_Philosophy_of_Education.pdf'
+          },
+          {
+            label: 'MDC Philosophy · Pages 129–134 PDF',
+            title: 'MDC Philosophy Syllabus · Pages 129–134',
+            description: 'University of Calicut · MDC Philosophy regulation document pages 129 to 134',
+            key: 'edu_syllabus_129_134',
+            href: 'Philosophy%20of%20Education/LMS_PDF/MDC_Philosophy_Pages_129_to_134.pdf'
+          }
+        ]
+      },
+      {
         name: 'Module 1 · Philosophical Basis of Education',
         items: [
           {
@@ -1484,8 +1516,17 @@
       return null;
     }
 
+    function isSyllabusContext(moduleName, item) {
+      const m = String(moduleName || '').toLowerCase();
+      const label = String(item && (item.label || item.title || item.key || item.href) ? (item.label || item.title || item.key || item.href) : '').toLowerCase();
+      return m.includes('syllabus') || label.includes('syllabus');
+    }
+
     function renderInteractiveChapter(container, item, moduleName, docData) {
       container.className = 'chapter-hero-box';
+      const isSyllabus = isSyllabusContext(moduleName, item);
+      container.dataset.isSyllabus = isSyllabus ? 'true' : 'false';
+
       const topBar = document.createElement('div');
       topBar.className = 'chapter-top-bar';
 
@@ -1516,7 +1557,6 @@
       btnQuiz.className = 'mode-btn';
       btnQuiz.innerHTML = '<span>🎯</span> Random MCQs';
 
-      const isSyllabus = (moduleName && moduleName.toLowerCase().includes('syllabus')) || (item && item.key && item.key.toLowerCase().includes('syllabus'));
       if (!isSyllabus) {
         modeSwitcher.append(btnPdf, btnSummary, btnQuiz);
         topBar.append(headerText, modeSwitcher);
@@ -2962,6 +3002,14 @@
       const chapterData = getChapterLearningData(subject, item);
       if (chapterData) {
         renderInteractiveChapter(chapterView, item, moduleName, chapterData);
+        if (isSyllabusContext(moduleName, item)) {
+          const sw = chapterView.querySelector('.mode-switcher');
+          if (sw) sw.remove();
+          const sp = chapterView.querySelector('.view-summary-pane');
+          if (sp) sp.remove();
+          const qp = chapterView.querySelector('.view-quiz-pane');
+          if (qp) qp.remove();
+        }
         moduleContent.append(chapterView, windowNav);
         return;
       }
@@ -3156,6 +3204,9 @@
         button.tabIndex=-1;
         button.textContent=readingOnly?(subject==='English'?getBilingualEnglishStudyGuideLabel(item.chapter || item.label || item.title):getMalayalamChapterLabel(item.chapter || item.label || item.title)):(subject==='English'?getBilingualEnglishStudyGuideLabel(item.label):item.label);
         button.lang=subject==='English'?'en':(readingOnly?'ml':'en');
+        if (isSyllabusContext(module.name, item)) {
+          button.dataset.isSyllabus = 'true';
+        }
         button.addEventListener('click',()=>selectModuleItem(subject,medium,module,moduleIndex,itemIndex));
         moduleSubtabs.append(button);
       });
@@ -3218,7 +3269,7 @@
           : subject==='Philosophy of AI' && medium==='Malayalam'
             ? 'Your uploaded Malayalam AI PDFs are grouped by module and open here for reading.'
             : subject==='Philosophy of Education' && medium==='English'
-              ? 'Official Philosophy of Education course modules (Modules 1–3). Choose a module tab to open or preview its study document.'
+              ? 'Official Philosophy of Education syllabus & course modules (Modules 1–3). Choose a module tab to open or preview its study document.'
             : subject==='Philosophy of Education' && medium==='Malayalam'
               ? 'Choose a module to read its Malayalam PDF here without leaving Academic Hub.'
             : subject==='Fundamentals of Ethics' && medium==='English'
@@ -3249,6 +3300,7 @@
         button.dataset.moduleIndex=String(moduleIndex);
         if (module.name && module.name.toLowerCase().includes('syllabus')) {
           button.classList.add('module-tab--syllabus');
+          button.dataset.isSyllabus = 'true';
         }
         button.addEventListener('click',()=>{
           moduleDialog.dataset.activeModuleIndex=String(moduleIndex);

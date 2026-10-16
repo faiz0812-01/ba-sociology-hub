@@ -127,8 +127,9 @@ async function loadScript(src){
 }
 el('retry').onclick=()=>location.reload();
 try{
- const file=new URL(new URLSearchParams(location.search).get('file')||'',location.origin+'/');
- if(file.origin!==location.origin)throw Error('Invalid study guide');
+ const rawParam = new URLSearchParams(location.search).get('file') || '';
+ const file = new URL(rawParam, location.href);
+ if(location.origin && location.origin !== 'null' && file.origin !== location.origin) throw Error('Invalid study guide');
  if(file.pathname.toLowerCase().endsWith('.docx')){
   document.querySelector('.toolbar').hidden=true;
   document.body.classList.add('docx-mode');

@@ -2206,3 +2206,17 @@ button.option-btn.revealed-correct .option-letter {
   color: #ffffff !important;
 }
 
+/* Universal Rule: NEVER show mode-switcher, chapter summary, or random MCQs for any syllabus tab or document */
+[data-is-syllabus="true"] .mode-switcher,
+[data-is-syllabus="true"] .view-summary-pane,
+[data-is-syllabus="true"] .view-quiz-pane,
+#module-dialog:has(.module-tab--syllabus[aria-selected="true"]) .mode-switcher,
+#module-dialog:has(.module-tab--syllabus[aria-selected="true"]) .view-summary-pane,
+#module-dialog:has(.module-tab--syllabus[aria-selected="true"]) .view-quiz-pane,
+#module-dialog:has([data-is-syllabus="true"][aria-selected="true"]) .mode-switcher,
+#module-dialog:has([data-is-syllabus="true"][aria-selected="true"]) .view-summary-pane,
+#module-dialog:has([data-is-syllabus="true"][aria-selected="true"]) .view-quiz-pane {
+  display: none !important;
+}
+
+
