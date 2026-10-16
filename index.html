@@ -1357,30 +1357,20 @@
         moduleContent.append(empty);
         return;
       }
-      const card=document.createElement('article');
-      card.className='module-pdf-card';
-      const badge=document.createElement('span');
-      badge.className='module-pdf-badge';
-      badge.textContent=subject==='Mathematics'?'∑':(item.fileType || 'PDF');
-      if(subject==='Mathematics') badge.setAttribute('aria-label','Mathematics PDF');
-      const copy=document.createElement('div');
-      copy.className='module-pdf-copy';
+      const chapterView=document.createElement('section');
+      chapterView.className='module-chapter-open';
       const heading=document.createElement('h3');
-      heading.textContent=item.title || item.label;
-      const detail=document.createElement('p');
-      detail.textContent=item.description || 'Uploaded PDF in Academic Hub.';
-      const actions=document.createElement('div');
-      actions.className='module-pdf-actions';
+      heading.className='module-chapter-open-title';
+      heading.textContent=item.title || item.label || moduleName;
       const open=document.createElement('a');
+      open.className='module-chapter-open-link';
       open.href='study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0]);
       open.target='_blank';
       open.rel='noopener';
       open.textContent=item.fileType==='DOCX'?'Read Here':'Open / Read Here';
-      copy.append(heading,detail);
-      actions.append(open);
-      card.append(badge,copy);
-      if(!readingOnly) card.append(actions);
-      moduleContent.append(card);
+      chapterView.append(heading);
+      if(!readingOnly) chapterView.append(open);
+      moduleContent.append(chapterView);
     }
     function showStudyGuideNavigationPrompt(moduleName,malayalam=false) {
       // Keep the module window clean: do not show the bottom chapter-list instruction card.
