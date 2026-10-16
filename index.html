@@ -1516,8 +1516,13 @@
       btnQuiz.className = 'mode-btn';
       btnQuiz.innerHTML = '<span>🎯</span> Random MCQs';
 
-      modeSwitcher.append(btnPdf, btnSummary, btnQuiz);
-      topBar.append(headerText, modeSwitcher);
+      const isSyllabus = (moduleName && moduleName.toLowerCase().includes('syllabus')) || (item && item.key && item.key.toLowerCase().includes('syllabus'));
+      if (!isSyllabus) {
+        modeSwitcher.append(btnPdf, btnSummary, btnQuiz);
+        topBar.append(headerText, modeSwitcher);
+      } else {
+        topBar.append(headerText);
+      }
 
       // Pane 1: PDF Document
       const panePdf = document.createElement('div');
@@ -1909,7 +1914,11 @@
         paneQuiz.style.display = 'block';
       };
 
-      container.replaceChildren(topBar, panePdf, paneSummary, paneQuiz);
+      if (!isSyllabus) {
+        container.replaceChildren(topBar, panePdf, paneSummary, paneQuiz);
+      } else {
+        container.replaceChildren(topBar, panePdf);
+      }
     }
     const renderInteractiveEconomicsChapter = renderInteractiveChapter;
 
