@@ -1117,3 +1117,47 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
 #module-dialog .module-close,
 #module-dialog [aria-label*="close" i],
 #module-dialog .module-header-actions { display:none !important; }
+
+/* Open and Preview Here must have identical dimensions in chapter windows. */
+#module-dialog .module-pdf-actions{
+  display:flex !important;
+  align-items:stretch !important;
+  gap:10px !important;
+  flex-wrap:nowrap !important;
+  width:100% !important;
+}
+#module-dialog .module-pdf-actions > a.module-chapter-open-link,
+#module-dialog .module-pdf-actions > button.module-reader-load{
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex:1 1 0 !important;
+  width:0 !important;
+  min-width:0 !important;
+  min-height:46px !important;
+  height:46px !important;
+  margin:0 !important;
+  padding:0 12px !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid #205842 !important;
+  border-radius:10px !important;
+  font:700 14px/1.2 inherit !important;
+  text-align:center !important;
+  text-decoration:none !important;
+  white-space:normal !important;
+  cursor:pointer;
+}
+#module-dialog .module-pdf-actions > a.module-chapter-open-link{
+  background:#205842 !important;
+  color:#fff !important;
+}
+#module-dialog .module-pdf-actions > button.module-reader-load{
+  background:#edf2e9 !important;
+  color:#315a43 !important;
+}
+#module-dialog .module-pdf-actions > :disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:420px){
+  #module-dialog .module-pdf-actions{gap:8px !important}
+  #module-dialog .module-pdf-actions > a.module-chapter-open-link,
+  #module-dialog .module-pdf-actions > button.module-reader-load{padding:0 6px !important;font-size:13px !important}
+}
