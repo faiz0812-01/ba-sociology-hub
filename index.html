@@ -210,44 +210,40 @@
     #module-dialog .module-tabs button[aria-selected="true"]{outline:2px solid rgba(32,88,66,.18);outline-offset:1px;}
     @media(max-width:560px){#module-dialog .module-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;}#module-dialog .module-subtabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}}
   </style>
-  <style id="all-chapter-tab-red-black">
-    /* Red chapter-tab background with black text across all subjects, cards, Study Guide and LMS windows. */
+  <style id="all-chapter-tab-white-purple">
+    /* White chapter and PDF-version tabs with bold purple text across every subject/resource window. */
     #module-dialog .module-subtabs button,
     #module-dialog .module-subtabs [role="tab"],
     #module-dialog .ai-guide-version-tabs button {
       box-sizing:border-box !important;
-      border:1px solid #dc2626 !important;
+      border:1px solid #c4b5fd !important;
       border-radius:9px !important;
-      background:#ef4444 !important;
-      color:#080808 !important;
+      background:#ffffff !important;
+      color:#6d28d9 !important;
       font-weight:850 !important;
-      box-shadow:0 2px 7px rgba(0,0,0,.16) !important;
+      box-shadow:0 2px 7px rgba(76,29,149,.10) !important;
     }
     #module-dialog .module-subtabs button:hover,
     #module-dialog .module-subtabs [role="tab"]:hover,
     #module-dialog .ai-guide-version-tabs button:hover {
-      border-color:#b91c1c !important;
-      background:#f87171 !important;
-      color:#080808 !important;
+      border-color:#7c3aed !important;
+      background:#f5f3ff !important;
+      color:#5b21b6 !important;
     }
     #module-dialog .module-subtabs button[aria-selected="true"],
     #module-dialog .module-subtabs [role="tab"][aria-selected="true"],
     #module-dialog .ai-guide-version-tabs button[aria-selected="true"] {
-      border-color:#b91c1c !important;
-      background:#ef4444 !important;
-      color:#080808 !important;
+      border-color:#8b5cf6 !important;
+      background:#ffffff !important;
+      color:#5b21b6 !important;
       font-weight:900 !important;
-      box-shadow:inset 0 -3px 0 #b91c1c,0 4px 12px rgba(185,28,28,.18) !important;
+      box-shadow:inset 0 -3px 0 #8b5cf6,0 4px 12px rgba(91,33,182,.12) !important;
     }
     #module-dialog .module-subtabs button:focus-visible,
     #module-dialog .module-subtabs [role="tab"]:focus-visible,
     #module-dialog .ai-guide-version-tabs button:focus-visible {
-      outline:3px solid #111827 !important;
+      outline:3px solid #a78bfa !important;
       outline-offset:2px !important;
-    }
-    @media(prefers-reduced-motion:reduce) {
-      #module-dialog .module-subtabs button,
-      #module-dialog .ai-guide-version-tabs button { transition:none !important; }
     }
   </style>
   <style id="shared-study-guide-window-all-subjects">
@@ -1448,12 +1444,13 @@
       moduleSubtabs.setAttribute('aria-label','Chapters');
       moduleSubtabs.style.display='';
       moduleDescription.textContent=module.summary+'. Choose a chapter and PDF version, then click Load PDF.';
+      const availableChapters=chapters.filter(chapter=>chapter && Array.isArray(chapter.items) && chapter.items.some(item=>item && (item.href || item.chapter)));
       const selectChapter=chapterIndex=>{
         Array.from(moduleSubtabs.children).forEach((button,index)=>{
           button.setAttribute('aria-selected',String(index===chapterIndex));
           button.tabIndex=index===chapterIndex?0:-1;
         });
-        const chapter=chapters[chapterIndex];
+        const chapter=availableChapters[chapterIndex];
         const picker=document.createElement('label');
         picker.className='ai-guide-document-picker';
         const caption=document.createElement('span');
@@ -1479,7 +1476,7 @@
         select.addEventListener('change',()=>showDocument(Number(select.value)));
         showDocument(0);
       };
-      chapters.forEach((chapter,index)=>{
+      availableChapters.forEach((chapter,index)=>{
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
@@ -1595,6 +1592,7 @@
       moduleSubtabs.replaceChildren();
       moduleSubtabs.style.display=module.items.length?'':'none';
       module.items.forEach((item,itemIndex)=>{
+        if(!item || (!item.href && !item.chapter)) return;
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
@@ -1661,12 +1659,19 @@
                   ? 'Uploaded Malayalam PDFs open here for reading without leaving Academic Hub.'
                 : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';
       moduleTabs.replaceChildren();
+      // Suppress modules that contain only placeholders and have no linked study material.
+      const availableModuleIndexes=modules.map((module,index)=>({module,index}))
+        .filter(entry=>Array.isArray(entry.module.items) && entry.module.items.some(item=>item && (item.href || item.chapter)))
+        .map(entry=>entry.index);
+      const preferredGuideIndex=studyGuide?(subject==='Sociology'?2:subject==='Development Issues in Indian Economy'?1:0):0;
+      const defaultGuideModule=availableModuleIndexes.includes(preferredGuideIndex)?preferredGuideIndex:(availableModuleIndexes[0]??0);
       modules.forEach((module,moduleIndex)=>{
+        if(!availableModuleIndexes.includes(moduleIndex)) return;
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
-        button.setAttribute('aria-selected',String(moduleIndex===0));
-        button.tabIndex=moduleIndex===0?0:-1;
+        button.setAttribute('aria-selected',String(moduleIndex===defaultGuideModule));
+        button.tabIndex=moduleIndex===defaultGuideModule?0:-1;
         button.textContent=studyGuide?(subject==='English'?getBilingualEnglishStudyGuideLabel(module.name):getMalayalamChapterLabel(module.name)):module.name;
         if(studyGuide) button.lang=subject==='English'?'en':'ml';
         button.dataset.moduleIndex=String(moduleIndex);
@@ -1676,10 +1681,16 @@
         });
         moduleTabs.append(button);
       });
-      const defaultGuideModule=studyGuide
-        ? (subject==='Sociology'?2:subject==='Development Issues in Indian Economy'?1:0)
-        : 0;
-      renderModule(subject,medium,modules,defaultGuideModule);
+      if(availableModuleIndexes.length) {
+        renderModule(subject,medium,modules,defaultGuideModule);
+      } else {
+        moduleSubtabs.replaceChildren();
+        moduleContent.replaceChildren();
+        const note=document.createElement('p');
+        note.className='module-empty';
+        note.textContent='Study material is not available here yet.';
+        moduleContent.append(note);
+      }
       moduleDialog.hidden=false;
       document.body.style.overflow='hidden';
       moduleDialog.querySelector('.module-close').focus();
