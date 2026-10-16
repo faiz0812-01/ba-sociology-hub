@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap');
 /* Academic Hub premium design system */
 :root{
   color-scheme:light;
@@ -1846,3 +1847,299 @@ footer{flex-wrap:wrap}
 footer .footer-nav{display:flex;flex:1 1 100%;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;font-size:12px}
 footer .footer-nav a{display:inline-flex;align-items:center;min-height:36px;padding:6px 4px;color:inherit;text-decoration:underline;text-underline-offset:3px}
 footer .footer-nav a:focus-visible{outline:2px solid #bfcfc3;outline-offset:3px}
+
+/* Eye-Catching Typography and Bilingual Styling for Chapter Summary & MCQs */
+.chapter-hero-box {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+.chapter-header-text h3 {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+}
+.mode-btn {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* Executive Chapter Overview */
+.summary-overview-card {
+  border-left: 4px solid var(--subject-primary, #1b5e4a) !important;
+  border-radius: 0 12px 12px 0 !important;
+  padding: 14px 18px !important;
+}
+.summary-overview-card strong {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: var(--subject-dark, #0d2c24) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  margin-bottom: 6px !important;
+}
+.summary-overview-card .summary-en {
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+  color: var(--subject-dark, #173f33) !important;
+  margin: 0 !important;
+}
+.summary-overview-card .summary-mal {
+  font-family: 'Noto Sans Malayalam', 'Manjari', sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.75 !important;
+  color: #475569 !important;
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1) !important;
+  font-weight: 500 !important;
+}
+
+/* Section Cards & Bilingual Content */
+.summary-section-card {
+  border-radius: 13px !important;
+  border: 1px solid var(--subject-border, #e2ebd8) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03) !important;
+  padding: 15px 18px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+.summary-section-card:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+  border-color: var(--subject-primary, #1b5e4a) !important;
+}
+.section-badge {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+}
+.section-card-title {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: var(--subject-dark, #123e34) !important;
+  line-height: 1.35 !important;
+}
+.section-title-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--subject-primary, #1b5e4a) !important;
+  display: block !important;
+  margin-top: 2px !important;
+}
+.section-points-list li {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  padding-left: 20px !important;
+  position: relative !important;
+}
+.section-points-list li .point-en {
+  font-weight: 500 !important;
+  color: #1e293b !important;
+}
+.section-points-list li .point-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+  line-height: 1.65 !important;
+  margin-top: 3px !important;
+}
+
+/* Core Concepts */
+.concept-tag {
+  background: var(--subject-bg-soft, #f7faf6) !important;
+  border-left: 3.5px solid var(--subject-primary, #d4a337) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  margin-bottom: 9px !important;
+}
+.concept-head {
+  display: flex !important;
+  align-items: baseline !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin-bottom: 2px !important;
+}
+.concept-term-en {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: var(--subject-primary, #1b5e4a) !important;
+}
+.concept-term-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+}
+.concept-def-en {
+  font-size: 12px !important;
+  color: #334155 !important;
+  line-height: 1.5 !important;
+  display: block !important;
+}
+.concept-def-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 11.5px !important;
+  color: #64748b !important;
+  line-height: 1.6 !important;
+  display: block !important;
+  margin-top: 2px !important;
+}
+
+/* High-Yield Exam Takeaways */
+.takeaway-en {
+  font-weight: 600 !important;
+  color: #1e293b !important;
+}
+.takeaway-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 11.5px !important;
+  color: #64748b !important;
+  line-height: 1.6 !important;
+  margin-top: 2px !important;
+}
+
+/* Practice MCQs Eye-Catching Typography */
+.question-card {
+  background: #ffffff !important;
+  border: 1px solid var(--subject-border, #e2e8f0) !important;
+  border-radius: 14px !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+.question-card:hover {
+  border-color: var(--subject-border-accent, #cbd5e1) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05) !important;
+}
+.question-title {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  line-height: 1.45 !important;
+}
+.question-number {
+  font-family: 'Outfit', sans-serif !important;
+  background: var(--subject-bg-soft, #eff6ff) !important;
+  color: var(--subject-primary, #2563eb) !important;
+  border: 1px solid var(--subject-border, #bfdbfe) !important;
+  padding: 3px 9px !important;
+  border-radius: 8px !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  flex-shrink: 0 !important;
+  line-height: 1.2 !important;
+  margin-top: 2px !important;
+}
+.question-texts {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+.question-en {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  line-height: 1.45 !important;
+}
+.question-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  line-height: 1.55 !important;
+}
+
+.options-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+  margin-top: 4px !important;
+}
+.option-btn {
+  appearance: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  border: 1.5px solid #e2e8f0 !important;
+  background: #fafcfa !important;
+  padding: 10px 14px !important;
+  border-radius: 11px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px !important;
+  color: #1e293b !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: all 0.15s ease !important;
+}
+.option-btn:hover:not(:disabled) {
+  background: var(--subject-bg-soft, #f8fafc) !important;
+  border-color: var(--subject-primary, #3b82f6) !important;
+}
+.option-letter {
+  flex: 0 0 25px !important;
+  height: 25px !important;
+  border-radius: 9999px !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+}
+.option-text-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+.option-en {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+}
+.option-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 12px !important;
+  color: #64748b !important;
+  line-height: 1.4 !important;
+}
+
+.explanation-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border: 1px solid #cbd5e1 !important;
+  border-left: 4px solid var(--subject-primary, #3b82f6) !important;
+  border-radius: 10px !important;
+  padding: 12px 16px !important;
+  margin-top: 4px !important;
+}
+.explanation-box strong {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+}
+.explanation-en {
+  font-size: 12.5px !important;
+  color: #334155 !important;
+  line-height: 1.55 !important;
+}
+.explanation-mal {
+  font-family: 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 12px !important;
+  color: #475569 !important;
+  line-height: 1.65 !important;
+  margin-top: 6px !important;
+  padding-top: 6px !important;
+  border-top: 1px dashed #cbd5e1 !important;
+}
