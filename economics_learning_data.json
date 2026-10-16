@@ -3,31 +3,88 @@
     "title": "Module 1 · Part 1: Meaning of Economic Development",
     "filename": "Module_1_1_Introduction_and_Meaning_of_Economic_Development.pdf",
     "summary": {
-      "overview": "Economic development is a comprehensive, multidimensional process involving structural shifts, institutional evolution, and the widespread eradication of poverty, inequality, and deprivation, extending far beyond quantitative GDP growth.",
-      "keyPoints": [
-        "Economic Growth vs. Development: Growth is a purely quantitative expansion in real GDP/national output, whereas Development is qualitative, incorporating improved living standards, equity, and human welfare.",
-        "Amartya Sen's Capability Approach: Defines development as the expansion of human substantive 'freedoms' and 'capabilities'—enabling people to lead lives they value rather than merely accumulating commodities.",
-        "Denis Goulet's Core Values of Development: Identified three universal components of development: Life-sustenance (food, shelter, health), Self-esteem (identity, dignity, respect), and Freedom from servitude.",
-        "United Nations Sustainable Development Goals (SDGs): Modern frameworks integrate economic prosperity with environmental resilience, climate action, and social inclusion."
+      "overview": "Comprehensive exploration of economic development as a qualitative, multidimensional transformation. Covers structural shifts, Amartya Sen's capability approach, Denis Goulet's core values, and the United Nations Sustainable Development Goals (SDGs), demonstrating why development extends far beyond quantitative GDP growth.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Conceptual Distinction: Economic Growth vs. Economic Development",
+          "points": [
+            "Economic Growth is a unidimensional, quantitative concept defined as a sustained increase in real gross domestic product (GDP) or real national output over time.",
+            "Economic Development is a multidimensional, qualitative process involving institutional, social, and structural changes that eliminate poverty, reduce inequality, and expand human welfare.",
+            "Growth is a necessary but not sufficient condition for development: An economy can experience 'jobless growth' or 'ruthless growth' where GDP expands while poverty and inequality worsen.",
+            "Traditional economic metrics (GNP and per capita income) fail to reflect income distribution, environmental externalities, and non-monetary welfare factors."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Amartya Sen's Capability Approach & Development as Freedom",
+          "points": [
+            "Nobel laureate Amartya Sen revolutionized development economics by defining development as the expansion of human substantive 'freedoms' and 'capabilities'.",
+            "Functionings represent what a person actually does or is (e.g., being well-nourished, healthy, educated, having self-respect).",
+            "Capabilities represent the real freedom or opportunity person has to achieve combinations of various functionings (what a person 'can do and be').",
+            "Poverty is re-defined not merely as income insufficiency, but fundamentally as 'capability deprivation'—the deprivation of basic capabilities to lead a dignified life."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Denis Goulet's Core Universal Values of Development",
+          "points": [
+            "Denis Goulet identified three core universal values that constitute the inner meaning of development: Life-sustenance, Self-esteem, and Freedom from servitude.",
+            "Life-sustenance: The ability to fulfill basic physiological and psychological survival needs, including food, shelter, healthcare, and security.",
+            "Self-esteem: The sense of dignity, worth, self-respect, and identity; ensuring individuals and societies are not treated as instruments by others.",
+            "Freedom from Servitude: The expansion of human choices and emancipation from alienating material conditions, social dogma, and subservience to external powers."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Sustainable Development & Global Frameworks (SDGs)",
+          "points": [
+            "Brundtland Report (1987, 'Our Common Future') established the classical definition: Development that meets the needs of the present without compromising the ability of future generations to meet their own needs.",
+            "The 1972 Stockholm Conference and 1992 Rio Earth Summit firmly integrated environmental preservation with socio-economic development.",
+            "UN Sustainable Development Goals (SDGs, 2015–2030): 17 global goals targeting poverty eradication (SDG 1), zero hunger (SDG 2), quality education (SDG 4), gender equality (SDG 5), and climate action (SDG 13)."
+          ]
+        }
       ],
       "coreConcepts": [
         {
           "term": "Economic Growth",
-          "def": "A sustained increase in the real output of goods and services over time, measured by percentage change in real GDP."
+          "def": "A sustained quantitative expansion in a nation's real gross domestic product (GDP) or output of goods and services over time."
         },
         {
           "term": "Economic Development",
-          "def": "Growth plus structural, institutional, and distributional change that reduces poverty, inequality, and disease while elevating quality of life."
+          "def": "A qualitative process combining economic growth with structural, institutional, and distributional transformations that eradicate poverty and inequality."
         },
         {
           "term": "Capability Approach",
-          "def": "Amartya Sen's paradigm focusing on what people can actually 'do and be' (functionings and capabilities) rather than merely what goods they possess."
+          "def": "Amartya Sen's welfare paradigm assessing development by the expansion of substantive freedoms and capabilities for people to lead lives they value."
+        },
+        {
+          "term": "Sustainable Development",
+          "def": "Development that satisfies present socio-economic needs without depleting natural ecosystems or jeopardizing future generations (Brundtland Report 1987)."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Amartya Sen Nobel",
+          "value": "1998",
+          "detail": "Awarded Nobel Memorial Prize in Economic Sciences for contributions to welfare economics and poverty theory."
+        },
+        {
+          "label": "Brundtland Report",
+          "value": "1987",
+          "detail": "Published 'Our Common Future', introducing the benchmark definition of sustainable development."
+        },
+        {
+          "label": "UN SDGs",
+          "value": "17 Goals",
+          "detail": "Global agenda for 2015–2030 integrating social inclusion, economic growth, and environmental sustainability."
         }
       ],
       "examTakeaways": [
-        "Growth is a necessary but not sufficient condition for development.",
-        "Traditional economic measures (GNP/GDP per capita) fail to capture distribution, health, environmental costs, and unpaid domestic labor.",
-        "True development requires the transformation of social institutions, attitudes, and eradication of extreme disparities."
+        "Economic growth is purely quantitative (real GDP), while economic development is qualitative (human welfare and equity).",
+        "Under Sen's framework, poverty is capability deprivation, not merely income inadequacy.",
+        "Denis Goulet's three universal components of development: Life-sustenance, Self-esteem, and Freedom.",
+        "GDP per capita fails as an absolute welfare metric because it overlooks inequality, domestic labor, and environmental degradation."
       ]
     },
     "quizPool": [
@@ -89,34 +146,89 @@
     ]
   },
   "Module_1_2": {
-    "title": "Module 1 · Part 2: Colonial Period Economic History",
+    "title": "Module 1 · Part 2: Colonial Period (History of Indian Economy)",
     "filename": "Module_1_2_History_of_Indian_Economy_Colonial_Period.pdf",
     "summary": {
-      "overview": "Examines the economic consequences of two centuries of British colonial rule (1757–1947), detailing how India was transformed from a prominent exporter of manufactured textiles into an agrarian raw-material appendage of the British empire.",
-      "keyPoints": [
-        "Pre-Colonial Indian Economy: Characterized by prosperous self-sustaining village communities, celebrated artisanal handicrafts, and global dominance in muslin, silk, and spices.",
-        "De-Industrialization: British tariff policies and mechanized Lancashire imports devastated traditional Indian handlooms and crafts, throwing millions back onto overburdened agricultural land.",
-        "Drain of Wealth: Dadabhai Naoroji formulated the 'Drain Theory', showing that a unilateral transfer of Indian revenues, home charges, pensions, and export surpluses flowed to Britain without any equivalent return.",
-        "Agrarian Distress & Zamindari System: Permanent Settlement (1793) instituted parasitic intermediaries, exorbitant land revenue demands, rack-renting, peasant indebtedness, and recurrent catastrophic famines."
+      "overview": "Detailed historical analysis of colonial exploitation in India under the British East India Company and the British Crown. Examines the structural transition of India from a world exporter of fine textiles into a colonial agrarian appendage, deindustrialization, the drain of wealth, commercialization of agriculture, and catastrophic famines.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Pre-Colonial Indian Economy & Nature of Colonial Exploitation",
+          "points": [
+            "Pre-colonial India had a self-sufficient village agrarian economy combined with world-renowned artisanal handicrafts (Dacca Muslin, Calicos of Calicut, Murshidabad silks, metal crafts).",
+            "Colonial rule fundamentally restructured India into a captive supplier of raw materials (cotton, indigo, jute, tea) and an open market for British manufactured commodities.",
+            "Mechanisms of exploitation operated through trade monopolies, unilateral tariff policies, coercive agrarian taxation, and administrative drain."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Deindustrialization & Ruralization of the Workforce",
+          "points": [
+            "Deindustrialization: The systematic destruction of traditional Indian artisanal textile and handicraft industries due to influx of machine-made British textiles following the Industrial Revolution.",
+            "British policy imposed heavy import duties on Indian goods entering Britain while enforcing duty-free entry for British manufactured goods into India.",
+            "Destruction of urban handicraft centers (Dhaka, Murshidabad, Surat) forced millions of displaced weavers and artisans into agriculture, causing acute sub-division and fragmentation of land."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Land Revenue Systems & Commercialization of Agriculture",
+          "points": [
+            "Zamindari System (Permanent Settlement 1793 by Lord Cornwallis in Bengal, Bihar, Odisha): Fixed land revenue paid by landlords; created an exploitative intermediary class and reduced peasants to tenants-at-will.",
+            "Ryotwari System (introduced by Thomas Munro in Madras and Bombay): Direct settlement with cultivators (Ryots); high cash revenue demands led to severe indebtedness.",
+            "Mahalwari System (North-Western Provinces, Punjab): Village community (Mahal) jointly responsible for paying revenue.",
+            "Commercialization of Agriculture: Coercive shifting from food crops (wheat, rice) to export-oriented commercial cash crops (indigo, opium, raw cotton, jute), severely eroding domestic food security."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "The Drain of Wealth Theory & Colonial Infrastructure Motive",
+          "points": [
+            "Dadabhai Naoroji formulated the 'Drain of Wealth' theory in his landmark book 'Poverty and Un-British Rule in India' (1871/1901), further documented by R.C. Dutt.",
+            "Drain components included 'Home Charges' (pensions, salaries of British officials, interest on Indian public debt held in London) and unrequited export surpluses.",
+            "Colonial Railways: Constructed primarily to transport British troops to frontiers for military control and transport raw materials from hinterlands to ports, rather than promoting domestic industrial linkage."
+          ]
+        }
       ],
       "coreConcepts": [
         {
-          "term": "Drain of Wealth",
-          "def": "The continuous unrequited transfer of resources, surplus, and revenues from India to Great Britain without reciprocal economic or commercial return."
+          "term": "Deindustrialization",
+          "def": "The destruction and decline of traditional domestic handicraft and artisanal industries caused by unhindered imports of cheap machine-made British factory goods."
         },
         {
-          "term": "De-Industrialization",
-          "def": "The systemic destruction of traditional domestic handicraft and textile industries due to discriminatory British trade barriers and industrial competition."
+          "term": "Drain of Wealth",
+          "def": "Dadabhai Naoroji's concept explaining the systematic, unrequited transfer of India's national economic surplus to Britain without adequate economic return."
+        },
+        {
+          "term": "Permanent Settlement (1793)",
+          "def": "Lord Cornwallis's land revenue settlement in Bengal creating hereditary Zamindars with fixed revenue liabilities owed to the colonial state."
         },
         {
           "term": "Commercialization of Agriculture",
-          "def": "Forced cultivation of export-oriented cash crops (indigo, cotton, opium, tea) at the expense of food crops, triggering acute food vulnerability."
+          "def": "The coercive shift from cultivating subsistence food grains to industrial cash crops (indigo, cotton, opium) for British industrial demand."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Dadabhai Naoroji",
+          "value": "1871 / 1901",
+          "detail": "Pioneered Indian poverty estimates and published 'Poverty and Un-British Rule in India'."
+        },
+        {
+          "label": "Permanent Settlement",
+          "value": "1793",
+          "detail": "Introduced by Lord Cornwallis, fixing Zamindari revenue permanently in Bengal and Bihar."
+        },
+        {
+          "label": "Great Bengal Famine",
+          "value": "1943",
+          "detail": "Catastrophic famine causing an estimated 3 million deaths due to wartime grain diversion and policy failure."
         }
       ],
       "examTakeaways": [
-        "Dadabhai Naoroji's landmark 1901 work 'Poverty and Un-British Rule in India' exposed the economic drain.",
-        "Under colonial rule, per capita income growth was virtually stagnant (less than 0.5% per annum) between 1900 and 1947.",
-        "Colonial railways were built primarily for strategic military mobilization and raw material extraction, not indigenous industrial development."
+        "British trade policy created an asymmetric colonial division of labor: India exported raw materials and imported finished manufactures.",
+        "Deindustrialization caused forced ruralization, overcrowding agriculture and driving peasant indebtedness.",
+        "The Drain of Wealth drained domestic investible surplus that could have financed domestic capital formation.",
+        "Recurring famines (such as 1943 Bengal famine) were caused by commercialization of agriculture, administrative extraction, and food distribution breakdowns."
       ]
     },
     "quizPool": [
@@ -181,31 +293,87 @@
     "title": "Module 1 · Part 3: Planning Era in India (1951–1991)",
     "filename": "Module_1_3_Planning_Era_in_India_1951_1991.pdf",
     "summary": {
-      "overview": "Analyzes the four decades of state-led economic planning in independent India, exploring the mixed economy framework, the Five-Year Plans, the Nehru-Mahalanobis industrialization model, and the policy of self-reliance.",
-      "keyPoints": [
-        "Adoption of Mixed Economy: India chose a middle path blending state guidance of core infrastructure with a regulated private sector.",
-        "First Five-Year Plan (1951–1956): Based on the Harrod-Domar growth model; prioritized agricultural rehabilitation, irrigation dams (Bhakra Nangal, Hirakud), and price stability post-partition.",
-        "Second Five-Year Plan (1956–1961): Guided by the P.C. Mahalanobis heavy-industry model; prioritized steel plants (Bhilai, Rourkela, Durgapur), capital goods, and import-substituting industrialization.",
-        "Key Objectives of Indian Planning: Growth, Modernization, Self-Reliance, and Social Justice (equitable distribution and poverty reduction)."
+      "overview": "Thorough analysis of post-independence economic planning in India. Covers the establishment of the Planning Commission, the mixed economy model, heavy industrialization strategies, the Green Revolution, and structural achievements alongside the regulatory constraints of the License Raj.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Foundations of Planning & The Mixed Economy Model",
+          "points": [
+            "Planning Commission established in March 1950 by an executive resolution under Prime Minister Jawaharlal Nehru to assess national resources and formulate Five-Year Plans.",
+            "Mixed Economy Framework: Combined state-directed public enterprise in commanding heights (defense, heavy infrastructure, energy) with regulated private enterprise.",
+            "Core Objectives of Planning: High economic growth, modernization, self-reliance (Atmanirbharta), and social justice (reducing inequality and poverty)."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "First & Second Five-Year Plans: Mahalanobis Strategy",
+          "points": [
+            "First Five-Year Plan (1951–1956): Based on the Harrod-Domar growth model; prioritized agricultural rehabilitation, irrigation dams (Bhakra Nangal, Hirakud), and price stability.",
+            "Second Five-Year Plan (1956–1961): Formulated by Prof. P.C. Mahalanobis; adopted the Nehru-Mahalanobis heavy industrialization strategy.",
+            "Mahalanobis Model emphasized capital goods industries (steel plants at Bhilai, Rourkela, Durgapur, machine building, heavy engineering) to build domestic production capacity.",
+            "Industrial Policy Resolution (IPR) of 1956: Defined the 'socialistic pattern of society', reserving Schedule A industries exclusively for the state sector."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Green Revolution & Agricultural Transformation",
+          "points": [
+            "Mid-1960s agricultural crises and back-to-back droughts (1965–66) forced dependency on US PL-480 food aid, leading to the Three Annual Plans (Plan Holiday 1966–1969).",
+            "Green Revolution (initiated late 1960s): Pioneered by Dr. M.S. Swaminathan and Norman Borlaug, introducing High-Yielding Variety (HYV) seeds for wheat and rice.",
+            "Package Technology included HYV seeds, chemical fertilizers, pesticides, controlled irrigation, and credit support, achieving national food self-sufficiency by the 1970s.",
+            "Critiques of Green Revolution: Inter-crop imbalance (benefited wheat/rice, neglected pulses/oilseeds) and regional disparity (concentrated in Punjab, Haryana, Western UP)."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "License Raj, Import Substitution & Structural Constraints",
+          "points": [
+            "Import Substitution Industrialisation (ISI): Protective strategy replacing imports with domestic manufactures through prohibitive tariffs and import quotas.",
+            "License-Permit-Quota Raj: Required bureaucratic licenses for capacity expansion, production lines, import of machinery, and foreign technical collaboration.",
+            "Emerging Weaknesses: Inefficiency in Public Sector Undertakings (PSUs), bureaucratic red tape, lack of market competition, technological obsolescence, and chronic fiscal deficits leading up to 1991."
+          ]
+        }
       ],
       "coreConcepts": [
         {
+          "term": "Mixed Economy",
+          "def": "An economic structure where both the public and private sectors coexist, with the state commanding basic heavy industries and infrastructure."
+        },
+        {
           "term": "Mahalanobis Model",
-          "def": "A two-sector / four-sector planning strategy prioritizing heavy machine-building capital goods to accelerate long-term capital accumulation."
+          "def": "A two-sector/four-sector heavy industrialization strategy prioritizing capital-goods industries to achieve long-run self-reliant economic growth."
         },
         {
-          "term": "Import Substitution Industrialization (ISI)",
-          "def": "Trade and economic policy advocating replacing foreign imports with domestic production through tariffs and quotas."
+          "term": "Import Substitution Industrialisation (ISI)",
+          "def": "A trade policy aiming to foster domestic industrial development by replacing imported manufactured goods with domestic production behind high tariff walls."
         },
         {
-          "term": "Commanding Heights",
-          "def": "State control and ownership of pivotal sectors—steel, mining, power, heavy machinery, and financial institutions."
+          "term": "Green Revolution",
+          "def": "The agricultural technological breakthrough of the late 1960s utilizing High-Yielding Variety (HYV) seeds, irrigation, and chemical inputs to achieve food self-sufficiency."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Planning Commission",
+          "value": "March 1950",
+          "detail": "Formed under Prime Minister Nehru; replaced in 2015 by NITI Aayog."
+        },
+        {
+          "label": "1st Five-Year Plan",
+          "value": "1951–1956",
+          "detail": "Harrod-Domar model focused on agriculture, irrigation, and price stabilization."
+        },
+        {
+          "label": "2nd Five-Year Plan",
+          "value": "1956–1961",
+          "detail": "P.C. Mahalanobis heavy industrialization and capital-goods strategy."
         }
       ],
       "examTakeaways": [
-        "The Planning Commission was established in March 1950 by an executive resolution with Jawaharlal Nehru as its first Chairman.",
-        "The Second Plan marked the conceptual cornerstone of India's long-term industrialization strategy.",
-        "While planning laid strong industrial foundations, it generated bureaucratic hurdles known as the 'License Raj'."
+        "The Second Five-Year Plan marked a structural shift toward basic and heavy industries under the Mahalanobis strategy.",
+        "Industrial Policy Resolution (IPR) 1956 gave the public sector a dominant role in industrialization.",
+        "The Green Revolution achieved national food grain self-sufficiency but generated regional disparities.",
+        "The regulatory constraints of the License Raj and public sector inefficiencies set the stage for the 1991 structural reforms."
       ]
     },
     "quizPool": [
@@ -270,31 +438,88 @@
     "title": "Module 1 · Part 4: Liberalisation Era (1991 Onwards)",
     "filename": "Module_1_4_Liberalisation_Era_1991_Onwards.pdf",
     "summary": {
-      "overview": "Explores the watershed economic crisis of 1991, the emergency structural adjustment loans, and the revolutionary New Economic Policy (NEP) characterized by Liberalisation, Privatisation, and Globalisation (LPG).",
-      "keyPoints": [
-        "Origins of the 1991 Crisis: Unsustainable fiscal deficits, high internal borrowing, Gulf War oil price shock, and plummeting foreign exchange reserves (barely enough for two weeks of imports).",
-        "The Triad of Reforms (LPG): Liberalisation (dismantling License-Permit Raj), Privatisation (disinvestment of public sector units), and Globalisation (opening up to international trade, FDI, and FII).",
-        "Industrial & Financial Sector Reforms: Abolition of industrial licensing for most industries, reduction in sectors reserved for the public sector, devaluation of the rupee, and implementation of the Narasimham Committee banking reforms.",
-        "Outcomes: Transition from the sluggish ~3.5% 'Hindu rate of growth' to dynamic GDP expansion averaging 7–9% in subsequent decades."
+      "overview": "Detailed study of India's 1991 economic transition. Examines the structural Balance of Payments (BoP) crisis, the New Economic Policy (LPG: Liberalisation, Privatisation, Globalisation), industrial delicensing, financial sector reforms, foreign exchange deregulation, and post-reform growth dynamics.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "The 1991 Balance of Payments (BoP) Crisis: Triggers & Roots",
+          "points": [
+            "Macroeconomic Imbalances: Throughout the 1980s, India ran unsustainable fiscal deficits (around 8% of GDP) and current account deficits financed by short-term commercial borrowings.",
+            "External Shocks: The Gulf War (1990–91) triggered an oil price spike and halted remittances from Indian expatriates in Kuwait and Iraq.",
+            "Collapse of the Soviet Union: Severely disrupted India's rupee-ruble barter trade arrangements.",
+            "Crisis Climax: Foreign exchange reserves dropped to approximately $1.2 billion in June 1991, barely sufficient to cover two weeks of essential imports; India was forced to airlift and pledge 47 tonnes of gold to the Bank of England and Union Bank of Switzerland to avert default."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "The New Economic Policy (NEP 1991): LPG Architecture",
+          "points": [
+            "Launched in July 1991 under Prime Minister P.V. Narasimha Rao and Finance Minister Dr. Manmohan Singh, supported by IMF and World Bank structural adjustment facilities.",
+            "Liberalisation: Abolished industrial licensing (License Raj) for all but a few hazardous industries, dismantled MRTP (Monopolies and Restrictive Trade Practices) restrictions, and opened sectors to the market.",
+            "Privatisation: Disinvestment in public sector undertakings (PSUs), reduction of public sector reservation to defense, atomic energy, and railway transport.",
+            "Globalisation: Integration of the Indian economy with global trade and financial markets through tariff reductions, elimination of quantitative import quotas, and openness to Foreign Direct Investment (FDI)."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Financial, Trade & External Sector Deregulation",
+          "points": [
+            "Exchange Rate Reforms: Two-step devaluation of the Indian Rupee in July 1991; transition to a market-determined exchange rate (LERMS) and current account convertibility.",
+            "Banking Reforms (Narasimham Committee 1991 & 1998): Phased reduction in SLR and CRR, deregulation of interest rates, and entry of private and foreign commercial banks.",
+            "Capital Markets: Establishment of SEBI (Securities and Exchange Board of India) as an autonomous statutory regulator in 1992.",
+            "Trade Liberalisation: Peak customs duties reduced drastically from over 300% to global averages; full compliance with WTO commitments."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Post-Reform Trajectory: Achievements vs. Emerging Challenges",
+          "points": [
+            "Achievements: Acceleration of GDP growth (averaging 7–8% during the 2000s), surge in foreign exchange reserves (surpassing $600 billion), expansion of services and IT/ITeS sectors.",
+            "Challenges & Crises: Jobless growth—manufacturing failed to generate mass employment for unskilled rural labor migrating from agriculture.",
+            "Rising Inequality: Widening gap between rich and poor (documented by Piketty and Chancel) and widening inter-state disparities between coastal/southern states and the Hindi heartland."
+          ]
+        }
       ],
       "coreConcepts": [
         {
-          "term": "Liberalisation",
-          "def": "Relaxation of government restrictions, regulations, and licensing in economic activities to promote private enterprise."
+          "term": "LPG Reforms",
+          "def": "The structural policy framework introduced in 1991 comprising Liberalisation (deregulation), Privatisation (PSU disinvestment), and Globalisation (global economic integration)."
         },
         {
-          "term": "Privatisation",
-          "def": "The transfer of ownership, management, or equity of state-owned public sector enterprises to private investors."
+          "term": "Balance of Payments Crisis",
+          "def": "A macroeconomic emergency where a country lacks foreign currency reserves to pay for imports and service external debt commitments (India, June 1991)."
         },
         {
-          "term": "Globalisation",
-          "def": "Integration of the domestic economy with the world economy through trade, capital mobility, technology transfer, and foreign direct investment."
+          "term": "Disinvestment",
+          "def": "The sale of state-owned equity shares in Public Sector Enterprises (PSEs) to private investors and the public to raise revenue and enhance managerial efficiency."
+        },
+        {
+          "term": "Current Account Convertibility",
+          "def": "The freedom to convert domestic currency into foreign exchange at market rates for international trade in goods and services and remittance transactions."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "1991 BoP Crisis",
+          "value": "$1.2 Billion",
+          "detail": "Forex reserves plunged to under two weeks of import cover in June 1991."
+        },
+        {
+          "label": "Gold Pledged",
+          "value": "47 Tonnes",
+          "detail": "Airlifted to Bank of England and UBS as collateral for emergency loans."
+        },
+        {
+          "label": "Rupee Devaluation",
+          "value": "~19%",
+          "detail": "Two-step devaluation executed in July 1991 to stabilize exports and foreign exchange."
         }
       ],
       "examTakeaways": [
-        "The New Economic Policy was unveiled in July 1991 by Prime Minister P.V. Narasimha Rao and Finance Minister Dr. Manmohan Singh.",
-        "Foreign exchange reserves recovered rapidly from $1.2 billion in 1991 to over $600 billion in contemporary years.",
-        "While LPG propelled high services and IT growth, challenges in manufacturing employment and agrarian distress persisted."
+        "The 1991 reforms marked a paradigm shift from a state-dominated mixed economy to a market-oriented, globally integrated economy.",
+        "Industrial delicensing dismantled the License-Permit Raj across manufacturing.",
+        "Narasimham Committee recommendations guided financial sector modernization, lowering SLR/CRR and empowering SEBI.",
+        "Post-reform growth was service-led rather than manufacturing-led, contributing to jobless growth concerns."
       ]
     },
     "quizPool": [
@@ -359,31 +584,87 @@
     "title": "Module 1 · Part 5: Basic Indicator: Real Income",
     "filename": "Module_1_5_Basic_Indicator_Real_Income.pdf",
     "summary": {
-      "overview": "Focuses on National Income accounting, examining how Real Income is distinguished from Nominal Income by adjusting for inflation, and critically assessing Real GDP and Per Capita Income as development indicators.",
-      "keyPoints": [
-        "Nominal vs. Real Income: Nominal income evaluates output at current market prices, whereas Real income measures output at constant base-year prices, filtering out price level distortions.",
-        "GDP Deflator Formula: Real GDP is derived as: Real GDP = (Nominal GDP / GDP Deflator) * 100.",
-        "Per Capita Real Income: Real GDP divided by total population, representing the theoretical average economic output available per citizen.",
-        "Limitations as a Welfare Metric: Fails to reflect wealth distribution, ignores unpaid domestic care work, ignores externalities (pollution), and does not measure health, liberty, or life expectancy."
+      "overview": "Rigorous macroeconomic examination of real national income and per capita income as core indicators of economic development. Covers measurement techniques, the GDP deflator, Purchasing Power Parity (PPP), and the fundamental welfare limitations of GDP-based measurements.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Nominal Income vs. Real Income: The Inflation Adjustment",
+          "points": [
+            "Nominal Income (or GDP at Current Prices) measures the monetary value of goods and services produced evaluated at current market prices prevailing in the year of production.",
+            "Real Income (or GDP at Constant Prices) evaluates output using base year prices, eliminating the distorting effect of general price-level inflation.",
+            "Real GDP formula: Real GDP = (Nominal GDP / GDP Deflator) × 100.",
+            "Real income is the true measure of physical economic expansion, as nominal income can surge purely due to inflation without any increase in actual goods produced."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Per Capita Real Income: Population & Living Standards",
+          "points": [
+            "Per Capita Real Income = Real National Income / Total Population.",
+            "It reflects the average physical output and purchasing power available per citizen, accounting for both inflation and demographic growth.",
+            "If population growth exceeds the growth rate of real national income, per capita income declines even if total output is expanding."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Purchasing Power Parity (PPP) in Cross-Country Comparisons",
+          "points": [
+            "Market exchange rates reflect only internationally traded goods and volatile capital flows, failing to capture price level differentials for non-traded domestic goods and services (e.g., housing, haircuts, healthcare).",
+            "Purchasing Power Parity (PPP) calculates the rate at which one currency would need to be converted to purchase the same standard basket of goods and services in another country.",
+            "India's economy ranks 5th globally in nominal GDP (market exchange rates) but ranks 3rd globally in GDP measured in PPP dollars (behind China and the United States)."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Welfare Limitations of Real Income as a Development Indicator",
+          "points": [
+            "Distribution Blindness: Real GDP per capita is a statistical average that obscures income inequality; a country with high per capita income can have extreme poverty.",
+            "Exclusion of Non-Market Activities: Ignores unpaid domestic labor, care economy, and informal subsistence transactions common in developing nations.",
+            "Environmental Degradation: Real GDP counts resource depletion and pollution cleanup as positive output rather than deducting environmental damage (Green GDP concept).",
+            "Quality of Life: Fails to measure health outcomes, life expectancy, educational attainment, political freedom, or mental well-being."
+          ]
+        }
       ],
       "coreConcepts": [
         {
           "term": "Nominal GDP",
-          "def": "The value of all final goods and services produced within a nation in a year, calculated using prevailing current-year prices."
+          "def": "The total market value of goods and services evaluated at current prevailing market prices."
         },
         {
           "term": "Real GDP",
-          "def": "The volume of goods and services produced evaluated at constant base-period prices, capturing pure physical expansion in output."
+          "def": "The value of economic output adjusted for inflation by evaluating goods and services at constant base year prices."
         },
         {
-          "term": "Per Capita Income",
-          "def": "Total national income divided by aggregate population; an arithmetic mean of economic output per individual."
+          "term": "GDP Deflator",
+          "def": "A broad measure of price inflation calculated as (Nominal GDP / Real GDP) × 100, tracking price movements across all domestic output."
+        },
+        {
+          "term": "Purchasing Power Parity (PPP)",
+          "def": "An economic theory and conversion metric equalizing the purchasing power of different currencies by comparing the cost of an identical basket of goods."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "India Nominal GDP Rank",
+          "value": "5th Largest",
+          "detail": "Around $3.75+ Trillion at market exchange rates."
+        },
+        {
+          "label": "India PPP GDP Rank",
+          "value": "3rd Largest",
+          "detail": "Exceeding $13 Trillion in Purchasing Power Parity terms."
+        },
+        {
+          "label": "Deflator Formula",
+          "value": "(Nominal / Real) × 100",
+          "detail": "Measures price changes across all domestically produced goods and services."
         }
       ],
       "examTakeaways": [
-        "A country's nominal GDP can surge simply because of high inflation, even if actual physical goods production remains stagnant.",
-        "Real Per Capita Income is widely used by the World Bank to categorize countries into Low, Middle, and High Income economies.",
-        "Alternative measures like Green GDP attempt to adjust national accounts for environmental degradation and natural resource exhaustion."
+        "Real income filters out price changes (inflation) to measure genuine physical growth in output.",
+        "Per capita real income accounts for both inflation and population growth.",
+        "PPP adjustments elevate India's global economic ranking from 5th to 3rd.",
+        "GDP per capita cannot measure development alone because it ignores income distribution, unpaid work, and environmental costs."
       ]
     },
     "quizPool": [
@@ -448,31 +729,88 @@
     "title": "Module 1 · Part 6: Indicators of Development: Health and Education",
     "filename": "Module_1_6_Indicators_of_Development_Health_and_Education.pdf",
     "summary": {
-      "overview": "Covers human capital formation, demonstrating how health and education serve as both crucial ends of human wellbeing and vital economic inputs for sustainable, inclusive development.",
-      "keyPoints": [
-        "Human Capital Theory: Investment in healthcare, schooling, and vocational training improves worker productivity, cognitive capability, and long-term economic dynamism.",
-        "Core Health Indicators: Life Expectancy at Birth, Infant Mortality Rate (IMR, deaths per 1,000 live births), Under-5 Mortality Rate, Maternal Mortality Ratio (MMR, deaths per 100,000 live births).",
-        "Core Education Indicators: Adult Literacy Rate, Mean Years of Schooling, Expected Years of Schooling, Gross Enrolment Ratio (GER).",
-        "Human Development Index (HDI): Synthesizes three dimensions: (1) Long and healthy life (Life Expectancy), (2) Knowledge (Mean & Expected years of schooling), (3) Decent standard of living (GNI per capita PPP)."
+      "overview": "Comprehensive exploration of human capital development through health and education indicators. Analyzes life expectancy, Infant Mortality Rate (IMR), Maternal Mortality Ratio (MMR), literacy benchmarks, Gross Enrolment Ratio (GER), and flagship government interventions like Ayushman Bharat and Samagra Shiksha.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Human Development & Human Capital Formation",
+          "points": [
+            "Human capital is the stock of knowledge, skills, health, and vitality embodied in an economy's labor force that enables productive output.",
+            "Investment in education and health yields high private and social returns: healthier, literate workers are more productive, adaptable to technological advances, and capable of higher earnings.",
+            "Human Development Index (HDI), formulated by Mahbub ul Haq and Amartya Sen (UNDP 1990), synthesized health (life expectancy), education (mean and expected years of schooling), and decent standard of living (GNI per capita)."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Core Health Indicators & Indian Health Profile",
+          "points": [
+            "Life Expectancy at Birth: The average number of years a newborn infant is expected to live if prevailing mortality patterns remain constant. India's life expectancy rose from ~32 years in 1947 to ~70 years in recent surveys.",
+            "Infant Mortality Rate (IMR): Number of deaths of infants under one year of age per 1,000 live births in a given year. National IMR has significantly declined to ~28 per 1,000.",
+            "Maternal Mortality Ratio (MMR): Number of maternal deaths during pregnancy or within 42 days of termination per 100,000 live births; sharp decline under national health missions.",
+            "Nutritional Challenges: High prevalence of child stunting (low height-for-age), wasting (low weight-for-height), and anemia documented across National Family Health Surveys (NFHS-5)."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Educational Indicators & Enrollment Benchmarks",
+          "points": [
+            "Literacy Rate: Percentage of persons aged 7 and above who can read and write with understanding in any language (Census of India definition). National literacy reached 77.7% (NSO 2017–18).",
+            "Gross Enrolment Ratio (GER): Total enrollment in a specific level of education (primary, secondary, or tertiary), regardless of age, expressed as a percentage of the official school-age population.",
+            "Primary GER has crossed 100% (near-universal access), but secondary and tertiary GER (higher education ~27–28%) remain structural bottlenecks.",
+            "Gender Parity Index (GPI): Ratio of female to male students enrolled, highlighting persistent educational gaps in rural and marginalized communities."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Flagship Government Interventions in Social Infrastructure",
+          "points": [
+            "Ayushman Bharat (PM-JAY): World's largest government-funded health assurance scheme, providing health cover of Rs 5 lakh per family per year for secondary and tertiary hospitalization to over 12 crore vulnerable families.",
+            "National Health Mission (NHM) & Health and Wellness Centres (HWCs): Strengthening primary healthcare delivery and maternal-child health.",
+            "Right to Education (RTE) Act 2009: Guarantees free and compulsory education for all children aged 6 to 14 as a fundamental right under Article 21A.",
+            "National Education Policy (NEP) 2020 & Samagra Shiksha: Targeting foundational literacy and numeracy, vocational training, and expanding higher education GER to 50% by 2035."
+          ]
+        }
       ],
       "coreConcepts": [
         {
           "term": "Human Capital",
-          "def": "The collective stock of knowledge, skills, health, vitality, and competencies possessed by individuals that enhance productive output."
+          "def": "The collective skills, knowledge, capabilities, and health status possessed by an individual or population that drive economic productivity."
         },
         {
           "term": "Infant Mortality Rate (IMR)",
-          "def": "The number of infant deaths before reaching age one per 1,000 live births in a given year."
+          "def": "The number of children dying before reaching their first birthday per 1,000 live births in a given year."
         },
         {
-          "term": "Human Development Index (HDI)",
-          "def": "A geometric composite index created by UNDP measuring average achievement in key dimensions of human development."
+          "term": "Maternal Mortality Ratio (MMR)",
+          "def": "The number of women dying from pregnancy-related causes per 100,000 live births."
+        },
+        {
+          "term": "Gross Enrolment Ratio (GER)",
+          "def": "Total enrollment at a specific level of education expressed as a percentage of the eligible official age-group population."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Life Expectancy",
+          "value": "~70.4 Years",
+          "detail": "Substantial gain from ~32 years at Indian independence in 1947."
+        },
+        {
+          "label": "Ayushman Bharat",
+          "value": "₹5 Lakh Cover",
+          "detail": "Cashless secondary and tertiary hospitalization coverage per family annually."
+        },
+        {
+          "label": "RTE Act 2009",
+          "value": "Article 21A",
+          "detail": "Constitutional guarantee of free and compulsory education for ages 6–14."
         }
       ],
       "examTakeaways": [
-        "Economist Mahbub ul Haq and Amartya Sen designed the Human Development Index for the UNDP in 1990.",
-        "The 'Kerala Model' in India demonstrated that high human development (high literacy, high life expectancy, low IMR) can be attained even at modest per capita income levels.",
-        "Gender disparities in education and nutrition remain significant bottlenecks in developing nations."
+        "Economic development is unsustainable without parallel human capital formation in education and healthcare.",
+        "The Human Development Index (HDI) integrates health (life expectancy), knowledge (schooling years), and standard of living (GNI per capita).",
+        "India has achieved near-universal primary school enrollment, but higher education GER (~28%) remains a major policy focus under NEP 2020.",
+        "Ayushman Bharat PM-JAY and the National Health Mission are central pillars addressing catastrophic out-of-pocket health expenditures."
       ]
     },
     "quizPool": [
@@ -537,31 +875,87 @@
     "title": "Module 1 · Part 7: Basic Issues in Economic Development",
     "filename": "Module_1_7_Basic_Issues_in_Economic_Development.pdf",
     "summary": {
-      "overview": "Synthesizes the structural bottlenecks and foundational obstacles hindering sustained progress in developing economies like India, including the vicious circle of poverty, dualism, demographic pressures, and infrastructure deficits.",
-      "keyPoints": [
-        "Vicious Circle of Poverty: Ragnar Nurkse's classic doctrine: 'A country is poor because it is poor'—low income leads to low savings, low investment, low capital deficiency, low productivity, and perpetually low income.",
-        "Economic Dualism: Coexistence of an advanced, capital-intensive modern urban sector alongside a low-productivity, informal subsistence rural sector.",
-        "Demographic Pressure: Rapid population growth increases dependency ratios, drains capital resources into consumption, and strains public healthcare, education, and sanitation.",
-        "Institutional Bottlenecks: Weak property rights, corruption, market imperfections, inadequate legal enforcement, and credit rationing for smallholders."
+      "overview": "In-depth analysis of the structural bottlenecks confronting developing economies with special reference to India. Examines population dynamics, demographic dividend, vicious circles of poverty, low capital formation, infrastructure deficits, and persistent regional imbalances.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Demographic Pressures & The Demographic Dividend",
+          "points": [
+            "Population Growth & Resource Strain: Rapid population growth in developing economies dilutes gains in national income, strains public infrastructure, and creates immense dependency burdens.",
+            "Theory of Demographic Transition: India has transitioned from Stage 2 (high birth rates, rapidly falling death rates) into Stage 3 (declining birth rates, low death rates).",
+            "Demographic Dividend: The economic growth potential that arises when the share of the working-age population (15–64 years) is larger than the dependent population (under 15 and 65+).",
+            "Window of Opportunity: India has a median age of ~28 years, but reaping the dividend requires massive generation of quality jobs, skill development, and health infrastructure."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Vicious Circles of Poverty & Low Capital Formation",
+          "points": [
+            "Ragnar Nurkse's Vicious Circle of Poverty: A developing country is poor because it is poor ('circular constellation of forces').",
+            "Supply Side Circle: Low Income → Low Capacity to Save → Low Investment → Deficiency of Capital → Low Productivity → Low Income.",
+            "Demand Side Circle: Low Income → Low Purchasing Power / Demand → Low Inducement to Invest → Deficiency of Capital → Low Productivity → Low Income.",
+            "Breaking the Cycle: Requires public investment, external capital flows, institutional credit expansion, and technological adoption."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Infrastructure Deficits & Agricultural Structural Dependence",
+          "points": [
+            "Physical Infrastructure: Deficits in transport (high logistics costs ~14% of GDP), energy transmission losses, port bottlenecks, and urban water/sanitation systems hinder industrial competitiveness.",
+            "Social Infrastructure: Inadequate public funding in public health and vocational training centers.",
+            "Agricultural Overcrowding: Agriculture employs nearly 45% of India's labor force while contributing only ~16–18% to GDP, resulting in severe disguised unemployment and low farm incomes."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Regional Imbalances: Causes & Corrective Policy Interventions",
+          "points": [
+            "Inter-State Disparities: Marked divergence between industrially advanced, high-income states (Maharashtra, Gujarat, Tamil Nadu, Karnataka) and lagging low-income states (Bihar, UP, MP, Odisha).",
+            "Causes of Imbalance: Geographical differences, historical colonial port investments, uneven natural resources, varying state governance quality, and private capital clustering in developed hubs.",
+            "Remedial Policies: Progressive central devolution via Finance Commissions, Special Category Status / special packages, PM Gati Shakti national master plan for multimodal connectivity, and Industrial corridors."
+          ]
+        }
       ],
       "coreConcepts": [
         {
+          "term": "Demographic Dividend",
+          "def": "The economic growth potential resulting from shifts in population age structure when the working-age population exceeds dependent age groups."
+        },
+        {
           "term": "Vicious Circle of Poverty",
-          "def": "A self-reinforcing circular constellation of forces acting on both supply and demand sides that keeps an economy trapped in underdevelopment."
+          "def": "Ragnar Nurkse's theory explaining that low income leads to low savings and low investment, perpetuating low productivity and chronic poverty."
         },
         {
-          "term": "Dual Economy",
-          "def": "The structural dichotomy where a modern technologically advanced enclave operates adjacent to a backward, traditional agrarian economy."
+          "term": "Disguised Unemployment",
+          "def": "A situation where surplus workers are engaged in an activity such that their marginal physical product is zero or near zero."
         },
         {
-          "term": "Demographic Burden",
-          "def": "A high child and elderly dependency ratio resulting from rapid population growth, dampening domestic savings rates."
+          "term": "Regional Imbalance",
+          "def": "Unequal economic, industrial, and social development across different geographical regions or states within a country."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "India Median Age",
+          "value": "~28 Years",
+          "detail": "Among the youngest large economies globally during the demographic dividend window."
+        },
+        {
+          "label": "Agri Labor Share",
+          "value": "~45%",
+          "detail": "Employs nearly half the workforce while generating under 18% of GDP."
+        },
+        {
+          "label": "PM Gati Shakti",
+          "value": "Multimodal Infra",
+          "detail": "National master plan to eliminate logistical bottlenecks and integrate freight transport."
         }
       ],
       "examTakeaways": [
-        "Ragnar Nurkse highlighted that breaking the vicious circle requires a 'Big Push' or balanced investment across complementary industries.",
-        "Arthur Lewis's Dual Sector Model showed how surplus agricultural labor can be absorbed into the expanding industrial capitalist sector.",
-        "Overcoming basic development issues necessitates deep structural reforms, land redistribution, and inclusive social infrastructure."
+        "Demographic dividend is a temporary demographic window that requires skilling and job creation to avoid becoming a demographic disaster.",
+        "Ragnar Nurkse identified supply-side and demand-side vicious circles perpetuating low capital formation in developing economies.",
+        "Agricultural overcrowding is characterized by widespread disguised unemployment with zero marginal productivity.",
+        "Regional disparities are addressed through Finance Commission fiscal transfers, infrastructure investments, and industrial corridor development."
       ]
     },
     "quizPool": [
@@ -623,34 +1017,88 @@
     ]
   },
   "Module_1_Overview": {
-    "title": "Module 1 · Complete Course Document: Historical Precedents",
+    "title": "Module 1: Historical Precedents of Development Issues (Overview)",
     "filename": "Module_1_Historical_Precedents_of_Development_Issues.pdf",
     "summary": {
-      "overview": "Comprehensive 35-page syllabus treatise tracing the historical evolution of the Indian economy from pre-colonial self-sufficiency through colonial deindustrialization, the planning era (1951–1991), and the structural break of 1991 LPG reforms.",
-      "keyPoints": [
-        "Comprehensive Historical Trajectory: Synthesizes pre-British trade prominence, colonial structural exploitation, post-independence socialist planning, and modern globalized market orientation.",
-        "Institutional Evolution: Explains the transition from the Planning Commission (1950) to market-driven reforms and the contemporary establishment of NITI Aayog (2015).",
-        "Structural Changes in Output & Employment: Highlights the shift where agriculture's contribution to GDP shrank from over 50% in 1950 to under 18% today, while service sector output exceeded 50%.",
-        "Persistent Structural Lacunae: Despite impressive GDP growth, the economy exhibits 'jobless growth' where structural employment shifts have lagged output shifts, leaving over 45% of workers in low-yield agriculture."
+      "overview": "Master synthetic overview of Module 1: Historical Precedents of Development Issues in Indian Economy. Integrates the colonial legacy of de-industrialization and wealth drain, the four-decade planning experiment (1951–1991) with mixed economy and import substitution, the 1991 structural balance-of-payments crisis, and post-liberalisation macroeconomic indicators.",
+      "sections": [
+        {
+          "badge": "Theme 1",
+          "title": "The Colonial Legacy & Structural Distortions (Pre-1947)",
+          "points": [
+            "Colonial extraction converted India from a premier exporter of finished textiles into an importer of British industrial goods and exporter of agricultural raw materials.",
+            "De-industrialization destroyed traditional urban handicraft centers, compelling displaced artisans to crowd into agriculture and fracturing landholdings.",
+            "Dadabhai Naoroji's Drain of Wealth and oppressive land revenue settlements (Permanent Settlement, Ryotwari) drained investible capital and created chronic peasant indebtedness."
+          ]
+        },
+        {
+          "badge": "Theme 2",
+          "title": "The Planning Era & Nehru-Mahalanobis Strategy (1951–1991)",
+          "points": [
+            "Post-independence leadership established the Planning Commission (1950) to pursue growth, modernization, self-reliance, and social justice within a mixed economy.",
+            "The Second Five-Year Plan (1956–1961) implemented the Mahalanobis heavy industrialization model, creating foundational public sector capital goods capacity.",
+            "The Green Revolution of the late 1960s introduced HYV seeds and irrigation to achieve food grain self-sufficiency.",
+            "Import Substitution Industrialisation (ISI) and the License-Permit Raj protected domestic industry but created monopolistic complacency, fiscal deficits, and technological stagnation."
+          ]
+        },
+        {
+          "badge": "Theme 3",
+          "title": "The 1991 Watershed: Balance of Payments Crisis & LPG Reforms",
+          "points": [
+            "Unsustainable fiscal expansion, Gulf War oil price spikes, and remittances collapse depleted foreign exchange reserves to $1.2 billion in June 1991, forcing gold pledging.",
+            "New Economic Policy (1991) launched comprehensive structural adjustment: Industrial delicensing, PSU disinvestment, trade tariff reduction, rupee devaluation, and financial sector deregulation.",
+            "Post-1991 performance generated high GDP growth (7–8%), ballooning foreign exchange reserves, but led to services-skewed 'jobless growth' and heightened inequality."
+          ]
+        },
+        {
+          "badge": "Theme 4",
+          "title": "Development Indicators: From Growth to Human Well-Being",
+          "points": [
+            "Shift from purely quantitative GDP and per capita income metrics to human-centered frameworks (Amartya Sen's Capability Approach and HDI).",
+            "Evaluation of real income (inflation-adjusted constant prices) and Purchasing Power Parity (PPP), where India ranks 3rd globally.",
+            "Critical role of human capital investments in health (life expectancy, IMR, Ayushman Bharat) and education (literacy, GER, RTE Act) in realizing India's demographic dividend."
+          ]
+        }
       ],
       "coreConcepts": [
         {
-          "term": "Structural Transformation",
-          "def": "Reallocation of economic activity and workforce from low-productivity agriculture to high-productivity manufacturing and modern services."
+          "term": "Colonial Exploitation",
+          "def": "The structural restructuring of the Indian economy into an agrarian supplier of raw materials and captive market for British factory goods."
         },
         {
-          "term": "Hindu Rate of Growth",
-          "def": "A term coined by economist Raj Krishna referring to the low annual growth rate of ~3.5% experienced by the Indian economy between the 1950s and 1980s."
+          "term": "Nehru-Mahalanobis Strategy",
+          "def": "A state-led planning framework prioritizing heavy capital-goods industries to build a self-reliant industrial base."
         },
         {
-          "term": "NITI Aayog",
-          "def": "National Institution for Transforming India, established on January 1, 2015, replacing the Planning Commission to foster cooperative federalism."
+          "term": "LPG Reforms",
+          "def": "The 1991 structural reform triad: Liberalisation (deregulation), Privatisation (PSU equity sale), and Globalisation (integration with world trade)."
+        },
+        {
+          "term": "Capability Approach",
+          "def": "Amartya Sen's philosophy defining development as the expansion of substantive human freedoms and capabilities."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "1947–1991 Growth",
+          "value": "~3.5% ('Hindu Rate')",
+          "detail": "Moderate growth during early planning decades under import substitution."
+        },
+        {
+          "label": "Post-1991 Growth",
+          "value": "7–8% Average",
+          "detail": "Accelerated economic expansion led by services and private investment."
+        },
+        {
+          "label": "Forex Reserves",
+          "value": "$1.2B → $600B+",
+          "detail": "Dramatic reserve accumulation post-1991 external sector stabilization."
         }
       ],
       "examTakeaways": [
-        "Raj Krishna coined the term 'Hindu Rate of Growth' to characterize the pre-1980s growth plateau.",
-        "Services (tertiary sector) constitute the largest share of Indian GDP today, while agriculture still employs the largest single share of the workforce.",
-        "The complete Module 1 document synthesizes the historical roots necessary to contextualize contemporary poverty, inequality, and unemployment."
+        "Module 1 charts India's evolutionary trajectory: Colonial exploitation → State-directed planning (1951–1991) → Market-oriented liberalization (1991 onwards).",
+        "The 1991 crisis was the defining watershed transforming India's economic architecture.",
+        "Development requires combining real income growth with human capital investments and reduction of regional and social disparities."
       ]
     },
     "quizPool": [
@@ -712,35 +1160,135 @@
     ]
   },
   "Module_2": {
-    "title": "Module 2: Poverty in India",
+    "title": "Module 2: Poverty in India (Complete 59-Page Course Document)",
     "filename": "Module_2_Poverty.pdf",
     "summary": {
-      "overview": "Comprehensive 59-page treatise examining poverty definitions, historical poverty line estimation methodologies (Dandekar-Rath, Alagh, Lakdawala, Tendulkar, Rangarajan), Multidimensional Poverty Index (MPI), and national poverty alleviation programmes.",
-      "keyPoints": [
-        "Absolute vs. Relative Poverty: Absolute poverty refers to inability to attain minimum physical subsistence needs (calories, shelter); relative poverty reflects income inequality relative to median societal standards.",
-        "Evolution of Calorie Norms: Dandekar & Rath (1971) established the 2,250 kcal/day benchmark. Y.K. Alagh Task Force (1979) established the landmark 2,400 kcal/day (rural) and 2,100 kcal/day (urban) nutritional requirements.",
-        "Suresh Tendulkar Committee (2009): Shifted away from calorie norms to Mixed Reference Period (MRP) consumption basket including health and education; set poverty line at Rs 27/day (rural) and Rs 33/day (urban) at 2011–12 prices (21.9% poverty ratio).",
-        "C. Rangarajan Committee (2014): Revised poverty line using Modified Mixed Reference Period (MMRP) to Rs 32/day (rural) and Rs 47/day (urban), estimating 29.5% poverty.",
-        "Multidimensional Poverty Index (MPI): Evaluates 3 dimensions and 10 indicators (Nutrition, Child mortality, Schooling years, Attendance, Cooking fuel, Sanitation, Drinking water, Electricity, Housing, Assets). NITI Aayog's National MPI tracks rapid deprivation reduction."
+      "overview": "Comprehensive 59-page treatise examining poverty in India across all 7 syllabus units (Units 5 to 11). Covers monetary vs. capability approaches, historical and post-independence poverty line methodologies (Dandekar-Rath, Alagh, Lakdawala, Tendulkar, Rangarajan), data recall periods (URP, MRP, MMRP), the Multidimensional Poverty Index (MPI), poverty trends, high-poverty economic groups, and anti-poverty programmes.",
+      "sections": [
+        {
+          "badge": "Unit 5",
+          "title": "Concepts & Approaches to Poverty: Monetary vs. Multidimensional",
+          "points": [
+            "Monetary Approach: Poverty defined as income or consumption shortfall below an established subsistence threshold. Differentiates Absolute Poverty (inability to attain minimum physical subsistence, e.g., World Bank $2.15/day benchmark) from Relative Poverty (inequality relative to median societal living standards measured via Gini coefficient).",
+            "Amartya Sen's Capability Approach: Poverty is fundamentally capability deprivation—the lack of substantive freedom and ability to achieve basic functionings (nourishment, health, literacy, self-respect). What matters is not goods possessed, but what people can 'do and be'.",
+            "Three Dimensions of Poverty: Economic Poverty (income/consumption insufficiency), Social Poverty (social exclusion from community life, caste discrimination), and Capability Poverty (lack of educational and health capabilities).",
+            "Social Exclusion: Systematic marginalization of groups (Dalits, tribal populations, religious minorities, migrants) from institutions, legal protections, and assets."
+          ]
+        },
+        {
+          "badge": "Unit 6",
+          "title": "Poverty Estimation Methodology: Consumption vs. Income & Recall Periods",
+          "points": [
+            "Why Consumption over Income: In developing economies like India, household consumption expenditure is far more reliable and stable than income due to widespread informal employment, seasonal agricultural fluctuations, and underreporting of income.",
+            "National Sample Survey Office (NSSO / NSO): Primary data collection agency conducting quinquennial Consumer Expenditure Surveys (CES) used by Planning Commission / NITI Aayog.",
+            "Uniform Reference Period (URP): Measures consumption expenditure of all goods and services using a uniform 30-day recall period (used until 1993–94).",
+            "Mixed Reference Period (MRP): 365-day recall for 5 low-frequency non-food items (clothing, footwear, durable goods, education, institutional medical care) and 30-day recall for food items (adopted by Tendulkar Committee).",
+            "Modified Mixed Reference Period (MMRP): 7-day recall for perishables (edible oil, eggs, fish, meat, vegetables, fruits), 30-day recall for other food/fuel, and 365-day recall for non-food durables (adopted by Rangarajan Committee)."
+          ]
+        },
+        {
+          "badge": "Unit 7",
+          "title": "Multidimensional Poverty Index (MPI): Alkire-Foster Methodology",
+          "points": [
+            "Developed by Oxford Poverty and Human Development Initiative (OPHI) and UNDP, utilizing the Alkire-Foster dual-cutoff counting method.",
+            "Three Core Dimensions (Equally Weighted at 1/3 each): Health, Education, and Standard of Living.",
+            "Global MPI 10 Indicators: Health (Nutrition 1/6, Child Mortality 1/6); Education (Years of Schooling 1/6, School Attendance 1/6); Standard of Living (Cooking Fuel, Sanitation, Drinking Water, Electricity, Housing, Assets - each 1/18).",
+            "Identification Cutoff: A person is multidimensionally poor if they are deprived in 33.33% (one-third) or more of the weighted indicators.",
+            "National MPI (NITI Aayog): Tailored to Indian public policy, retaining the 3 dimensions but expanding to 12 indicators by adding Antenatal Care (under Health) and Bank Accounts (under Standard of Living)."
+          ]
+        },
+        {
+          "badge": "Unit 8",
+          "title": "Evolution of Post-Independence Poverty Lines in India",
+          "points": [
+            "Working Group (1962): Formulated first national poverty line of Rs 20 per capita per month for rural areas and Rs 25 for urban areas (excluding health and education provided by state).",
+            "V.M. Dandekar & Nilakantha Rath (1971): First systematic study based on NSSO data establishing a uniform minimum calorie intake of 2,250 calories per person per day (rural Rs 15/month, urban Rs 22.5/month at 1960–61 prices).",
+            "Y.K. Alagh Task Force (1979): Established separate rural-urban nutritional benchmarks based on physical labor: 2,400 kcal/day (rural) and 2,100 kcal/day (urban), anchored to NSSO consumption baskets.",
+            "D.T. Lakdawala Committee (1993): Maintained the 2,400/2,100 calorie norms but disaggregated the national poverty line into state-specific poverty lines using CPI-AL (Consumer Price Index for Agricultural Labourers) for rural and CPI-IW (for Industrial Workers) for urban.",
+            "Suresh Tendulkar Committee (2009): Dropped calorie anchoring; shifted to Mixed Reference Period (MRP); incorporated private expenditures on health and education; set uniform poverty lines at Rs 27.20/day (rural) and Rs 33.30/day (urban) at 2011–12 prices (national poverty headcount: 21.9%).",
+            "C. Rangarajan Committee (2014): Re-introduced nutritional benchmarks (2,155 kcal rural, 2,090 kcal urban plus fat/protein) and non-food norms via MMRP; raised poverty lines to Rs 32/day (rural) and Rs 47/day (urban), estimating 2011–12 poverty at 29.5%."
+          ]
+        },
+        {
+          "badge": "Unit 9",
+          "title": "Trends in Poverty & Interstate Disparities",
+          "points": [
+            "Long-Term Trends: Head Count Ratio (HCR) fell from ~54.9% in 1973–74 to 45.3% in 1993–94, and accelerated post-2004 to 21.9% in 2011–12 (Tendulkar methodology).",
+            "Faster Decline Post-2004: Economic growth, wage expansion, and rural schemes led to unprecedented poverty reduction, pulling over 135 million Indians out of multidimensional poverty between 2015–16 and 2019–21 (NITI Aayog MPI Report).",
+            "Inter-State Disparities: High-poverty states (BIMARU group: Bihar, Uttar Pradesh, Madhya Pradesh, Jharkhand, Odisha) exhibit HCRs over 30%, whereas Kerala, Goa, and Punjab exhibit HCRs below 5%."
+          ]
+        },
+        {
+          "badge": "Unit 10",
+          "title": "Poverty Alleviation Programmes: Architecture & Evaluation",
+          "points": [
+            "Three-Pronged Strategy: (1) Growth-oriented trickle-down strategy, (2) Direct employment generation and asset-creation schemes, (3) Basic minimum needs provision.",
+            "Wage Employment Flagship: Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA 2005)—legal statutory entitlement guaranteeing 100 days of unskilled wage work per rural household per year.",
+            "Self-Employment & Livelihood: Integrated Rural Development Programme (IRDP 1978) → Swarnajayanti Gram Swarozgar Yojana (SGSY 1999) → National Rural Livelihoods Mission (NRLM / Deendayal Antyodaya Yojana - DAY-NRLM) based on Self-Help Groups (SHGs).",
+            "Food Security: Targeted Public Distribution System (TPDS) and National Food Security Act (NFSA 2013), legally entitling 75% of rural and 50% of urban population to subsidized food grains (Antyodaya Anna Yojana: 35 kg/family).",
+            "Social Security & Housing: National Social Assistance Programme (NSAP - pensions for aged, widows, disabled) and Pradhan Mantri Awas Yojana (PMAY - pucca houses with sanitation)."
+          ]
+        },
+        {
+          "badge": "Unit 11",
+          "title": "Economic Characteristics of High-Poverty Groups",
+          "points": [
+            "Vulnerability Concentration: Over 75% of India's poor are concentrated in rural areas, predominantly engaged as landless agricultural laborers and marginal farmers.",
+            "Occupational Profile: Casual laborers without job security, formal contracts, or social protection form the largest category of urban and rural poor.",
+            "Social Stratification: Scheduled Castes (SCs) and Scheduled Tribes (STs) face disproportionately high poverty rates due to historical dispossession, lack of land titles, and caste discrimination.",
+            "Female-Headed Households: Suffer higher poverty severity due to gender wage gaps, intra-household resource allocation bias, and limited asset inheritance rights."
+          ]
+        }
       ],
       "coreConcepts": [
         {
           "term": "Head Count Ratio (HCR)",
-          "def": "The proportion of total population living below the officially defined poverty line, expressed as a percentage."
+          "def": "The proportion of total population whose income or consumption falls below the officially established poverty line, expressed as a percentage."
         },
         {
-          "term": "Poverty Gap Index",
-          "def": "Measures the depth of poverty by calculating the average shortfall of poor individuals from the poverty line."
+          "term": "Poverty Gap Index (PGI)",
+          "def": "A measure of the depth of poverty calculating the average shortfall of poor individuals from the poverty line, indicating resources needed to eradicate poverty."
         },
         {
           "term": "Multidimensional Poverty Index (MPI)",
-          "def": "An acute poverty metric measuring overlapping deprivations across health, education, and living standards at household levels."
+          "def": "An acute poverty index measuring multiple overlapping deprivations across health, education, and living standards at the household level."
+        },
+        {
+          "term": "Tendulkar Poverty Line",
+          "def": "Official methodology (2009) shifting away from calories to MRP consumption including health/education, establishing ₹27/day rural and ₹33/day urban cutoffs."
+        },
+        {
+          "term": "Rangarajan Poverty Line",
+          "def": "Expert committee (2014) revising poverty lines to ₹32/day rural and ₹47/day urban based on MMRP and modern nutritional/non-food norms."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Alagh Calorie Norms",
+          "value": "2400 / 2100 kcal",
+          "detail": "Daily minimum calories for rural and urban areas respectively (Task Force 1979)."
+        },
+        {
+          "label": "Tendulkar Line (2011–12)",
+          "value": "₹27 / ₹33 per day",
+          "detail": "Rural ₹816/month, Urban ₹1000/month; estimated national poverty at 21.9%."
+        },
+        {
+          "label": "Rangarajan Line (2011–12)",
+          "value": "₹32 / ₹47 per day",
+          "detail": "Rural ₹972/month, Urban ₹1407/month; estimated national poverty at 29.5%."
+        },
+        {
+          "label": "MGNREGA 2005",
+          "value": "100 Days Work",
+          "detail": "Statutory legal guarantee of unskilled manual wage employment for rural households."
         }
       ],
       "examTakeaways": [
-        "Tendulkar Committee estimated India's national poverty rate at 21.9% for the year 2011–12.",
-        "Rangarajan Committee's poverty thresholds were Rs 972/month (rural) and Rs 1,407/month (urban).",
-        "Key anti-poverty programmes include MGNREGA (100 days guaranteed wage employment), PM Awas Yojana, and National Food Security Act (NFSA)."
+        "Poverty in India is officially estimated using household consumption expenditure data collected by NSSO/NSO rather than income.",
+        "Tendulkar Committee (2009) decoupled the poverty line from calorie cutoffs and adopted Mixed Reference Period (MRP).",
+        "The Global MPI uses 10 indicators across 3 dimensions (Health, Education, Living Standards); NITI Aayog's National MPI uses 12 indicators (adding Antenatal Care and Bank Accounts).",
+        "MGNREGA provides a legal rights-based employment guarantee, while NFSA 2013 covers up to two-thirds of the population for food security."
       ]
     },
     "quizPool": [
@@ -802,35 +1350,109 @@
     ]
   },
   "Module_3": {
-    "title": "Module 3: Inequality in India",
+    "title": "Module 3: Inequality in India (Complete 80-Page Course Document)",
     "filename": "Module_3_Inequality.pdf",
     "summary": {
-      "overview": "Exhaustive 80-page study of economic inequality in India, exploring income and wealth disparities, the Lorenz Curve, Gini Coefficient, Kuznets curve, regional imbalances, and redistributive fiscal policies.",
-      "keyPoints": [
-        "Income vs. Wealth Disparity: Wealth inequality in India is drastically higher than income inequality—top 10% own over 70% of national wealth, while the bottom 50% own under 6%.",
-        "Lorenz Curve: A graphical representation of income distribution plotting cumulative percentage of population against cumulative percentage of income received; the 45-degree line represents perfect equality.",
-        "Gini Coefficient: Ratio of the area between the line of perfect equality and the Lorenz curve to the total area under the equality line. 0 = absolute equality, 1 = absolute inequality.",
-        "Kuznets Inverted-U Hypothesis: Simon Kuznets theorized that inequality initially rises in early industrialization phases before peaking and declining as structural development and social protections mature.",
-        "Causes in India: Unequal asset/land distribution, skewed educational access, informal labour concentration (over 85%), regressive indirect taxation dominance, and urban-rural wage gaps."
+      "overview": "Exhaustive 80-page study of economic inequality in India. Covers concepts of income and wealth inequality, Thomas Piketty and Lucas Chancel's empirical findings, graphical and mathematical measurement tools (Lorenz Curve, Gini Coefficient, Theil Index, Palma Ratio), structural causes, rural-urban and regional disparities, and state redistributive policies including progressive taxation, land reforms, MSME support, and the National Food Security Act.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Concepts of Economic Inequality & Indian Post-Independence Trends",
+          "points": [
+            "Economic Inequality encompasses disparities in income distribution (flow of earnings over a year) and wealth distribution (accumulated stock of assets: land, housing, equities).",
+            "Historical Trajectory: During the first three decades after independence (1950–1980), income inequality was significantly reduced due to state planning, high top marginal tax rates, and agricultural expansion.",
+            "Post-1980s Surge: Inequality escalated rapidly from the 1980s onwards following deregulation and liberalisation, with income growth heavily skewed toward top earners.",
+            "World Inequality Lab Findings (Piketty & Chancel): The share of national income captured by the top 1% surged from ~6% in the early 1980s to over 22% in recent years, making contemporary India more unequal than under the British colonial Raj."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Measurement of Inequality: Lorenz Curve & Gini Coefficient",
+          "points": [
+            "Lorenz Curve (formulated by Prof. Max O. Lorenz in 1905): A graphical representation plotting the cumulative percentage of population on the horizontal axis against the cumulative percentage of national income received on the vertical axis.",
+            "Line of Perfect Equality: The 45-degree diagonal where 20% of people earn 20% of income, 50% earn 50%, etc. The greater the curvature away from this diagonal, the greater the degree of inequality.",
+            "Gini Coefficient (developed by Italian statistician Corrado Gini in 1912): A mathematical ratio measuring the area between the Lorenz curve and the 45-degree diagonal divided by the total area under the diagonal.",
+            "Interpretation: Gini ranges from 0 (perfect equality where all earn identical income) to 1 (perfect inequality where a single individual captures all national income). Gini can also be expressed as an Index (0 to 100).",
+            "Alternative Metrics: Theil Index (entropy-based measure decomposable into within-group and between-group inequality) and Palma Ratio (ratio of income share of top 10% to bottom 40%)."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Structural Causes of Income & Wealth Disparities in India",
+          "points": [
+            "Concentration of Assets in the Private Corporate Sector: Corporate consolidation and capital-intensive technology allow capital owners to capture disproportionate profit shares relative to labor wages.",
+            "Inflation and Wage Erosion: Persistent food and general inflation acts as a regressive tax, severely eroding the real purchasing power of informal and wage-earning workers.",
+            "Inequity in Institutional Credit: Large corporate entities access formal financial capital at prime lending rates, while smallholder farmers and informal micro-enterprises depend on high-interest informal lenders.",
+            "Urban Bias in Investment: Private capital, high-skilled service jobs, and modern infrastructure heavily cluster in metropolitan clusters, widening the rural-urban divide.",
+            "Wealth Concentration: Oxfam reports document that the richest 1% in India control over 40% of total national wealth, while the bottom 50% own less than 3%."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Multi-Dimensional Disparities: Regional, Caste & Gender",
+          "points": [
+            "Inter-State Divergence: Per capita income in leading states (Goa, Sikkim, Telangana, Tamil Nadu) is four to five times higher than in lagging states (Bihar, Uttar Pradesh).",
+            "Social Stratification & Caste: Deep structural inequality where Dalits (SCs), Adivasis (STs), and marginalized OBCs are disproportionately represented in low-wage casual work and lack land ownership.",
+            "Gender Inequality: Extremely low female labor force participation, persistent gender wage gaps for identical work, and legal/cultural barriers to ancestral property ownership.",
+            "Educational Inequality: Digital divide and unequal access to elite tertiary education perpetuate inter-generational transfer of economic advantages."
+          ]
+        },
+        {
+          "badge": "Section 5",
+          "title": "Government Policy to Tackle Inequality: Fiscal, Asset & Welfare Interventions",
+          "points": [
+            "Fiscal & Taxation Measures: Progressive direct income taxation, corporate taxes, and GST rationalization designed to redistribute income toward social expenditures.",
+            "Asset Redistribution & Land Reforms: Tenancy abolition, land ceiling acts, and redistribution of ceiling-surplus agricultural land (successful in Kerala and West Bengal).",
+            "Support for MSMEs & Self-Employment: Micro Units Development and Refinance Agency (MUDRA Yojana), Credit Guarantee schemes, and Stand-Up India financing micro-enterprises.",
+            "Welfare Safety Net: National Food Security Act (NFSA 2013) legally assuring highly subsidized food grains to 67% of India's population; PM-KISAN direct income support; PM-Awas Yojana housing.",
+            "Employment Guarantee: MGNREGA provides a wage floor and legal entitlement to income for rural laborers, compressing rural wage differentials."
+          ]
+        }
       ],
       "coreConcepts": [
         {
           "term": "Lorenz Curve",
-          "def": "A convex graphical curve displaying the actual distribution of income or wealth across population percentiles relative to perfect equality."
+          "def": "A graphical curve showing the actual quantitative distribution of national income by plotting cumulative population against cumulative income received."
         },
         {
           "term": "Gini Coefficient",
-          "def": "A statistical dispersion metric ranging from 0 (perfect equality) to 1 (maximal inequality) quantifying income/wealth concentration."
+          "def": "A statistical measure of income or wealth inequality ranging from 0 (perfect equality) to 1 (complete inequality), derived from the Lorenz curve area."
         },
         {
-          "term": "Kuznets Inverted-U Curve",
-          "def": "Empirical hypothesis proposing that economic development first widens inequality before narrowing it as per capita income reaches advanced thresholds."
+          "term": "Piketty-Chancel Findings",
+          "def": "Seminal empirical research demonstrating that top 1% income shares in post-1980s India have escalated to historic highs surpassing 22% of total national income."
+        },
+        {
+          "term": "Theil Index",
+          "def": "An entropy-based inequality metric that can be mathematically decomposed into inequality within sub-groups and inequality between sub-groups."
+        },
+        {
+          "term": "Palma Ratio",
+          "def": "The ratio of the richest 10% of the population's share of gross national income divided by the poorest 40%'s share."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Top 1% Income Share",
+          "value": "Over 22%",
+          "detail": "Piketty and Chancel study; sharply up from ~6% in the early 1980s."
+        },
+        {
+          "label": "Richest 1% Wealth",
+          "value": "Over 40%",
+          "detail": "Oxfam inequality reports tracking wealth concentration in corporate assets."
+        },
+        {
+          "label": "Gini Coefficient Range",
+          "value": "0 to 1",
+          "detail": "0 represents absolute equality; 1 represents complete concentration in one person."
         }
       ],
       "examTakeaways": [
-        "A higher Gini coefficient signifies deeper economic inequality.",
-        "Wealth inequality in India has accelerated significantly over the post-1991 economic reform decades.",
-        "Progressive direct taxation, universal public health, and equalized schooling access are the primary policy instruments to curb the Gini coefficient."
+        "The Lorenz curve maps cumulative income against cumulative population; the Gini coefficient measures the area between the Lorenz curve and the 45-degree diagonal.",
+        "Inequality in India declined between 1950 and 1980, but surged dramatically post-1980s liberalisation, especially at the top 0.1% and top 1% percentiles.",
+        "Wealth inequality is far more acute than income inequality in India.",
+        "Policy remedies require combining progressive taxation, asset redistribution (land reforms), MSME financing (MUDRA), and social security safety nets (NFSA, MGNREGA)."
       ]
     },
     "quizPool": [
@@ -892,35 +1514,113 @@
     ]
   },
   "Module_4": {
-    "title": "Module 4: Unemployment in India",
+    "title": "Module 4: Unemployment in India (Complete 13-Page Course Document)",
     "filename": "Module_4_Unemployment.pdf",
     "summary": {
-      "overview": "Examines the dimensions, forms, and measurement of unemployment in India, detailing Disguised Unemployment, structural mismatch, National Sample Survey (NSSO) measurement frameworks, and policy interventions.",
-      "keyPoints": [
-        "Underutilization of Human Capital: Unemployment represents lost productive capacity, depressing national output, suppressing tax revenues, and inducing youth poverty and social alienation.",
-        "Forms of Unemployment in India: Disguised (surplus agricultural workers with zero marginal product), Seasonal, Structural (skills mismatch), Frictional (transitional), Educated, and Cyclical.",
-        "Disguised Unemployment: Prevalent in agrarian economies where more laborers are deployed in farming than required; withdrawing them would not reduce total farm output.",
-        "NSSO Measurement Frameworks: (1) Usual Principal & Subsidiary Status (UPSS - 365-day reference), (2) Current Weekly Status (CWS - worked at least 1 hour in last 7 days), (3) Current Daily Status (CDS - daily 4-hour threshold).",
-        "Key Metrics: Labour Force Participation Rate (LFPR = Labour Force / Population * 100), Worker Population Ratio (WPR)."
+      "overview": "Thorough analysis of unemployment dynamics in India across all 13 pages of the official document. Examines economic concepts of unemployment, all 10 types of unemployment (disguised, seasonal, structural, educated, cyclical, casual, chronic, etc.), NSSO/PLFS measurement methods (UPS, UPSS, CWS, CDS), labor force participation metrics, structural causes, and government schemes.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Concept & Nature of Unemployment in India",
+          "points": [
+            "Economic Definition: Unemployment refers to a situation where individuals who are capable of working (both physically and mentally) and actively seeking employment at the prevailing wage rate are unable to find work.",
+            "Labor Force Composition: The labor force includes both persons who are employed and persons who are actively unemployed (seeking/available for work). It excludes individuals not seeking employment (full-time students, retired, unpaid domestic caregivers).",
+            "Unemployment Rate Formula: Unemployment Rate (UR) = (Number of Unemployed Persons / Total Labour Force) × 100.",
+            "Macroeconomic Cost: Represents underutilization of human capital, leading to output loss, diminished tax revenue, human capital depreciation, and social distress."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Comprehensive Classification: 10 Types of Unemployment",
+          "points": [
+            "1. Disguised Unemployment: More workers engaged in an activity than required, meaning marginal productivity of surplus labor is zero; rampant in Indian family farming.",
+            "2. Seasonal Unemployment: Occurs during off-peak periods when agricultural operations or seasonal industries (sugar mills, tourism) halt.",
+            "3. Structural Unemployment: Arises from a fundamental long-term mismatch between the skills possessed by job seekers and the skills demanded by emerging industries.",
+            "4. Frictional Unemployment: Temporary transitional unemployment occurring while workers search for a better job or relocate between jobs.",
+            "5. Cyclical Unemployment: Caused by macroeconomic downturns and deficiency of aggregate demand during business cycle recessions.",
+            "6. Educated Unemployment: Highly educated graduates unable to find appropriate white-collar jobs due to theoretical education lacking practical industrial alignment.",
+            "7. Open Unemployment: Workers completely without work for prolonged periods, openly seeking employment.",
+            "8. Underemployment: Workers compelled to accept jobs below their qualification level or working part-time when willing to work full-time.",
+            "9. Casual Unemployment: Day-to-day employment uncertainty caused by short-term daily contracts, material shortages, or weather.",
+            "10. Chronic Unemployment: Long-term persistent unemployment where an individual remains unemployed year after year due to structural stagnation."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "NSSO / NSO Measurement Methodologies (UPS, UPSS, CWS, CDS)",
+          "points": [
+            "Periodic Labour Force Survey (PLFS): Conducted by National Statistical Office (NSO / NSSO) under Ministry of Statistics and Programme Implementation (MoSPI).",
+            "Usual Principal Status (UPS): Categorizes a person as employed if they spent the relatively major time (183 days or more) of the 365-day reference year in economic activity.",
+            "Usual Principal and Subsidiary Status (UPSS): Broadest measure; includes UPS workers plus persons who worked for at least 30 days in a secondary subsidiary activity.",
+            "Current Weekly Status (CWS): Determines employment based on a 7-day reference week. A person is counted as employed if they performed gainful work for at least 1 hour on any single day during the week.",
+            "Current Daily Status (CDS): Most comprehensive person-day measure tracking activity status for each of the 7 days (morning and afternoon half-day units)."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Key Labor Metrics: LFPR, WPR & Structural Causes",
+          "points": [
+            "Labour Force Participation Rate (LFPR): Percentage of the working-age population (15+) that is either employed or actively seeking work: LFPR = (Labour Force / Total Population) × 100.",
+            "Worker Population Ratio (WPR): Percentage of employed persons in the total population: WPR = (Employed / Total Population) × 100.",
+            "Jobless Growth: India's rapid post-1991 GDP growth was driven by capital-intensive services (finance, telecom, software) rather than labor-intensive manufacturing.",
+            "Female LFPR Deficit: Historically low female labor participation due to social norms, safety concerns, and uncounted domestic care burdens."
+          ]
+        },
+        {
+          "badge": "Section 5",
+          "title": "Government Employment Generation Programmes & Interventions",
+          "points": [
+            "MGNREGA (2005): Landmark rural rights-based safety net legally guaranteeing 100 days of unskilled wage work per rural household per year.",
+            "Skill India Mission & PMKVY (Pradhan Mantri Kaushal Vikas Yojana): Industry-relevant vocational and technical skill certification to tackle structural unemployment.",
+            "Make in India & Production Linked Incentive (PLI) Schemes: Incentivizing domestic manufacturing across 14 key sectors to generate mass formal employment.",
+            "PM SVANidhi & MUDRA: Micro-credit financing collateral-free loans for street vendors and micro-enterprises to sustain self-employment."
+          ]
+        }
       ],
       "coreConcepts": [
         {
-          "term": "Disguised Unemployment",
-          "def": "A situation where surplus laborers are engaged in work but their marginal productivity is zero or negative."
+          "term": "Unemployment Rate",
+          "def": "The percentage of the total labour force that is without work and actively seeking employment."
         },
         {
-          "term": "Structural Unemployment",
-          "def": "Joblessness resulting from long-term mismatches between skills possessed by job seekers and skills demanded by technological changes."
+          "term": "Disguised Unemployment",
+          "def": "A situation where surplus workers are engaged in an activity such that their withdrawal causes no reduction in total output (marginal productivity equals zero)."
         },
         {
           "term": "Labour Force Participation Rate (LFPR)",
-          "def": "The percentage of the working-age population (15+) that is either actively employed or seeking work."
+          "def": "The proportion of the working-age population (15+) that is either employed or actively seeking work."
+        },
+        {
+          "term": "Current Weekly Status (CWS)",
+          "def": "Employment measurement assessing whether a person worked for at least one hour on any single day during the preceding seven-day reference period."
+        },
+        {
+          "term": "Jobless Growth",
+          "def": "An economic phenomenon where real GDP expands without a proportional increase in employment opportunities."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "CWS Criterion",
+          "value": "At least 1 hour",
+          "detail": "Considered employed if working 1 hour on any 1 day during the reference week."
+        },
+        {
+          "label": "UPS Criterion",
+          "value": "183+ Days",
+          "detail": "Employed for major time (half year or more) during the 365-day reference period."
+        },
+        {
+          "label": "Unemployment Rate Formula",
+          "value": "(Unemployed / Labor Force) × 100",
+          "detail": "Excludes individuals not actively seeking employment."
         }
       ],
       "examTakeaways": [
-        "In rural India, the dominant form of unemployment is disguised and seasonal unemployment.",
-        "Educated unemployment is acute among youth holding general degrees lacking technical and vocational industry alignment.",
-        "Periodic Labour Force Survey (PLFS) by MoSPI now conducts continuous quarterly urban and annual rural employment surveys."
+        "In rural India, the dominant form of unemployment is disguised and seasonal unemployment in agriculture.",
+        "The National Statistical Office (NSO / NSSO) measures unemployment using UPS, UPSS, CWS, and CDS approaches.",
+        "Under Current Weekly Status (CWS), working just 1 hour during the reference week classifies an individual as employed.",
+        "Educated unemployment is driven by an academic curriculum disconnected from industry-demanded technical skills."
       ]
     },
     "quizPool": [
@@ -982,35 +1682,96 @@
     ]
   },
   "Module_5": {
-    "title": "Module 5: Open-Ended Contemporary Issues in Indian Economy",
+    "title": "Module 5: Open-Ended Issues (Fiscal Deficit & Inflation)",
     "filename": "Module_5_Open_Ended_Issues.pdf",
     "summary": {
-      "overview": "Focuses on contemporary macroeconomic dilemmas in India, specifically Fiscal Deficit trends, the Fiscal Responsibility and Budget Management (FRBM) Act, inflation dynamics (WPI vs CPI), and macro-stability.",
-      "keyPoints": [
-        "Fiscal Deficit Defined: The excess of total government expenditure over total non-debt receipts (revenue receipts + non-debt capital receipts). It reflects total borrowing needs.",
-        "Components of Deficit: Revenue Deficit (excess of revenue expenditure over revenue receipts), Primary Deficit (Fiscal Deficit minus interest payments, capturing current fiscal stance).",
-        "FRBM Act (2003): Mandated fiscal discipline, targeting reduction of fiscal deficit to 3% of GDP and elimination of revenue deficit to preserve macroeconomic stability.",
-        "Inflation Dynamics: Demand-Pull Inflation (aggregate demand outpaces supply) vs. Cost-Push Inflation (supply shocks, rising oil/input costs).",
-        "WPI vs. CPI: Wholesale Price Index (manufactured goods heavy, tracks wholesale prices) vs. Consumer Price Index (services and food heavy, tracks retail price change). RBI adopted CPI Combined as headline inflation anchor with a 4% (+/- 2%) target."
+      "overview": "Comprehensive macroeconomic analysis of Module 5: Open-Ended Contemporary Issues in Indian Economy. Covers fiscal deficit definitions, components and historical trends, the FRBM Act consolidation roadmap, pandemic fiscal shocks, inflation types (demand-pull vs cost-push), price indices (WPI vs CPI Combined), and the RBI Flexible Inflation Targeting monetary policy framework.",
+      "sections": [
+        {
+          "badge": "Section 1",
+          "title": "Fiscal Deficit: Concepts, Components & Mathematical Formulations",
+          "points": [
+            "Fiscal Deficit Definition: The excess of total government expenditure over total non-debt receipts (revenue receipts + non-debt capital receipts such as loan recoveries and disinvestment proceeds).",
+            "Economic Significance: Reflects the total borrowing requirements of the central government from internal and external sources to bridge the budgetary gap.",
+            "Revenue Deficit: The excess of total revenue expenditure over total revenue receipts; reflects government borrowing to finance day-to-day consumption rather than capital assets.",
+            "Primary Deficit: Fiscal Deficit minus interest payments on past debt: Primary Deficit = Fiscal Deficit - Interest Payments. Measures the current fiscal stance excluding legacy debt servicing obligations."
+          ]
+        },
+        {
+          "badge": "Section 2",
+          "title": "Fiscal Deficit Trends in India & Pandemic Shocks",
+          "points": [
+            "Pre-Pandemic Benchmark: India maintained central fiscal deficits around 3.4% to 4.5% of GDP in compliance with post-2010 consolidation trajectories.",
+            "COVID-19 Pandemic Surge: In FY2020–21, the fiscal deficit spiked to 9.2% of GDP (₹18.2 lakh crore) due to emergency healthcare spending, free food grains (PM-GKAY), and revenue contraction.",
+            "Consolidation Roadmap: Government adopted a Glide Path reducing fiscal deficit to 6.71% (FY22), 6.4% (FY23), 5.6% (FY24), 4.8% (FY25), and targeting 4.4% of GDP by FY2025–26.",
+            "Fiscal Responsibility and Budget Management (FRBM) Act 2003: Originally mandated reducing fiscal deficit to 3% of GDP and eliminating revenue deficit; N.K. Singh Committee (2017) recommended targeting a general government debt-to-GDP ratio of 60% (40% central, 20% state)."
+          ]
+        },
+        {
+          "badge": "Section 3",
+          "title": "Inflation Dynamics: Demand-Pull vs. Cost-Push Drivers",
+          "points": [
+            "Inflation Definition: A sustained and persistent rise in the general price level across an economy, eroding the domestic purchasing power of money.",
+            "Demand-Pull Inflation: Occurs when aggregate demand for goods and services outpaces aggregate supply ('too much money chasing too few goods'); common during post-pandemic consumption recoveries.",
+            "Cost-Push Inflation: Caused by sharp increases in production costs, wages, or imported raw materials (such as global crude oil spikes and shipping freight disruptions).",
+            "Core vs. Headline Inflation: Headline inflation includes volatile food and energy prices; Core inflation strips out food and fuel to measure underlying persistent price pressure."
+          ]
+        },
+        {
+          "badge": "Section 4",
+          "title": "Price Indices & Monetary Policy Framework: WPI vs. CPI Combined",
+          "points": [
+            "Wholesale Price Index (WPI): Published by Ministry of Commerce and Industry; base year 2011–12; heavily weighted toward manufactured goods (~64.2%) and primary articles (~22.6%); completely excludes services.",
+            "Consumer Price Index (CPI Combined): Published by NSO (MoSPI); base year 2012; measures retail price inflation across consumer baskets; food & beverages represent ~45.86%; includes services (housing, education, health, transport).",
+            "Monetary Policy Anchor: Following the Urjit Patel Committee recommendations (2014), the Reserve Bank of India (RBI) officially abandoned WPI and adopted CPI Combined as its headline inflation anchor.",
+            "Flexible Inflation Targeting (FIT): Statutory mandate requiring RBI's Monetary Policy Committee (MPC) to maintain headline CPI inflation at 4% with a permissible tolerance band of ± 2% (2% to 6%)."
+          ]
+        }
       ],
       "coreConcepts": [
         {
           "term": "Fiscal Deficit",
-          "def": "Total government expenditure minus total receipts excluding borrowings; the total debt required to bridge the budget gap."
+          "def": "The excess of total government expenditure over total receipts excluding borrowings; the total debt required to bridge the annual budget gap."
         },
         {
           "term": "Primary Deficit",
           "def": "Fiscal Deficit minus interest payments; reflects current fiscal deficit excluding legacy debt servicing obligations."
         },
         {
-          "term": "CPI-Combined Inflation",
-          "def": "The headline inflation indicator measuring retail price movements across an average consumer basket, targeted by RBI's Monetary Policy Committee."
+          "term": "CPI Combined",
+          "def": "The headline retail price index adopted by RBI measuring consumer price inflation across goods and services with substantial food weightage."
+        },
+        {
+          "term": "Monetary Policy Committee (MPC)",
+          "def": "A six-member statutory committee of the RBI mandated to set the policy repo rate to target 4% (±2%) headline CPI inflation."
+        },
+        {
+          "term": "FRBM Act (2003)",
+          "def": "Fiscal Responsibility and Budget Management Act mandating statutory fiscal consolidation targets of 3% GDP for fiscal deficit."
+        }
+      ],
+      "keyMetrics": [
+        {
+          "label": "Inflation Target",
+          "value": "4% (± 2%)",
+          "detail": "RBI statutory target band between 2% and 6% headline CPI inflation."
+        },
+        {
+          "label": "Pandemic Fiscal Deficit",
+          "value": "9.2% of GDP",
+          "detail": "Surged in FY2020–21 during COVID-19 emergency fiscal response."
+        },
+        {
+          "label": "FY2025–26 Target",
+          "value": "4.4% of GDP",
+          "detail": "Government fiscal consolidation roadmap target for central fiscal deficit."
         }
       ],
       "examTakeaways": [
         "Primary Deficit = Fiscal Deficit - Interest Payments.",
-        "The Urjit Patel Committee recommended adopting CPI (Combined) as the nominal anchor for monetary policy.",
-        "The Monetary Policy Committee (MPC) of RBI targets 4% inflation within a statutory tolerance band of 2% to 6%."
+        "The FRBM Act of 2003 established the benchmark 3% of GDP ceiling for the central fiscal deficit.",
+        "RBI uses CPI Combined rather than WPI because CPI incorporates services and directly measures retail living costs.",
+        "The Monetary Policy Committee (MPC) targets 4% inflation within a statutory tolerance band of 2% to 6%."
       ]
     },
     "quizPool": [
