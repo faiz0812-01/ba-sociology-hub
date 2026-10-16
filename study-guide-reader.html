@@ -56,6 +56,31 @@ async function render(){
    if(currentGeneration!==generation)return;
    section.dataset.rendered='true';
    section.querySelector('.page-loading')?.remove();
+   try{
+    const annotations=await page.getAnnotations();
+    if(annotations&&annotations.length){
+     const linkLayer=document.createElement('div');
+     linkLayer.className='pdf-link-layer';
+     linkLayer.style.cssText='position:absolute;top:0;left:0;width:'+viewport.width+'px;height:'+viewport.height+'px;pointer-events:none;';
+     annotations.forEach(a=>{
+      if(a.subtype==='Link'&&a.url){
+       const r=viewport.convertToViewportRectangle(a.rect);
+       const l=Math.min(r[0],r[2]);
+       const t=Math.min(r[1],r[3]);
+       const w=Math.abs(r[2]-r[0]);
+       const h=Math.abs(r[3]-r[1]);
+       const link=document.createElement('a');
+       link.href=a.url;link.target='_blank';link.rel='noopener noreferrer';
+       link.style.cssText='position:absolute;left:'+l+'px;top:'+t+'px;width:'+w+'px;height:'+h+'px;pointer-events:auto;cursor:pointer;background:rgba(59,130,246,0.12);border-radius:3px;transition:background 0.15s;';
+       link.title=(a.url.includes('youtu')?'Watch video: ':'Open link: ')+a.url;
+       link.onmouseenter=()=>link.style.background='rgba(59,130,246,0.28)';
+       link.onmouseleave=()=>link.style.background='rgba(59,130,246,0.12)';
+       linkLayer.append(link);
+      }
+     });
+     section.append(linkLayer);
+    }
+   }catch(err){console.error('Annotation layer error:',err);}
   }catch(error){
    if(currentGeneration!==generation || error?.name==='RenderingCancelledException')return;
    section.querySelector('canvas')?.remove();

@@ -1096,6 +1096,30 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   color:#142823 !important;
   transform:translateY(-1px);
 }
+
+    /* Standout Syllabus Tab - Different color tab (Amber/Gold) */
+    #module-dialog .module-tabs button.module-tab--syllabus {
+      background: #fffbeb !important;
+      border: 1.5px solid #f59e0b !important;
+      color: #b45309 !important;
+      font-weight: 800 !important;
+      box-shadow: 0 1px 4px rgba(245, 158, 11, 0.22) !important;
+    }
+    #module-dialog .module-tabs button.module-tab--syllabus:hover {
+      background: #fef3c7 !important;
+      border-color: #d97706 !important;
+      color: #92400e !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.32) !important;
+    }
+    #module-dialog .module-tabs button.module-tab--syllabus[aria-selected="true"] {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+      border-color: #92400e !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.45) !important;
+      transform: none !important;
+    }
+
 /* Subject-Specific Theme Palettes for Study Dialog Windows */
 #module-dialog{
   --subject-primary: #1b5e4a;

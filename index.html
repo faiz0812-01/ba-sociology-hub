@@ -56,6 +56,30 @@
       .nav-links a{gap:6px;padding-inline:7px;font-size:10px}
     }
     @media(prefers-reduced-motion:reduce){.nav-links a,.nav-cta{transition:none}}
+  
+    /* Standout Syllabus Tab - Different color tab (Amber/Gold) */
+    #module-dialog .module-tabs button.module-tab--syllabus {
+      background: #fffbeb !important;
+      border: 1.5px solid #f59e0b !important;
+      color: #b45309 !important;
+      font-weight: 800 !important;
+      box-shadow: 0 1px 4px rgba(245, 158, 11, 0.22) !important;
+    }
+    #module-dialog .module-tabs button.module-tab--syllabus:hover {
+      background: #fef3c7 !important;
+      border-color: #d97706 !important;
+      color: #92400e !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.32) !important;
+    }
+    #module-dialog .module-tabs button.module-tab--syllabus[aria-selected="true"] {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+      border-color: #92400e !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.45) !important;
+      transform: none !important;
+    }
+
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -414,7 +438,7 @@
       </div>
       <div class="subjects-container">
         <article class="subject-card" data-subject="Malayalam"><img class="subject-cover" src="https://images.unsplash.com/photo-1621178754488-8fb090bad709?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Kathakali costume and makeup representing Kerala arts" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-rose">അ</span><span class="subject-tag">LANGUAGE</span></div><h3>Malayalam</h3><div class="resource-list"><a href="mal-pdf.html" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open Malayalam module page"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Open Malayalam module page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
-        <article class="subject-card" data-subject="English"><img class="subject-cover" src="https://images.unsplash.com/photo-1527554677374-236d3bc88a34?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Open literature book on a wooden table" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-blue">Aa</span><span class="subject-tag">LANGUAGE</span></div><h3>English</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Module 1–4 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="eng-reading.html" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open English Malayalam Reading module page"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>All 14 chapters in Malayalam</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
+        <article class="subject-card" data-subject="English"><img class="subject-cover" src="https://images.unsplash.com/photo-1527554677374-236d3bc88a34?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Open literature book on a wooden table" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-blue">Aa</span><span class="subject-tag">LANGUAGE</span></div><h3>English</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Syllabus &amp; Module 1–4 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="eng-reading.html" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open English Malayalam Reading module page"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>All 14 chapters in Malayalam</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
 
         <article class="subject-card" data-subject="Sociology"><img class="subject-cover" src="https://images.unsplash.com/photo-1548782033-3ac3a62ece8d?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="Community members gathered together outdoors" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-purple">◎</span><span class="subject-tag">CORE SUBJECT</span></div><h3>Sociology</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Syllabus &amp; Module 1–5 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--malayalam" role="button" aria-haspopup="dialog" aria-label="Open Malayalam PDF reading modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Read PDFs on this page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
         <article class="subject-card" data-subject="Philosophy of AI"><img class="subject-cover" src="https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&amp;fit=crop&amp;w=640&amp;h=360&amp;q=80" alt="AI microchip on an electronic circuit board" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="subject-top"><span class="subject-icon icon-mint">✧</span><span class="subject-tag">PHILOSOPHY</span></div><h3>Philosophy of AI</h3><div class="resource-list"><a href="#" class="language-tab language-tab--english" role="button" aria-haspopup="dialog" aria-label="Browse English PDF modules"><span class="language-badge" aria-hidden="true">EN</span><span class="language-copy"><strong>LMS PDF</strong><small>Module 1–5 tabs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="ai-pdf.html?modules=59125b5b" class="language-tab language-tab--malayalam language-tab--navigate" aria-label="Open Philosophy of AI Malayalam modules"><span class="language-badge" aria-hidden="true">അ</span><span class="language-copy"><strong>Malayalam Reading</strong><small>Open Malayalam module page</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--study-guide" role="button" aria-haspopup="dialog" aria-label="Open English and Malayalam study guide modules"><span class="language-badge" aria-hidden="true">E/മ</span><span class="language-copy"><strong>Study guide Eng - Mal</strong><small>English + Malayalam modules</small></span><span class="language-arrow" aria-hidden="true">↗</span></a><a href="#" class="language-tab language-tab--mcq-pdf" role="button" aria-haspopup="dialog" aria-label="Open MCQ PDF modules"><span class="language-badge" aria-hidden="true">MCQ</span><span class="language-copy"><strong>MCQ PDF</strong><small>MCQ question paper PDFs</small></span><span class="language-arrow" aria-hidden="true">↗</span></a></div></article>
@@ -1150,6 +1174,18 @@
     ];
     const englishCourseModules = [
       {
+        name: 'Syllabus',
+        items: [
+          {
+            label: 'Syllabus · English Language Skills',
+            title: 'English · Syllabus · English Language Skills for Humanities (ENG1FA101)',
+            description: 'University of Calicut · CU-FYUGP · Ability Enhancement Course (AEC) · Course Code ENG1FA101(1B) · 4-Page Official Syllabus with Active Video Links',
+            key: 'eng_syllabus',
+            href: 'English/LMS_PDF/Syllabus_English_Language_Skills.pdf'
+          }
+        ]
+      },
+      {
         name: 'Module 1 · Listening',
         items: [
           {
@@ -1522,7 +1558,38 @@
       });
 
       actions.append(open, preview);
-      panePdf.append(actions, reader);
+      if (docData.videoResources && docData.videoResources.length) {
+        const videoSection = document.createElement('div');
+        videoSection.className = 'syllabus-videos-section';
+        videoSection.style.cssText = 'margin:14px 0 16px;padding:16px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;';
+        const vTitle = document.createElement('div');
+        vTitle.style.cssText = 'font-weight:800;font-size:15px;color:#0f172a;margin-bottom:12px;display:flex;align-items:center;gap:8px;';
+        vTitle.innerHTML = '<span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#ef4444;color:#fff;font-size:11px;">▶</span> Prescribed Video Lectures & Course Links (Active Links):';
+        videoSection.append(vTitle);
+
+        const vGrid = document.createElement('div');
+        vGrid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;';
+        docData.videoResources.forEach(v => {
+          const vCard = document.createElement('a');
+          vCard.href = v.url;
+          vCard.target = '_blank';
+          vCard.rel = 'noopener noreferrer';
+          vCard.className = 'syllabus-video-card';
+          vCard.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 14px;background:#ffffff;border:1.5px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.05);';
+          vCard.innerHTML = `<span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:${v.url.includes('youtu') ? '#fee2e2' : '#e0e7ff'};color:${v.url.includes('youtu') ? '#dc2626' : '#4338ca'};font-size:13px;flex-shrink:0;font-weight:bold;">${v.url.includes('youtu') ? '▶' : '🔗'}</span>
+            <div style="min-width:0;flex:1;">
+              <div style="font-size:13px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${v.title}">${v.title}</div>
+              <div style="font-size:11.5px;color:#64748b;margin-top:2px;">${v.unit} · <span style="color:#2563eb;font-weight:600;">Open Link ↗</span></div>
+            </div>`;
+          vCard.onmouseenter = () => { vCard.style.borderColor = '#2563eb'; vCard.style.transform = 'translateY(-2px)'; vCard.style.boxShadow = '0 4px 12px rgba(37,99,235,0.18)'; };
+          vCard.onmouseleave = () => { vCard.style.borderColor = '#e2e8f0'; vCard.style.transform = 'none'; vCard.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)'; };
+          vGrid.append(vCard);
+        });
+        videoSection.append(vGrid);
+        panePdf.append(actions, videoSection, reader);
+      } else {
+        panePdf.append(actions, reader);
+      }
 
       // Pane 2: Chapter Summary (Bilingual English + Malayalam)
       const paneSummary = document.createElement('div');
@@ -3123,7 +3190,7 @@
         : subject==='Sociology' && medium==='Malayalam'
           ? 'The existing Sociology PDF is in the Syllabus tab. Module 1 is empty for now; upload its PDF when ready.'
           : subject==='English' && medium==='English'
-            ? 'Official English Language Skills course modules (Modules 1–4, 14 chapters). Choose a module and chapter to open or preview.'
+            ? 'Official English Language Skills course modules (Syllabus & Modules 1–4, 14 chapters). Choose a module and chapter to open or preview.'
           : subject==='Philosophy of AI' && medium==='English'
             ? 'Official Philosophy of AI course modules (Modules 1–5). Choose a module tab to open or preview its study document.'
           : subject==='Philosophy of AI' && medium==='Malayalam'
@@ -3158,6 +3225,9 @@
         button.textContent=studyGuide?(subject==='English'?getBilingualEnglishStudyGuideLabel(module.name):getMalayalamChapterLabel(module.name)):module.name;
         if(studyGuide) button.lang=subject==='English'?'en':'ml';
         button.dataset.moduleIndex=String(moduleIndex);
+        if (module.name && module.name.toLowerCase().includes('syllabus')) {
+          button.classList.add('module-tab--syllabus');
+        }
         button.addEventListener('click',()=>{
           moduleDialog.dataset.activeModuleIndex=String(moduleIndex);
           renderModule(subject,medium,modules,moduleIndex);
