@@ -1362,15 +1362,42 @@
       const heading=document.createElement('h3');
       heading.className='module-chapter-open-title';
       heading.textContent=item.title || item.label || moduleName;
+      const actions=document.createElement('div');
+      actions.className='module-pdf-actions';
       const open=document.createElement('a');
       open.className='module-chapter-open-link';
       open.href='study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0]);
       open.target='_blank';
       open.rel='noopener';
-      open.textContent=item.fileType==='DOCX'?'Read Here':'Open / Read Here';
+      open.textContent='Open';
+      const preview=document.createElement('button');
+      preview.type='button';
+      preview.className='module-reader-load';
+      preview.textContent='Preview Here';
+      preview.setAttribute('aria-label','Preview '+(item.title || item.label)+' inside this window');
+      const reader=document.createElement('section');
+      reader.className='module-pdf-reader';
+      reader.setAttribute('aria-label',(item.title || item.label)+' preview');
+      reader.hidden=true;
+      preview.addEventListener('click',()=>{
+        if(!reader.querySelector('iframe')) {
+          const frame=document.createElement('iframe');
+          frame.className='module-pdf-frame';
+          frame.title=(item.title || item.label)+' preview';
+          frame.loading='eager';
+          frame.src=item.fileType==='DOCX'
+            ? 'study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0])
+            : item.href;
+          reader.append(frame);
+        }
+        reader.hidden=false;
+        preview.textContent='Preview Here';
+        reader.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+      actions.append(open,preview);
       chapterView.append(heading);
-      if(!readingOnly) chapterView.append(open);
-      moduleContent.append(chapterView);
+      if(!readingOnly) chapterView.append(actions);
+      moduleContent.append(chapterView,reader);
     }
     function showStudyGuideNavigationPrompt(moduleName,malayalam=false) {
       // Keep the module window clean: do not show the bottom chapter-list instruction card.
