@@ -83,16 +83,6 @@ h1{
 
 }
 
-.close-btn{
-
-  position:absolute;
-  top:10px;
-  right:18px;
-  font-size:28px;
-  cursor:pointer;
-
-}
-
 .modal-btn{
 
   display:block;
@@ -180,10 +170,7 @@ Module 4
 
   <div class="modal-content">
 
-    <span class="close-btn"
-    onclick="closeModal()">
-    ×
-    </span>
+    
 
     <h2 id="modalTitle"></h2>
 
@@ -242,13 +229,9 @@ function openModal(title,pdf){
 
 }
 
-function closeModal(){
-
-  document.getElementById(
-  "pdfModal"
-  ).style.display="none";
-
-}
+function closeModal(){document.getElementById("pdfModal").style.display="none";}
+document.getElementById("pdfModal").addEventListener("click",function(event){if(event.target===this)closeModal();});
+document.addEventListener("keydown",function(event){if(event.key==="Escape")closeModal();});
 
 </script>
 
