@@ -17,6 +17,7 @@
     <script defer src="data/learning_data_english.js"></script>
     <script defer src="data/learning_data_sociology.js"></script>
     <script defer src="data/learning_data_ethics.js"></script>
+    <script defer src="data/learning_data_math.js"></script>
   <style id="academic-hub-red-navigation">
     .topbar{display:flex;flex-direction:column;align-items:center;justify-content:center;height:auto;min-height:76px;padding:14px clamp(18px,3vw,44px) 12px;gap:10px;background:rgba(15,15,18,.97);border-bottom:1px solid #303035;box-shadow:inset 0 3px 0 #e11d2e,0 8px 24px rgba(0,0,0,.16)}
     .brand{justify-content:center;gap:13px;width:max-content;min-width:370px;max-width:100%;padding:10px 25px;border:1px solid #93c5fd;border-radius:18px;background:linear-gradient(135deg,#eff6ff,#bfdbfe);box-shadow:0 9px 24px rgba(37,99,235,.24)}
@@ -1267,22 +1268,174 @@
         ]
       }
     ];
-    const mathematicsChapter = number => ({
-      label:'Chapter '+number,
-      title:'Mathematics · Chapter '+number,
-      medium:'English',
-      description:'Mathematics course reading · Chapter '+number,
-      href:'notesphere-MATHEMATICS-chapter-'+number+'.pdf',
-      embed:true
-    });
     const mathematicsCourseModules = [
-      {name:'Module 1',items:[1,2,3,4].map(mathematicsChapter)},
-      {name:'Module 2',items:[5,6,7,8].map(mathematicsChapter)},
-      {name:'Module 3',items:[9,10,11,12].map(mathematicsChapter)},
-      {name:'Module 4',items:[13,14,15,16,17].map(mathematicsChapter)}
+      {
+        name: 'Module 1 · Fundamentals of Arithmetic',
+        items: [
+          {
+            label: 'Syllabus · Blueprint',
+            title: 'Mathematics · Course Syllabus & Examination Blueprint',
+            description: 'Calicut University 4-Module Structure · 45 Hours · 50 External Marks · Textbook & Blueprint',
+            key: 'math_mod_1_syllabus',
+            href: 'notesphere-MATHEMATICS-chapter-0.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 1 · Number System',
+            title: 'Mathematics · Module 1 · Chapter 1 · Number System',
+            description: 'Place Value & Face Value · Divisibility Rules (2 to 11) · Prime Numbers & Unit Digits',
+            key: 'math_ch_1',
+            href: 'notesphere-MATHEMATICS-chapter-1.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 2 · Sequence & Series',
+            title: 'Mathematics · Module 1 · Chapter 2 · Sequence and Series',
+            description: 'Arithmetic Progression (AP) · Geometric Progression (GP) · nth Term & Sum Formulations',
+            key: 'math_ch_2',
+            href: 'notesphere-MATHEMATICS-chapter-2.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 3 · Fractions',
+            title: 'Mathematics · Module 1 · Chapter 3 · Simple and Decimal Fractions',
+            description: 'Vulgar & Decimal Fractions · Recurring Decimals · Fraction Addition & Comparison',
+            key: 'math_ch_3',
+            href: 'notesphere-MATHEMATICS-chapter-3.pdf',
+            embed: true
+          },
+          {
+            label: 'Mod 1 · Question Bank',
+            title: 'Mathematics · Module 1 · Fundamentals of Arithmetic Practice Question Bank',
+            description: 'Official Chapter 15 PDF · Number System, AP/GP, and Fractions Real Exam Practice',
+            key: 'math_mod_1_practice',
+            href: 'notesphere-MATHEMATICS-chapter-15.pdf',
+            embed: true
+          }
+        ]
+      },
+      {
+        name: 'Module 2 · Basic Operations',
+        items: [
+          {
+            label: 'Ch 4 · HCF & LCM',
+            title: 'Mathematics · Module 2 · Chapter 4 · Highest Common Factor & Least Common Multiple',
+            description: 'Prime Factorization · Division Method · Product Formula: HCF × LCM = a × b',
+            key: 'math_ch_4',
+            href: 'notesphere-MATHEMATICS-chapter-4.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 5 · Square & Cube Root',
+            title: 'Mathematics · Module 2 · Chapter 5 · Square Root and Cube Root',
+            description: 'Factorization & Long Division Algorithms · Perfect Squares · Grouping of Triads',
+            key: 'math_ch_5',
+            href: 'notesphere-MATHEMATICS-chapter-5.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 6 · Simplification',
+            title: 'Mathematics · Module 2 · Chapter 6 · Simplifications & Algebraic Identities',
+            description: 'VBODMAS Hierarchy · Vinculum & Brackets Order · Classic Algebraic Identities',
+            key: 'math_ch_6',
+            href: 'notesphere-MATHEMATICS-chapter-6.pdf',
+            embed: true
+          },
+          {
+            label: 'Mod 2 · Question Bank',
+            title: 'Mathematics · Module 2 · Basic Operations Practice Question Bank',
+            description: 'Official Chapter 16 PDF · Advanced LCM & HCF · Algebraic Terms · Remainder Word Problems',
+            key: 'math_mod_2_practice',
+            href: 'notesphere-MATHEMATICS-chapter-16.pdf',
+            embed: true
+          }
+        ]
+      },
+      {
+        name: 'Module 3 · Advanced Operations',
+        items: [
+          {
+            label: 'Ch 7 · Average',
+            title: 'Mathematics · Module 3 · Chapter 7 · Average (Arithmetic Mean)',
+            description: 'Sum of Observations / Total Count · Weighted Averages · Consecutive Integers & Cricket Averages',
+            key: 'math_ch_7',
+            href: 'notesphere-MATHEMATICS-chapter-7.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 8 · Ratio & Proportion',
+            title: 'Mathematics · Module 3 · Chapter 8 · Ratio and Proportion',
+            description: 'Direct & Inverse Proportion · Compound Ratios · Partnership Investments & Mean Proportionals',
+            key: 'math_ch_8',
+            href: 'notesphere-MATHEMATICS-chapter-8.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 9 · Problems on Ages',
+            title: 'Mathematics · Module 3 · Chapter 9 · Problems Based on Ages',
+            description: 'Present vs Future Age Relations · Simultaneous Linear Equations · Ratio Age Shifts',
+            key: 'math_ch_9',
+            href: 'notesphere-MATHEMATICS-chapter-9.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 10 · Percentage',
+            title: 'Mathematics · Module 3 · Chapter 10 · Percentage',
+            description: 'Percent Fractions · Percentage Increase & Decrease · Election & Population Problems',
+            key: 'math_ch_10',
+            href: 'notesphere-MATHEMATICS-chapter-10.pdf',
+            embed: true
+          },
+          {
+            label: 'Mod 3 · Question Bank',
+            title: 'Mathematics · Module 3 · Averages & Ratios Practice Question Bank',
+            description: 'Official Chapter 17 PDF · Score Averages · Batting Statistics · Partnership Ratios',
+            key: 'math_mod_3_practice',
+            href: 'notesphere-MATHEMATICS-chapter-17.pdf',
+            embed: true
+          }
+        ]
+      },
+      {
+        name: 'Module 4 · Financial Mathematics',
+        items: [
+          {
+            label: 'Ch 11 · Profit & Loss',
+            title: 'Mathematics · Module 4 · Chapter 11 · Profit and Loss',
+            description: 'Cost Price & Selling Price · Profit % & Loss % on CP · Dishonest Dealer Formulas',
+            key: 'math_ch_11',
+            href: 'notesphere-MATHEMATICS-chapter-11.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 12 · Discount',
+            title: 'Mathematics · Module 4 · Chapter 12 · Discount & Marked Price',
+            description: 'Marked Price (List Price) · Successive Discounts Formulation: (d1 + d2 - d1×d2/100)',
+            key: 'math_ch_12',
+            href: 'notesphere-MATHEMATICS-chapter-12.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 13 · Simple Interest',
+            title: 'Mathematics · Module 4 · Chapter 13 · Simple Interest',
+            description: 'SI = (P × N × R) / 100 · Linear Interest Growth · Doubling Principal Calculation',
+            key: 'math_ch_13',
+            href: 'notesphere-MATHEMATICS-chapter-13.pdf',
+            embed: true
+          },
+          {
+            label: 'Ch 14 · Compound Interest',
+            title: 'Mathematics · Module 4 · Chapter 14 · Compound Interest',
+            description: 'A = P(1 + R/100)^N · Compounding Annually & Half-Yearly · CI vs SI Difference Formula',
+            key: 'math_ch_14',
+            href: 'notesphere-MATHEMATICS-chapter-14.pdf',
+            embed: true
+          }
+        ]
+      }
     ];
         
-        function getChapterLearningData(subject, item) {
+    function getChapterLearningData(subject, item) {
       if (!item || !item.key) return null;
       const k = item.key;
       if (window.economicsLearningData && window.economicsLearningData[k]) return window.economicsLearningData[k];
@@ -1291,6 +1444,7 @@
       if (window.englishLearningData && window.englishLearningData[k]) return window.englishLearningData[k];
       if (window.sociologyLearningData && window.sociologyLearningData[k]) return window.sociologyLearningData[k];
       if (window.ethicsLearningData && window.ethicsLearningData[k]) return window.ethicsLearningData[k];
+      if (window.mathLearningData && window.mathLearningData[k]) return window.mathLearningData[k];
       return null;
     }
 
@@ -1579,8 +1733,8 @@
           qTitle.innerHTML = `
             <span class="question-number">Q${qIdx + 1}.</span>
             <div class="question-text-wrap" style="display:flex; flex-direction:column; gap:3px;">
-              <div class="question-en" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:14.5px; font-weight:700; color:#0f172a; line-height:1.45;">${q.question}</div>
-              ${q.questionMal ? `<div class="question-mal" style="font-family:'Noto Sans Malayalam',sans-serif; font-size:13.5px; font-weight:500; color:#475569; line-height:1.55;">${q.questionMal}</div>` : ''}
+              <div class="question-en" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:14.5px; font-weight:700; color:#0f172a; line-height:1.45;">${(typeof q.question === 'object' && q.question !== null) ? (q.question.en || '') : (q.question || '')}</div>
+              ${((typeof q.question === 'object' && q.question !== null) ? q.question.mal : q.questionMal) ? `<div class="question-mal" style="font-family:'Noto Sans Malayalam',sans-serif; font-size:13.5px; font-weight:500; color:#475569; line-height:1.55;">${(typeof q.question === 'object' && q.question !== null) ? q.question.mal : q.questionMal}</div>` : ''}
             </div>
           `;
 
@@ -2487,10 +2641,10 @@
         ]
       ]);
       if(subject==='Mathematics') return modules([
-        [1,2,3,4].map(n=>item('Chapter '+n,'Mathematics · Module 1 · Chapter '+n,'notesphere-MATHEMATICS-chapter-'+n+'.pdf','English','Mathematics chapter PDF')),
-        [5,6,7,8].map(n=>item('Chapter '+n,'Mathematics · Module 2 · Chapter '+n,'notesphere-MATHEMATICS-chapter-'+n+'.pdf','English','Mathematics chapter PDF')),
-        [9,10,11,12].map(n=>item('Chapter '+n,'Mathematics · Module 3 · Chapter '+n,'notesphere-MATHEMATICS-chapter-'+n+'.pdf','English','Mathematics chapter PDF')),
-        [13,14,15,16,17].map(n=>item('Chapter '+n,'Mathematics · Module 4 · Chapter '+n,'notesphere-MATHEMATICS-chapter-'+n+'.pdf','English','Mathematics chapter PDF'))
+        mathematicsCourseModules[0].items.map(it=>item(it.label,it.title,it.href,'English',it.description)),
+        mathematicsCourseModules[1].items.map(it=>item(it.label,it.title,it.href,'English',it.description)),
+        mathematicsCourseModules[2].items.map(it=>item(it.label,it.title,it.href,'English',it.description)),
+        mathematicsCourseModules[3].items.map(it=>item(it.label,it.title,it.href,'English',it.description))
       ]);
       if(subject==='Arabic') return modules([
         ['notesphere-ARABIC-module-1.pdf','notesphere-ARABIC-module-1%20(1).pdf','notesphere-ARABIC-module-1%20(2).pdf'].map((href,i)=>item('Chapter/PDF '+(i+1),'Arabic · Module 1 · PDF '+(i+1),href,'Arabic','Uploaded Arabic course PDF')),
@@ -2970,7 +3124,7 @@
               : subject==='Development Issues in Indian Economy' && medium==='English'
                 ? 'Official Development Issues in Indian Economy course modules (Modules 1–5, 12 documents). Choose a module and topic to open or preview.'
                 : subject==='Mathematics' && medium==='English'
-                  ? '17 chapter PDFs are arranged across four modules. Select a chapter to read it here, or open and download the PDF.'
+                  ? 'Official Mathematics course modules (Modules 1–4, 18 comprehensive chapters & question banks). Select a chapter to read PDF, study bilingual summaries, or practice MCQs.'
                 : medium==='Malayalam'
                   ? 'Uploaded Malayalam PDFs open here for reading without leaving Academic Hub.'
                 : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';
