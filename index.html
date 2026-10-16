@@ -1392,10 +1392,14 @@
         backWindow.className='module-home module-back-button';
         backWindow.textContent='← Back';
         backWindow.addEventListener('click',()=>{
-          if(window.history.length>1) {
-            window.history.back();
-          } else {
-            window.location.href='index.html#top';
+          // Return to the exact in-app chapter/module chooser that opened this document.
+          // Keep the current subject, module tabs, and chapter tabs in place.
+          moduleContent.replaceChildren();
+          const selectedChapter=moduleSubtabs.querySelector('[aria-selected="true"]');
+          if(selectedChapter) selectedChapter.focus();
+          else {
+            const selectedModule=moduleTabs.querySelector('[aria-selected="true"]');
+            if(selectedModule) selectedModule.focus();
           }
         });
         const homeWindow=document.createElement('a');
@@ -1435,10 +1439,14 @@
         backWindow.className='module-home module-back-button';
         backWindow.textContent='← Back';
         backWindow.addEventListener('click',()=>{
-          if(window.history.length>1) {
-            window.history.back();
-          } else {
-            window.location.href='index.html#top';
+          // Return to the exact in-app chapter/module chooser that opened this document.
+          // Keep the current subject, module tabs, and chapter tabs in place.
+          moduleContent.replaceChildren();
+          const selectedChapter=moduleSubtabs.querySelector('[aria-selected="true"]');
+          if(selectedChapter) selectedChapter.focus();
+          else {
+            const selectedModule=moduleTabs.querySelector('[aria-selected="true"]');
+            if(selectedModule) selectedModule.focus();
           }
         });
         const homeWindow=document.createElement('a');
