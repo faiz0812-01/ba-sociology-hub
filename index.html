@@ -1427,9 +1427,9 @@
           frame.className='module-pdf-frame';
           frame.title=(item.title || item.label)+' preview';
           frame.loading='eager';
-          frame.src=item.fileType==='DOCX'
-            ? 'study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0])
-            : item.href;
+          // Use the full-page reader for PDFs and Word files so the preview
+          // exposes every page in one scrollable window, not just the first PDF view.
+          frame.src='study-guide-reader.html?v=20261016-full-preview&file='+encodeURIComponent(item.href.split('#')[0]);
           reader.append(frame);
         }
         reader.hidden=false;
