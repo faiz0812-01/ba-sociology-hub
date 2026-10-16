@@ -1111,3 +1111,9 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   #module-dialog .module-subtabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
   #module-dialog .module-subtabs button{min-height:30px;padding:5px 6px;font-size:10px}
 }
+
+
+/* Remove close/X controls from every subject-card study window. */
+#module-dialog .module-close,
+#module-dialog [aria-label*="close" i],
+#module-dialog .module-header-actions { display:none !important; }
