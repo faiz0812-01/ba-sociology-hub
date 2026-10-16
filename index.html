@@ -1677,6 +1677,22 @@
     loadChat();
     window.setInterval(loadChat, 6000);
   </script>
+  <script>
+  // Safety fallback: if the main page script fails before registering its click
+  // handler, keep Study Guide tabs usable through the existing dialog function.
+  document.addEventListener('click', function(event) {
+    const trigger = event.target && event.target.closest
+      ? event.target.closest('.language-tab--study-guide')
+      : null;
+    if (!trigger) return;
+    window.setTimeout(function() {
+      const dialog = document.getElementById('module-dialog');
+      if (dialog && dialog.hidden && typeof window.openModuleLibrary === 'function') {
+        window.openModuleLibrary(trigger);
+      }
+    }, 0);
+  }, true);
+  </script>
   <script src="ai-study.js?v=20261014-ai-study-helper" defer></script>
 
 
