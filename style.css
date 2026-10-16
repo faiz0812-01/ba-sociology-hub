@@ -1161,3 +1161,9 @@ strong,b,summary,.eyebrow,.subject-tag,.test-label,.module-eyebrow,.ai-study-eye
   #module-dialog .module-pdf-actions > a.module-chapter-open-link,
   #module-dialog .module-pdf-actions > button.module-reader-load{padding:0 6px !important;font-size:13px !important}
 }
+
+
+/* Keep Back and Home Page three content rows below the chapter/document area. */
+.module-window-nav {
+  margin-top: 4.5em !important;
+}
