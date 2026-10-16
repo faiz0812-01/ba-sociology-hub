@@ -239,7 +239,7 @@
     }
     #module-dialog .module-tabs button {
       box-sizing:border-box;min-width:0;min-height:48px;padding:10px 8px;
-      border-radius:10px;font-weight:800;line-height:1.25;overflow-wrap:anywhere;
+      border-radius:10px;font-size:14px;font-weight:800;line-height:1.25;overflow-wrap:anywhere;
     }
     #module-dialog .module-subtabs {
       display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
@@ -248,10 +248,10 @@
     }
     #module-dialog .module-subtabs button,
     #module-dialog .module-subtabs [role="tab"] {
-      box-sizing:border-box;min-width:0;min-height:40px;padding:8px 10px;
-      border:1px solid #9bbce0;border-radius:10px;
+      box-sizing:border-box;min-width:0;min-height:36px;padding:6px 8px;
+      border:1px solid #9bbce0;border-radius:9px;
       background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
-      color:#173b67;font-size:13px;font-weight:800;line-height:1.35;
+      color:#173b67;font-size:12px;font-weight:750;line-height:1.3;
       overflow-wrap:anywhere;white-space:normal;
     }
     #module-dialog .module-subtabs button:hover,
@@ -284,6 +284,17 @@
     @media(prefers-reduced-motion:reduce) {
       #module-dialog .module-tabs button,#module-dialog .module-subtabs button { transition:none!important; }
     }
+  </style>
+  <style id="english-study-guide-english-only">
+    #module-dialog.module-dialog--english-study-guide,
+    #module-dialog.module-dialog--english-study-guide .module-panel,
+    #module-dialog.module-dialog--english-study-guide .module-tabs,
+    #module-dialog.module-dialog--english-study-guide .module-subtabs,
+    #module-dialog.module-dialog--english-study-guide .module-content { font-family:"DM Sans",Arial,sans-serif !important; }
+    #module-dialog.module-dialog--english-study-guide .module-tabs button,
+    #module-dialog.module-dialog--english-study-guide .module-subtabs button,
+    #module-dialog.module-dialog--english-study-guide .module-content * { font-family:"DM Sans",Arial,sans-serif !important; }
+    @media(max-width:560px){#module-dialog .module-tabs button{font-size:11px}#module-dialog .module-subtabs button{font-size:11px}}
   </style>
 </head>
 <body id="top">
@@ -354,7 +365,7 @@
         <div class="module-backdrop" data-module-close></div>
         <section class="module-panel">
           <header class="module-header">
-            <div><span class="module-eyebrow">ACADEMIC HUB PDF LIBRARY</span><h2 id="module-title">Study modules</h2><p id="module-description">Choose a module and browse its PDFs.</p></div>
+            <div><h2 id="module-title">Study modules</h2><p id="module-description">Choose a module and browse its PDFs.</p></div>
             <div class="module-header-actions">
               <a class="module-home" href="index.html#top" aria-label="Go to Academic Hub home page">⌂ <span>Home</span></a>
               <button class="module-close" type="button" aria-label="Close module library" data-module-close>×</button>
@@ -1540,14 +1551,14 @@
       moduleSubtabs.setAttribute('aria-label','PDFs');
       const firstAvailableItemIndex=Math.max(0,module.items.findIndex(item=>item.href));
       moduleSubtabs.replaceChildren();
-      moduleSubtabs.style.display=(module.items.length>1 || moduleDialog.dataset.readingOnly==='true')?'':'none';
+      moduleSubtabs.style.display=module.items.length?'':'none';
       module.items.forEach((item,itemIndex)=>{
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','tab');
         const readingOnly=moduleDialog.dataset.readingOnly==='true';
-        button.setAttribute('aria-selected',String(!readingOnly && itemIndex===firstAvailableItemIndex));
-        button.tabIndex=!readingOnly && itemIndex===firstAvailableItemIndex?0:-1;
+        button.setAttribute('aria-selected','false');
+        button.tabIndex=-1;
         button.textContent=readingOnly?(subject==='English'?getBilingualEnglishStudyGuideLabel(item.chapter || item.label || item.title):getMalayalamChapterLabel(item.chapter || item.label || item.title)):(subject==='English'?getBilingualEnglishStudyGuideLabel(item.label):item.label);
         button.lang=subject==='English'?'en':(readingOnly?'ml':'en');
         button.addEventListener('click',()=>selectModuleItem(subject,medium,module,moduleIndex,itemIndex));
@@ -1561,8 +1572,11 @@
         showStudyGuideNavigationPrompt(module.name);
         return;
       }
-      const firstAvailableItem=module.items[firstAvailableItemIndex];
-      showModuleItem(subject,firstAvailableItem.medium || medium,module.name,firstAvailableItem);
+      moduleContent.replaceChildren();
+      const prompt=document.createElement('p');
+      prompt.className='module-empty';
+      prompt.textContent='Choose a chapter or PDF tab above to open one document at a time.';
+      moduleContent.append(prompt);
     }
     function openModuleLibrary(trigger) {
       const card=trigger.closest('.subject-card');
@@ -1571,10 +1585,12 @@
       const studyGuide=trigger.classList.contains('language-tab--study-guide');
       const mcqPdf=trigger.classList.contains('language-tab--mcq-pdf');
       moduleDialog.dataset.readingOnly=String(studyGuide);
+      moduleDialog.dataset.englishStudyGuide=String(studyGuide && subject==='English');
       moduleDialog.oncontextmenu=studyGuide?event=>event.preventDefault():null;
       const modules=mcqPdf?getMcqPdfModules(subject):studyGuide?getStudyGuideModules(subject):getSubjectModules(subject,medium);
       const englishStudyGuide=studyGuide && subject==='English';
       moduleDialog.classList.toggle('module-dialog--malayalam',(!englishStudyGuide && studyGuide) || medium==='Malayalam');
+      moduleDialog.classList.toggle('module-dialog--english-study-guide',englishStudyGuide);
       moduleDialog.lang=englishStudyGuide?'en':(studyGuide || medium==='Malayalam'?'ml':'en');
       lastLanguageTab=trigger;
       moduleTitle.textContent=mcqPdf?subject+' · MCQ PDF':studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
