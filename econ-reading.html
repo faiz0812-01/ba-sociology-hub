@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="കാലിക്കറ്റ് സർവ്വകലാശാല ബി.എ - ഡെവലപ്‌മെന്റ് ഇഷ്യൂസ് ഇൻ ഇന്ത്യൻ ഇക്കോണമി സമ്പൂർണ്ണ മലയാള പരിഭാഷാ വായനാ സഹായി (Malayalam Reading)">
+  <title>ഇന്ത്യൻ സമ്പദ്‌വ്യവസ്ഥ മലയാളം വായന | Malayalam Reading</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&display=swap');
+
+    :root {
+      --econ-primary: #065f46;
+      --econ-secondary: #059669;
+      --econ-light: #ecfdf5;
+      --econ-border: #a7f3d0;
+    }
+
+    body {
+      font-family: 'Noto Sans Malayalam', 'Manjari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f8fafc);
+      padding: 30px 18px;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    .page-box {
+      max-width: 980px;
+      margin: auto;
+      background: #ffffff;
+      padding: 36px 32px;
+      border-radius: 28px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .hero {
+      display: block !important;
+      position: relative !important;
+      min-height: 0 !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      margin: 0 0 28px 0 !important;
+      padding: 32px 24px 34px !important;
+      text-align: center !important;
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #e6fffa 100%) !important;
+      border: 1px solid #a7f3d0 !important;
+      border-radius: 24px !important;
+      box-shadow: 0 8px 24px rgba(5, 150, 105, 0.1) !important;
+      color: #0f172a !important;
+    }
+
+    .hero:before {
+      display: none !important;
+      content: none !important;
+    }
+
+    .uni-badge {
+      display: inline-block !important;
+      background: #d1fae5 !important;
+      color: #065f46 !important;
+      padding: 6px 18px !important;
+      border-radius: 999px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      margin-bottom: 14px !important;
+      letter-spacing: 0.5px !important;
+      border: 1px solid #a7f3d0 !important;
+    }
+
+    .hero h1 {
+      display: block !important;
+      font-size: clamp(23px, 4vw, 34px) !important;
+      line-height: 1.45 !important;
+      color: #065f46 !important;
+      margin: 0 0 12px 0 !important;
+      font-weight: 800 !important;
+      background: transparent !important;
+      -webkit-background-clip: unset !important;
+      text-shadow: none !important;
+    }
+
+    .hero p {
+      font-size: 15px !important;
+      line-height: 1.8 !important;
+      color: #334155 !important;
+      margin: 0 auto !important;
+      max-width: 800px !important;
+      font-weight: 500 !important;
+    }
+
+    /* Filter Bar */
+    .filter-wrapper {
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 9px 18px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #059669;
+      color: #ffffff;
+      border-color: #059669;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    }
+
+    /* Search input */
+    .search-bar {
+      margin-bottom: 26px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .search-bar input:focus {
+      border-color: #059669;
+      box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15);
+    }
+
+    /* Section divider */
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 34px 0 16px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .module-header h2 {
+      font-size: 19px;
+      margin: 0;
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .module-tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Chapter cards */
+    .chapter-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .chapter-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(130deg, #ffffff, #f9fbf9);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(5, 150, 105, 0.1);
+      border-color: #a7f3d0;
+    }
+
+    .chapter-num {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #065f46, #059669);
+      box-shadow: 0 6px 14px rgba(5, 150, 105, 0.28);
+    }
+
+    .chapter-info h3 {
+      font-size: 16.5px;
+      line-height: 1.5;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      font-weight: 700;
+    }
+
+    .chapter-info .eng-title {
+      font-size: 13.5px;
+      color: #059669;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .chapter-info p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 140px;
+    }
+
+    .action-btn {
+      display: inline-block;
+      text-align: center;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-view {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .btn-view:hover {
+      background: #d1fae5;
+      color: #044e39;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #065f46, #059669);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25);
+    }
+
+    .btn-download:hover {
+      filter: brightness(0.92);
+      transform: translateY(-1px);
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      padding: 14px 26px;
+      border-radius: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-home {
+      background: #0f172a;
+      color: white;
+    }
+
+    .nav-home:hover {
+      background: #1e293b;
+    }
+
+    .nav-portal {
+      background: #059669;
+      color: white;
+    }
+
+    .nav-portal:hover {
+      background: #047857;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background: #ffffff;
+      width: 90%;
+      max-width: 920px;
+      height: 85%;
+      margin: 4% auto;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 12px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      color: #065f46;
+      font-size: 17.5px;
+      font-weight: 700;
+    }
+
+    .close-modal {
+      font-size: 26px;
+      font-weight: bold;
+      color: #64748b;
+      cursor: pointer;
+      border: none;
+      background: none;
+      line-height: 1;
+    }
+
+    .modal-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      background: #f1f5f9;
+    }
+
+    @media (max-width: 768px) {
+      .page-box {
+        padding: 22px 16px;
+      }
+      .chapter-card {
+        grid-template-columns: 50px 1fr;
+        gap: 14px;
+        padding: 16px;
+      }
+      .chapter-num {
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 14px;
+      }
+      .btn-group {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        width: 100%;
+      }
+      .action-btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page-box">
+    
+    <header class="hero">
+      <div class="uni-badge">CALICUT UNIVERSITY · CDOE · FYUGP</div>
+      <h1>ഡെവലപ്‌മെന്റ് ഇഷ്യൂസ് ഇൻ ഇന്ത്യൻ ഇക്കോണമി — മലയാളം വായന</h1>
+      <p>
+        Development Issues in Indian Economy — എല്ലാ LMS പാഠഭാഗങ്ങളുടെയും സമഗ്ര മലയാള പരിഭാഷ, വിശദമായ പഠന കുറിപ്പുകൾ, പാഠപുസ്തക ചോദ്യോത്തരങ്ങൾ, ഓരോ അധ്യായത്തിലും 20 വീതം പ്രധാന MCQs എന്നിവ ഉൾപ്പെടുത്തിയ സമ്പൂർണ്ണ പരീക്ഷാ സഹായി.
+      </p>
+    </header>
+
+    <!-- Module Filters -->
+    <nav class="filter-wrapper" aria-label="Filter by module">
+      <button class="filter-btn active" onclick="filterModule('all', this)">എല്ലാം (All 12)</button>
+      <button class="filter-btn" onclick="filterModule('mod1', this)">മൊഡ്യൂൾ 1: ചരിത്ര പശ്ചാത്തലങ്ങൾ (8)</button>
+      <button class="filter-btn" onclick="filterModule('mod2', this)">മൊഡ്യൂൾ 2: ദാരിദ്ര്യം (1)</button>
+      <button class="filter-btn" onclick="filterModule('mod3', this)">മൊഡ്യൂൾ 3: അസമത്വം (1)</button>
+      <button class="filter-btn" onclick="filterModule('mod4', this)">മൊഡ്യൂൾ 4: തൊഴിലില്ലായ്മ (1)</button>
+      <button class="filter-btn" onclick="filterModule('mod5', this)">മൊഡ്യൂൾ 5: തുറന്ന പ്രശ്നങ്ങൾ (1)</button>
+    </nav>
+
+    <!-- Search Input -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" onkeyup="filterChapters()" placeholder="അധ്യായങ്ങളോ വിഷയങ്ങളോ തിരയുക (Search by title, topic, or module)...">
+    </div>
+
+    <!-- Chapter Sections -->
+    <div id="chapterContainer">
+
+      <!-- ==================== MODULE 1 ==================== -->
+      <section class="module-section" data-mod="mod1">
+        <div class="module-header">
+          <h2>മൊഡ്യൂൾ 1: ഇന്ത്യൻ സാമ്പത്തിക വികസനത്തിന്റെ ചരിത്ര പശ്ചാത്തലങ്ങൾ</h2>
+          <span class="module-tag">Module 1 (8 Chapters)</span>
+        </div>
+        <div class="chapter-list">
+
+          <!-- Ch 1 -->
+          <article class="chapter-card">
+            <div class="chapter-num">01</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 1: സാമ്പത്തിക വികസനത്തിന്റെ അർത്ഥവും സ്വഭാവവും</h3>
+              <div class="eng-title">Introduction and Meaning of Economic Development</div>
+              <p>സാമ്പത്തിക വളർച്ചയും വികസനവും തമ്മിലുള്ള വ്യത്യാസം, ആളോഹരി വരുമാനം, വികസ്വര സമ്പദ്‌വ്യവസ്ഥയുടെ സവിശേഷതകൾ, LMS ചോദ്യോത്തരങ്ങളും 20 MCQs ഉം.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch1_Meaning_of_Development_Malayalam.pdf', 'അധ്യായം 1: സാമ്പത്തിക വികസനത്തിന്റെ അർത്ഥവും സ്വഭാവവും')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch1_Meaning_of_Development_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 2 -->
+          <article class="chapter-card">
+            <div class="chapter-num">02</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 2: കൊളോണിയൽ കാലഘട്ടത്തിലെ ഇന്ത്യൻ സമ്പദ്‌വ്യവസ്ഥ</h3>
+              <div class="eng-title">History of Indian Economy — Colonial Period</div>
+              <p>ബ്രിട്ടീഷ് സാമ്പത്തിക ചൂഷണം, ദാദാഭായ് നവറോജിയുടെ ചോർച്ചാ സിദ്ധാന്തം (Drain of Wealth), വ്യവസായ ശോഷണം (De-industrialization), വാണിജ്യവൽക്കരണം, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch2_Colonial_Period_History_Malayalam.pdf', 'അധ്യായം 2: കൊളോണിയൽ കാലഘട്ടത്തിലെ ഇന്ത്യൻ സമ്പദ്‌വ്യവസ്ഥ')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch2_Colonial_Period_History_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 3 -->
+          <article class="chapter-card">
+            <div class="chapter-num">03</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 3: ആസൂത്രണ കാലഘട്ടം 1951–1991</h3>
+              <div class="eng-title">Planning Era in India (1951–1991)</div>
+              <p>നെഹ്റൂവിയൻ സോഷ്യലിസം, മഹലനോബിസ് മാതൃക, ഇറക്കുമതി ബദൽ നയം, ലൈസൻസ് രാജ്, പൊതുമേഖലയുടെ വികാസം, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch3_Planning_Era_1951_1991_Malayalam.pdf', 'അധ്യായം 3: ആസൂത്രണ കാലഘട്ടം 1951–1991')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch3_Planning_Era_1951_1991_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 4 -->
+          <article class="chapter-card">
+            <div class="chapter-num">04</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 4: ഉദാരവൽക്കരണ യുഗം (1991 മുതൽ)</h3>
+              <div class="eng-title">Liberalisation Era (1991 Onwards)</div>
+              <p>1991-ലെ ബാലൻസ് ഓഫ് പേയ്‌മെന്റ് പ്രതിസന്ധി, എൽ.പി.ജി പരിഷ്കാരങ്ങൾ (LPG), സ്വകാര്യവൽക്കരണം, ആഗോളവൽക്കരണം, ഘടനാപരമായ പുനഃക്രമീകരണം, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch4_Liberalisation_Era_1991_Malayalam.pdf', 'അധ്യായം 4: ഉദാരവൽക്കരണ യുഗം (1991 മുതൽ)')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch4_Liberalisation_Era_1991_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 5 -->
+          <article class="chapter-card">
+            <div class="chapter-num">05</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 5: വികസന സൂചകങ്ങൾ: യഥാർത്ഥ വരുമാനം</h3>
+              <div class="eng-title">Basic Indicators: Real Income & Per Capita Income</div>
+              <p>യഥാർത്ഥ വരുമാന സൂചകം, ക്രയശേഷി തുല്യത (PPP), നാഷണൽ ഇൻകം അക്കൗണ്ടിംഗ്, വരുമാന സൂചകങ്ങളുടെ പരിമിതികൾ, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch5_Real_Income_Indicator_Malayalam.pdf', 'അധ്യായം 5: വികസന സൂചകങ്ങൾ: യഥാർത്ഥ വരുമാനം')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch5_Real_Income_Indicator_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 6 -->
+          <article class="chapter-card">
+            <div class="chapter-num">06</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 6: ആരോഗ്യവും വിദ്യാഭ്യാസവും വികസന സൂചകങ്ങളായി</h3>
+              <div class="eng-title">Indicators of Development: Health & Education</div>
+              <p>മനുഷ്യവിഭവശേഷി വികസനം, HDI ഘടകങ്ങൾ, ആയുർദൈർഘ്യം, സാക്ഷരതാ നിരക്ക്, കേരള മോഡൽ വികസനവും ആരോഗ്യ നേട്ടങ്ങളും, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch6_Health_and_Education_Malayalam.pdf', 'അധ്യായം 6: ആരോഗ്യവും വിദ്യാഭ്യാസവും വികസന സൂചകങ്ങളായി')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch6_Health_and_Education_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 7 -->
+          <article class="chapter-card">
+            <div class="chapter-num">07</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 7: സാമ്പത്തിക വികസനത്തിലെ അടിസ്ഥാന പ്രശ്നങ്ങൾ</h3>
+              <div class="eng-title">Basic Issues in Economic Development</div>
+              <p>സ്ഥാപനപരമായ ചട്ടക്കൂട് പരിഷ്കാരങ്ങൾ (Institutional Framework), ഭരണ നയങ്ങൾ (Policy Regimes), അടിസ്ഥാന സൗകര്യ വികസനം, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch7_Basic_Issues_in_Development_Malayalam.pdf', 'അധ്യായം 7: സാമ്പത്തിക വികസനത്തിലെ അടിസ്ഥാന പ്രശ്നങ്ങൾ')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch7_Basic_Issues_in_Development_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+          <!-- Ch 8 -->
+          <article class="chapter-card">
+            <div class="chapter-num">08</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 8: ചരിത്ര പശ്ചാത്തലങ്ങൾ — സമഗ്ര അവലോകനം</h3>
+              <div class="eng-title">Historical Precedents of Development Issues (Overview)</div>
+              <p>വികസന പ്രക്രിയയിലെ ഘടനാപരമായ മാറ്റങ്ങൾ, വളർച്ചാ പ്രേരകങ്ങൾ, ഉൽപ്പാദന ഘടകങ്ങൾ, പാഠപുസ്തകത്തിലെ 16 ചോദ്യോത്തരങ്ങൾ, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch8_Historical_Precedents_Overview_Malayalam.pdf', 'അധ്യായം 8: ചരിത്ര പശ്ചാത്തലങ്ങൾ — സമഗ്ര അവലോകനം')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_1_Ch8_Historical_Precedents_Overview_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ==================== MODULE 2 ==================== -->
+      <section class="module-section" data-mod="mod2">
+        <div class="module-header">
+          <h2>മൊഡ്യൂൾ 2: ഇന്ത്യയിലെ ദാരിദ്ര്യം</h2>
+          <span class="module-tag">Module 2 (Poverty in India)</span>
+        </div>
+        <div class="chapter-list">
+          <article class="chapter-card">
+            <div class="chapter-num">09</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 9: ഇന്ത്യയിലെ ദാരിദ്ര്യം: നിർവ്വചനം, അളവുകോലുകൾ, ലഘൂകരണ പദ്ധതികൾ</h3>
+              <div class="eng-title">Module 2: Poverty in India — Concepts, Estimation & Alleviation</div>
+              <p>സമ്പൂർണ്ണ-ആപേക്ഷിക ദാരിദ്ര്യം, ദണ്ഡേക്കർ-രഥ്, അലഗ്, ലക്ഡാവാല, തെണ്ടുൽക്കർ, രംഗരാജൻ സമിതികൾ, ബഹുമുഖ ദാരിദ്ര്യ സൂചിക (MPI), MGNREGA, NRLM, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_2_Ch1_Poverty_in_India_Malayalam.pdf', 'അധ്യായം 9: ഇന്ത്യയിലെ ദാരിദ്ര്യം')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_2_Ch1_Poverty_in_India_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==================== MODULE 3 ==================== -->
+      <section class="module-section" data-mod="mod3">
+        <div class="module-header">
+          <h2>മൊഡ്യൂൾ 3: ഇന്ത്യയിലെ സാമ്പത്തിക അസമത്വം</h2>
+          <span class="module-tag">Module 3 (Inequality in India)</span>
+        </div>
+        <div class="chapter-list">
+          <article class="chapter-card">
+            <div class="chapter-num">10</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 10: ഇന്ത്യയിലെ സാമ്പത്തിക അസമത്വം: അളവുകോലുകൾ, കാരണങ്ങൾ, പരിഹാര നയങ്ങൾ</h3>
+              <div class="eng-title">Module 3: Inequality in India — Dimensions, Lorenz Curve & Gini Coefficient</div>
+              <p>വരുമാന-സമ്പത്ത് അസമത്വം, ലോറൻസ് വക്രരേഖ, ജിനി ഗുണകം, കുസ്നെറ്റ്സ് വക്രരേഖ, വേൾഡ് ഇനീക്വാലിറ്റി റിപ്പോർട്ട്, പുരോഗമന നികുതി, PDS, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_3_Ch1_Inequality_in_India_Malayalam.pdf', 'അധ്യായം 10: ഇന്ത്യയിലെ സാമ്പത്തിക അസമത്വം')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_3_Ch1_Inequality_in_India_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==================== MODULE 4 ==================== -->
+      <section class="module-section" data-mod="mod4">
+        <div class="module-header">
+          <h2>മൊഡ്യൂൾ 4: ഇന്ത്യയിലെ തൊഴിലില്ലായ്മ</h2>
+          <span class="module-tag">Module 4 (Unemployment in India)</span>
+        </div>
+        <div class="chapter-list">
+          <article class="chapter-card">
+            <div class="chapter-num">11</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 11: ഇന്ത്യയിലെ തൊഴിലില്ലായ്മ: നിർവ്വചനം, അളവുകോലുകൾ, കാരണങ്ങളും ലഘൂകരണ പദ്ധതികളും</h3>
+              <div class="eng-title">Module 4: Unemployment in India — Types, PLFS/NSSO Measures & Schemes</div>
+              <p>മറഞ്ഞിരിക്കുന്ന തൊഴിലില്ലായ്മ, സാധാരണ പദവി (UPSS), പ്രതിവാര പദവി (CWS), ദൈനംദിന പദവി (CDS), തൊഴിൽരഹിത വളർച്ച, MGNREGA, PMKVY, സ്റ്റാൻഡ് അപ്പ് ഇന്ത്യ, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_4_Ch1_Unemployment_in_India_Malayalam.pdf', 'അധ്യായം 11: ഇന്ത്യയിലെ തൊഴിലില്ലായ്മ')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_4_Ch1_Unemployment_in_India_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==================== MODULE 5 ==================== -->
+      <section class="module-section" data-mod="mod5">
+        <div class="module-header">
+          <h2>മൊഡ്യൂൾ 5: തുറന്ന സാമ്പത്തിക പ്രശ്നങ്ങളും പ്രായോഗിക പ്രൊജക്റ്റുകളും</h2>
+          <span class="module-tag">Module 5 (Open-Ended Issues & Empirical Projects)</span>
+        </div>
+        <div class="chapter-list">
+          <article class="chapter-card">
+            <div class="chapter-num">12</div>
+            <div class="chapter-info">
+              <h3>അധ്യായം 12: ഇന്ത്യയിലെ ധനക്കമ്മിയും പണപ്പെരുപ്പവും — ദാരിദ്ര്യ-തൊഴിലില്ലായ്മാ പ്രായോഗിക പ്രൊജക്റ്റുകൾ</h3>
+              <div class="eng-title">Module 5: Fiscal Deficit & Inflation in India — Fieldwork Project Guidelines</div>
+              <p>ധനക്കമ്മി പ്രവണതകൾ, FRBM ലക്ഷ്യങ്ങൾ, പണപ്പെരുപ്പ സൂചികകൾ (CPI/WPI), തദ്ദേശ വാർഡിലെ MRP രീതിയിലുള്ള ദാരിദ്ര്യ നിർണ്ണയം, പ്രാദേശിക തൊഴിലില്ലായ്മാ സർവേ, 20 MCQs.</p>
+            </div>
+            <div class="btn-group">
+              <button class="action-btn btn-view" onclick="viewPdf('Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_5_Ch1_Open_Ended_Issues_Fiscal_Inflation_Malayalam.pdf', 'അധ്യായം 12: ധനക്കമ്മിയും പണപ്പെരുപ്പവും — പ്രൊജക്റ്റുകൾ')">വായിക്കുക (View)</button>
+              <a class="action-btn btn-download" href="Development%20Issues%20in%20Indian%20Economy/Malayalam%20PDF/Econ_Module_5_Ch1_Open_Ended_Issues_Fiscal_Inflation_Malayalam.pdf" download>ഡൗൺലോഡ് (PDF)</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Navigation Footer -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-btn nav-home">← തിരികെ ഹോം പേജിലേക്ക് (Home)</a>
+      <a href="index.html#subjects" class="nav-btn nav-portal">മറ്റ് വിഷയങ്ങൾ (All Subjects)</a>
+    </nav>
+
+  </main>
+
+  <!-- PDF Modal Viewer -->
+  <div id="viewerModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">PDF വായനാ സഹായി</h3>
+        <button class="close-modal" onclick="closeViewer()">&times;</button>
+      </div>
+      <iframe id="pdfFrame" class="modal-iframe" src="" title="PDF Viewer"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function filterModule(modId, btn) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const sections = document.querySelectorAll('.module-section');
+      sections.forEach(sec => {
+        if (modId === 'all' || sec.getAttribute('data-mod') === modId) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    function filterChapters() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.chapter-card');
+      
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function viewPdf(url, title) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('pdfFrame').src = url;
+      document.getElementById('viewerModal').style.display = 'block';
+    }
+
+    function closeViewer() {
+      document.getElementById('viewerModal').style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('viewerModal');
+      if (event.target == modal) {
+        closeViewer();
+      }
+    };
+  </script>
+
+</body>
+</html>
