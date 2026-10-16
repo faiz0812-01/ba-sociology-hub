@@ -179,14 +179,14 @@
       min-width:160px;
       min-height:42px;
       padding:10px 20px;
-      border:1px solid #9bbce0;
+      border:1px solid #86c99a;
       border-radius:11px;
-      background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
-      color:#173b67;
+      background:linear-gradient(135deg,#dcfce7 0%,#bbf7d0 100%);
+      color:#14532d;
       font-size:14px;
       font-weight:850;
       text-align:center;
-      box-shadow:0 3px 10px rgba(23,59,103,.10);
+      box-shadow:0 3px 10px rgba(20,83,45,.12);
     }
     #module-dialog .module-home-row .module-home:hover {
       background:#dbeafe;
@@ -210,39 +210,39 @@
     #module-dialog .module-tabs button[aria-selected="true"]{outline:2px solid rgba(32,88,66,.18);outline-offset:1px;}
     @media(max-width:560px){#module-dialog .module-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;}#module-dialog .module-subtabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}}
   </style>
-  <style id="all-chapter-tab-black-red">
-    /* Black chapter tabs with red text, shared across every subject, Study Guide and LMS PDF window. */
+  <style id="all-chapter-tab-red-black">
+    /* Red chapter-tab background with black text across all subjects, cards, Study Guide and LMS windows. */
     #module-dialog .module-subtabs button,
     #module-dialog .module-subtabs [role="tab"],
     #module-dialog .ai-guide-version-tabs button {
       box-sizing:border-box !important;
-      border:1px solid #e11d2e !important;
+      border:1px solid #dc2626 !important;
       border-radius:9px !important;
-      background:#080808 !important;
-      color:#ff343f !important;
+      background:#ef4444 !important;
+      color:#080808 !important;
       font-weight:850 !important;
-      box-shadow:0 2px 7px rgba(0,0,0,.22) !important;
+      box-shadow:0 2px 7px rgba(0,0,0,.16) !important;
     }
     #module-dialog .module-subtabs button:hover,
     #module-dialog .module-subtabs [role="tab"]:hover,
     #module-dialog .ai-guide-version-tabs button:hover {
-      border-color:#ff4d57 !important;
-      background:#1b1b1b !important;
-      color:#ff6871 !important;
+      border-color:#b91c1c !important;
+      background:#f87171 !important;
+      color:#080808 !important;
     }
     #module-dialog .module-subtabs button[aria-selected="true"],
     #module-dialog .module-subtabs [role="tab"][aria-selected="true"],
     #module-dialog .ai-guide-version-tabs button[aria-selected="true"] {
-      border-color:#ff343f !important;
-      background:#080808 !important;
-      color:#ff343f !important;
+      border-color:#b91c1c !important;
+      background:#ef4444 !important;
+      color:#080808 !important;
       font-weight:900 !important;
-      box-shadow:inset 0 -3px 0 #e11d2e,0 4px 12px rgba(225,29,46,.2) !important;
+      box-shadow:inset 0 -3px 0 #b91c1c,0 4px 12px rgba(185,28,28,.18) !important;
     }
     #module-dialog .module-subtabs button:focus-visible,
     #module-dialog .module-subtabs [role="tab"]:focus-visible,
     #module-dialog .ai-guide-version-tabs button:focus-visible {
-      outline:3px solid #ff6871 !important;
+      outline:3px solid #111827 !important;
       outline-offset:2px !important;
     }
     @media(prefers-reduced-motion:reduce) {
