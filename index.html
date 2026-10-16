@@ -1372,43 +1372,47 @@
       const actions=document.createElement('div');
       actions.className='module-pdf-actions';
       const open=document.createElement('a');
-      open.href=item.fileType==='DOCX'?'study-guide-reader.html?v=20261015-fast-reader&file='+encodeURIComponent(item.href.split('#')[0]):item.href;
+      open.href='study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0]);
       open.target='_blank';
       open.rel='noopener';
-      open.textContent=item.fileType==='DOCX'?'സൈറ്റിൽ വായിക്കുക':(itemMedium==='Malayalam'?'Open in new tab ↗':'Open PDF ↗');
-      const download=document.createElement('a');
-      download.href=item.href;
-      download.setAttribute('download','');
-      download.textContent=item.fileType==='DOCX'?'Download document ↓':'Download PDF ↓';
+      open.textContent=item.fileType==='DOCX'?'Read Here':'Open / Read Here';
+      const preview=document.createElement('button');
+      preview.type='button';
+      preview.className='module-reader-load';
+      preview.textContent='Preview Here';
+      preview.setAttribute('aria-label','Preview '+(item.title || item.label)+' here');
       copy.append(heading,detail);
-      if(item.fileType==='DOCX') actions.append(open); else actions.append(open,download);
+      actions.append(open,preview);
       card.append(badge,copy);
       if(!readingOnly) card.append(actions);
       moduleContent.append(card);
-      if(readingOnly || item.embed || itemMedium==='Malayalam' || itemMedium==='Bilingual') {
-        const reader=document.createElement('section');
-        reader.className='module-pdf-reader';
-        reader.setAttribute('aria-label',itemMedium+' PDF reader');
-        const readerHeading=document.createElement('div');
-        readerHeading.className='module-pdf-reader-heading';
-        readerHeading.textContent=item.fileType==='DOCX'?'Read this document on Academic Hub':'Read this PDF on Academic Hub';
-        const loadReader=document.createElement('button');
-        loadReader.type='button';
-        loadReader.className='module-reader-load';
-        loadReader.textContent=item.fileType==='DOCX'?'Load document':'Load PDF';
-        loadReader.setAttribute('aria-label','Load '+(item.title || item.label)+' reader');
-        loadReader.addEventListener('click',()=>{
-          const frame=document.createElement('iframe');
-          frame.className='module-pdf-frame';
-          frame.title=(item.title || item.label)+' '+(item.fileType || 'PDF')+' reader';
-          frame.loading='eager';
-          frame.src=(readingOnly||item.fileType==='DOCX')?'study-guide-reader.html?v=20261015-fast-reader&file='+encodeURIComponent(item.href.split('#')[0]):item.href;
-          loadReader.remove();
-          reader.append(frame);
-        },{once:true});
-        reader.append(readerHeading,loadReader);
-        moduleContent.append(reader);
-      }
+      const reader=document.createElement('section');
+      reader.className='module-pdf-reader';
+      reader.setAttribute('aria-label',itemMedium+' preview');
+      const readerHeading=document.createElement('div');
+      readerHeading.className='module-pdf-reader-heading';
+      readerHeading.textContent='Preview Here';
+      preview.addEventListener('click',()=>{
+        if(reader.querySelector('iframe')) {
+          reader.hidden=false;
+          reader.scrollIntoView({behavior:'smooth',block:'start'});
+          return;
+        }
+        const frame=document.createElement('iframe');
+        frame.className='module-pdf-frame';
+        frame.title=(item.title || item.label)+' preview';
+        frame.loading='eager';
+        frame.src=item.fileType==='DOCX'
+          ? 'study-guide-reader.html?v=20261016-clean-reader&file='+encodeURIComponent(item.href.split('#')[0])
+          : item.href;
+        reader.append(frame);
+        reader.hidden=false;
+        preview.textContent='Preview Opened';
+        reader.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+      reader.append(readerHeading);
+      reader.hidden=true;
+      moduleContent.append(reader);
     }
     function showStudyGuideNavigationPrompt(moduleName,malayalam=false) {
       // Keep the module window clean: do not show the bottom chapter-list instruction card.
