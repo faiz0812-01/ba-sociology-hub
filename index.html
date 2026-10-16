@@ -1346,19 +1346,30 @@
       moduleDialog.lang=itemMedium==='Malayalam'?'ml':'en';
       moduleContent.replaceChildren();
       if(!item.href) {
-        const empty=document.createElement('div');
-        empty.className='module-empty';
-        const icon=document.createElement('span');
-        icon.className='module-empty-icon';
-        icon.textContent='▤';
-        const heading=document.createElement('strong');
-        heading.textContent=itemMedium==='Bilingual'?'No bilingual PDF uploaded to Academic Hub yet.':'No PDF uploaded to Academic Hub yet.';
-        const copy=document.createElement('p');
-        copy.textContent=itemMedium==='Bilingual'
-          ? 'Upload one combined English–Malayalam PDF for '+moduleName+'.'
-          : 'Add the '+itemMedium+' PDF for '+moduleName+' to make it available here.';
-        empty.append(icon,heading,copy);
-        moduleContent.append(empty);
+        // Keep the chapter window limited to the same two actions, even where
+        // the repository does not yet contain a file for this syllabus entry.
+        const chapterView=document.createElement('section');
+        chapterView.className='module-chapter-open';
+        const heading=document.createElement('h3');
+        heading.className='module-chapter-open-title';
+        heading.textContent=item.title || item.label || moduleName;
+        const actions=document.createElement('div');
+        actions.className='module-pdf-actions';
+        const open=document.createElement('button');
+        open.type='button';
+        open.className='module-chapter-open-link';
+        open.textContent='Open';
+        open.disabled=true;
+        open.title='Study material has not been uploaded for this chapter yet.';
+        const preview=document.createElement('button');
+        preview.type='button';
+        preview.className='module-reader-load';
+        preview.textContent='Preview Here';
+        preview.disabled=true;
+        preview.title='Study material has not been uploaded for this chapter yet.';
+        actions.append(open,preview);
+        chapterView.append(heading,actions);
+        moduleContent.append(chapterView);
         return;
       }
       const chapterView=document.createElement('section');
