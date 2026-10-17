@@ -466,368 +466,1598 @@ async function digest(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value))),v=>v.toString(16).padStart(2,"0")).join("");
 }
 function adminPage(authorized) {
-  const content=authorized ? "<h1>Traffic</h1><p>Private owner dashboard · One row per IP, with visit counts from the latest 5,000 page views within 7 days. Popular page counts are based on section activity recorded since tracking started. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class=\"actions\"><a href=\"/\">Back to Academic Hub</a><button id=\"refresh\">Refresh</button><button id=\"logout\">Log out</button></div><h2 id=\"today-summary\" aria-live=\"polite\">Today: loading…</h2><p>Live · Updates every 15 seconds · India time · Visitors counted by distinct IP address</p><h2 id=\"summary\">Loading…</h2><p id=\"status\" role=\"status\"></p><div class=\"traffic-tabs\" role=\"tablist\" aria-label=\"Traffic views\"><button class=\"traffic-tab active\" id=\"visitors-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"visitors-panel\">Visitors</button><button class=\"traffic-tab\" id=\"popular-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"popular-panel\">Popular pages</button><button class=\"traffic-tab\" id=\"live-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"live-panel\">Live now</button><button class=\"traffic-tab\" id=\"chat-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"chat-panel\">Community chat</button></div><div id=\"live-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"live-tab\" hidden><h2 id=\"live-summary\" aria-live=\"polite\">Checking live visitors…</h2><p class=\"panel-intro\">Active browser tabs seen within the last 90 seconds, grouped by page and section. Session names and IP addresses are not shown here.</p><div id=\"live-pages\" class=\"subject-grid\"></div></div><div id=\"visitors-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"visitors-tab\"><div class=\"table traffic-table\"><table><thead><tr><th>Last visit (India)</th><th>Visitor IP</th><th>Visits</th><th>Country</th><th>State / Region</th><th>City</th><th>Latest page</th><th>Sections visited</th></tr></thead><tbody id=\"rows\"></tbody></table></div><div class=\"pagination traffic-pagination\" aria-label=\"Traffic pagination\"><label class=\"page-size-label\" for=\"traffic-page-size\">Rows per page <select id=\"traffic-page-size\"><option value=\"25\" selected>25</option><option value=\"50\">50</option><option value=\"100\">100</option></select></label><span id=\"traffic-page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"traffic-prev-page\" type=\"button\" disabled>Previous</button><button id=\"traffic-next-page\" type=\"button\" disabled>Next</button></div></div></div><div id=\"popular-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"popular-tab\" hidden><p class=\"panel-intro\">Ranked by section visits since tracking started. Expand a page to see visitor IPs, repeat counts and last activity.</p><div class=\"table popular-pages-table\"><table><thead><tr><th>Rank</th><th>Page / section</th><th>Visits</th><th>Visitors</th><th>Last activity (India)</th><th>Details</th></tr></thead><tbody id=\"popular-page-rows\"></tbody></table></div></div><div id=\"chat-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"chat-tab\" hidden><div style=\"display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;flex-wrap:wrap\"><div><h2 style=\"margin:0;font-size:18px;color:#183b35\">Community chat moderation</h2><p class=\"panel-intro\" style=\"margin:3px 0 0\">Review all active student messages, remove spam or inappropriate messages, or clear the chat room.</p></div><div style=\"display:flex;gap:8px\"><button id=\"admin-chat-refresh\" type=\"button\" style=\"background:#183b35;color:#fff;padding:8px 12px;border:0;border-radius:8px;font-size:12px;cursor:pointer\">Refresh chat</button><button id=\"admin-chat-clear\" type=\"button\" style=\"background:#8c2929;color:#fff;padding:8px 12px;border:0;border-radius:8px;font-size:12px;cursor:pointer\">Clear all messages</button></div></div><p id=\"admin-chat-status\" role=\"status\" style=\"margin:6px 0 10px;font-size:12px;color:#536a62\"></p><div class=\"table\"><table><thead><tr><th style=\"width:160px\">Time (India)</th><th style=\"width:150px\">Student</th><th>Message</th><th style=\"width:110px\">Action</th></tr></thead><tbody id=\"admin-chat-rows\"></tbody></table></div></div><section class=\"results-section\" aria-labelledby=\"results-title\"><div class=\"results-heading\"><h2 id=\"results-title\">Mock test results</h2><p>Seven-subject overview, attempt details, and repeated-IP counts.</p></div><div class=\"stats\" aria-live=\"polite\"><div class=\"metric\"><span>Total attempts</span><strong id=\"attempt-total\">Loading…</strong></div><div class=\"metric\"><span>Passed</span><strong id=\"attempt-passed\">—</strong></div><div class=\"metric\"><span>Below pass</span><strong id=\"attempt-failed\">—</strong></div><div class=\"metric\"><span>Average score</span><strong id=\"attempt-average\">—</strong></div><div class=\"metric\"><span>IP addresses with repeats</span><strong id=\"repeated-ip-total\">—</strong></div></div><div class=\"results-tabs\" role=\"tablist\" aria-label=\"Mock test result views\"><button class=\"results-tab active\" id=\"dashboard-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"dashboard-panel\">Dashboard</button><button class=\"results-tab\" id=\"attempts-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"attempts-panel\">Attempts</button></div><div id=\"dashboard-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"dashboard-tab\"><p class=\"panel-intro\">Seven subjects with test counts, attempts, pass and below-pass totals, and average marks.</p><div id=\"subject-rows\" class=\"subject-grid\"></div></div><div id=\"attempts-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"attempts-tab\" hidden><div class=\"actions attempt-actions\"><label for=\"subject-filter\">Subject</label><select id=\"subject-filter\"><option value=\"\">All subjects</option></select><button id=\"refresh-results\" type=\"button\">Refresh mock tests</button></div><p id=\"results-status\" role=\"status\">Loading mock test results…</p><div class=\"table attempt-table\"><table><thead><tr><th>ID</th><th>Name</th><th>Registration</th><th>Subject</th><th>Score</th><th>Total</th><th>Mark</th><th>Same-IP attempts</th><th>Wrong</th><th>Unanswered</th><th>Status</th><th>Auto submitted</th><th>Submitted (India)</th></tr></thead><tbody id=\"result-rows\"></tbody></table></div><div class=\"pagination\" aria-label=\"Attempt pagination\"><label class=\"page-size-label\" for=\"page-size\">Rows per page <select id=\"page-size\"><option value=\"25\">25</option><option value=\"50\" selected>50</option><option value=\"100\">100</option></select></label><span id=\"page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"prev-page\" type=\"button\" disabled>Previous</button><button id=\"next-page\" type=\"button\" disabled>Next</button></div></div></div></section>" : "<h1>Owner login</h1><p>Sign in to access the private owner area.</p><form id=\"login\"><label for=\"password\">Admin password</label><input id=\"password\" type=\"password\" autocomplete=\"current-password\" required maxlength=\"1024\"><button>Sign in</button></form><p id=\"status\" role=\"status\"></p><a href=\"/\">Back to Academic Hub</a>";
-  const script=authorized ? `
+  const content = authorized ? `
+<header class="hud-header">
+  <div class="brand-title">
+    <div class="brand-radar"></div>
+    <div class="brand-text">
+      <h1>ACADEMIC HUB // CONTROL ROOM <span>v3.0 ENTERPRISE</span></h1>
+      <div class="brand-sub">OPERATIONS WATCH & TELEMETRY CENTER · PRIVATE OWNER ACCESS</div>
+    </div>
+  </div>
+
+  <div class="hud-clocks">
+    <div class="clock-item">
+      <span class="clock-label">SYSTEM TIME (IST)</span>
+      <span class="clock-time" id="ist-clock">Loading...</span>
+    </div>
+    <div class="clock-item">
+      <span class="clock-label">COORDINATED UNIVERSAL</span>
+      <span class="clock-time" id="utc-clock">Loading...</span>
+    </div>
+    <div class="clock-item">
+      <span class="clock-label">RADAR LINK</span>
+      <span class="clock-time" id="radar-link-status" style="color:var(--accent-emerald)">● NOMINAL</span>
+    </div>
+  </div>
+
+  <div class="hud-actions">
+    <button class="btn btn-primary" id="btn-force-sync" type="button">⚡ FORCE REFRESH</button>
+    <label class="refresh-rate-label" for="sync-interval">
+      SYNC:
+      <select id="sync-interval" class="select-inline">
+        <option value="15000" selected>15s</option>
+        <option value="30000">30s</option>
+        <option value="60000">60s</option>
+        <option value="0">PAUSE</option>
+      </select>
+    </label>
+    <a href="/" class="btn">HUB HOME</a>
+    <button class="btn btn-danger" id="logout" type="button">SIGN OUT</button>
+  </div>
+</header>
+
+<section class="kpi-grid">
+  <div class="kpi-card live">
+    <div class="kpi-head">
+      <span class="kpi-title">LIVE ACTIVE NOW</span>
+      <span class="kpi-badge live">● 90s RADAR</span>
+    </div>
+    <div class="kpi-val"><span id="live-active-count">0</span> <small>CONCURRENT</small></div>
+    <div class="kpi-foot">
+      <span>Spread across</span>
+      <span class="highlight" id="live-pages-summary">checking active tabs...</span>
+    </div>
+  </div>
+
+  <div class="kpi-card today">
+    <div class="kpi-head">
+      <span class="kpi-title">TODAY'S INGRESS (IST)</span>
+      <span class="kpi-badge today" id="today-badge">TODAY</span>
+    </div>
+    <div class="kpi-val"><span id="today-visitors">0</span> <small>VISITORS</small></div>
+    <div class="kpi-foot">
+      <span class="highlight" id="today-views">0</span> page views · <span id="today-ratio">0</span> views/user
+    </div>
+  </div>
+
+  <div class="kpi-card buffer">
+    <div class="kpi-head">
+      <span class="kpi-title">7-DAY TELEMETRY BUFFER</span>
+      <span class="kpi-badge total">ROLLING</span>
+    </div>
+    <div class="kpi-val"><span id="buffer-views">0</span> <small>LOGS</small></div>
+    <div class="kpi-foot">
+      <span class="highlight" id="buffer-ips">0</span> distinct IPs · <span id="buffer-repeats">0%</span> repeat
+    </div>
+  </div>
+
+  <div class="kpi-card tests">
+    <div class="kpi-head">
+      <span class="kpi-title">ASSESSMENT ENGINE</span>
+      <span class="kpi-badge tests">7 SUBJECTS</span>
+    </div>
+    <div class="kpi-val"><span id="test-total-attempts">0</span> <small>ATTEMPTS</small></div>
+    <div class="kpi-foot">
+      <span class="highlight" style="color:var(--accent-emerald)" id="test-pass-rate">0% PASS</span> · <span id="test-avg-score">0% AVG</span>
+    </div>
+  </div>
+</section>
+
+<nav class="nav-tabs" role="tablist">
+  <button class="tab-btn active" id="tab-btn-assessment" type="button" role="tab" aria-selected="true">🎯 ASSESSMENT MATRIX <span class="badge-pill" id="badge-total-tests">0</span></button>
+  <button class="tab-btn" id="tab-btn-radar" type="button" role="tab" aria-selected="false">🛰️ LIVE RADAR PRESENCE <span class="badge-pill" id="badge-live-tabs">0 ACTIVE</span></button>
+  <button class="tab-btn" id="tab-btn-geo" type="button" role="tab" aria-selected="false">🌍 GEO & NETWORK INTELLIGENCE <span class="badge-pill" id="badge-total-ips">0 IPs</span></button>
+  <button class="tab-btn" id="tab-btn-content" type="button" role="tab" aria-selected="false">📊 CONTENT LEADERBOARD <span class="badge-pill" id="badge-total-pages">0</span></button>
+  <button class="tab-btn" id="tab-btn-chat" type="button" role="tab" aria-selected="false">💬 COMMUNITY CHAT <span class="badge-pill">MOD</span></button>
+</nav>
+
+<main class="control-panel">
+  <!-- STATION 1: MOCK TEST COMMAND CENTER -->
+  <section class="station-card" id="panel-assessment">
+    <div class="station-header">
+      <div>
+        <h2><span class="station-dot"></span> 7-SUBJECT ASSESSMENT TELEMETRY MATRIX</h2>
+        <p class="station-desc">Automated scoring diagnostics, pass-rate gauges, and student performance across all 7 semester disciplines.</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" id="btn-export-results" type="button">📥 EXPORT RESULTS CSV</button>
+        <button class="btn" id="refresh-results" type="button">🔄 REFRESH ATTEMPTS</button>
+      </div>
+    </div>
+
+    <!-- 7 SUBJECT MATRIX CARDS -->
+    <div class="subject-grid" id="subject-cards-grid">
+      <!-- Generated dynamically -->
+    </div>
+
+    <!-- SCORE SPECTRUM HISTOGRAM -->
+    <div class="spectrum-box">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:11px; font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-transform:uppercase;">Score Distribution Spectrum (<span id="spectrum-total">0</span> Total Attempts)</span>
+        <span style="font-size:11px; font-family:var(--font-mono); color:var(--accent-emerald);" id="spectrum-pass-rate">0% Passed Standards (>=40%)</span>
+      </div>
+      <div class="spectrum-bar">
+        <div class="spectrum-seg distinction" id="seg-distinction" style="width: 25%;" title="Distinction (>=80%)"></div>
+        <div class="spectrum-seg merit" id="seg-merit" style="width: 25%;" title="Very Good (60-79%)"></div>
+        <div class="spectrum-seg pass" id="seg-pass" style="width: 25%;" title="Pass Standard (40-59%)"></div>
+        <div class="spectrum-seg fail" id="seg-fail" style="width: 25%;" title="Below Pass (<40%)"></div>
+      </div>
+      <div class="spectrum-legend">
+        <div class="legend-item"><span class="legend-dot distinction"></span> Distinction [80-100%]: <strong id="count-distinction">0</strong> (<span id="pct-distinction">0%</span>)</div>
+        <div class="legend-item"><span class="legend-dot merit"></span> Very Good [60-79%]: <strong id="count-merit">0</strong> (<span id="pct-merit">0%</span>)</div>
+        <div class="legend-item"><span class="legend-dot pass"></span> Pass Standard [40-59%]: <strong id="count-pass">0</strong> (<span id="pct-pass">0%</span>)</div>
+        <div class="legend-item"><span class="legend-dot fail"></span> Below Pass [&lt;40%]: <strong id="count-fail">0</strong> (<span id="pct-fail">0%</span>)</div>
+      </div>
+    </div>
+
+    <!-- FILTER & SEARCH HUD -->
+    <div class="filter-row">
+      <input type="text" class="search-input" id="result-search-input" placeholder="🔍 Search Student Name, ID, Subject, or Reg #..." value="">
+      <select class="filter-select" id="subject-filter">
+        <option value="">All 7 Subjects</option>
+      </select>
+      <select class="filter-select" id="grade-filter">
+        <option value="">Performance: All Marks</option>
+        <option value="distinction">Distinction (>=80%)</option>
+        <option value="pass">Passed Standard (>=40%)</option>
+        <option value="fail">Below Pass / Needs Improvement (&lt;40%)</option>
+      </select>
+      <select class="filter-select" id="identity-filter">
+        <option value="">Identity: All Submissions</option>
+        <option value="named">Named Students Only</option>
+        <option value="anon">Legacy Anonymous Only</option>
+      </select>
+      <select class="filter-select" id="page-size">
+        <option value="25">25 per page</option>
+        <option value="50" selected>50 per page</option>
+        <option value="100">100 per page</option>
+        <option value="250">250 per page</option>
+      </select>
+    </div>
+
+    <p id="results-status" role="status" style="font-size:12px; font-family:var(--font-mono); color:var(--text-dim); margin-bottom:10px;">Loading mock test results...</p>
+
+    <!-- DETAILED ATTEMPTS TABLE (WITH RECTIFIED NAMES & SUBJECTS) -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Student Identity</th>
+            <th>Registration</th>
+            <th>Test Discipline / Subject</th>
+            <th>Score</th>
+            <th>Mark %</th>
+            <th>Performance Status</th>
+            <th>Wrong</th>
+            <th>Skipped</th>
+            <th>Device Attempt</th>
+            <th>Submission Mode</th>
+            <th>Timestamp (IST)</th>
+          </tr>
+        </thead>
+        <tbody id="result-rows">
+          <!-- Rendered dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar">
+      <span id="page-info" class="page-info">Page 1 of 1</span>
+      <div class="page-controls">
+        <button class="btn" id="prev-page" type="button" disabled>◀ PREVIOUS</button>
+        <button class="btn" id="next-page" type="button" disabled>NEXT ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATION 2: LIVE AUDIENCE RADAR -->
+  <section class="station-card" id="panel-radar" hidden>
+    <div class="station-header">
+      <div>
+        <h2><span class="station-dot"></span> LIVE AUDIENCE RADAR (CONCURRENT TABS STREAM)</h2>
+        <p class="station-desc">Telemetry active within the last 90 seconds. Highlights concurrent study clusters and live mock test sessions.</p>
+      </div>
+      <div>
+        <span style="font-size:12px; font-family:var(--font-mono); color:var(--accent-emerald);" id="radar-summary-text">● CHECKING RADAR...</span>
+      </div>
+    </div>
+
+    <div class="radar-grid" id="live-pages-grid">
+      <!-- Rendered dynamically -->
+    </div>
+  </section>
+
+  <!-- STATION 3: GEO & NETWORK INTELLIGENCE -->
+  <section class="station-card" id="panel-geo" hidden>
+    <div class="station-header">
+      <div>
+        <h2><span class="station-dot"></span> GLOBAL INGRESS & NETWORK AUDIT LOG</h2>
+        <p class="station-desc">Deep telemetry records by visitor IP, regional geolocations, visit velocity, and chronological section breadcrumbs.</p>
+      </div>
+      <div>
+        <button class="btn btn-primary" id="btn-export-traffic" type="button">📥 EXPORT TRAFFIC CSV</button>
+      </div>
+    </div>
+
+    <!-- COUNTRY BREAKDOWN CARDS -->
+    <div class="country-grid" id="country-summary-grid">
+      <!-- Rendered dynamically -->
+    </div>
+
+    <div class="filter-row">
+      <input type="text" class="search-input" id="traffic-search-input" placeholder="🔍 Search IP Address, City, Country, or Page Path..." value="">
+      <select class="filter-select" id="traffic-page-size">
+        <option value="25" selected>25 rows</option>
+        <option value="50">50 rows</option>
+        <option value="100">100 rows</option>
+      </select>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Last Active (IST)</th>
+            <th>Visitor IP Address</th>
+            <th>Total Visits</th>
+            <th>Country / Region</th>
+            <th>State / City</th>
+            <th>Current Active Page</th>
+            <th>Section Trail History</th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+          <!-- Rendered dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar">
+      <span id="traffic-page-info" class="page-info">Page 1 of 1</span>
+      <div class="page-controls">
+        <button class="btn" id="traffic-prev-page" type="button" disabled>◀ PREVIOUS</button>
+        <button class="btn" id="traffic-next-page" type="button" disabled>NEXT ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATION 4: CONTENT LEADERBOARD -->
+  <section class="station-card" id="panel-content" hidden>
+    <div class="station-header">
+      <div>
+        <h2><span class="station-dot"></span> CONTENT POPULARITY & ACCESS LEADERBOARD</h2>
+        <p class="station-desc">Ranked by section visits and unique student readers since tracking began.</p>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Learning Page / Section</th>
+            <th>Total Views</th>
+            <th>Unique Visitors</th>
+            <th>Views / Visitor Ratio</th>
+            <th>Last Activity (IST)</th>
+            <th>Visitor IP Deep Audit</th>
+          </tr>
+        </thead>
+        <tbody id="popular-page-rows">
+          <!-- Rendered dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- STATION 5: COMMUNITY CHAT MODERATION -->
+  <section class="station-card" id="panel-chat" hidden>
+    <div class="station-header">
+      <div>
+        <h2><span class="station-dot"></span> COMMUNITY CHAT TACTICAL INTERCEPT & MODERATION</h2>
+        <p class="station-desc">Live intercept of student peer chat. Monitor discussion, remove spam, or wipe room on command.</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" id="admin-chat-refresh" type="button">🔄 REFRESH CHAT</button>
+        <button class="btn btn-danger" id="admin-chat-clear" type="button">⚠️ CLEAR ALL MESSAGES</button>
+      </div>
+    </div>
+    <p id="admin-chat-status" role="status" style="font-size:12px; font-family:var(--font-mono); color:var(--text-dim); margin-bottom:10px;"></p>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:160px">Timestamp (IST)</th>
+            <th style="width:180px">Student Identity</th>
+            <th>Message Body</th>
+            <th style="width:110px">Moderation</th>
+          </tr>
+        </thead>
+        <tbody id="admin-chat-rows">
+          <!-- Rendered dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+` : `
+<div class="login-wrapper">
+  <div class="login-box">
+    <div class="brand-radar" style="margin: 0 auto 16px;"></div>
+    <h2>ACADEMIC HUB // CONTROL ROOM</h2>
+    <p class="login-sub">RESTRICTED ACCESS · ENTERPRISE OWNER AUTHENTICATION</p>
+    <form id="login">
+      <div class="login-field">
+        <label for="password">OWNER SECURITY KEY</label>
+        <input id="password" type="password" autocomplete="current-password" required maxlength="1024" placeholder="Enter owner admin password...">
+      </div>
+      <button class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; margin-top:8px;" type="submit">AUTHENTICATE & ENTER</button>
+    </form>
+    <p id="status" role="status" class="login-status"></p>
+    <div style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.06); padding-top:14px;">
+      <a href="/" class="btn" style="width:100%; justify-content:center;">RETURN TO ACADEMIC HUB</a>
+    </div>
+  </div>
+</div>
+`;
+
+  const styles = `
+:root {
+  --bg-core: #070b12;
+  --bg-surface: #0e1524;
+  --bg-surface-elevated: #141e33;
+  --bg-card: rgba(18, 28, 48, 0.75);
+  --border-subtle: rgba(56, 189, 248, 0.15);
+  --border-glow: rgba(16, 185, 129, 0.4);
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-indigo: #6366f1;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-core);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(6, 182, 212, 0.12), transparent),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 16px 20px 60px;
+}
+
+/* TOP COMMAND HUD */
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+.brand-title { display: flex; align-items: center; gap: 12px; }
+.brand-radar {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 12px var(--accent-emerald);
+  position: relative;
+}
+.brand-radar::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-emerald);
+  opacity: 0.7;
+  animation: radar-pulse 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes radar-pulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.brand-text h1 {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-text h1 span {
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  padding: 2px 6px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 4px;
+}
+.brand-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.hud-clocks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.clock-item { display: flex; flex-direction: column; }
+.clock-label { font-size: 9px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; }
+.clock-time { font-size: 14px; font-weight: 700; color: var(--accent-cyan); }
+
+.hud-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.refresh-rate-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); display: inline-flex; align-items: center; gap: 4px; }
+.select-inline {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-elevated);
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.btn:hover { background: rgba(6, 182, 212, 0.15); border-color: var(--accent-cyan); color: #fff; }
+.btn-primary {
+  background: linear-gradient(135deg, #0e7490, #0891b2);
+  border-color: #06b6d4;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+}
+.btn-danger {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: rgba(244, 63, 94, 0.4);
+  color: var(--accent-rose);
+}
+.btn-danger:hover { background: rgba(244, 63, 94, 0.3); color: #fff; }
+
+/* TOP KPI METRICS GRID */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.kpi-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 14px 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
+.kpi-card.live::before { background: var(--accent-emerald); }
+.kpi-card.today::before { background: var(--accent-cyan); }
+.kpi-card.buffer::before { background: var(--accent-indigo); }
+.kpi-card.tests::before { background: var(--accent-amber); }
+
+.kpi-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.kpi-title { font-size: 11px; font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+.kpi-badge { font-size: 9px; font-family: var(--font-mono); font-weight: 700; padding: 2px 6px; border-radius: 999px; text-transform: uppercase; }
+.kpi-badge.live { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); }
+.kpi-badge.today { background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); }
+.kpi-badge.total { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+.kpi-badge.tests { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); }
+
+.kpi-val { font-size: 26px; font-weight: 800; font-family: var(--font-mono); color: #fff; line-height: 1.1; margin-bottom: 6px; }
+.kpi-val small { font-size: 13px; font-weight: 500; color: var(--text-dim); }
+.kpi-foot { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+.kpi-foot span.highlight { color: var(--text-main); font-weight: 600; }
+
+/* NAVIGATION TABS */
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.tab-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: #fff; background: var(--bg-surface-elevated); }
+.tab-btn.active {
+  background: var(--bg-surface-elevated);
+  color: #fff;
+  border-color: var(--accent-cyan);
+  border-bottom: 2px solid var(--accent-cyan);
+  box-shadow: 0 -2px 10px rgba(6, 182, 212, 0.15);
+}
+.tab-btn .badge-pill { font-size: 9px; padding: 1px 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); }
+.tab-btn.active .badge-pill { background: var(--accent-cyan); color: #000; font-weight: 800; }
+
+/* CONTROL ROOM PANELS */
+.control-panel { display: grid; gap: 20px; }
+.station-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.station-card[hidden] { display: none !important; }
+.station-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.station-header h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; display: flex; align-items: center; gap: 10px; }
+.station-header h2 .station-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
+.station-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* 7 SUBJECT GRID */
+.subject-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.subject-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.subject-box:hover { transform: translateY(-2px); border-color: var(--accent-cyan); }
+.subject-box.active-filter { border-color: var(--accent-cyan); box-shadow: 0 0 12px rgba(6, 182, 212, 0.3); }
+.subject-box-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.subject-name { font-size: 13px; font-weight: 700; color: #fff; }
+.subject-tests-count { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); margin-top: 1px; }
+.subject-status { font-size: 9px; font-family: var(--font-mono); font-weight: 700; padding: 2px 6px; border-radius: 999px; text-transform: uppercase; }
+.subject-status.nominal { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+.subject-status.attention { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+
+.subject-meter { height: 5px; background: rgba(255, 255, 255, 0.08); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+.subject-meter-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan)); }
+
+.subject-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; text-align: center; }
+.subject-stat-unit { background: rgba(0, 0, 0, 0.3); padding: 5px 3px; border-radius: 5px; border: 1px solid rgba(255, 255, 255, 0.04); }
+.subject-stat-lbl { font-size: 9px; color: var(--text-dim); font-family: var(--font-mono); text-transform: uppercase; }
+.subject-stat-num { font-size: 12px; font-weight: 700; font-family: var(--font-mono); color: #fff; }
+
+/* SPECTRUM HISTOGRAM */
+.spectrum-box { background: rgba(0, 0, 0, 0.3); padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border-subtle); margin-bottom: 18px; }
+.spectrum-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 10px 0 12px; gap: 2px; }
+.spectrum-seg { height: 100%; position: relative; }
+.spectrum-seg.distinction { background: var(--accent-emerald); }
+.spectrum-seg.merit { background: var(--accent-cyan); }
+.spectrum-seg.pass { background: var(--accent-amber); }
+.spectrum-seg.fail { background: var(--accent-rose); }
+.spectrum-legend { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 11px; font-family: var(--font-mono); }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+.legend-dot.distinction { background: var(--accent-emerald); }
+.legend-dot.merit { background: var(--accent-cyan); }
+.legend-dot.pass { background: var(--accent-amber); }
+.legend-dot.fail { background: var(--accent-rose); }
+
+/* FILTERS & SEARCH ROW */
+.filter-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+}
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.search-input:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 8px rgba(6, 182, 212, 0.3); }
+.filter-select {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* DATA TABLES */
+.table-wrapper { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border-subtle); background: rgba(10, 16, 28, 0.6); }
+table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 11px; }
+th {
+  background: rgba(16, 26, 44, 0.95);
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  padding: 9px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+td { padding: 9px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: var(--text-main); vertical-align: middle; }
+tr:hover td { background: rgba(6, 182, 212, 0.04); }
+
+/* BADGES & PILLS */
+.name-pill { font-weight: 700; color: #fff; display: inline-flex; align-items: center; gap: 6px; }
+.name-pill.anon { color: var(--text-dim); font-style: italic; }
+.rep-badge {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(244, 63, 94, 0.2);
+  color: var(--accent-rose);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  font-weight: 800;
+}
+.mark-badge { display: inline-block; font-weight: 800; padding: 2px 7px; border-radius: 999px; font-size: 10px; }
+.mark-distinction { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); border: 1px solid var(--accent-emerald); }
+.mark-pass { background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
+.mark-marginal { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+.mark-fail { background: rgba(244, 63, 94, 0.2); color: var(--accent-rose); border: 1px solid var(--accent-rose); }
+
+.country-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.country-flag { font-size: 13px; }
+
+/* RADAR GRID */
+.radar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.radar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.radar-card.active-card { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 0 15px rgba(16, 185, 129, 0.15); }
+.radar-card-info h4 { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.radar-card-path { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
+.radar-card-count { text-align: right; }
+.radar-card-count .num { font-size: 22px; font-weight: 800; font-family: var(--font-mono); color: var(--accent-emerald); }
+.radar-card-count .label { font-size: 8px; text-transform: uppercase; color: var(--text-dim); font-family: var(--font-mono); }
+
+/* COUNTRY GRID */
+.country-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.country-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.country-card .flag { font-size: 22px; }
+.country-card .c-info { flex: 1; }
+.country-card .c-name { font-size: 12px; font-weight: 700; color: #fff; }
+.country-card .c-visitors { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
+
+/* DETAILS & SECTIONS IN TABLES */
+details.section-details summary, details.popular-details summary { cursor: pointer; color: var(--accent-cyan); font-weight: 600; outline: none; }
+.section-visit-list { margin: 6px 0 0; padding-left: 14px; font-size: 10px; color: var(--text-muted); }
+.section-visit-list li { margin: 2px 0; }
+
+/* PAGINATION */
+.pagination-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); }
+.page-controls { display: flex; gap: 6px; }
+
+/* LOGIN SCREEN */
+.login-wrapper { display: flex; justify-content: center; align-items: center; min-height: 80vh; }
+.login-box {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+.login-box h2 { font-size: 18px; font-weight: 800; letter-spacing: 0.05em; color: #fff; margin-bottom: 4px; }
+.login-sub { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.05em; margin-bottom: 20px; }
+.login-field { text-align: left; margin-bottom: 14px; }
+.login-field label { display: block; font-size: 10px; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 6px; }
+.login-field input {
+  width: 100%;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.login-field input:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(6, 182, 212, 0.3); }
+.login-status { margin-top: 12px; font-size: 12px; font-family: var(--font-mono); color: var(--accent-rose); min-height: 18px; }
+
+@media (max-width: 768px) {
+  body { padding: 10px 12px 40px; }
+  .hud-header { flex-direction: column; align-items: stretch; gap: 12px; padding: 12px 14px; }
+  .hud-clocks { justify-content: space-between; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .nav-tabs { gap: 4px; }
+  .tab-btn { padding: 8px 12px; font-size: 10px; }
+}
+  `;
+
+  const script = authorized ? `
+    // LIVE CONTROL ROOM SCRIPT
     function countryInfo(code){
       if(!code||code==='XX')return {flag:'🌐',name:'Unknown'};
-      if(code==='T1')return {flag:'🧅',name:'Tor network'};
+      if(code==='T1')return {flag:'🧅',name:'Tor Network'};
       if(!/^[A-Z]{2}$/.test(code))return {flag:'🌐',name:'Unknown'};
       const flag=String.fromCodePoint(...Array.from(code,c=>127397+c.charCodeAt(0)));
       try{return {flag,name:(new Intl.DisplayNames(['en'],{type:'region'}).of(code)||code)+' ('+code+')'};}catch{return {flag,name:code};}
     }
-    let trafficRecords=[];
-    let trafficPage=1;
-    const expandedIPDetails=new Set();
-    function renderTraffic(){
-      const size=Math.max(1,Number(document.getElementById('traffic-page-size').value)||25);
-      const totalPages=Math.max(1,Math.ceil(trafficRecords.length/size));
-      trafficPage=Math.min(Math.max(1,trafficPage),totalPages);
-      const start=(trafficPage-1)*size;
-      const pageItems=trafficRecords.slice(start,start+size);
-      const rows=document.getElementById('rows');
-      rows.replaceChildren();
-      for(const v of pageItems){
-        const tr=document.createElement('tr');
-        for(const text of [new Date(v.time).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),v.ip,v.visits]){
-          const td=document.createElement('td');td.textContent=text;tr.append(td);
-        }
-        const countryCell=document.createElement('td');countryCell.className='country-cell';
-        const country=document.createElement('span');country.className='country-badge';
-        const info=countryInfo(v.country);
-        const flag=document.createElement('span');flag.className='country-flag';flag.setAttribute('aria-hidden','true');flag.textContent=info.flag;
-        const name=document.createElement('span');name.className='country-name';name.textContent=info.name;
-        country.append(flag,name);countryCell.append(country);tr.append(countryCell);
-        for(const text of [v.region||"Unknown",v.city||"Unknown",v.path]){
-          const td=document.createElement('td');td.textContent=text;tr.append(td);
-        }
-        const sectionCell=document.createElement('td');
-        const details=document.createElement('details');details.className='section-details';details.open=expandedIPDetails.has(v.ip);
-        details.addEventListener('toggle',()=>{if(details.open)expandedIPDetails.add(v.ip);else expandedIPDetails.delete(v.ip);});
-        const summary=document.createElement('summary');
-        const sections=Array.isArray(v.sections)?v.sections:[];
-        summary.textContent=sections.length?"Visited sections ("+sections.length+")":"No section history";
-        details.append(summary);
-        if(sections.length){
-          const list=document.createElement('ul');list.className='section-visit-list';
-          for(const section of sections){
-            const item=document.createElement('li');
-            const last=new Date(section.lastVisit).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
-            item.textContent=section.name+" — "+section.visits+" visit"+(section.visits===1?"":"s")+" · Last: "+last;
-            list.append(item);
-          }
-          details.append(list);
-        }
-        sectionCell.append(details);tr.append(sectionCell);rows.append(tr);
-      }
-      const first=trafficRecords.length?start+1:0;
-      const last=Math.min(start+pageItems.length,trafficRecords.length);
-      document.getElementById('traffic-page-info').textContent="Showing "+first+"–"+last+" of "+trafficRecords.length+" IPs · Page "+trafficPage+" of "+totalPages;
-      document.getElementById('traffic-prev-page').disabled=trafficPage<=1;
-      document.getElementById('traffic-next-page').disabled=trafficPage>=totalPages;
+
+    function formatIST(val){
+      const d=new Date(val);
+      if(Number.isNaN(d.getTime()))return String(val||"Unknown");
+      return d.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'medium'});
     }
-    let popularPageRecords=[];
-    function renderPopularPages(){
-      const body=document.getElementById('popular-page-rows');
-      body.replaceChildren();
-      const visitorsByIP=new Map(trafficRecords.map(visitor=>[visitor.ip,visitor]));
-      for(const [index,page] of popularPageRecords.entries()){
-        const row=document.createElement('tr');
-        const rank=document.createElement('td');rank.textContent=String(index+1);row.append(rank);
-        const pageCell=document.createElement('td');
-        const pageName=document.createElement('strong');pageName.textContent=page.section||"Page";
-        const path=document.createElement('small');path.className='popular-page-path';path.textContent=page.path||"/";
-        pageCell.append(pageName,path);row.append(pageCell);
-        for(const value of [page.visits,Array.isArray(page.visitors)?page.visitors.length:0]){
-          const cell=document.createElement('td');cell.textContent=String(value);row.append(cell);
-        }
-        const lastCell=document.createElement('td');lastCell.textContent=new Date(page.lastVisit).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});row.append(lastCell);
-        const detailCell=document.createElement('td');
-        const details=document.createElement('details');details.className='popular-details';
-        const summary=document.createElement('summary');summary.textContent="Visitor details ("+(Array.isArray(page.visitors)?page.visitors.length:0)+")";details.append(summary);
-        details.addEventListener('toggle',()=>{
-          if(!details.open||details.dataset.loaded==="true")return;
-          details.dataset.loaded="true";
-          const list=document.createElement('ul');list.className='section-visit-list';
-          for(const visitor of Array.isArray(page.visitors)?page.visitors:[]){
-            const item=document.createElement('li');
-            const geo=visitorsByIP.get(visitor.ip);
-            const flag=countryInfo(geo?.country).flag;
-            const last=new Date(visitor.lastVisit).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
-            const location=[geo?.city,geo?.region].filter(Boolean).join(', ');
-            item.textContent=flag+" "+visitor.ip+" — "+visitor.visits+" visit"+(visitor.visits===1?"":"s")+" · Last: "+last+(location?" · "+location:"");
-            list.append(item);
-          }
-          if(!list.children.length){const empty=document.createElement('li');empty.textContent="No visitor details recorded.";list.append(empty);}
-          details.append(list);
-        });
-        detailCell.append(details);row.append(detailCell);body.append(row);
-      }
+
+    function updateClocks() {
+      const now = new Date();
+      const istStr = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false }) + ' IST';
+      const utcStr = now.toLocaleTimeString('en-GB', { timeZone: 'UTC', hour12: false }) + ' UTC';
+      const istEl = document.getElementById('ist-clock');
+      const utcEl = document.getElementById('utc-clock');
+      if (istEl) istEl.textContent = istStr;
+      if (utcEl) utcEl.textContent = utcStr;
     }
-    async function refresh(){
-      try{
-        const r=await fetch('/api/admin/traffic',{cache:'no-store'});
-        if(r.status===401){location.href='/admin/login';return;}
-        const d=await r.json();if(!r.ok)throw Error(d.error);
-        document.getElementById('today-summary').textContent='Today ('+d.today.day+'): '+d.today.visitors+' visitors · '+d.today.views+' page views';
-        document.getElementById('summary').textContent=d.views+' page views · '+d.uniqueIPs+' distinct IPs';
-        trafficRecords=Array.isArray(d.records)?d.records:[];
-        popularPageRecords=Array.isArray(d.popularPages)?d.popularPages:[];
-        renderTraffic();
-        renderPopularPages();
-        document.getElementById('status').textContent=d.views?'':'No visits recorded yet.';
-      }catch(e){document.getElementById('status').textContent=e.message||'Could not load traffic.';}
-    }
-    const SUBJECT_GROUPS=["Sociology","Education","Indian Economy","AI","Ethics","English","Malayalam"];
-    let allResults=[];
-    let currentPage=1;
-    let repeatedIPTotal=0;
+    setInterval(updateClocks, 1000);
+    updateClocks();
+
+    // STATE
+    let allResults = [];
+    let trafficRecords = [];
+    let popularPageRecords = [];
+    let liveData = { active: 0, pages: [] };
+    let repeatedIPTotal = 0;
+    let resultsPage = 1;
+    let trafficPage = 1;
+    let activeSubjectFilter = "";
+    const SUBJECT_GROUPS = ["Sociology", "Philosophy of Education", "Indian Economy", "AI & Mind", "Ethics", "English", "Malayalam"];
+
     function subjectGroup(value){
-      const name=String(value||"").toLowerCase();
-      if(/sociology/.test(name))return "Sociology";
-      if(/education/.test(name))return "Education";
-      if(/economy/.test(name))return "Indian Economy";
-      if(/artificial intelligence|\bai\b|philosophy of mind/.test(name))return "AI";
-      if(/ethic/.test(name))return "Ethics";
-      if(/english/.test(name))return "English";
-      if(/malayalam/.test(name))return "Malayalam";
+      const name = String(value || "").toLowerCase();
+      if (/sociology/.test(name)) return "Sociology";
+      if (/education/.test(name)) return "Philosophy of Education";
+      if (/economy|economic|foundation/.test(name)) return "Indian Economy";
+      if (/artificial intelligence|\bai\b|mind|philosophy of mind/.test(name)) return "AI & Mind";
+      if (/ethic/.test(name)) return "Ethics";
+      if (/english/.test(name)) return "English";
+      if (/malayalam/.test(name)) return "Malayalam";
       return "Other";
     }
-    function isPassed(result){const status=String(result.status||"");return /pass/i.test(status) && !/fail|not pass|needs improvement|below pass/i.test(status);}
-    function isBelowPass(result){return /needs improvement|below pass|not pass/i.test(String(result.status||""));}
-    function isFailed(result){return /fail/i.test(String(result.status||"")) || isBelowPass(result);}
-    function addCell(row,value){const cell=document.createElement('td');cell.textContent=value==null?"":String(value);row.append(cell);}
-    function formatSubmitted(value){const date=new Date(value);return Number.isNaN(date.getTime())?String(value||"Unknown"):date.toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});}
-    function renderResults(){
-      const select=document.getElementById('subject-filter');
-      const previous=select.value;
-      select.replaceChildren(new Option("All subjects",""));
-      for(const subject of SUBJECT_GROUPS) select.add(new Option(subject,subject));
-      select.value=SUBJECT_GROUPS.includes(previous)?previous:"";
-      const filter=select.value;
-      const passed=allResults.filter(isPassed).length;
-      const failed=allResults.filter(isFailed).length;
-      const percentages=allResults.map(r=>Number(r.percentage)).filter(Number.isFinite);
-      const average=percentages.length?percentages.reduce((a,b)=>a+b,0)/percentages.length:null;
-      document.getElementById('attempt-total').textContent=String(allResults.length);
-      document.getElementById('attempt-passed').textContent=String(passed);
-      document.getElementById('attempt-failed').textContent=String(failed);
-      document.getElementById('attempt-average').textContent=average===null?"—":average.toFixed(1)+"%";
-      document.getElementById('repeated-ip-total').textContent=String(repeatedIPTotal);
-      const grid=document.getElementById('subject-rows');grid.replaceChildren();
-      for(const subject of SUBJECT_GROUPS){
-        const items=allResults.filter(item=>subjectGroup(item.subject)===subject);
-        const scores=items.map(item=>Number(item.percentage)).filter(Number.isFinite);
-        const tests=new Set(items.map(item=>item.subject||"Unspecified"));
-        const card=document.createElement('article');card.className='subject-card';
-        const title=document.createElement('h3');title.textContent=subject;card.append(title);
-        const subtitle=document.createElement('p');subtitle.className='subject-meta';subtitle.textContent=tests.size+" test"+(tests.size===1?"":"s");card.append(subtitle);
-        const metrics=document.createElement('div');metrics.className='subject-metrics';
-        const averageText=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1)+"%":"—";
-        for(const entry of [["Attempts",items.length],["Passed",items.filter(isPassed).length],["Below pass",items.filter(isFailed).length],["Average marks",averageText]]){
-          const metric=document.createElement('div');const label=document.createElement('span');label.textContent=entry[0];const value=document.createElement('strong');value.textContent=String(entry[1]);metric.append(label,value);metrics.append(metric);
+
+    function isPassed(r){ const s = String(r.status||""); return /pass/i.test(s) && !/fail|below pass|needs improvement/i.test(s); }
+    function isFailed(r){ return !isPassed(r); }
+    function isDistinction(r){ return Number(r.percentage) >= 80; }
+
+    // RENDER ATTEMPTS & 7-SUBJECT MATRIX
+    function renderResults() {
+      const search = (document.getElementById('result-search-input').value || "").trim().toLowerCase();
+      const subjectFilter = document.getElementById('subject-filter').value || activeSubjectFilter;
+      const gradeFilter = document.getElementById('grade-filter').value;
+      const identityFilter = document.getElementById('identity-filter').value;
+      const size = Math.max(1, Number(document.getElementById('page-size').value) || 50);
+
+      // Filter attempts
+      let filtered = allResults.filter(item => {
+        if (subjectFilter && subjectGroup(item.subject) !== subjectFilter) return false;
+        if (gradeFilter === 'distinction' && !isDistinction(item)) return false;
+        if (gradeFilter === 'pass' && !isPassed(item)) return false;
+        if (gradeFilter === 'fail' && !isFailed(item)) return false;
+        const rawName = String(item.name || "").trim();
+        const isAnon = !rawName || rawName.toLowerCase() === 'anonymous' || rawName.toLowerCase() === 'student';
+        if (identityFilter === 'named' && isAnon) return false;
+        if (identityFilter === 'anon' && !isAnon) return false;
+
+        if (search) {
+          const matchStr = (item.id + " " + item.name + " " + item.subject + " " + item.reg).toLowerCase();
+          if (!matchStr.includes(search)) return false;
         }
-        card.append(metrics);grid.append(card);
+        return true;
+      });
+
+      // Macro KPI
+      const totalAttempts = allResults.length;
+      const passedCount = allResults.filter(isPassed).length;
+      const passRate = totalAttempts ? ((passedCount / totalAttempts) * 100).toFixed(1) : 0;
+      const validScores = allResults.map(r => Number(r.percentage)).filter(Number.isFinite);
+      const avgScore = validScores.length ? (validScores.reduce((a, b) => a + b, 0) / validScores.length).toFixed(1) : 0;
+
+      document.getElementById('test-total-attempts').textContent = String(totalAttempts);
+      document.getElementById('test-pass-rate').textContent = passRate + '% PASS';
+      document.getElementById('test-avg-score').textContent = avgScore + '% AVG';
+      document.getElementById('badge-total-tests').textContent = String(totalAttempts);
+
+      // Spectrum calculations
+      const distCount = allResults.filter(isDistinction).length;
+      const meritCount = allResults.filter(r => Number(r.percentage) >= 60 && Number(r.percentage) < 80).length;
+      const passStandardCount = allResults.filter(r => Number(r.percentage) >= 40 && Number(r.percentage) < 60).length;
+      const failCount = allResults.filter(r => Number(r.percentage) < 40).length;
+
+      document.getElementById('spectrum-total').textContent = String(totalAttempts);
+      document.getElementById('spectrum-pass-rate').textContent = passRate + '% Passed Standards (>=40%)';
+      document.getElementById('count-distinction').textContent = String(distCount);
+      document.getElementById('pct-distinction').textContent = totalAttempts ? ((distCount/totalAttempts)*100).toFixed(1)+'%' : '0%';
+      document.getElementById('count-merit').textContent = String(meritCount);
+      document.getElementById('pct-merit').textContent = totalAttempts ? ((meritCount/totalAttempts)*100).toFixed(1)+'%' : '0%';
+      document.getElementById('count-pass').textContent = String(passStandardCount);
+      document.getElementById('pct-pass').textContent = totalAttempts ? ((passStandardCount/totalAttempts)*100).toFixed(1)+'%' : '0%';
+      document.getElementById('count-fail').textContent = String(failCount);
+      document.getElementById('pct-fail').textContent = totalAttempts ? ((failCount/totalAttempts)*100).toFixed(1)+'%' : '0%';
+
+      if (totalAttempts) {
+        document.getElementById('seg-distinction').style.width = ((distCount/totalAttempts)*100) + '%';
+        document.getElementById('seg-merit').style.width = ((meritCount/totalAttempts)*100) + '%';
+        document.getElementById('seg-pass').style.width = ((passStandardCount/totalAttempts)*100) + '%';
+        document.getElementById('seg-fail').style.width = ((failCount/totalAttempts)*100) + '%';
       }
-      const nameAttempts=new Map();
-      for(const attempt of allResults){
-        const key=String(attempt.name||"").trim().replace(/\\s+/g," ").toLowerCase();
-        if(key)nameAttempts.set(key,(nameAttempts.get(key)||0)+1);
+
+      // Render 7 Subject Cards
+      const grid = document.getElementById('subject-cards-grid');
+      grid.replaceChildren();
+      for (const subj of SUBJECT_GROUPS) {
+        const items = allResults.filter(r => subjectGroup(r.subject) === subj);
+        const subjPassed = items.filter(isPassed).length;
+        const subjRate = items.length ? ((subjPassed / items.length) * 100).toFixed(1) : 0;
+        const scores = items.map(r => Number(r.percentage)).filter(Number.isFinite);
+        const subjAvg = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : 0;
+        const topMark = scores.length ? Math.max(...scores).toFixed(1) : '—';
+        const tests = new Set(items.map(r => r.subject || "Test"));
+
+        const card = document.createElement('div');
+        card.className = 'subject-box' + (subjectFilter === subj ? ' active-filter' : '');
+        card.onclick = () => {
+          if (activeSubjectFilter === subj) {
+            activeSubjectFilter = "";
+            document.getElementById('subject-filter').value = "";
+          } else {
+            activeSubjectFilter = subj;
+            document.getElementById('subject-filter').value = subj;
+          }
+          resultsPage = 1;
+          renderResults();
+        };
+
+        const head = document.createElement('div'); head.className = 'subject-box-head';
+        const titleDiv = document.createElement('div');
+        const sName = document.createElement('div'); sName.className = 'subject-name'; sName.textContent = subj;
+        const sSub = document.createElement('div'); sSub.className = 'subject-tests-count'; sSub.textContent = (tests.size || 1) + " Tests Registered";
+        titleDiv.append(sName, sSub);
+
+        const badge = document.createElement('span');
+        badge.className = 'subject-status ' + (Number(subjRate) >= 70 ? 'nominal' : 'attention');
+        badge.textContent = subjRate + '% PASS';
+        head.append(titleDiv, badge);
+
+        const meter = document.createElement('div'); meter.className = 'subject-meter';
+        const fill = document.createElement('div'); fill.className = 'subject-meter-fill'; fill.style.width = subjRate + '%';
+        meter.append(fill);
+
+        const sRow = document.createElement('div'); sRow.className = 'subject-stats-row';
+        sRow.innerHTML = `
+          <div class="subject-stat-unit"><div class="subject-stat-lbl">Attempts</div><div class="subject-stat-num">${items.length}</div></div>
+          <div class="subject-stat-unit"><div class="subject-stat-lbl">Average</div><div class="subject-stat-num">${subjAvg}%</div></div>
+          <div class="subject-stat-unit"><div class="subject-stat-lbl">Top Mark</div><div class="subject-stat-num">${topMark}${topMark!=='—'?'%':''}</div></div>
+        `;
+
+        card.append(head, meter, sRow);
+        grid.append(card);
       }
-      const filtered=allResults.filter(item=>!filter||subjectGroup(item.subject)===filter);
-      const size=Math.max(1,Number(document.getElementById('page-size').value)||50);
-      const totalPages=Math.max(1,Math.ceil(filtered.length/size));
-      currentPage=Math.min(Math.max(1,currentPage),totalPages);
-      const start=(currentPage-1)*size;
-      const pageItems=filtered.slice(start,start+size);
-      const body=document.getElementById('result-rows');body.replaceChildren();
-      for(const item of pageItems){
-        const row=document.createElement('tr');
-        addCell(row,item.id);
-        const nameCell=document.createElement('td');
-        const attemptName=String(item.name||"");
-        const normalizedName=attemptName.trim().replace(/\\s+/g," ").toLowerCase();
-        const nameCount=nameAttempts.get(normalizedName)||0;
-        nameCell.textContent=attemptName;
-        if(nameCount>1){
-          nameCell.className='repeat-name';
-          nameCell.title=nameCount+" attempts under this name";
-          nameCell.setAttribute('aria-label',attemptName+" — "+nameCount+" attempts");
-          const countBadge=document.createElement('span');countBadge.className='name-repeat-count';countBadge.textContent="×"+nameCount;nameCell.append(countBadge);
+
+      // Name repeat tracking
+      const nameCounts = new Map();
+      for (const r of allResults) {
+        const k = String(r.name || "").trim().toLowerCase();
+        if (k && k !== 'anonymous' && k !== 'student') {
+          nameCounts.set(k, (nameCounts.get(k) || 0) + 1);
         }
-        row.append(nameCell);
-        for(const value of [item.reg,item.subject,item.score,item.total])addCell(row,value);
-        const markCell=document.createElement('td');
-        const mark=document.createElement('span');
-        mark.className='mark '+(isPassed(item)?'mark-pass':isBelowPass(item)?'mark-below':isFailed(item)?'mark-fail':'mark-neutral');
-        mark.textContent=Number.isFinite(Number(item.percentage))?Number(item.percentage).toFixed(1)+'%':'—';
-        markCell.append(mark);row.append(markCell);
-        const repeatCount=Number(item.same_ip_attempts);
-        const repeatCell=document.createElement('td');
-        const repeatBadge=document.createElement('span');
-        repeatBadge.className='repeat-count'+(Number.isFinite(repeatCount)&&repeatCount>1?' repeat-many':'');
-        repeatBadge.textContent=Number.isFinite(repeatCount)?String(repeatCount):'—';
-        repeatCell.append(repeatBadge);row.append(repeatCell);
-        for(const value of [item.wrong,item.unanswered])addCell(row,value);
-        const statusCell=document.createElement('td');
-        const statusBadge=document.createElement('span');
-        statusBadge.className='status-badge '+(isPassed(item)?'status-pass':isBelowPass(item)?'status-below':isFailed(item)?'status-fail':'status-neutral');
-        statusBadge.textContent=item.status||"Unknown";statusCell.append(statusBadge);row.append(statusCell);
-        for(const value of [item.auto_submitted?"Yes":"No",formatSubmitted(item.submitted_at)])addCell(row,value);
-        body.append(row);
       }
-      const first=filtered.length?start+1:0;
-      const last=Math.min(start+pageItems.length,filtered.length);
-      document.getElementById('page-info').textContent="Showing "+first+"–"+last+" of "+filtered.length+" · Page "+currentPage+" of "+totalPages;
-      document.getElementById('prev-page').disabled=currentPage<=1;
-      document.getElementById('next-page').disabled=currentPage>=totalPages;
-      document.getElementById('results-status').textContent=allResults.length?(filter?"Showing "+filtered.length+" of "+allResults.length+" attempts for "+filter+".":"Showing "+allResults.length+" attempts across 7 subjects."):"No mock test attempts recorded yet.";
-    }
-    async function refreshResults(){
-      const status=document.getElementById('results-status');status.textContent='Loading mock test results…';
-      const button=document.getElementById('refresh-results');button.disabled=true;
-      try{
-        const response=await fetch('/api/admin/results',{cache:'no-store'});
-        if(response.status===401){location.href='/admin/login';return;}
-        const data=await response.json();if(!response.ok)throw Error(data.error||'Could not load mock test results.');
-        allResults=Array.isArray(data.results)?data.results:[];
-        repeatedIPTotal=Number(data.repeated_ip_total)||0;
-        currentPage=1;
-        renderResults();
-      }catch(error){status.textContent=error.message||'Could not load mock test results.';if(!allResults.length){document.getElementById('attempt-total').textContent='—';document.getElementById('attempt-passed').textContent='—';document.getElementById('attempt-failed').textContent='—';document.getElementById('attempt-average').textContent='—';}}
-      finally{button.disabled=false;}
-    }
-    document.getElementById('refresh-results').onclick=refreshResults;
-    document.getElementById('subject-filter').onchange=()=>{currentPage=1;renderResults();};
-    document.getElementById('page-size').onchange=()=>{currentPage=1;renderResults();};
-    document.getElementById('prev-page').onclick=()=>{currentPage=Math.max(1,currentPage-1);renderResults();};
-    document.getElementById('next-page').onclick=()=>{currentPage++;renderResults();};
-    document.getElementById('dashboard-tab').onclick=()=>{document.getElementById('dashboard-panel').hidden=false;document.getElementById('attempts-panel').hidden=true;document.getElementById('dashboard-tab').setAttribute('aria-selected','true');document.getElementById('attempts-tab').setAttribute('aria-selected','false');};
-    document.getElementById('attempts-tab').onclick=()=>{document.getElementById('dashboard-panel').hidden=true;document.getElementById('attempts-panel').hidden=false;document.getElementById('dashboard-tab').setAttribute('aria-selected','false');document.getElementById('attempts-tab').setAttribute('aria-selected','true');};
-    function livePageLabel(item){const path=String(item.path||'/');const section=String(item.section||'').trim();if(path==='/'||path==='/index.html')return section&&section!=='Home'&&section!=='Overview'?'Home · '+section:'Home page';return section||path;}
-    async function refreshLiveVisitors(){
-      try{
-        const response=await fetch('/api/admin/live-visitors',{cache:'no-store'});
-        if(response.status===401){location.href='/admin/login';return;}
-        const data=await response.json();if(!response.ok)throw Error(data.error||'Could not load live visitors.');
-        const count=Number(data.active)||0;
-        document.getElementById('live-summary').textContent=count+' active tab'+(count===1?'':'s')+' seen in the last 90 seconds';
-        const grid=document.getElementById('live-pages');grid.replaceChildren();
-        const pages=Array.isArray(data.pages)?data.pages:[];
-        if(!count){const empty=document.createElement('p');empty.className='panel-intro';empty.textContent='No active visitors right now.';grid.append(empty);return;}
-        for(const item of pages){
-          const card=document.createElement('article');card.className='subject-card';
-          const title=document.createElement('h3');title.textContent=livePageLabel(item);card.append(title);
-          const meta=document.createElement('p');meta.className='subject-meta';const visitors=Number(item.count)||0;meta.textContent=visitors+' active tab'+(visitors===1?'':'s');card.append(meta);
-          grid.append(card);
+
+      // Pagination
+      const totalPages = Math.max(1, Math.ceil(filtered.length / size));
+      resultsPage = Math.min(Math.max(1, resultsPage), totalPages);
+      const start = (resultsPage - 1) * size;
+      const pageItems = filtered.slice(start, start + size);
+
+      const tbody = document.getElementById('result-rows');
+      tbody.replaceChildren();
+
+      for (const item of pageItems) {
+        const tr = document.createElement('tr');
+        
+        // ID
+        const tdId = document.createElement('td'); tdId.textContent = '#' + item.id; tr.append(tdId);
+
+        // Student Identity (Rectified display)
+        const tdName = document.createElement('td');
+        const rawName = String(item.name || "").trim();
+        const normName = rawName.toLowerCase();
+        const isAnon = !rawName || normName === 'anonymous' || normName === 'student';
+        
+        const pill = document.createElement('span');
+        if (isAnon) {
+          pill.className = 'name-pill anon';
+          pill.innerHTML = 'Anonymous Student <span style="font-size:9px; background:rgba(255,255,255,0.06); padding:1px 4px; border-radius:3px;">[Legacy #' + item.id + ']</span>';
+        } else {
+          pill.className = 'name-pill';
+          pill.textContent = rawName;
+          const count = nameCounts.get(normName) || 1;
+          if (count > 1) {
+            const badge = document.createElement('span');
+            badge.className = 'rep-badge';
+            badge.textContent = '×' + count;
+            badge.title = count + ' attempts by this student';
+            pill.append(badge);
+          }
         }
-      }catch(error){document.getElementById('live-summary').textContent=error.message||'Could not load live visitors.';}
-    }
-    function setTrafficTab(view){
-      const live=view==='live';
-      const popular=view==='popular';
-      const chat=view==='chat';
-      document.getElementById('visitors-panel').hidden=live||popular||chat;
-      document.getElementById('popular-panel').hidden=!popular;
-      document.getElementById('live-panel').hidden=!live;
-      document.getElementById('chat-panel').hidden=!chat;
-      document.getElementById('visitors-tab').setAttribute('aria-selected',String(!live&&!popular&&!chat));
-      document.getElementById('popular-tab').setAttribute('aria-selected',String(popular));
-      document.getElementById('live-tab').setAttribute('aria-selected',String(live));
-      document.getElementById('chat-tab').setAttribute('aria-selected',String(chat));
-      document.getElementById('visitors-tab').classList.toggle('active',!live&&!popular&&!chat);
-      document.getElementById('popular-tab').classList.toggle('active',popular);
-      document.getElementById('live-tab').classList.toggle('active',live);
-      document.getElementById('chat-tab').classList.toggle('active',chat);
-      if(chat)loadAdminChat();
-    }
-    document.getElementById('visitors-tab').onclick=()=>setTrafficTab(false);
-    document.getElementById('popular-tab').onclick=()=>setTrafficTab('popular');
-    document.getElementById('live-tab').onclick=()=>setTrafficTab('live');
-    document.getElementById('chat-tab').onclick=()=>setTrafficTab('chat');
-    if(location.hash==='#live')setTrafficTab('live');
-    if(location.hash==='#chat')setTrafficTab('chat');
-    async function loadAdminChat(){
-      const status=document.getElementById('admin-chat-status');
-      const rows=document.getElementById('admin-chat-rows');
-      status.textContent='Loading community chat messages…';
-      try{
-        const response=await fetch('/api/chat',{cache:'no-store'});
-        if(!response.ok)throw Error('Could not load chat messages.');
-        const data=await response.json();
-        const messages=Array.isArray(data.messages)?data.messages:[];
-        rows.replaceChildren();
-        if(!messages.length){
-          status.textContent='No messages in community chat right now.';
-          const tr=document.createElement('tr');
-          const td=document.createElement('td');
-          td.colSpan=4;
-          td.textContent='No messages in community chat right now.';
-          td.style.cssText='text-align:center;color:#64776f;padding:24px';
-          tr.append(td);
-          rows.append(tr);
-          return;
+        tdName.append(pill);
+        tr.append(tdName);
+
+        // Registration
+        const tdReg = document.createElement('td'); tdReg.textContent = item.reg || 'N/A'; tr.append(tdReg);
+
+        // Subject / Test Discipline
+        const tdSub = document.createElement('td');
+        tdSub.innerHTML = '<strong style="color:#fff">' + (item.subject || 'Unspecified Test') + '</strong>';
+        tr.append(tdSub);
+
+        // Score
+        const tdScore = document.createElement('td');
+        tdScore.innerHTML = '<strong>' + (item.score != null ? item.score : '—') + ' / ' + (item.total != null ? item.total : '—') + '</strong>';
+        tr.append(tdScore);
+
+        // Mark %
+        const tdPct = document.createElement('td');
+        const pctVal = Number(item.percentage);
+        const markBadge = document.createElement('span');
+        if (Number.isFinite(pctVal)) {
+          markBadge.className = 'mark-badge ' + (pctVal >= 80 ? 'mark-distinction' : pctVal >= 60 ? 'mark-pass' : pctVal >= 40 ? 'mark-marginal' : 'mark-fail');
+          markBadge.textContent = pctVal.toFixed(1) + '%';
+        } else {
+          markBadge.textContent = '—';
         }
-        status.textContent='Showing '+messages.length+' message'+(messages.length===1?'':'s')+'.';
-        for(const msg of messages.slice().reverse()){
-          const tr=document.createElement('tr');
-          const tdTime=document.createElement('td');
-          tdTime.textContent=new Date(msg.createdAt).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
-          const tdName=document.createElement('td');
-          const strong=document.createElement('strong');
-          strong.textContent=msg.name;
-          tdName.append(strong);
-          const tdText=document.createElement('td');
-          tdText.textContent=msg.text;
-          const tdAct=document.createElement('td');
-          const delBtn=document.createElement('button');
-          delBtn.type='button';
-          delBtn.textContent='Delete';
-          delBtn.style.cssText='padding:5px 9px;background:#b33a3a;color:#fff;border:0;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600';
-          delBtn.onclick=async()=>{
-            if(!confirm('Delete message from "'+msg.name+'"?'))return;
-            delBtn.disabled=true;
-            delBtn.textContent='Deleting…';
-            try{
-              const r=await fetch('/api/chat/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:msg.id})});
-              const d=await r.json();
-              if(!r.ok)throw Error(d.error||'Delete failed.');
-              tr.remove();
-              status.textContent='Message deleted successfully.';
-            }catch(err){
-              alert(err.message);
-              delBtn.disabled=false;
-              delBtn.textContent='Delete';
+        tdPct.append(markBadge);
+        tr.append(tdPct);
+
+        // Performance Status
+        const tdStatus = document.createElement('td');
+        const st = String(item.status || "Unknown").toUpperCase();
+        const pass = isPassed(item);
+        tdStatus.innerHTML = '<span style="font-weight:700; color:' + (pass ? 'var(--accent-emerald)' : 'var(--accent-rose)') + '">' + st + '</span>';
+        tr.append(tdStatus);
+
+        // Wrong
+        const tdWrong = document.createElement('td'); tdWrong.textContent = item.wrong != null ? String(item.wrong) : '—'; tr.append(tdWrong);
+
+        // Skipped
+        const tdSkip = document.createElement('td'); tdSkip.textContent = item.unanswered != null ? String(item.unanswered) : '—'; tr.append(tdSkip);
+
+        // Device attempt (Same IP count)
+        const tdIp = document.createElement('td');
+        const ipAtt = Number(item.same_ip_attempts);
+        if (Number.isFinite(ipAtt) && ipAtt > 1) {
+          tdIp.innerHTML = '<span class="rep-badge">' + ipAtt + ' on IP</span>';
+        } else {
+          tdIp.textContent = Number.isFinite(ipAtt) ? ipAtt + ' on IP' : '—';
+        }
+        tr.append(tdIp);
+
+        // Submission Mode
+        const tdMode = document.createElement('td');
+        if (item.auto_submitted) {
+          tdMode.innerHTML = '<span style="color:var(--accent-amber)">⌛ Auto-Timeout</span>';
+        } else {
+          tdMode.innerHTML = '<span style="color:var(--accent-cyan)">⏱ Manual</span>';
+        }
+        tr.append(tdMode);
+
+        // Timestamp (IST)
+        const tdTime = document.createElement('td'); tdTime.textContent = formatIST(item.submitted_at); tr.append(tdTime);
+
+        tbody.append(tr);
+      }
+
+      const first = filtered.length ? start + 1 : 0;
+      const last = Math.min(start + pageItems.length, filtered.length);
+      document.getElementById('page-info').textContent = "Showing " + first + "–" + last + " of " + filtered.length + " attempts · Page " + resultsPage + " of " + totalPages;
+      document.getElementById('prev-page').disabled = resultsPage <= 1;
+      document.getElementById('next-page').disabled = resultsPage >= totalPages;
+      document.getElementById('results-status').textContent = allResults.length ? "Auditing " + filtered.length + " matching student attempts in database." : "No mock test attempts recorded yet.";
+    }
+
+    // RENDER TRAFFIC & GEO
+    function renderTraffic() {
+      const search = (document.getElementById('traffic-search-input').value || "").trim().toLowerCase();
+      const size = Math.max(1, Number(document.getElementById('traffic-page-size').value) || 25);
+
+      let filtered = trafficRecords.filter(v => {
+        if (!search) return true;
+        const str = (v.ip + " " + v.city + " " + v.region + " " + v.country + " " + v.path).toLowerCase();
+        return str.includes(search);
+      });
+
+      // Country summary
+      const countryCounts = new Map();
+      for (const v of trafficRecords) {
+        const c = v.country || 'XX';
+        countryCounts.set(c, (countryCounts.get(c) || 0) + (v.visits || 1));
+      }
+      const cGrid = document.getElementById('country-summary-grid');
+      cGrid.replaceChildren();
+      const sortedCountries = Array.from(countryCounts.entries()).sort((a,b)=>b[1]-a[1]).slice(0, 8);
+      const totalVis = trafficRecords.reduce((a,b)=>a+(b.visits||1),0);
+
+      for (const [code, count] of sortedCountries) {
+        const info = countryInfo(code);
+        const card = document.createElement('div'); card.className = 'country-card';
+        const pct = totalVis ? ((count / totalVis) * 100).toFixed(1) : 0;
+        card.innerHTML = `
+          <div class="flag">${info.flag}</div>
+          <div class="c-info">
+            <div class="c-name">${info.name}</div>
+            <div class="c-visitors">${count} visits · ${pct}%</div>
+          </div>
+        `;
+        cGrid.append(card);
+      }
+
+      const totalPages = Math.max(1, Math.ceil(filtered.length / size));
+      trafficPage = Math.min(Math.max(1, trafficPage), totalPages);
+      const start = (trafficPage - 1) * size;
+      const pageItems = filtered.slice(start, start + size);
+
+      const rows = document.getElementById('rows');
+      rows.replaceChildren();
+
+      for (const v of pageItems) {
+        const tr = document.createElement('tr');
+        
+        // Time
+        const tdTime = document.createElement('td'); tdTime.textContent = formatIST(v.time); tr.append(tdTime);
+
+        // IP
+        const tdIp = document.createElement('td');
+        tdIp.innerHTML = '<strong style="color:var(--accent-cyan)">' + v.ip + '</strong>';
+        tr.append(tdIp);
+
+        // Visits
+        const tdVisits = document.createElement('td');
+        tdVisits.innerHTML = '<span class="mark-badge ' + (v.visits > 10 ? 'mark-distinction' : v.visits > 3 ? 'mark-pass' : 'mark-marginal') + '">' + v.visits + ' visit' + (v.visits === 1 ? '' : 's') + '</span>';
+        tr.append(tdVisits);
+
+        // Country
+        const tdC = document.createElement('td');
+        const info = countryInfo(v.country);
+        tdC.innerHTML = '<span class="country-pill"><span class="country-flag">' + info.flag + '</span> ' + info.name + '</span>';
+        tr.append(tdC);
+
+        // State / City
+        const tdLoc = document.createElement('td');
+        tdLoc.textContent = [v.region, v.city].filter(Boolean).join(', ') || 'Unknown';
+        tr.append(tdLoc);
+
+        // Current Page
+        const tdPage = document.createElement('td'); tdPage.textContent = v.path || '/'; tr.append(tdPage);
+
+        // Section Trail
+        const tdTrail = document.createElement('td');
+        const sections = Array.isArray(v.sections) ? v.sections : [];
+        if (sections.length) {
+          const details = document.createElement('details'); details.className = 'section-details';
+          const summary = document.createElement('summary'); summary.textContent = 'Visited ' + sections.length + ' sections'; details.append(summary);
+          const ul = document.createElement('ul'); ul.className = 'section-visit-list';
+          for (const s of sections) {
+            const li = document.createElement('li');
+            li.textContent = s.name + ' — ' + s.visits + ' visit' + (s.visits === 1 ? '' : 's') + ' (Last: ' + formatIST(s.lastVisit) + ')';
+            ul.append(li);
+          }
+          details.append(ul);
+          tdTrail.append(details);
+        } else {
+          tdTrail.textContent = 'No trail';
+        }
+        tr.append(tdTrail);
+
+        rows.append(tr);
+      }
+
+      const first = filtered.length ? start + 1 : 0;
+      const last = Math.min(start + pageItems.length, filtered.length);
+      document.getElementById('traffic-page-info').textContent = "Showing " + first + "–" + last + " of " + filtered.length + " IPs · Page " + trafficPage + " of " + totalPages;
+      document.getElementById('traffic-prev-page').disabled = trafficPage <= 1;
+      document.getElementById('traffic-next-page').disabled = trafficPage >= totalPages;
+      document.getElementById('badge-total-ips').textContent = trafficRecords.length + ' IPs';
+    }
+
+    // RENDER POPULAR PAGES
+    function renderPopularPages() {
+      const tbody = document.getElementById('popular-page-rows');
+      tbody.replaceChildren();
+      const visitorsByIP = new Map(trafficRecords.map(v => [v.ip, v]));
+
+      for (const [idx, p] of popularPageRecords.entries()) {
+        const tr = document.createElement('tr');
+        const tdRank = document.createElement('td'); tdRank.textContent = '#' + (idx + 1); tr.append(tdRank);
+
+        const tdPage = document.createElement('td');
+        tdPage.innerHTML = '<strong style="color:#fff">' + (p.section || 'Learning Page') + '</strong><br><small style="color:var(--text-dim)">' + (p.path || '/') + '</small>';
+        tr.append(tdPage);
+
+        const tdVisits = document.createElement('td'); tdVisits.textContent = String(p.visits); tr.append(tdVisits);
+        const visitorsCount = Array.isArray(p.visitors) ? p.visitors.length : 0;
+        const tdVisitors = document.createElement('td'); tdVisitors.textContent = String(visitorsCount); tr.append(tdVisitors);
+
+        const tdRatio = document.createElement('td');
+        tdRatio.textContent = visitorsCount ? (p.visits / visitorsCount).toFixed(2) : '—';
+        tr.append(tdRatio);
+
+        const tdLast = document.createElement('td'); tdLast.textContent = formatIST(p.lastVisit); tr.append(tdLast);
+
+        const tdDetails = document.createElement('td');
+        const details = document.createElement('details'); details.className = 'popular-details';
+        const summary = document.createElement('summary'); summary.textContent = 'Inspect ' + visitorsCount + ' IPs'; details.append(summary);
+        
+        const ul = document.createElement('ul'); ul.className = 'section-visit-list';
+        for (const visitor of (p.visitors || [])) {
+          const li = document.createElement('li');
+          const geo = visitorsByIP.get(visitor.ip);
+          const flag = countryInfo(geo?.country).flag;
+          const loc = [geo?.city, geo?.region].filter(Boolean).join(', ');
+          li.textContent = flag + ' ' + visitor.ip + ' — ' + visitor.visits + ' visit' + (visitor.visits===1?'':'s') + ' · ' + formatIST(visitor.lastVisit) + (loc ? ' (' + loc + ')' : '');
+          ul.append(li);
+        }
+        details.append(ul);
+        tdDetails.append(details);
+        tr.append(tdDetails);
+
+        tbody.append(tr);
+      }
+      document.getElementById('badge-total-pages').textContent = String(popularPageRecords.length);
+    }
+
+    // RENDER LIVE RADAR
+    function renderLiveRadar() {
+      const count = Number(liveData.active) || 0;
+      document.getElementById('live-active-count').textContent = String(count);
+      document.getElementById('badge-live-tabs').textContent = count + ' ACTIVE';
+      document.getElementById('radar-summary-text').textContent = '● ' + count + ' ACTIVE TABS IN 90s';
+
+      const pages = Array.isArray(liveData.pages) ? liveData.pages : [];
+      document.getElementById('live-pages-summary').textContent = pages.length ? pages.length + ' active study pages' : 'no active sessions';
+
+      const grid = document.getElementById('live-pages-grid');
+      grid.replaceChildren();
+
+      if (!pages.length) {
+        grid.innerHTML = '<p style="color:var(--text-dim); font-family:var(--font-mono); padding:16px;">No concurrent visitors detected on learning pages in the last 90 seconds.</p>';
+        return;
+      }
+
+      for (const p of pages) {
+        const card = document.createElement('div');
+        card.className = 'radar-card active-card';
+        card.innerHTML = `
+          <div class="radar-card-info">
+            <h4>${p.section || 'Academic Hub Portal'}</h4>
+            <div class="radar-card-path">${p.path || '/'}</div>
+          </div>
+          <div class="radar-card-count">
+            <div class="num">${p.count}</div>
+            <div class="label">ACTIVE TABS</div>
+          </div>
+        `;
+        grid.append(card);
+      }
+    }
+
+    // DATA FETCHING
+    async function refreshLiveVisitors() {
+      try {
+        const res = await fetch('/api/admin/live-visitors', { cache: 'no-store' });
+        if (res.status === 401) { location.href = '/admin/login'; return; }
+        const d = await res.json();
+        if (res.ok) {
+          liveData = d;
+          renderLiveRadar();
+        }
+      } catch (err) {
+        console.warn('Live visitors fetch error:', err);
+      }
+    }
+
+    async function refreshTraffic() {
+      try {
+        const res = await fetch('/api/admin/traffic', { cache: 'no-store' });
+        if (res.status === 401) { location.href = '/admin/login'; return; }
+        const d = await res.json();
+        if (res.ok) {
+          trafficRecords = Array.isArray(d.records) ? d.records : [];
+          popularPageRecords = Array.isArray(d.popularPages) ? d.popularPages : [];
+          
+          if (d.today) {
+            document.getElementById('today-badge').textContent = d.today.day || 'TODAY';
+            document.getElementById('today-visitors').textContent = String(d.today.visitors || 0);
+            document.getElementById('today-views').textContent = String(d.today.views || 0);
+            document.getElementById('today-ratio').textContent = d.today.visitors ? (d.today.views / d.today.visitors).toFixed(2) : '0';
+          }
+
+          document.getElementById('buffer-views').textContent = String(d.views || trafficRecords.length);
+          document.getElementById('buffer-ips').textContent = String(d.uniqueIPs || trafficRecords.length);
+          
+          const repeatIps = trafficRecords.filter(v => v.visits > 1).length;
+          const repPct = trafficRecords.length ? ((repeatIps / trafficRecords.length) * 100).toFixed(1) : 0;
+          document.getElementById('buffer-repeats').textContent = repPct + '%';
+
+          renderTraffic();
+          renderPopularPages();
+        }
+      } catch (err) {
+        console.warn('Traffic fetch error:', err);
+      }
+    }
+
+    async function refreshResults() {
+      const btn = document.getElementById('refresh-results');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch('/api/admin/results', { cache: 'no-store' });
+        if (res.status === 401) { location.href = '/admin/login'; return; }
+        const d = await res.json();
+        if (res.ok) {
+          allResults = Array.isArray(d.results) ? d.results : [];
+          repeatedIPTotal = Number(d.repeated_ip_total) || 0;
+          
+          // Populate subject filter dropdown if empty
+          const sel = document.getElementById('subject-filter');
+          if (sel && sel.options.length <= 1) {
+            for (const s of SUBJECT_GROUPS) {
+              sel.add(new Option(s, s));
             }
-          };
-          tdAct.append(delBtn);
-          tr.append(tdTime,tdName,tdText,tdAct);
-          rows.append(tr);
+          }
+
+          renderResults();
         }
-      }catch(error){status.textContent=error.message||'Could not load chat messages.';}
+      } catch (err) {
+        console.warn('Results fetch error:', err);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
     }
-    document.getElementById('admin-chat-refresh').onclick=()=>loadAdminChat();
-    document.getElementById('admin-chat-clear').onclick=async()=>{
-      if(!confirm('Are you sure you want to permanently delete ALL community chat messages? This cannot be undone.'))return;
-      const status=document.getElementById('admin-chat-status');
-      status.textContent='Clearing all messages…';
-      try{
-        const r=await fetch('/api/chat/clear',{method:'POST'});
-        const d=await r.json();
-        if(!r.ok)throw Error(d.error||'Failed to clear chat.');
-        status.textContent='All messages cleared successfully.';
-        loadAdminChat();
-      }catch(err){
-        status.textContent=err.message||'Failed to clear messages.';
+
+    // COMMUNITY CHAT MODERATION
+    async function loadAdminChat() {
+      const status = document.getElementById('admin-chat-status');
+      if (status) status.textContent = 'Loading community chat messages...';
+      try {
+        const res = await fetch('/api/chat', { cache: 'no-store' });
+        const d = await res.json();
+        const messages = Array.isArray(d.messages) ? d.messages : [];
+        const tbody = document.getElementById('admin-chat-rows');
+        tbody.replaceChildren();
+
+        for (const msg of messages) {
+          const tr = document.createElement('tr');
+          const tdTime = document.createElement('td'); tdTime.textContent = formatIST(msg.createdAt); tr.append(tdTime);
+          const tdName = document.createElement('td'); tdName.innerHTML = '<strong style="color:var(--accent-cyan)">' + (msg.name || 'Student') + '</strong>'; tr.append(tdName);
+          const tdText = document.createElement('td'); tdText.textContent = msg.text || ''; tr.append(tdText);
+          
+          const tdAction = document.createElement('td');
+          const delBtn = document.createElement('button');
+          delBtn.className = 'btn btn-danger';
+          delBtn.style.padding = '4px 8px';
+          delBtn.textContent = 'DELETE';
+          delBtn.onclick = async () => {
+            if (!confirm('Delete message from student ' + (msg.name || '') + '?')) return;
+            delBtn.disabled = true;
+            try {
+              const dr = await fetch('/api/chat/delete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: msg.id }) });
+              if (dr.ok) loadAdminChat();
+              else alert('Could not delete message.');
+            } catch { alert('Network error.'); }
+          };
+          tdAction.append(delBtn);
+          tr.append(tdAction);
+
+          tbody.append(tr);
+        }
+        if (status) status.textContent = messages.length ? 'Viewing ' + messages.length + ' active student messages.' : 'No chat messages stored.';
+      } catch (err) {
+        if (status) status.textContent = 'Could not load community chat messages.';
+      }
+    }
+
+    // CSV EXPORTERS
+    function exportResultsCSV() {
+      if (!allResults.length) { alert('No test attempts to export.'); return; }
+      const headers = ['ID', 'Student Name', 'Registration', 'Subject', 'Score', 'Total', 'Percentage', 'Status', 'Wrong', 'Unanswered', 'Auto Submitted', 'Submitted Time (IST)'];
+      const rows = allResults.map(r => [
+        r.id,
+        '"' + (r.name || 'Anonymous').replace(/"/g, '""') + '"',
+        '"' + (r.reg || 'N/A').replace(/"/g, '""') + '"',
+        '"' + (r.subject || '').replace(/"/g, '""') + '"',
+        r.score,
+        r.total,
+        r.percentage != null ? r.percentage + '%' : '',
+        '"' + (r.status || '') + '"',
+        r.wrong,
+        r.unanswered,
+        r.auto_submitted ? 'Yes' : 'No',
+        '"' + formatIST(r.submitted_at) + '"'
+      ]);
+      const csv = [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'Academic_Hub_Mock_Test_Results_' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function exportTrafficCSV() {
+      if (!trafficRecords.length) { alert('No traffic records to export.'); return; }
+      const headers = ['Visitor IP', 'Total Visits', 'Country', 'Region', 'City', 'Last Active (IST)', 'Latest Page Path'];
+      const rows = trafficRecords.map(v => [
+        v.ip,
+        v.visits,
+        '"' + (v.country || 'XX') + '"',
+        '"' + (v.region || '').replace(/"/g, '""') + '"',
+        '"' + (v.city || '').replace(/"/g, '""') + '"',
+        '"' + formatIST(v.time) + '"',
+        '"' + (v.path || '/').replace(/"/g, '""') + '"'
+      ]);
+      const csv = [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'Academic_Hub_Traffic_Audit_' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    // TABS LOGIC
+    const stations = [
+      { id: 'assessment', tab: 'tab-btn-assessment', panel: 'panel-assessment' },
+      { id: 'radar', tab: 'tab-btn-radar', panel: 'panel-radar' },
+      { id: 'geo', tab: 'tab-btn-geo', panel: 'panel-geo' },
+      { id: 'content', tab: 'tab-btn-content', panel: 'panel-content' },
+      { id: 'chat', tab: 'tab-btn-chat', panel: 'panel-chat' }
+    ];
+
+    function activateStation(id) {
+      for (const s of stations) {
+        const isMatch = s.id === id;
+        const btn = document.getElementById(s.tab);
+        const pnl = document.getElementById(s.panel);
+        if (btn) {
+          btn.classList.toggle('active', isMatch);
+          btn.setAttribute('aria-selected', String(isMatch));
+        }
+        if (pnl) pnl.hidden = !isMatch;
+      }
+      if (id === 'chat') loadAdminChat();
+    }
+
+    for (const s of stations) {
+      const btn = document.getElementById(s.tab);
+      if (btn) btn.onclick = () => activateStation(s.id);
+    }
+
+    // EVENTS & INITIAL LOAD
+    document.getElementById('btn-force-sync').onclick = () => {
+      refreshLiveVisitors();
+      refreshTraffic();
+      refreshResults();
+    };
+
+    document.getElementById('btn-export-results').onclick = exportResultsCSV;
+    document.getElementById('btn-export-traffic').onclick = exportTrafficCSV;
+    document.getElementById('refresh-results').onclick = refreshResults;
+
+    document.getElementById('result-search-input').oninput = () => { resultsPage = 1; renderResults(); };
+    document.getElementById('subject-filter').onchange = (e) => { activeSubjectFilter = e.target.value; resultsPage = 1; renderResults(); };
+    document.getElementById('grade-filter').onchange = () => { resultsPage = 1; renderResults(); };
+    document.getElementById('identity-filter').onchange = () => { resultsPage = 1; renderResults(); };
+    document.getElementById('page-size').onchange = () => { resultsPage = 1; renderResults(); };
+    document.getElementById('prev-page').onclick = () => { resultsPage = Math.max(1, resultsPage - 1); renderResults(); };
+    document.getElementById('next-page').onclick = () => { resultsPage++; renderResults(); };
+
+    document.getElementById('traffic-search-input').oninput = () => { trafficPage = 1; renderTraffic(); };
+    document.getElementById('traffic-page-size').onchange = () => { trafficPage = 1; renderTraffic(); };
+    document.getElementById('traffic-prev-page').onclick = () => { trafficPage = Math.max(1, trafficPage - 1); renderTraffic(); };
+    document.getElementById('traffic-next-page').onclick = () => { trafficPage++; renderTraffic(); };
+
+    document.getElementById('admin-chat-refresh').onclick = loadAdminChat;
+    document.getElementById('admin-chat-clear').onclick = async () => {
+      if (!confirm('DANGER: Clear all community student chat messages permanently?')) return;
+      try {
+        const res = await fetch('/api/chat/clear', { method: 'POST' });
+        if (res.ok) loadAdminChat();
+        else alert('Could not clear messages.');
+      } catch { alert('Network error.'); }
+    };
+
+    document.getElementById('logout').onclick = async () => {
+      try {
+        await fetch('/api/admin/logout', { method: 'POST' });
+      } finally {
+        location.href = '/admin/login';
       }
     };
-    document.getElementById('traffic-page-size').onchange=()=>{trafficPage=1;renderTraffic();};
-    document.getElementById('traffic-prev-page').onclick=()=>{trafficPage=Math.max(1,trafficPage-1);renderTraffic();};
-    document.getElementById('traffic-next-page').onclick=()=>{trafficPage++;renderTraffic();};
-    document.getElementById('refresh').onclick=refresh;
-    document.getElementById('logout').onclick=async()=>{const r=await fetch('/api/admin/logout',{method:'POST'});if(r.ok)location.href='/admin/login';};
-    refresh();refreshResults();refreshLiveVisitors();setInterval(()=>{if(!document.hidden){refresh();refreshLiveVisitors();}},15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden){refresh();refreshLiveVisitors();}});` : `
-    document.getElementById('login').onsubmit=async e=>{e.preventDefault();const button=e.target.querySelector('button');button.disabled=true;try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('password').value})});const d=await r.json();document.getElementById('password').value='';if(!r.ok)throw Error(d.error);const next=new URLSearchParams(location.search).get('next');let destination='/admin/traffic';try{const target=next?new URL(next,location.origin):null;if(target&&target.origin===location.origin)destination=target.pathname+target.search+target.hash;}catch{}location.href=destination;}catch(e){document.getElementById('status').textContent=e.message||'Sign-in failed.';}finally{button.disabled=false;}};`;
-  return new Response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Academic Hub · Owner</title><style>body{background:#f2f6f3;color:#183b35;font:18px/1.6 system-ui;margin:0}main{max-width:1600px;width:calc(100% - 32px);box-sizing:border-box;margin:3vh auto;padding:clamp(12px,2vw,28px)}h1{font-size:40px}a{color:#28594e}form{max-width:420px;display:grid;gap:16px}input,button{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:12px}button{background:#183b35;color:white;cursor:pointer}.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap} .table{overflow:auto;background:white;border-radius:12px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:14px;border-bottom:1px solid #e1e9e4}td{overflow-wrap:anywhere}.section-details{max-width:260px}.section-details summary{cursor:pointer;color:#28594e;font-weight:600}.section-visit-list{margin:8px 0 0;padding-left:18px}.section-visit-list li{margin:3px 0;white-space:normal;min-width:180px}#status{color:#914023}.results-section{margin-top:32px;padding-top:10px;border-top:2px solid #dce8e1}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin:16px 0}.metric{display:grid;gap:4px;padding:14px;background:white;border:1px solid #dce8e1;border-radius:12px}.metric span{font-size:14px;color:#536a62}.metric strong{font-size:23px}.results-section select{font:inherit;border:1px solid #bdd2c7;border-radius:10px;padding:10px;background:white;color:#183b35}h3{margin-top:28px}.results-heading h2{margin-bottom:4px}.results-heading p,.panel-intro{margin-top:0;color:#536a62;font-size:13px}.results-section{font-size:14px}.results-section h3{margin:0}.results-tabs{display:flex;gap:8px;margin:18px 0 12px;border-bottom:1px solid #dce8e1}.results-tab{font:600 14px/1.2 system-ui;border:1px solid #bdd2c7;border-bottom:0;border-radius:9px 9px 0 0;padding:9px 15px;background:#e8f0eb;color:#183b35}.results-tab[aria-selected=true],.results-tab.active{background:#183b35;color:#fff}.subject-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:10px}.subject-card{padding:14px;background:#fff;border:1px solid #dce8e1;border-radius:12px;box-shadow:0 2px 8px rgba(24,59,53,.04)}.subject-card h3{font-size:16px;margin:0}.subject-meta{font-size:12px;color:#64776f;margin:2px 0 10px}.subject-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}.subject-metrics div{display:grid;gap:2px;padding:7px 8px;background:#f5f8f6;border-radius:8px}.subject-metrics span{font-size:11px;color:#536a62}.subject-metrics strong{font-size:15px}.attempt-actions{gap:8px;margin:12px 0}.attempt-actions select{font-size:13px;padding:7px 9px}.attempt-table{overflow:hidden}.attempt-table table{width:100%;min-width:0;table-layout:fixed}.attempt-table th,.attempt-table td{font-size:10px;line-height:1.25;white-space:normal;overflow-wrap:anywhere;padding:5px 4px;vertical-align:middle}.attempt-table th:nth-child(1){width:4%}.attempt-table th:nth-child(2){width:10%}.attempt-table th:nth-child(3){width:9%}.attempt-table th:nth-child(4){width:11%}.attempt-table th:nth-child(5){width:5%}.attempt-table th:nth-child(6){width:5%}.attempt-table th:nth-child(7){width:6%}.attempt-table th:nth-child(8){width:10%}.attempt-table th:nth-child(9){width:5%}.attempt-table th:nth-child(10){width:7%}.attempt-table th:nth-child(11){width:8%}.attempt-table th:nth-child(12){width:7%}.attempt-table th:nth-child(13){width:13%}.mark,.repeat-count{display:inline-block;min-width:46px;text-align:center;padding:2px 7px;border-radius:999px;font-weight:700}.mark-pass{background:#dcf5e5;color:#15542b}.mark-fail{background:#ffe0df;color:#8d1b17}.mark-below{background:#fff0cf;color:#805600}.mark-neutral{background:#fff0cf;color:#805600}.repeat-count{background:#edf2ef;color:#475a52}.repeat-many{background:#fff0cf;color:#805600}.pagination{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 0 2px;font-size:12px;color:#435a51}.page-size-label{display:flex;align-items:center;gap:6px}.pagination select{font:inherit;padding:5px 7px}.pagination button{font:600 12px/1.2 system-ui;padding:7px 10px;border:1px solid #bfd0c7;border-radius:8px;background:#183b35;color:white}.pagination button:disabled{opacity:.45;cursor:not-allowed}.page-controls{display:flex;gap:6px}@media(max-width:700px){.attempt-table th:nth-child(1),.attempt-table td:nth-child(1),.attempt-table th:nth-child(3),.attempt-table td:nth-child(3),.attempt-table th:nth-child(9),.attempt-table td:nth-child(9),.attempt-table th:nth-child(10),.attempt-table td:nth-child(10),.attempt-table th:nth-child(12),.attempt-table td:nth-child(12),.attempt-table th:nth-child(13),.attempt-table td:nth-child(13){display:none}.attempt-table th:nth-child(2){width:22%}.attempt-table th:nth-child(4){width:25%}.attempt-table th:nth-child(5){width:10%}.attempt-table th:nth-child(6){width:10%}.attempt-table th:nth-child(7){width:10%}.attempt-table th:nth-child(8){width:13%}.attempt-table th:nth-child(11){width:10%}.attempt-table th,.attempt-table td{font-size:9px;padding:4px 2px}}@media(max-width:600px){.results-tab{padding:8px 11px}.pagination{justify-content:flex-start}.page-info{flex:1 1 100%;order:2}.page-controls{margin-left:auto}}.traffic-tabs{display:flex;gap:8px;margin:18px 0 12px;border-bottom:1px solid #dce8e1}.traffic-tab{font:600 14px/1.2 system-ui;border:1px solid #bdd2c7;border-bottom:0;border-radius:9px 9px 0 0;padding:9px 15px;background:#e8f0eb;color:#183b35}.traffic-tab[aria-selected=true],.traffic-tab.active{background:#183b35;color:#fff}.traffic-panel[hidden]{display:none}.popular-pages-table{max-height:680px;border:1px solid #dce8e1}.popular-pages-table table{min-width:900px;table-layout:fixed}.popular-pages-table th,.popular-pages-table td{font-size:13px;line-height:1.35;padding:9px 10px;vertical-align:top}.popular-pages-table thead th{position:sticky;top:0;z-index:2;background:#eef4f0;color:#536a62;font-size:11px;text-transform:uppercase;letter-spacing:.03em}.popular-pages-table th:nth-child(1){width:6%}.popular-pages-table th:nth-child(2){width:25%}.popular-pages-table th:nth-child(3){width:9%}.popular-pages-table th:nth-child(4){width:9%}.popular-pages-table th:nth-child(5){width:20%}.popular-pages-table th:nth-child(6){width:31%}.popular-page-path{display:block;margin-top:3px;color:#64776f;font-size:11px;overflow-wrap:anywhere}.popular-details{min-width:190px}.popular-details summary{cursor:pointer;color:#28594e;font-weight:700}.repeat-name{font-weight:800;color:#a51d27}.name-repeat-count{display:inline-block;margin-left:5px;padding:1px 5px;border-radius:999px;background:#fde9e9;color:#a51d27;font-size:9px;line-height:1.25;font-weight:800;vertical-align:middle}..traffic-table{max-height:680px;border:1px solid #dce8e1}.traffic-table table{min-width:1180px;table-layout:fixed}.traffic-table th,.traffic-table td{font-size:13px;line-height:1.35;padding:9px 10px;vertical-align:top}.traffic-table th:nth-child(1){width:15%}.traffic-table th:nth-child(2){width:15%}.traffic-table th:nth-child(3){width:7%}.traffic-table th:nth-child(4){width:13%}.traffic-table th:nth-child(5){width:12%}.traffic-table th:nth-child(6){width:10%}.traffic-table th:nth-child(7){width:11%}.traffic-table th:nth-child(8){width:17%}.traffic-table thead th{position:sticky;top:0;z-index:2;background:#eef4f0;color:#536a62;font-size:11px;text-transform:uppercase;letter-spacing:.03em}.traffic-table tbody tr:nth-child(even),.attempt-table tbody tr:nth-child(even){background:#f8faf9}.traffic-table tbody tr:hover,.attempt-table tbody tr:hover{background:#eef6f1}.country-cell{white-space:nowrap}.country-badge{display:inline-flex;align-items:center;gap:6px;max-width:100%;padding:4px 8px;border:1px solid #dce8e1;border-radius:999px;background:#f2f7f4;white-space:nowrap}.country-flag{font-size:16px;line-height:1}.country-name{font-size:12px;font-weight:600;color:#344e44}.section-details{max-width:230px}.section-details summary{cursor:pointer;color:#28594e;font-weight:700}.section-visit-list{margin:8px 0 0;padding-left:18px}.section-visit-list li{margin:4px 0;white-space:normal;min-width:180px}.traffic-pagination{margin:10px 0 20px}.attempt-table thead th{background:#eef4f0;color:#41594f;font-size:10px;text-transform:uppercase;letter-spacing:.02em}.status-badge{display:inline-block;padding:3px 7px;border-radius:999px;font-size:9px;line-height:1.25;font-weight:700;text-align:center;white-space:normal}.status-pass{background:#dcf5e5;color:#15542b}.status-below{background:#fff0cf;color:#805600}.status-fail{background:#ffe0df;color:#8d1b17}.status-neutral{background:#edf2ef;color:#475a52}</style></head><body><main>'+content+'</main><script>'+script+'</script></body></html>',{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"private, no-store","X-Robots-Tag":"noindex, nofollow","X-Content-Type-Options":"nosniff","Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'","Referrer-Policy":"no-referrer"}});
+
+    // POLLING CYCLE
+    let pollIntervalId = null;
+    function setPollingInterval(ms) {
+      if (pollIntervalId) clearInterval(pollIntervalId);
+      if (ms > 0) {
+        pollIntervalId = setInterval(() => {
+          if (!document.hidden) {
+            refreshLiveVisitors();
+            refreshTraffic();
+            refreshResults();
+          }
+        }, ms);
+      }
+    }
+
+    document.getElementById('sync-interval').onchange = (e) => {
+      setPollingInterval(Number(e.target.value));
+    };
+
+    // INITIAL TRIGGER
+    refreshLiveVisitors();
+    refreshTraffic();
+    refreshResults();
+    setPollingInterval(15000);
+  ` : `
+    const form = document.getElementById('login');
+    const status = document.getElementById('status');
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      status.textContent = 'AUTHENTICATING...';
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          status.style.color = 'var(--accent-emerald)';
+          status.textContent = 'AUTHENTICATED. ENTERING CONTROL ROOM...';
+          const params = new URLSearchParams(location.search);
+          location.href = params.get('next') || '/admin/traffic';
+        } else {
+          status.style.color = 'var(--accent-rose)';
+          status.textContent = data.error || 'ACCESS DENIED: Invalid Security Key';
+        }
+      } catch (err) {
+        status.style.color = 'var(--accent-rose)';
+        status.textContent = 'COMMUNICATION ERROR';
+      }
+    };
+  `;
+
+  return new Response(`<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Academic Hub // Control Room Watch</title>
+<style>${styles}</style>
+</head>
+<body>
+${content}
+<script>${script}</script>
+</body>
+</html>`, {
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "private, no-store",
+      "X-Robots-Tag": "noindex, nofollow",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self' https:; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+      "Referrer-Policy": "no-referrer"
+    }
+  });
 }
 
 async function fetchMockTestResults(env) {
