@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#153b35">
+  <meta name="robots" content="noindex,nofollow">
+  <title>BU Study Desk | Academic Hub</title>
+  <style>
+    :root{color-scheme:light;--ink:#183b35;--muted:#60736c;--line:#dce7e1;--green:#205b4d;--green-dark:#153b35;--paper:#fff;--wash:#f2f6f3;--gold:#d8a83e}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    .bu-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px clamp(16px,4vw,52px);background:#111114;color:#f7f7f7;border-top:3px solid #e11d2e}
+    .bu-topbar a{color:#fff;text-decoration:none;font-weight:750}
+    .private-pill{padding:6px 10px;border:1px solid #55776b;border-radius:999px;color:#d9efe5;font-size:12px}
+    main{width:min(1120px,calc(100% - 32px));margin:30px auto 60px}
+    .hero{padding:clamp(22px,5vw,42px);border:1px solid #dce8e1;border-radius:22px;background:linear-gradient(135deg,#fff 0%,#f1f7f3 100%);box-shadow:0 10px 28px rgba(24,59,53,.06)}
+    .eyebrow{margin:0 0 8px;color:#59746a;font-size:11px;font-weight:850;letter-spacing:.12em}
+    h1{display:flex;align-items:center;gap:12px;margin:0;color:#163c34;font-size:clamp(27px,5vw,42px);line-height:1.15;letter-spacing:-.04em}
+    .bu-mark{display:grid;place-items:center;width:48px;height:48px;flex:none;border:1px solid #edca76;border-radius:14px;background:#fff6db;color:#79520a;font-size:17px;letter-spacing:0}
+    .hero-copy{max-width:680px;margin:14px 0 0;color:#52675f}
+    .privacy-note{display:flex;align-items:flex-start;gap:10px;margin:22px 0 0;padding:13px 15px;border:1px solid #cfe0d5;border-radius:13px;background:#f5faf6;color:#3f5c4f;font-size:13px}
+    .privacy-note strong{display:block;color:#1e513f}
+    .layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;margin-top:22px}
+    .panel{min-width:0;padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 5px 18px rgba(24,59,53,.045)}
+    .tabs-panel{align-self:start}
+    .panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    h2{margin:0;color:#173f36;font-size:20px;line-height:1.25}
+    h3{margin:0;color:#173f36;font-size:16px}
+    .section-label{margin:0;color:#6d8078;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .tab-list{display:grid;gap:7px;margin:16px 0 14px}
+    .study-tab{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:43px;padding:9px 11px;border:1px solid transparent;border-radius:11px;background:#f3f6f4;color:#294b40;text-align:left;font-weight:700}
+    .study-tab:hover{background:#e8f1eb}
+    .study-tab[aria-selected="true"]{border-color:#9bbcac;background:#e7f1e9;color:#164936}
+    .tab-count{color:#708178;font-size:12px;font-weight:650}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:9px 13px;border:1px solid #b7cfc1;border-radius:10px;background:#fff;color:#1d5745;font-weight:750}
+    .button:hover{background:#f1f7f3}
+    .button-primary{border-color:#1b5948;background:#1b5948;color:#fff}
+    .button-primary:hover{background:#154638}
+    .button-small{min-height:34px;padding:6px 10px;font-size:13px}
+    .button-danger{border-color:#e7c4c1;color:#9b3731}
+    .button-danger:hover{background:#fff5f4}
+    .button-row{display:flex;flex-wrap:wrap;gap:8px}
+    .tab-form{display:grid;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+    .tab-form[hidden]{display:none}
+    .field{display:grid;gap:6px;margin-top:13px}
+    .field label{color:#36564b;font-size:13px;font-weight:750}
+    .field input,.field textarea,.field select,.tab-form input{width:100%;min-height:42px;padding:10px 11px;border:1px solid #cbd9d1;border-radius:10px;background:#fff;color:#183b35}
+    .field textarea{min-height:125px;resize:vertical;line-height:1.5}
+    input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #b7d5c3;outline-offset:2px}
+    .content-panel{padding:clamp(17px,3vw,24px)}
+    .content-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:18px}
+    .content-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+    .tools{display:flex;flex-wrap:wrap;gap:8px}
+    .backup-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px;padding:12px;border:1px solid #e2e8e4;border-radius:12px;background:#f8faf8}
+    .backup-row .hint{flex:1 1 220px;color:#64756d;font-size:12px}
+    .material-form{margin:0 0 20px;padding:17px;border:1px solid #dce7e1;border-radius:14px;background:#fbfdfb}
+    .material-form[hidden]{display:none}
+    .form-grid{display:grid;grid-template-columns:1fr 190px;gap:0 12px}
+    .form-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .status{min-height:24px;margin:10px 0 0;color:#496c57;font-size:13px}
+    .status.error{color:#a33029}
+    .search{width:min(260px,100%);min-height:38px;padding:8px 10px;border:1px solid #d3dfd7;border-radius:10px}
+    .materials{display:grid;gap:12px}
+    .material-card{padding:16px;border:1px solid #e0e8e3;border-radius:14px;background:#fff}
+    .material-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .material-card h3{overflow-wrap:anywhere}
+    .kind{display:inline-block;margin:7px 0 0;padding:3px 8px;border-radius:999px;background:#eef4ef;color:#496558;font-size:11px;font-weight:800}
+    .material-body{margin:12px 0 0;color:#354f45;white-space:pre-wrap;overflow-wrap:anywhere}
+    .material-link{display:inline-block;margin-top:11px;color:#175a47;font-weight:700;overflow-wrap:anywhere}
+    .material-actions{display:flex;gap:7px;flex:none}
+    .empty{padding:25px 16px;border:1px dashed #cbd9d1;border-radius:14px;color:#64756d;text-align:center}
+    .empty strong{display:block;margin-bottom:3px;color:#35574a}
+    .footer-note{margin:20px 2px 0;color:#73847c;font-size:12px}
+    .file-input{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.tabs-panel{padding:16px}.tab-list{grid-template-columns:repeat(auto-fit,minmax(135px,1fr))}.content-head{display:grid}.tools{justify-content:flex-start}}
+    @media(max-width:520px){main{width:min(100% - 22px,1120px);margin-top:12px}.bu-topbar{padding:11px}.private-pill{font-size:10px}.hero{padding:20px 16px;border-radius:16px}h1{font-size:27px}.bu-mark{width:41px;height:41px}.panel{padding:15px;border-radius:15px}.form-grid{grid-template-columns:1fr}.material-title-row{display:grid}.material-actions{justify-content:flex-start}.backup-row{align-items:stretch}.backup-row .button{flex:1}}
+  </style>
+</head>
+<body>
+  <header class="bu-topbar">
+    <a href="/" aria-label="Return to Academic Hub">← Academic Hub</a>
+    <span class="private-pill">Owner sign-in required</span>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">YOUR PERSONAL UNIVERSITY WORKSPACE</p>
+      <h1 id="page-title"><span class="bu-mark" aria-hidden="true">BU</span><span>Bangalore University</span></h1>
+      <p class="hero-copy">Create your own study tabs, keep notes and questions together, and add links to reading material. Start with the topics you need; nothing is prefilled with a course or syllabus.</p>
+      <div class="privacy-note"><span aria-hidden="true">🔒</span><div><strong>Private owner area</strong>This page requires your existing Academic Hub owner sign-in. Your notes are saved in this browser and are not uploaded to the public GitHub repository. Export a backup to move them to another browser or device.</div></div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel tabs-panel" aria-label="Study tabs">
+        <div class="panel-heading"><p class="section-label">My study tabs</p><span id="tab-count" class="tab-count"></span></div>
+        <div id="tab-list" class="tab-list" role="tablist" aria-label="Your study tabs"></div>
+        <button id="show-tab-form" class="button button-primary" type="button">＋ Add a tab</button>
+        <form id="tab-form" class="tab-form" hidden>
+          <label class="section-label" for="new-tab-title">New tab name</label>
+          <input id="new-tab-title" maxlength="60" placeholder="e.g. Semester 1" required>
+          <div class="button-row"><button class="button button-primary button-small" type="submit">Create tab</button><button id="cancel-tab" class="button button-small" type="button">Cancel</button></div>
+        </form>
+      </aside>
+
+      <section class="panel content-panel" aria-labelledby="active-tab-title">
+        <div class="content-head">
+          <div><h2 id="active-tab-title">My materials</h2><p id="active-tab-help">Add notes, questions, readings, or links under this tab.</p></div>
+          <div class="tools"><button id="rename-tab" class="button button-small" type="button">Rename tab</button><button id="delete-tab" class="button button-small button-danger" type="button">Delete tab</button></div>
+        </div>
+
+        <div class="backup-row">
+          <span class="hint">Backup stays on your device until you choose to download or import it.</span>
+          <button id="export-data" class="button button-small" type="button">Export backup</button>
+          <button id="import-data" class="button button-small" type="button">Import backup</button>
+          <input id="backup-file" class="file-input" type="file" accept="application/json,.json" aria-label="Choose a BU study backup file">
+        </div>
+
+        <form id="material-form" class="material-form">
+          <h3 id="form-heading">Add study material</h3>
+          <div class="form-grid">
+            <div class="field"><label for="material-title">Title</label><input id="material-title" maxlength="120" placeholder="Give this material a title" required></div>
+            <div class="field"><label for="material-type">Type</label><select id="material-type"><option>Notes</option><option>Questions</option><option>Reading</option><option>Revision</option><option>Other</option></select></div>
+          </div>
+          <div class="field"><label for="material-url">Link (optional)</label><input id="material-url" type="url" maxlength="1000" placeholder="https://…"></div>
+          <div class="field"><label for="material-body">Notes or details</label><textarea id="material-body" maxlength="8000" placeholder="Write your own notes, questions, reminders, or summary…"></textarea></div>
+          <div class="form-actions"><button class="button button-primary" type="submit" id="save-material">Save material</button><button class="button" type="button" id="cancel-edit" hidden>Cancel edit</button></div>
+          <p id="form-status" class="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="content-head">
+          <div><h3>Saved materials</h3><p id="materials-summary">Your materials appear here.</p></div>
+          <input id="material-search" class="search" type="search" placeholder="Search this tab" aria-label="Search materials in this tab">
+        </div>
+        <div id="materials" class="materials" aria-live="polite"></div>
+        <p class="footer-note">This study desk uses browser storage. Clearing this site’s browser data removes saved notes, so download a backup from time to time.</p>
+      </section>
+    </div>
+  </main>
+  <script>
+    (function(){
+      'use strict';
+      const KEY='academic-hub-bu-study-desk-v1';
+      const TYPES=['Notes','Questions','Reading','Revision','Other'];
+      const byId=id=>document.getElementById(id);
+      const makeId=()=>('bu-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10));
+      let editingId=null;
+      function initialState(){const id=makeId();return{version:1,activeTabId:id,tabs:[{id:id,title:'My materials',items:[]}]};}
+      function cleanText(value,max){return typeof value==='string'?value.slice(0,max):'';}
+      function normalizeState(value){
+        if(!value||typeof value!=='object'||!Array.isArray(value.tabs))throw new Error('This file is not a valid BU study backup.');
+        const tabs=value.tabs.slice(0,100).map(tab=>{
+          if(!tab||typeof tab!=='object')return null;
+          const id=cleanText(tab.id,100)||makeId();
+          const title=cleanText(tab.title,60).trim()||'Untitled tab';
+          const items=Array.isArray(tab.items)?tab.items.slice(0,1000).map(item=>{
+            if(!item||typeof item!=='object')return null;
+            const kind=TYPES.includes(item.type)?item.type:'Other';
+            return{id:cleanText(item.id,100)||makeId(),title:cleanText(item.title,120).trim()||'Untitled material',type:kind,url:cleanText(item.url,1000).trim(),body:cleanText(item.body,8000),updatedAt:cleanText(item.updatedAt,40)};
+          }).filter(Boolean):[];
+          return{id,title,items};
+        }).filter(Boolean);
+        if(!tabs.length)throw new Error('The backup has no study tabs.');
+        const active=tabs.some(tab=>tab.id===value.activeTabId)?value.activeTabId:tabs[0].id;
+        return{version:1,activeTabId:active,tabs:tabs};
+      }
+      function loadState(){
+        try{const raw=localStorage.getItem(KEY);return raw?normalizeState(JSON.parse(raw)):initialState();}
+        catch(error){return initialState();}
+      }
+      let state=loadState();
+      function saveState(){
+        try{localStorage.setItem(KEY,JSON.stringify(state));return true;}
+        catch(error){showStatus('Could not save. Your browser storage may be full; export a backup and remove some content.',true);return false;}
+      }
+      function showStatus(message,isError){
+        const node=byId('form-status');node.textContent=message;node.classList.toggle('error',Boolean(isError));
+      }
+      function currentTab(){return state.tabs.find(tab=>tab.id===state.activeTabId)||state.tabs[0];}
+      function safeUrl(value){
+        if(!value)return null;
+        try{const url=new URL(value);return url.protocol==='https:'||url.protocol==='http:'?url.href:null;}catch(error){return null;}
+      }
+      function render(){
+        if(!state.tabs.length)state=initialState();
+        if(!state.tabs.some(tab=>tab.id===state.activeTabId))state.activeTabId=state.tabs[0].id;
+        const active=currentTab();
+        byId('tab-count').textContent=state.tabs.length+' tab'+(state.tabs.length===1?'':'s');
+        const list=byId('tab-list');list.replaceChildren();
+        state.tabs.forEach(tab=>{
+          const button=document.createElement('button');button.type='button';button.className='study-tab';button.setAttribute('role','tab');button.setAttribute('aria-selected',String(tab.id===active.id));button.setAttribute('aria-controls','materials');button.addEventListener('click',()=>{state.activeTabId=tab.id;resetForm();saveState();render();});
+          const title=document.createElement('span');title.textContent=tab.title;title.style.overflowWrap='anywhere';
+          const count=document.createElement('span');count.className='tab-count';count.textContent=String(tab.items.length);
+          button.append(title,count);list.append(button);
+        });
+        byId('active-tab-title').textContent=active.title;
+        byId('active-tab-help').textContent='Add notes, questions, readings, or links under this tab.';
+        byId('delete-tab').disabled=state.tabs.length<=1;
+        const query=byId('material-search').value.trim().toLowerCase();
+        const shown=active.items.filter(item=>[item.title,item.type,item.body,item.url].join(' ').toLowerCase().includes(query));
+        byId('materials-summary').textContent=shown.length+' of '+active.items.length+' material'+(active.items.length===1?'':'s');
+        const container=byId('materials');container.replaceChildren();
+        if(!shown.length){
+          const empty=document.createElement('div');empty.className='empty';
+          const strong=document.createElement('strong');strong.textContent=query?'No matches':'This tab is ready for your material.';
+          const detail=document.createElement('span');detail.textContent=query?'Try another search.':'Use the form above to add your first note or link.';
+          empty.append(strong,detail);container.append(empty);return;
+        }
+        shown.forEach(item=>{
+          const card=document.createElement('article');card.className='material-card';
+          const row=document.createElement('div');row.className='material-title-row';
+          const titleGroup=document.createElement('div');const title=document.createElement('h3');title.textContent=item.title;
+          const badge=document.createElement('span');badge.className='kind';badge.textContent=item.type;titleGroup.append(title,badge);row.append(titleGroup);
+          const actions=document.createElement('div');actions.className='material-actions';
+          const edit=document.createElement('button');edit.type='button';edit.className='button button-small';edit.textContent='Edit';edit.setAttribute('aria-label','Edit '+item.title);edit.addEventListener('click',()=>beginEdit(item));
+          const remove=document.createElement('button');remove.type='button';remove.className='button button-small button-danger';remove.textContent='Delete';remove.setAttribute('aria-label','Delete '+item.title);remove.addEventListener('click',()=>{if(!window.confirm('Delete “'+item.title+'”?'))return;active.items=active.items.filter(entry=>entry.id!==item.id);saveState();render();});
+          actions.append(edit,remove);row.append(actions);card.append(row);
+          if(item.body){const body=document.createElement('p');body.className='material-body';body.textContent=item.body;card.append(body);}
+          if(item.url){const url=safeUrl(item.url);if(url){const link=document.createElement('a');link.className='material-link';link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Open study link ↗';card.append(link);}else{const note=document.createElement('p');note.className='material-body';note.textContent='Saved link is not a valid http or https address.';card.append(note);}}
+          container.append(card);
+        });
+      }
+      function resetForm(){
+        editingId=null;byId('material-form').reset();byId('form-heading').textContent='Add study material';byId('save-material').textContent='Save material';byId('cancel-edit').hidden=true;showStatus('');
+      }
+      function beginEdit(item){
+        editingId=item.id;byId('material-title').value=item.title;byId('material-type').value=TYPES.includes(item.type)?item.type:'Other';byId('material-url').value=item.url;byId('material-body').value=item.body;byId('form-heading').textContent='Edit study material';byId('save-material').textContent='Save changes';byId('cancel-edit').hidden=false;showStatus('Editing “'+item.title+'”.');byId('material-title').focus();window.scrollTo({top:byId('material-form').getBoundingClientRect().top+window.scrollY-20,behavior:'smooth'});
+      }
+      byId('show-tab-form').addEventListener('click',()=>{byId('tab-form').hidden=false;byId('new-tab-title').focus();});
+      byId('cancel-tab').addEventListener('click',()=>{byId('tab-form').reset();byId('tab-form').hidden=true;});
+      byId('tab-form').addEventListener('submit',event=>{event.preventDefault();const title=byId('new-tab-title').value.trim();if(!title)return;const tab={id:makeId(),title:title.slice(0,60),items:[]};state.tabs.push(tab);state.activeTabId=tab.id;byId('tab-form').reset();byId('tab-form').hidden=true;saveState();render();});
+      byId('rename-tab').addEventListener('click',()=>{const tab=currentTab();const title=window.prompt('Rename this study tab:',tab.title);if(title===null)return;const cleaned=title.trim();if(!cleaned){showStatus('A tab needs a name.',true);return;}tab.title=cleaned.slice(0,60);saveState();render();});
+      byId('delete-tab').addEventListener('click',()=>{if(state.tabs.length<=1)return;const tab=currentTab();if(!window.confirm('Delete “'+tab.title+'” and its '+tab.items.length+' material'+(tab.items.length===1?'':'s')+'?'))return;state.tabs=state.tabs.filter(item=>item.id!==tab.id);state.activeTabId=state.tabs[0].id;resetForm();saveState();render();});
+      byId('material-form').addEventListener('submit',event=>{
+        event.preventDefault();const title=byId('material-title').value.trim();const type=byId('material-type').value;const urlText=byId('material-url').value.trim();const body=byId('material-body').value.trim();
+        if(!title){showStatus('Add a title first.',true);return;}
+        if(!TYPES.includes(type)){showStatus('Choose a material type.',true);return;}
+        if(urlText&&!safeUrl(urlText)){showStatus('Use a complete http or https link.',true);return;}
+        if(!urlText&&!body){showStatus('Add some notes or a link so this material has content.',true);return;}
+        const tab=currentTab();let item;
+        if(editingId){item=tab.items.find(entry=>entry.id===editingId);if(!item){resetForm();showStatus('That material could not be found.');return;}Object.assign(item,{title:title.slice(0,120),type:type,url:urlText,body:body,updatedAt:new Date().toISOString()});}
+        else{item={id:makeId(),title:title.slice(0,120),type:type,url:urlText,body:body,updatedAt:new Date().toISOString()};tab.items.unshift(item);}
+        const wasEditing=Boolean(editingId);if(!saveState())return;resetForm();render();showStatus(wasEditing?'Material updated.':'Material saved.');
+      });
+      byId('cancel-edit').addEventListener('click',resetForm);
+      byId('material-search').addEventListener('input',render);
+      byId('export-data').addEventListener('click',()=>{
+        const backup={format:'academic-hub-bu-study-backup',version:1,exportedAt:new Date().toISOString(),tabs:state.tabs,activeTabId:state.activeTabId};
+        const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='bu-study-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(link);link.click();link.remove();URL.revokeObjectURL(url);
+      });
+      byId('import-data').addEventListener('click',()=>byId('backup-file').click());
+      byId('backup-file').addEventListener('change',async event=>{
+        const file=event.target.files&&event.target.files[0];if(!file)return;
+        try{if(file.size>2*1024*1024)throw new Error('Backup file is larger than 2 MB.');const parsed=JSON.parse(await file.text());if(parsed.format!=='academic-hub-bu-study-backup')throw new Error('Choose a backup exported from BU Study Desk.');const imported=normalizeState(parsed);if(!window.confirm('Import '+imported.tabs.length+' tabs? This replaces the study desk saved in this browser. Export the current version first if you want to keep it.'))return;state=imported;resetForm();if(saveState()){render();showStatus('Backup imported.');}}catch(error){showStatus(error.message||'Could not import this backup.',true);}finally{event.target.value='';}
+      });
+      async function checkOwnerSession(){
+        try{const response=await fetch('/api/admin/session',{credentials:'same-origin',cache:'no-store'});if(!response.ok)throw new Error('Owner session expired.');const session=await response.json();if(session.ok!==true)throw new Error('Owner sign-in required.');}
+        catch(error){location.replace('/admin/login?next='+encodeURIComponent(location.pathname+location.search+location.hash));}
+      }
+      checkOwnerSession();window.setInterval(checkOwnerSession,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkOwnerSession();});
+      saveState();render();
+    })();
+  </script>
+</body>
+</html>
