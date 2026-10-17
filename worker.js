@@ -115,6 +115,56 @@ export default {
       const chat = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
       return chat.fetch(request);
     }
+    if (url.pathname === "/api/chat/status") {
+      if (request.method !== "GET") return json({error:"Method not allowed."},405);
+      const isMod = await isAuthorizedModerator(request, env, room);
+      return json({ isModerator: isMod });
+    }
+    if (url.pathname === "/api/chat/auth") {
+      if (request.method !== "POST") return json({error:"Method not allowed."},405);
+      if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
+      if (!env.ADMIN_PASSWORD || env.ADMIN_PASSWORD.length < 16) return json({error:"Moderator access is not configured."},503);
+      let input; try { input = await request.json(); } catch { return json({error:"Invalid request."},400); }
+      const expected = await digest(env.ADMIN_PASSWORD);
+      const actual = await digest(typeof input.password === "string" ? input.password : "");
+      let mismatch = 0;
+      for (let i = 0; i < expected.length; i++) mismatch |= expected.charCodeAt(i) ^ actual.charCodeAt(i);
+      if (mismatch) return json({error:"Incorrect password."},401);
+      const loginRes = await room.fetch(await adminRequest(new Request("https://internal/admin/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: input.password })
+      }), env, "https://internal/admin/api/admin/login"));
+      const setCookie = loginRes.headers.get("Set-Cookie");
+      const res = json({ ok: true, isModerator: true });
+      if (setCookie) res.headers.set("Set-Cookie", setCookie);
+      return res;
+    }
+    if (url.pathname === "/api/chat/delete") {
+      if (request.method !== "POST") return json({error:"Method not allowed."},405);
+      if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
+      let input; try { input = await request.json(); } catch { return json({error:"Invalid request."},400); }
+      const isMod = await isAuthorizedModerator(request, env, room, input?.adminPassword);
+      if (!isMod) return json({error:"Unauthorized. Moderator login required."},401);
+      if (!input?.id || typeof input.id !== "string") return json({error:"Missing message ID."},400);
+      const chat = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
+      return chat.fetch(new Request("https://internal/internal/chat/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: input.id })
+      }));
+    }
+    if (url.pathname === "/api/chat/clear") {
+      if (request.method !== "POST") return json({error:"Method not allowed."},405);
+      if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
+      let input = {}; try { input = await request.json(); } catch {}
+      const isMod = await isAuthorizedModerator(request, env, room, input?.adminPassword);
+      if (!isMod) return json({error:"Unauthorized. Moderator login required."},401);
+      const chat = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
+      return chat.fetch(new Request("https://internal/internal/chat/clear", {
+        method: "POST"
+      }));
+    }
     if (url.pathname === "/api/test-results/submit") {
       if (request.method !== "POST") return json({error:"Method not allowed."},405);
       if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
@@ -181,6 +231,22 @@ export class StudyHubChat {
     const now = Date.now();
     const path = new URL(request.url).pathname;
     if (path.startsWith('/admin/') || path === '/internal/visit' || path === '/internal/section' || path === '/internal/presence') return this.handleAdmin(request, path, now);
+    if (path === "/internal/chat/delete") {
+      if (request.method !== "POST") return json({}, 405);
+      let input; try { input = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+      const id = typeof input?.id === "string" ? input.id : "";
+      if (!id) return json({ error: "Message ID is required." }, 400);
+      let stored = (await this.state.storage.get("messages")) || [];
+      const beforeCount = stored.length;
+      stored = stored.filter(m => m.id !== id);
+      await this.state.storage.put("messages", stored);
+      return json({ ok: true, deleted: beforeCount !== stored.length, messages: stored });
+    }
+    if (path === "/internal/chat/clear") {
+      if (request.method !== "POST") return json({}, 405);
+      await this.state.storage.put("messages", []);
+      return json({ ok: true, messages: [] });
+    }
     const stored = (await this.state.storage.get("messages")) || [];
     const recent = stored.filter((message) =>
       Number.isFinite(message.createdAt) && message.createdAt > now - RETENTION_MS
@@ -400,7 +466,7 @@ async function digest(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value))),v=>v.toString(16).padStart(2,"0")).join("");
 }
 function adminPage(authorized) {
-  const content=authorized ? "<h1>Traffic</h1><p>Private owner dashboard · One row per IP, with visit counts from the latest 5,000 page views within 7 days. Popular page counts are based on section activity recorded since tracking started. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class=\"actions\"><a href=\"/\">Back to Academic Hub</a><button id=\"refresh\">Refresh</button><button id=\"logout\">Log out</button></div><h2 id=\"today-summary\" aria-live=\"polite\">Today: loading…</h2><p>Live · Updates every 15 seconds · India time · Visitors counted by distinct IP address</p><h2 id=\"summary\">Loading…</h2><p id=\"status\" role=\"status\"></p><div class=\"traffic-tabs\" role=\"tablist\" aria-label=\"Traffic views\"><button class=\"traffic-tab active\" id=\"visitors-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"visitors-panel\">Visitors</button><button class=\"traffic-tab\" id=\"popular-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"popular-panel\">Popular pages</button><button class=\"traffic-tab\" id=\"live-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"live-panel\">Live now</button></div><div id=\"live-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"live-tab\" hidden><h2 id=\"live-summary\" aria-live=\"polite\">Checking live visitors…</h2><p class=\"panel-intro\">Active browser tabs seen within the last 90 seconds, grouped by page and section. Session names and IP addresses are not shown here.</p><div id=\"live-pages\" class=\"subject-grid\"></div></div><div id=\"visitors-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"visitors-tab\"><div class=\"table traffic-table\"><table><thead><tr><th>Last visit (India)</th><th>Visitor IP</th><th>Visits</th><th>Country</th><th>State / Region</th><th>City</th><th>Latest page</th><th>Sections visited</th></tr></thead><tbody id=\"rows\"></tbody></table></div><div class=\"pagination traffic-pagination\" aria-label=\"Traffic pagination\"><label class=\"page-size-label\" for=\"traffic-page-size\">Rows per page <select id=\"traffic-page-size\"><option value=\"25\" selected>25</option><option value=\"50\">50</option><option value=\"100\">100</option></select></label><span id=\"traffic-page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"traffic-prev-page\" type=\"button\" disabled>Previous</button><button id=\"traffic-next-page\" type=\"button\" disabled>Next</button></div></div></div><div id=\"popular-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"popular-tab\" hidden><p class=\"panel-intro\">Ranked by section visits since tracking started. Expand a page to see visitor IPs, repeat counts and last activity.</p><div class=\"table popular-pages-table\"><table><thead><tr><th>Rank</th><th>Page / section</th><th>Visits</th><th>Visitors</th><th>Last activity (India)</th><th>Details</th></tr></thead><tbody id=\"popular-page-rows\"></tbody></table></div></div><section class=\"results-section\" aria-labelledby=\"results-title\"><div class=\"results-heading\"><h2 id=\"results-title\">Mock test results</h2><p>Seven-subject overview, attempt details, and repeated-IP counts.</p></div><div class=\"stats\" aria-live=\"polite\"><div class=\"metric\"><span>Total attempts</span><strong id=\"attempt-total\">Loading…</strong></div><div class=\"metric\"><span>Passed</span><strong id=\"attempt-passed\">—</strong></div><div class=\"metric\"><span>Below pass</span><strong id=\"attempt-failed\">—</strong></div><div class=\"metric\"><span>Average score</span><strong id=\"attempt-average\">—</strong></div><div class=\"metric\"><span>IP addresses with repeats</span><strong id=\"repeated-ip-total\">—</strong></div></div><div class=\"results-tabs\" role=\"tablist\" aria-label=\"Mock test result views\"><button class=\"results-tab active\" id=\"dashboard-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"dashboard-panel\">Dashboard</button><button class=\"results-tab\" id=\"attempts-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"attempts-panel\">Attempts</button></div><div id=\"dashboard-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"dashboard-tab\"><p class=\"panel-intro\">Seven subjects with test counts, attempts, pass and below-pass totals, and average marks.</p><div id=\"subject-rows\" class=\"subject-grid\"></div></div><div id=\"attempts-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"attempts-tab\" hidden><div class=\"actions attempt-actions\"><label for=\"subject-filter\">Subject</label><select id=\"subject-filter\"><option value=\"\">All subjects</option></select><button id=\"refresh-results\" type=\"button\">Refresh mock tests</button></div><p id=\"results-status\" role=\"status\">Loading mock test results…</p><div class=\"table attempt-table\"><table><thead><tr><th>ID</th><th>Name</th><th>Registration</th><th>Subject</th><th>Score</th><th>Total</th><th>Mark</th><th>Same-IP attempts</th><th>Wrong</th><th>Unanswered</th><th>Status</th><th>Auto submitted</th><th>Submitted (India)</th></tr></thead><tbody id=\"result-rows\"></tbody></table></div><div class=\"pagination\" aria-label=\"Attempt pagination\"><label class=\"page-size-label\" for=\"page-size\">Rows per page <select id=\"page-size\"><option value=\"25\">25</option><option value=\"50\" selected>50</option><option value=\"100\">100</option></select></label><span id=\"page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"prev-page\" type=\"button\" disabled>Previous</button><button id=\"next-page\" type=\"button\" disabled>Next</button></div></div></div></section>" : "<h1>Owner login</h1><p>Sign in to access the private owner area.</p><form id=\"login\"><label for=\"password\">Admin password</label><input id=\"password\" type=\"password\" autocomplete=\"current-password\" required maxlength=\"1024\"><button>Sign in</button></form><p id=\"status\" role=\"status\"></p><a href=\"/\">Back to Academic Hub</a>";
+  const content=authorized ? "<h1>Traffic</h1><p>Private owner dashboard · One row per IP, with visit counts from the latest 5,000 page views within 7 days. Popular page counts are based on section activity recorded since tracking started. Country, state and city are approximate IP locations; VPNs, proxies and mobile networks may show a different location. Older visits show Unknown.</p><div class=\"actions\"><a href=\"/\">Back to Academic Hub</a><button id=\"refresh\">Refresh</button><button id=\"logout\">Log out</button></div><h2 id=\"today-summary\" aria-live=\"polite\">Today: loading…</h2><p>Live · Updates every 15 seconds · India time · Visitors counted by distinct IP address</p><h2 id=\"summary\">Loading…</h2><p id=\"status\" role=\"status\"></p><div class=\"traffic-tabs\" role=\"tablist\" aria-label=\"Traffic views\"><button class=\"traffic-tab active\" id=\"visitors-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"visitors-panel\">Visitors</button><button class=\"traffic-tab\" id=\"popular-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"popular-panel\">Popular pages</button><button class=\"traffic-tab\" id=\"live-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"live-panel\">Live now</button><button class=\"traffic-tab\" id=\"chat-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"chat-panel\">Community chat</button></div><div id=\"live-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"live-tab\" hidden><h2 id=\"live-summary\" aria-live=\"polite\">Checking live visitors…</h2><p class=\"panel-intro\">Active browser tabs seen within the last 90 seconds, grouped by page and section. Session names and IP addresses are not shown here.</p><div id=\"live-pages\" class=\"subject-grid\"></div></div><div id=\"visitors-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"visitors-tab\"><div class=\"table traffic-table\"><table><thead><tr><th>Last visit (India)</th><th>Visitor IP</th><th>Visits</th><th>Country</th><th>State / Region</th><th>City</th><th>Latest page</th><th>Sections visited</th></tr></thead><tbody id=\"rows\"></tbody></table></div><div class=\"pagination traffic-pagination\" aria-label=\"Traffic pagination\"><label class=\"page-size-label\" for=\"traffic-page-size\">Rows per page <select id=\"traffic-page-size\"><option value=\"25\" selected>25</option><option value=\"50\">50</option><option value=\"100\">100</option></select></label><span id=\"traffic-page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"traffic-prev-page\" type=\"button\" disabled>Previous</button><button id=\"traffic-next-page\" type=\"button\" disabled>Next</button></div></div></div><div id=\"popular-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"popular-tab\" hidden><p class=\"panel-intro\">Ranked by section visits since tracking started. Expand a page to see visitor IPs, repeat counts and last activity.</p><div class=\"table popular-pages-table\"><table><thead><tr><th>Rank</th><th>Page / section</th><th>Visits</th><th>Visitors</th><th>Last activity (India)</th><th>Details</th></tr></thead><tbody id=\"popular-page-rows\"></tbody></table></div></div><div id=\"chat-panel\" class=\"traffic-panel\" role=\"tabpanel\" aria-labelledby=\"chat-tab\" hidden><div style=\"display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;flex-wrap:wrap\"><div><h2 style=\"margin:0;font-size:18px;color:#183b35\">Community chat moderation</h2><p class=\"panel-intro\" style=\"margin:3px 0 0\">Review all active student messages, remove spam or inappropriate messages, or clear the chat room.</p></div><div style=\"display:flex;gap:8px\"><button id=\"admin-chat-refresh\" type=\"button\" style=\"background:#183b35;color:#fff;padding:8px 12px;border:0;border-radius:8px;font-size:12px;cursor:pointer\">Refresh chat</button><button id=\"admin-chat-clear\" type=\"button\" style=\"background:#8c2929;color:#fff;padding:8px 12px;border:0;border-radius:8px;font-size:12px;cursor:pointer\">Clear all messages</button></div></div><p id=\"admin-chat-status\" role=\"status\" style=\"margin:6px 0 10px;font-size:12px;color:#536a62\"></p><div class=\"table\"><table><thead><tr><th style=\"width:160px\">Time (India)</th><th style=\"width:150px\">Student</th><th>Message</th><th style=\"width:110px\">Action</th></tr></thead><tbody id=\"admin-chat-rows\"></tbody></table></div></div><section class=\"results-section\" aria-labelledby=\"results-title\"><div class=\"results-heading\"><h2 id=\"results-title\">Mock test results</h2><p>Seven-subject overview, attempt details, and repeated-IP counts.</p></div><div class=\"stats\" aria-live=\"polite\"><div class=\"metric\"><span>Total attempts</span><strong id=\"attempt-total\">Loading…</strong></div><div class=\"metric\"><span>Passed</span><strong id=\"attempt-passed\">—</strong></div><div class=\"metric\"><span>Below pass</span><strong id=\"attempt-failed\">—</strong></div><div class=\"metric\"><span>Average score</span><strong id=\"attempt-average\">—</strong></div><div class=\"metric\"><span>IP addresses with repeats</span><strong id=\"repeated-ip-total\">—</strong></div></div><div class=\"results-tabs\" role=\"tablist\" aria-label=\"Mock test result views\"><button class=\"results-tab active\" id=\"dashboard-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"dashboard-panel\">Dashboard</button><button class=\"results-tab\" id=\"attempts-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"attempts-panel\">Attempts</button></div><div id=\"dashboard-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"dashboard-tab\"><p class=\"panel-intro\">Seven subjects with test counts, attempts, pass and below-pass totals, and average marks.</p><div id=\"subject-rows\" class=\"subject-grid\"></div></div><div id=\"attempts-panel\" class=\"results-panel\" role=\"tabpanel\" aria-labelledby=\"attempts-tab\" hidden><div class=\"actions attempt-actions\"><label for=\"subject-filter\">Subject</label><select id=\"subject-filter\"><option value=\"\">All subjects</option></select><button id=\"refresh-results\" type=\"button\">Refresh mock tests</button></div><p id=\"results-status\" role=\"status\">Loading mock test results…</p><div class=\"table attempt-table\"><table><thead><tr><th>ID</th><th>Name</th><th>Registration</th><th>Subject</th><th>Score</th><th>Total</th><th>Mark</th><th>Same-IP attempts</th><th>Wrong</th><th>Unanswered</th><th>Status</th><th>Auto submitted</th><th>Submitted (India)</th></tr></thead><tbody id=\"result-rows\"></tbody></table></div><div class=\"pagination\" aria-label=\"Attempt pagination\"><label class=\"page-size-label\" for=\"page-size\">Rows per page <select id=\"page-size\"><option value=\"25\">25</option><option value=\"50\" selected>50</option><option value=\"100\">100</option></select></label><span id=\"page-info\" class=\"page-info\" aria-live=\"polite\">Page 1 of 1</span><div class=\"page-controls\"><button id=\"prev-page\" type=\"button\" disabled>Previous</button><button id=\"next-page\" type=\"button\" disabled>Next</button></div></div></div></section>" : "<h1>Owner login</h1><p>Sign in to access the private owner area.</p><form id=\"login\"><label for=\"password\">Admin password</label><input id=\"password\" type=\"password\" autocomplete=\"current-password\" required maxlength=\"1024\"><button>Sign in</button></form><p id=\"status\" role=\"status\"></p><a href=\"/\">Back to Academic Hub</a>";
   const script=authorized ? `
     function countryInfo(code){
       if(!code||code==='XX')return {flag:'🌐',name:'Unknown'};
@@ -659,20 +725,101 @@ function adminPage(authorized) {
     function setTrafficTab(view){
       const live=view==='live';
       const popular=view==='popular';
-      document.getElementById('visitors-panel').hidden=live||popular;
+      const chat=view==='chat';
+      document.getElementById('visitors-panel').hidden=live||popular||chat;
       document.getElementById('popular-panel').hidden=!popular;
       document.getElementById('live-panel').hidden=!live;
-      document.getElementById('visitors-tab').setAttribute('aria-selected',String(!live&&!popular));
+      document.getElementById('chat-panel').hidden=!chat;
+      document.getElementById('visitors-tab').setAttribute('aria-selected',String(!live&&!popular&&!chat));
       document.getElementById('popular-tab').setAttribute('aria-selected',String(popular));
       document.getElementById('live-tab').setAttribute('aria-selected',String(live));
-      document.getElementById('visitors-tab').classList.toggle('active',!live&&!popular);
+      document.getElementById('chat-tab').setAttribute('aria-selected',String(chat));
+      document.getElementById('visitors-tab').classList.toggle('active',!live&&!popular&&!chat);
       document.getElementById('popular-tab').classList.toggle('active',popular);
       document.getElementById('live-tab').classList.toggle('active',live);
+      document.getElementById('chat-tab').classList.toggle('active',chat);
+      if(chat)loadAdminChat();
     }
     document.getElementById('visitors-tab').onclick=()=>setTrafficTab(false);
     document.getElementById('popular-tab').onclick=()=>setTrafficTab('popular');
     document.getElementById('live-tab').onclick=()=>setTrafficTab('live');
+    document.getElementById('chat-tab').onclick=()=>setTrafficTab('chat');
     if(location.hash==='#live')setTrafficTab('live');
+    if(location.hash==='#chat')setTrafficTab('chat');
+    async function loadAdminChat(){
+      const status=document.getElementById('admin-chat-status');
+      const rows=document.getElementById('admin-chat-rows');
+      status.textContent='Loading community chat messages…';
+      try{
+        const response=await fetch('/api/chat',{cache:'no-store'});
+        if(!response.ok)throw Error('Could not load chat messages.');
+        const data=await response.json();
+        const messages=Array.isArray(data.messages)?data.messages:[];
+        rows.replaceChildren();
+        if(!messages.length){
+          status.textContent='No messages in community chat right now.';
+          const tr=document.createElement('tr');
+          const td=document.createElement('td');
+          td.colSpan=4;
+          td.textContent='No messages in community chat right now.';
+          td.style.cssText='text-align:center;color:#64776f;padding:24px';
+          tr.append(td);
+          rows.append(tr);
+          return;
+        }
+        status.textContent='Showing '+messages.length+' message'+(messages.length===1?'':'s')+'.';
+        for(const msg of messages.slice().reverse()){
+          const tr=document.createElement('tr');
+          const tdTime=document.createElement('td');
+          tdTime.textContent=new Date(msg.createdAt).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
+          const tdName=document.createElement('td');
+          const strong=document.createElement('strong');
+          strong.textContent=msg.name;
+          tdName.append(strong);
+          const tdText=document.createElement('td');
+          tdText.textContent=msg.text;
+          const tdAct=document.createElement('td');
+          const delBtn=document.createElement('button');
+          delBtn.type='button';
+          delBtn.textContent='Delete';
+          delBtn.style.cssText='padding:5px 9px;background:#b33a3a;color:#fff;border:0;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600';
+          delBtn.onclick=async()=>{
+            if(!confirm('Delete message from "'+msg.name+'"?'))return;
+            delBtn.disabled=true;
+            delBtn.textContent='Deleting…';
+            try{
+              const r=await fetch('/api/chat/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:msg.id})});
+              const d=await r.json();
+              if(!r.ok)throw Error(d.error||'Delete failed.');
+              tr.remove();
+              status.textContent='Message deleted successfully.';
+            }catch(err){
+              alert(err.message);
+              delBtn.disabled=false;
+              delBtn.textContent='Delete';
+            }
+          };
+          tdAct.append(delBtn);
+          tr.append(tdTime,tdName,tdText,tdAct);
+          rows.append(tr);
+        }
+      }catch(error){status.textContent=error.message||'Could not load chat messages.';}
+    }
+    document.getElementById('admin-chat-refresh').onclick=()=>loadAdminChat();
+    document.getElementById('admin-chat-clear').onclick=async()=>{
+      if(!confirm('Are you sure you want to permanently delete ALL community chat messages? This cannot be undone.'))return;
+      const status=document.getElementById('admin-chat-status');
+      status.textContent='Clearing all messages…';
+      try{
+        const r=await fetch('/api/chat/clear',{method:'POST'});
+        const d=await r.json();
+        if(!r.ok)throw Error(d.error||'Failed to clear chat.');
+        status.textContent='All messages cleared successfully.';
+        loadAdminChat();
+      }catch(err){
+        status.textContent=err.message||'Failed to clear messages.';
+      }
+    };
     document.getElementById('traffic-page-size').onchange=()=>{trafficPage=1;renderTraffic();};
     document.getElementById('traffic-prev-page').onclick=()=>{trafficPage=Math.max(1,trafficPage-1);renderTraffic();};
     document.getElementById('traffic-next-page').onclick=()=>{trafficPage++;renderTraffic();};
@@ -739,6 +886,23 @@ async function adminRequest(request, env, url) {
     internal.headers.set("X-Hub-Admin-Hash", await digest(env.ADMIN_PASSWORD));
   }
   return internal;
+}
+
+async function isAuthorizedModerator(request, env, room, fallbackPassword) {
+  if (typeof env.ADMIN_PASSWORD !== "string" || env.ADMIN_PASSWORD.length < 16) return false;
+  const headerPass = request.headers.get("X-Admin-Password") || fallbackPassword;
+  if (headerPass && typeof headerPass === "string") {
+    const expected = await digest(env.ADMIN_PASSWORD);
+    const actual = await digest(headerPass);
+    let mismatch = 0;
+    for (let i = 0; i < expected.length; i++) mismatch |= expected.charCodeAt(i) ^ actual.charCodeAt(i);
+    if (!mismatch) return true;
+  }
+  try {
+    const session = await room.fetch(await adminRequest(request, env, "https://internal/admin/api/admin/session"));
+    if (session.ok) return true;
+  } catch {}
+  return false;
 }
 
 // A dedicated namespace owned by this Worker keeps admin storage separate from legacy chat.
