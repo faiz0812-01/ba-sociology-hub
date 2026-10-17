@@ -1433,11 +1433,9 @@ details.section-details summary, details.popular-details summary { cursor: point
         meter.append(fill);
 
         const sRow = document.createElement('div'); sRow.className = 'subject-stats-row';
-        sRow.innerHTML = `
-          <div class="subject-stat-unit"><div class="subject-stat-lbl">Attempts</div><div class="subject-stat-num">${items.length}</div></div>
-          <div class="subject-stat-unit"><div class="subject-stat-lbl">Average</div><div class="subject-stat-num">${subjAvg}%</div></div>
-          <div class="subject-stat-unit"><div class="subject-stat-lbl">Top Mark</div><div class="subject-stat-num">${topMark}${topMark!=='—'?'%':''}</div></div>
-        `;
+        sRow.innerHTML = '<div class="subject-stat-unit"><div class="subject-stat-lbl">Attempts</div><div class="subject-stat-num">' + items.length + '</div></div>' +
+          '<div class="subject-stat-unit"><div class="subject-stat-lbl">Average</div><div class="subject-stat-num">' + subjAvg + '%</div></div>' +
+          '<div class="subject-stat-unit"><div class="subject-stat-lbl">Top Mark</div><div class="subject-stat-num">' + topMark + (topMark !== '—' ? '%' : '') + '</div></div>';
 
         card.append(head, meter, sRow);
         grid.append(card);
@@ -1590,13 +1588,11 @@ details.section-details summary, details.popular-details summary { cursor: point
         const info = countryInfo(code);
         const card = document.createElement('div'); card.className = 'country-card';
         const pct = totalVis ? ((count / totalVis) * 100).toFixed(1) : 0;
-        card.innerHTML = `
-          <div class="flag">${info.flag}</div>
-          <div class="c-info">
-            <div class="c-name">${info.name}</div>
-            <div class="c-visitors">${count} visits · ${pct}%</div>
-          </div>
-        `;
+        card.innerHTML = '<div class="flag">' + info.flag + '</div>' +
+          '<div class="c-info">' +
+            '<div class="c-name">' + info.name + '</div>' +
+            '<div class="c-visitors">' + count + ' visits · ' + pct + '%</div>' +
+          '</div>';
         cGrid.append(card);
       }
 
@@ -1735,16 +1731,14 @@ details.section-details summary, details.popular-details summary { cursor: point
       for (const p of pages) {
         const card = document.createElement('div');
         card.className = 'radar-card active-card';
-        card.innerHTML = `
-          <div class="radar-card-info">
-            <h4>${p.section || 'Academic Hub Portal'}</h4>
-            <div class="radar-card-path">${p.path || '/'}</div>
-          </div>
-          <div class="radar-card-count">
-            <div class="num">${p.count}</div>
-            <div class="label">ACTIVE TABS</div>
-          </div>
-        `;
+        card.innerHTML = '<div class="radar-card-info">' +
+            '<h4>' + (p.section || 'Academic Hub Portal') + '</h4>' +
+            '<div class="radar-card-path">' + (p.path || '/') + '</div>' +
+          '</div>' +
+          '<div class="radar-card-count">' +
+            '<div class="num">' + p.count + '</div>' +
+            '<div class="label">ACTIVE TABS</div>' +
+          '</div>';
         grid.append(card);
       }
     }
