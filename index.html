@@ -541,6 +541,412 @@
       }
     }
   </style>
+
+  <style id="study-lounge-styles">
+    /* Smart Study Lounge & Revision Hub */
+    .study-lounge-section {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      margin: 0 0 38px;
+      padding: 30px;
+      border: 1px solid #dce4d5;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #123726 0%, #1c4e37 55%, #16402d 100%);
+      color: #f4fbf6;
+      box-shadow: 0 14px 34px rgba(18, 52, 38, 0.18);
+      scroll-margin-top: 18px;
+    }
+    .study-lounge-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-width: 0;
+    }
+    .study-lounge-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ebcc85;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      font-weight: 800;
+    }
+    .study-lounge-intro h2 {
+      margin: 10px 0 10px;
+      color: #fffaf0;
+      font: 800 clamp(26px, 3vw, 36px)/1.15 Manrope, sans-serif;
+      letter-spacing: -0.6px;
+    }
+    .study-lounge-intro > p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #cce0d2;
+      margin: 0 0 18px;
+    }
+    
+    /* Concept Flashcards Deck */
+    .flashcard-deck {
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+    }
+    .flashcard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .flashcard-tag {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #ebcc85;
+      color: #123726;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .flashcard-counter {
+      font-size: 12px;
+      color: #d1e2d6;
+      font-weight: 600;
+    }
+    .flashcard-box {
+      perspective: 1000px;
+      cursor: pointer;
+      min-height: 220px;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      min-height: 220px;
+      text-align: left;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .flashcard-box.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .flashcard-front {
+      background: #ffffff;
+      color: #163c2b;
+      border: 1px solid #d4decb;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+    .flashcard-front .flashcard-badge {
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 800;
+      color: #2b6e4d;
+      background: #eaf3e6;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .flashcard-front h3 {
+      margin: 0 0 4px;
+      font-size: 19px;
+      font-weight: 800;
+      color: #123726;
+    }
+    .flashcard-front h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #2b6e4d;
+      font-family: 'Noto Sans Malayalam', sans-serif;
+    }
+    .flashcard-front p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #4b6354;
+    }
+    .flashcard-back {
+      background: #fdfaf3;
+      color: #1d382b;
+      border: 1px solid #eddcb9;
+      transform: rotateY(180deg);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      overflow-y: auto;
+    }
+    .flashcard-back .flashcard-badge {
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 800;
+      color: #855d14;
+      background: #faeed3;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .flashcard-back p {
+      margin: 0 0 8px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #284435;
+    }
+    .flashcard-back p[lang="ml"] {
+      font-family: 'Noto Sans Malayalam', sans-serif;
+      color: #3b5a49;
+      font-size: 12px;
+    }
+    .flashcard-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .lounge-btn-sm {
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .lounge-btn-sm:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+    .lounge-btn-primary {
+      background: #ebcc85;
+      color: #123726;
+      border-color: #dfb65e;
+    }
+    .lounge-btn-primary:hover {
+      background: #f3d799;
+    }
+
+    /* Pomodoro & Goals Right Panel */
+    .study-lounge-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+    .timer-box {
+      background: #fffefa;
+      border: 1px solid #e0e6d9;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      color: #1c3c2b;
+    }
+    .timer-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #edf1e6;
+    }
+    .timer-icon {
+      font-size: 22px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: #edf6ea;
+    }
+    .timer-header > div:nth-child(2) {
+      flex: 1;
+      display: grid;
+    }
+    .timer-header strong {
+      font-size: 15px;
+      color: #143e2b;
+    }
+    .timer-header small {
+      font-size: 11px;
+      color: #6d8273;
+    }
+    .session-badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #eef6eb;
+      color: #21593e;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .timer-modes {
+      display: flex;
+      gap: 8px;
+      margin: 14px 0 14px;
+    }
+    .timer-mode-btn {
+      flex: 1;
+      padding: 8px 6px;
+      border: 1px solid #d5decb;
+      border-radius: 8px;
+      background: #f7f9f3;
+      color: #496352;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .timer-mode-btn.active {
+      background: #1b4d36;
+      color: #ffffff;
+      border-color: #1b4d36;
+    }
+    .timer-display-wrap {
+      text-align: center;
+      margin: 8px 0 14px;
+    }
+    .timer-display {
+      font-size: clamp(46px, 5vw, 58px);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      letter-spacing: 2px;
+      color: #123726;
+    }
+    .timer-status-text {
+      font-size: 12px;
+      color: #6a7f70;
+      margin: 8px 0 0;
+    }
+    .timer-controls {
+      display: flex;
+      gap: 10px;
+    }
+    .lounge-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: 0.15s;
+    }
+    .lounge-btn-play {
+      background: linear-gradient(135deg, #1f583e, #2d7353);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(31, 88, 62, 0.25);
+    }
+    .lounge-btn-play:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+    .lounge-btn-play.paused {
+      background: linear-gradient(135deg, #c2881b, #d99a22);
+    }
+    .lounge-btn-secondary {
+      background: #f0f3eb;
+      color: #4a6353;
+      border: 1px solid #d8e0d1;
+    }
+    .lounge-btn-secondary:hover {
+      background: #e3ebd9;
+    }
+
+    /* Goals Checklist */
+    .goals-box {
+      background: #fffefa;
+      border: 1px solid #e0e6d9;
+      border-radius: 18px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      color: #1c3c2b;
+    }
+    .goals-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .goals-header strong {
+      font-size: 14px;
+      color: #143e2b;
+    }
+    .goals-header small {
+      font-size: 11px;
+      color: #6d8273;
+    }
+    .goals-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .goal-item label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #274534;
+      cursor: pointer;
+    }
+    .goal-item input[type="checkbox"] {
+      accent-color: #1f583e;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .goal-item.done span {
+      text-decoration: line-through;
+      color: #8da193;
+    }
+    .add-goal-form {
+      display: flex;
+      gap: 8px;
+    }
+    .add-goal-form input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #d5decb;
+      border-radius: 8px;
+      font-size: 12px;
+      background: #fbfdf9;
+      color: #1d382b;
+    }
+    .add-goal-form button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #1f583e;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    @media(max-width: 950px) {
+      .study-lounge-section {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+      }
+    }
+  </style>
 </head>
 <body id="top">
   <nav class="topbar">
@@ -552,7 +958,7 @@
       <a href="#top"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 3.5h7v7h-7zM13.5 3.5h7v5h-7zM13.5 10.5h7v10h-7zM3.5 13.5h7v7h-7z"/></svg><span>Overview</span></a>
       <a href="#subjects"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 5.5A2.5 2.5 0 0 1 6 3h5v17H6a2.5 2.5 0 0 0-2.5 2zM20.5 5.5A2.5 2.5 0 0 0 18 3h-5v17h5a2.5 2.5 0 0 1 2.5 2z"/></svg><span>Semester subjects</span></a>
       <a href="#tests"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 4h8M9 3h6v3H9zM6 5H4.5v16h15V5H18"/><path d="m8 12 1.5 1.5L12 11M14 12h3M8 17l1.5 1.5L12 16M14 17h3"/></svg><span>Practice tests</span></a>
-      <a href="#ai-study"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2 1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9L12 2zM19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3z"/></svg><span>AI Study Helper</span></a>
+      <a href="#study-lounge"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="12 7 12 12 15 15" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Study Lounge</span></a>
       <a href="#community-chat"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 11.5a8 8 0 0 1-8 8 8.7 8.7 0 0 1-3.3-.7L4 20l1.2-4.4a8 8 0 1 1 15.3-4.1z"/><path d="M8 11h8M8 14.5h5"/></svg><span>Student chat</span></a>
     </div>
   </nav>
@@ -639,7 +1045,357 @@
 
     <section class="study-banner"><div class="banner-symbol">✦</div><div><span>SMALL STEPS. BIG PROGRESS.</span><h2>Your next good result starts with today's practice.</h2><p>Choose a subject, review a topic and keep moving forward.</p></div><a href="#subjects">Start learning <span>→</span></a></section>
 
-    <section id="ai-study" class="ai-study-section" aria-labelledby="ai-study-title">
+    <!-- ========================================================================= -->
+    <!-- FOCUS & REVISION LOUNGE (Interactive Study Zone)                          -->
+    <!-- ========================================================================= -->
+    <section id="study-lounge" class="study-lounge-section" aria-labelledby="study-lounge-title">
+      <div class="study-lounge-intro">
+        <div class="study-lounge-eyebrow"><span aria-hidden="true">⏱</span> FOCUS &amp; REVISION LOUNGE</div>
+        <h2 id="study-lounge-title">Smart Study Zone</h2>
+        <p>Boost your preparation with timed Pomodoro sessions, bilingual active-recall flashcards, and daily goals.</p>
+        
+        <div class="flashcard-deck" aria-label="Interactive concept flashcards">
+          <div class="flashcard-header">
+            <span class="flashcard-tag" id="card-subject">Sociology</span>
+            <span class="flashcard-counter" id="card-counter">Concept 1 of 8</span>
+          </div>
+          <div class="flashcard-box" id="flashcard-box" tabindex="0" role="button" aria-label="Click to flip flashcard">
+            <div class="flashcard-inner" id="flashcard-inner">
+              <div class="flashcard-front">
+                <span class="flashcard-badge">TAP TO FLIP ↻</span>
+                <h3 id="card-front-title">Socialisation</h3>
+                <h4 id="card-front-mal" lang="ml">സാമൂഹികവൽക്കരണം</h4>
+                <p id="card-front-hint">What is the core sociological definition &amp; key agents?</p>
+              </div>
+              <div class="flashcard-back">
+                <span class="flashcard-badge">EXAM SUMMARY ✓</span>
+                <p id="card-back-en">The lifelong process of acquiring culture, values, and norms to become a functioning member of society. Key agents: Family, School, Peer Groups, and Media.</p>
+                <p id="card-back-ml" lang="ml">വ്യക്തി സമൂഹത്തിന്റെ സംസ്കാരവും മൂല്യങ്ങളും പെരുമാറ്റച്ചട്ടങ്ങളും പഠിച്ചെടുത്ത് ഒരു സാമൂഹിക ജീവിയായി മാറുന്ന പ്രക്രിയ. പ്രധാന ഘടകങ്ങൾ: കുടുംബം, സ്കൂൾ, കൂട്ടുകാർ, മാധ്യമങ്ങൾ.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flashcard-nav">
+            <button type="button" id="prev-card" class="lounge-btn-sm" aria-label="Previous card">← Prev</button>
+            <button type="button" id="flip-card-btn" class="lounge-btn-sm lounge-btn-primary">Flip Card ↻</button>
+            <button type="button" id="next-card" class="lounge-btn-sm" aria-label="Next card">Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="study-lounge-panel">
+        <div class="timer-box">
+          <div class="timer-header">
+            <div class="timer-icon" aria-hidden="true">⏳</div>
+            <div>
+              <strong>Pomodoro Focus Timer</strong>
+              <small>Timed focus intervals · Beat fatigue</small>
+            </div>
+            <div class="session-badge"><span id="session-count">0</span> sessions done</div>
+          </div>
+          
+          <div class="timer-modes" role="tablist" aria-label="Timer duration">
+            <button type="button" class="timer-mode-btn active" data-time="1500" role="tab" aria-selected="true">25m Focus</button>
+            <button type="button" class="timer-mode-btn" data-time="300" role="tab" aria-selected="false">5m Break</button>
+            <button type="button" class="timer-mode-btn" data-time="3000" role="tab" aria-selected="false">50m Deep</button>
+          </div>
+
+          <div class="timer-display-wrap">
+            <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+            <p class="timer-status-text" id="timer-status-text">Ready to study. Click Start to begin.</p>
+          </div>
+
+          <div class="timer-controls">
+            <button type="button" id="timer-start-btn" class="lounge-btn lounge-btn-play">Start Focus ▶</button>
+            <button type="button" id="timer-reset-btn" class="lounge-btn lounge-btn-secondary">Reset ↺</button>
+          </div>
+        </div>
+
+        <div class="goals-box">
+          <div class="goals-header">
+            <strong>Today's Focus Goals</strong>
+            <small>Tick off as you complete</small>
+          </div>
+          <ul class="goals-list" id="goals-list">
+            <li class="goal-item">
+              <label><input type="checkbox" checked> <span>Revise 1 Malayalam reading chapter</span></label>
+            </li>
+            <li class="goal-item">
+              <label><input type="checkbox"> <span>Complete 1 MCQ Practice Test</span></label>
+            </li>
+            <li class="goal-item">
+              <label><input type="checkbox"> <span>Review 5 Concept Flashcards</span></label>
+            </li>
+          </ul>
+          <form id="add-goal-form" class="add-goal-form">
+            <input type="text" id="new-goal-input" placeholder="Add custom study goal..." maxlength="45">
+            <button type="submit" aria-label="Add goal">+</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script id="study-lounge-script">
+    (() => {
+      // --- CONCEPT FLASHCARDS ---
+      const cards = [
+        {
+          subject: 'Sociology',
+          titleEn: 'Socialisation',
+          titleMl: 'സാമൂഹികവൽക്കരണം',
+          hint: 'What is the core sociological definition & key agents?',
+          backEn: 'The lifelong process through which an individual acquires the culture, values, and norms of society. Key agents: Family (primary), School, Peer Groups, and Media (secondary).',
+          backMl: 'വ്യക്തി സമൂഹത്തിന്റെ സംസ്കാരവും മൂല്യങ്ങളും പെരുമാറ്റച്ചട്ടങ്ങളും പഠിച്ചെടുത്ത് ഒരു സാമൂഹിക ജീവിയായി മാറുന്ന പ്രക്രിയ. പ്രധാന ഘടകങ്ങൾ: കുടുംബം, സ്കൂൾ, സമപ്രായക്കാർ, മാധ്യമങ്ങൾ.'
+        },
+        {
+          subject: 'Philosophy of AI',
+          titleEn: 'The Turing Test',
+          titleMl: 'ട്യൂറിംഗ് ടെസ്റ്റ്',
+          hint: 'What was Alan Turing’s test for machine intelligence (1950)?',
+          backEn: 'Proposed by Alan Turing in "Computing Machinery and Intelligence" (1950). If a human interrogator cannot distinguish text responses of a machine from those of a human, the machine exhibits thinking.',
+          backMl: '1950-ൽ അലൻ ട്യൂറിംഗ് അവതരിപ്പിച്ച ബുദ്ധിപരീക്ഷ. സംഭാഷണത്തിൽ മനുഷ്യനും യന്ത്രവും തമ്മിലുള്ള വ്യത്യാസം തിരിച്ചറിയാൻ ചോദ്യകർത്താവിന് കഴിഞ്ഞില്ലെങ്കിൽ ആ യന്ത്രം ബുദ്ധിയുള്ളതായി കണക്കാക്കാം.'
+        },
+        {
+          subject: 'Ethics',
+          titleEn: 'Utilitarianism',
+          titleMl: 'യൂട്ടിലിറ്റേറിയനിസം',
+          hint: 'Who formulated it and what is the Greatest Happiness Principle?',
+          backEn: 'Founded by Jeremy Bentham (quantitative hedonism) and refined by J.S. Mill (qualitative pleasures). An action is morally right if it produces the greatest happiness for the greatest number.',
+          backMl: 'ജെറമി ബെന്താമും ജെ.എസ്. മില്ലും വികസിപ്പിച്ച സിദ്ധാന്തം. ഏറ്റവും കൂടുതൽ ആളുകൾക്ക് ഏറ്റവും കൂടുതൽ സന്തോഷവും നന്മയും നൽകുന്ന പ്രവൃത്തികളാണ് ധാർമ്മികമായി ശരി.'
+        },
+        {
+          subject: 'History of Keralam',
+          titleEn: 'Megalithic Culture',
+          titleMl: 'മഹാശില സംസ്കാരം',
+          hint: 'What are Kerala’s Iron Age burial monuments and sites?',
+          backEn: 'Burial monuments of the Iron Age: Kudakkallu (umbrella stone), Thoppikkallu (hat stone), Muniyaras (dolmens), and Nannangadi (urn burials). Prominent sites: Marayur, Wayanad, and Thrissur.',
+          backMl: 'കേരളത്തിലെ ഇരുമ്പ് യുഗ ശ്മശാന സംസ്കാരം: കുടക്കല്ല്, തൊപ്പിക്കല്ല്, മുനിയറകൾ, നന്നങ്ങാടികൾ. പ്രധാന കേന്ദ്രങ്ങൾ: മറയൂർ, വയനാട്, തൃശൂർ.'
+        },
+        {
+          subject: 'Indian Economy',
+          titleEn: 'NITI Aayog & Planning',
+          titleMl: 'നീതി ആയോഗ് & ആസൂത്രണം',
+          hint: 'How did NITI Aayog transform Indian economic policy from 2015?',
+          backEn: 'Formed on 1 January 2015 replacing the 65-year-old Planning Commission. Promotes "Cooperative Federalism" and a bottom-up policy approach rather than top-down five-year plans.',
+          backMl: '2015 ജനുവരി 1-ന് പ്ലാനിംഗ് കമ്മീഷന് പകരമായി നിലവിൽ വന്നു. താഴെത്തട്ടിൽ നിന്നുള്ള വികസനവും സംസ്ഥാനങ്ങളുടെ കൂട്ടായ പങ്കാളിത്തവും (Cooperative Federalism) ലക്ഷ്യമിടുന്നു.'
+        },
+        {
+          subject: 'Philosophy of Education',
+          titleEn: 'Pragmatism & Experiential Learning',
+          titleMl: 'പ്രായോഗികതാവാദം & അനുഭവ പഠനം',
+          hint: 'What is John Dewey’s philosophy of "Learning by Doing"?',
+          backEn: 'John Dewey emphasized that education is life itself, not merely preparation for life. Knowledge is constructed through active problem solving, hands-on experience, and democratic participation.',
+          backMl: 'ജോൺ ഡ്യൂയിയുടെ "ചെയ്തു പഠിക്കുക" (Learning by Doing) സിദ്ധാന്തം. പ്രായോഗിക അനുഭവങ്ങളിലൂടെയും പ്രശ്നപരിഹാരങ്ങളിലൂടെയും അറിവ് നിർമ്മിക്കപ്പെടുന്നു.'
+        },
+        {
+          subject: 'Microeconomics',
+          titleEn: 'Law of Diminishing Marginal Utility',
+          titleMl: 'പരിധീയ പ്രയോജന തത്വം',
+          hint: 'Why does additional satisfaction decrease with each unit consumed?',
+          backEn: 'Formulated by H.H. Gossen (First Law). As a consumer increases the consumption of a good, the marginal utility derived from each additional unit declines while total utility increases at a decreasing rate.',
+          backMl: 'ഒരു വസ്തു തുടർച്ചയായി ഉപയോഗിക്കുമ്പോൾ ഓരോ അധിക യൂണിറ്റിൽ നിന്നും ലഭിക്കുന്ന സംതൃപ്തി (Marginal Utility) ക്രമേണ കുറയുന്നു.'
+        },
+        {
+          subject: 'Sociology',
+          titleEn: 'Social Stratification',
+          titleMl: 'സാമൂഹിക ശ്രേണീകരണം',
+          hint: 'What are the main universal systems of structured inequality?',
+          backEn: 'The structured hierarchical ranking of individuals and groups in a society based on wealth, power, and prestige. Four universal systems: Slavery, Estate, Caste (closed), and Class (open).',
+          backMl: 'സമ്പത്ത്, അധികാരം, പദവി എന്നിവയുടെ അടിസ്ഥാനത്തിൽ സമൂഹത്തെ വിവിധ തട്ടുകളായി തരംതിരിക്കുന്ന സംവിധാനം. പ്രധാന രൂപങ്ങൾ: അടിമത്തം, എസ്റ്റേറ്റ്, ജാതി (അടഞ്ഞത്), വർഗ്ഗം (തുറന്നത്).'
+        }
+      ];
+
+      let currentCardIndex = 0;
+      const box = document.getElementById('flashcard-box');
+      const tag = document.getElementById('card-subject');
+      const counter = document.getElementById('card-counter');
+      const frontTitle = document.getElementById('card-front-title');
+      const frontMal = document.getElementById('card-front-mal');
+      const frontHint = document.getElementById('card-front-hint');
+      const backEn = document.getElementById('card-back-en');
+      const backMl = document.getElementById('card-back-ml');
+      const prevBtn = document.getElementById('prev-card');
+      const nextBtn = document.getElementById('next-card');
+      const flipBtn = document.getElementById('flip-card-btn');
+
+      function renderCard(idx) {
+        if (!box) return;
+        box.classList.remove('flipped');
+        const c = cards[idx];
+        if (tag) tag.textContent = c.subject;
+        if (counter) counter.textContent = 'Concept ' + (idx + 1) + ' of ' + cards.length;
+        if (frontTitle) frontTitle.textContent = c.titleEn;
+        if (frontMal) frontMal.textContent = c.titleMl;
+        if (frontHint) frontHint.textContent = c.hint;
+        if (backEn) backEn.textContent = c.backEn;
+        if (backMl) backMl.textContent = c.backMl;
+      }
+
+      function toggleFlip() {
+        if (box) box.classList.toggle('flipped');
+      }
+
+      if (box) {
+        box.addEventListener('click', toggleFlip);
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleFlip();
+          }
+        });
+      }
+      if (flipBtn) flipBtn.addEventListener('click', toggleFlip);
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+          renderCard(currentCardIndex);
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          currentCardIndex = (currentCardIndex + 1) % cards.length;
+          renderCard(currentCardIndex);
+        });
+      }
+      renderCard(0);
+
+      // --- POMODORO TIMER ---
+      let timeLeft = 1500;
+      let timerDuration = 1500;
+      let timerInterval = null;
+      let isRunning = false;
+      let sessionsDone = 0;
+
+      const display = document.getElementById('timer-display');
+      const statusText = document.getElementById('timer-status-text');
+      const startBtn = document.getElementById('timer-start-btn');
+      const resetBtn = document.getElementById('timer-reset-btn');
+      const sessionCountEl = document.getElementById('session-count');
+      const modeBtns = document.querySelectorAll('.timer-mode-btn');
+
+      function updateDisplay() {
+        if (!display) return;
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        display.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      }
+
+      function playChime() {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+          osc.frequency.setValueAtTime(880, ctx.currentTime + 0.25);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+          osc.start();
+          osc.stop(ctx.currentTime + 1.2);
+        } catch(err) {}
+      }
+
+      function startTimer() {
+        if (isRunning) {
+          clearInterval(timerInterval);
+          isRunning = false;
+          if (startBtn) {
+            startBtn.textContent = 'Resume Focus ▶';
+            startBtn.classList.add('paused');
+          }
+          if (statusText) statusText.textContent = 'Timer paused. Click Resume to continue.';
+        } else {
+          isRunning = true;
+          if (startBtn) {
+            startBtn.textContent = 'Pause ❚❚';
+            startBtn.classList.remove('paused');
+          }
+          if (statusText) statusText.textContent = 'Focus in progress! Keep your attention on your studies.';
+          timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+              timeLeft--;
+              updateDisplay();
+            } else {
+              clearInterval(timerInterval);
+              isRunning = false;
+              playChime();
+              sessionsDone++;
+              if (sessionCountEl) sessionCountEl.textContent = sessionsDone;
+              if (startBtn) {
+                startBtn.textContent = 'Start Focus ▶';
+                startBtn.classList.remove('paused');
+              }
+              if (statusText) statusText.textContent = '🎉 Focus session complete! Take a rest or start a break.';
+            }
+          }, 1000);
+        }
+      }
+
+      function resetTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        timeLeft = timerDuration;
+        updateDisplay();
+        if (startBtn) {
+          startBtn.textContent = 'Start Focus ▶';
+          startBtn.classList.remove('paused');
+        }
+        if (statusText) statusText.textContent = 'Timer reset. Ready when you are.';
+      }
+
+      if (startBtn) startBtn.addEventListener('click', startTimer);
+      if (resetBtn) resetBtn.addEventListener('click', resetTimer);
+
+      modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modeBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          timerDuration = parseInt(btn.dataset.time, 10);
+          resetTimer();
+        });
+      });
+
+      // --- GOALS CHECKLIST ---
+      const goalsList = document.getElementById('goals-list');
+      const addGoalForm = document.getElementById('add-goal-form');
+      const newGoalInput = document.getElementById('new-goal-input');
+
+      if (goalsList) {
+        goalsList.addEventListener('change', (e) => {
+          if (e.target.matches('input[type="checkbox"]')) {
+            const li = e.target.closest('.goal-item');
+            if (li) li.classList.toggle('done', e.target.checked);
+          }
+        });
+      }
+
+      if (addGoalForm && newGoalInput) {
+        addGoalForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const val = newGoalInput.value.trim();
+          if (!val) return;
+          const li = document.createElement('li');
+          li.className = 'goal-item';
+          li.innerHTML = '<label><input type="checkbox"> <span>' + val.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span></label>';
+          goalsList.appendChild(li);
+          newGoalInput.value = '';
+        });
+      }
+    })();
+    </script>
+
+    <!-- ========================================================================= -->
+    <!-- [TEMPORARILY ARCHIVED: AI STUDY HELPER]                                   -->
+    <!-- To reinstate anytime in the future, simply command:                       -->
+    <!-- "Reinstate the AI study helper tab"                                       -->
+    <!-- ========================================================================= -->
+    <!--
+    <section id="ai-study" class="ai-study-section" aria-labelledby="ai-study-title" hidden>
       <div class="ai-study-intro">
         <div class="ai-study-eyebrow"><span aria-hidden="true">✦</span> A LITTLE HELP TO UNDERSTAND MORE</div>
         <h2 id="ai-study-title">AI Study Helper</h2>
@@ -666,6 +1422,7 @@
         <noscript><p class="ai-study-noscript">Turn on JavaScript to use the AI Study Helper.</p></noscript>
       </div>
     </section>
+    -->
 
     <section id="community-chat" class="community-section">
       <div class="community-intro"><div class="eyebrow">LEARN TOGETHER</div><h2>Academic Hub community</h2><p>Ask a question, share a helpful tip or encourage another student.</p><div class="community-note"><span>↗</span><div><strong>A shared student space</strong><small>Your name and message are public; messages are removed after 7 days.</small></div></div></div>
@@ -3914,8 +4671,8 @@
       }
     }, 0);
   }, true);
-  </script>
-  <script src="ai-study.js?v=20261014-ai-study-helper" defer></script>
+  <!-- [TEMPORARILY ARCHIVED: AI STUDY SCRIPT - Re-enable when restoring AI Study Helper] -->
+  <!-- <script src="ai-study.js?v=20261014-ai-study-helper" defer></script> -->
 
 
 
