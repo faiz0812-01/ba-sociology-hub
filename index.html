@@ -542,92 +542,191 @@
     }
   </style>
 
-  <style id="study-lounge-styles">
-    /* Smart Study Lounge & Revision Hub */
+    <style id="study-lounge-styles">
+    /* Interactive Dual Study & Revision Lounge */
     .study-lounge-section {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 28px;
-      margin: 0 0 38px;
-      padding: 30px;
-      border: 1px solid #dce4d5;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #123726 0%, #1c4e37 55%, #16402d 100%);
-      color: #f4fbf6;
-      box-shadow: 0 14px 34px rgba(18, 52, 38, 0.18);
-      scroll-margin-top: 18px;
+      margin: 0 0 36px;
+      padding: 22px 24px;
+      border: 1px solid #dbeafe;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eff6ff 100%);
+      color: #0f172a;
+      box-shadow: 0 10px 28px rgba(30, 58, 138, 0.05);
+      scroll-margin-top: 24px;
     }
-    .study-lounge-intro {
+    .study-lounge-top {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .study-lounge-heading {
       min-width: 0;
     }
     .study-lounge-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: #ebcc85;
-      font-size: 11px;
-      letter-spacing: 1.2px;
+      gap: 6px;
+      font-size: 10px;
       font-weight: 800;
+      letter-spacing: 1.2px;
+      color: #4f46e5;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
-    .study-lounge-intro h2 {
-      margin: 10px 0 10px;
-      color: #fffaf0;
-      font: 800 clamp(26px, 3vw, 36px)/1.15 Manrope, sans-serif;
-      letter-spacing: -0.6px;
+    .study-lounge-heading h2 {
+      font-size: clamp(20px, 2.4vw, 24px);
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.4px;
+      margin: 0 0 2px;
     }
-    .study-lounge-intro > p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #cce0d2;
-      margin: 0 0 18px;
+    .study-lounge-heading p {
+      margin: 0;
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.45;
     }
-    
-    /* Concept Flashcards Deck */
+    .study-decks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media(max-width: 900px) {
+      .study-decks-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .study-lounge-section {
+        padding: 16px;
+      }
+    }
+
+    /* Deck Container Styling */
     .flashcard-deck {
-      width: 100%;
-      box-sizing: border-box;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 18px;
-      padding: 16px;
-      backdrop-filter: blur(8px);
-    }
-    .flashcard-header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      border-radius: 16px;
+      padding: 16px 18px;
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      transition: box-shadow 0.2s ease;
+    }
+    .deck-sociology {
+      border: 1px solid #c7d2fe;
+      border-top: 3.5px solid #4f46e5;
+    }
+    .deck-english {
+      border: 1px solid #bae6fd;
+      border-top: 3.5px solid #0284c7;
+    }
+    .flashcard-deck-header {
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 12px;
     }
-    .flashcard-tag {
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: #ebcc85;
-      color: #123726;
-      font-size: 11px;
+    .deck-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .deck-icon {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .deck-sociology .deck-icon {
+      background: #eef2ff;
+      color: #4f46e5;
+    }
+    .deck-english .deck-icon {
+      background: #f0f9ff;
+      color: #0284c7;
+    }
+    .deck-title {
+      font-size: 13.5px;
       font-weight: 800;
+      color: #0f172a;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+    .deck-subtitle-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .flashcard-tag {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+      letter-spacing: 0.4px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+    }
+    .tag-soc {
+      background: #e0e7ff;
+      color: #3730a3;
     }
     .flashcard-counter {
-      font-size: 12px;
-      color: #d1e2d6;
-      font-weight: 600;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #64748b;
+      white-space: nowrap;
+      background: #f1f5f9;
+      padding: 3px 8px;
+      border-radius: 6px;
     }
+
+    /* Grammar Type Filter Dropdown */
+    .grammar-filter-wrap {
+      display: inline-flex;
+      align-items: center;
+    }
+    .grammar-filter-select {
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0369a1;
+      background: #f0f9ff;
+      border: 1px solid #7dd3fc;
+      border-radius: 6px;
+      padding: 2px 6px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .grammar-filter-select:hover, .grammar-filter-select:focus {
+      border-color: #0284c7;
+      background: #e0f2fe;
+    }
+
+    /* Compact 3D Flip Flashcard */
     .flashcard-box {
       perspective: 1000px;
       cursor: pointer;
-      min-height: 220px;
+      outline: none;
       user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      height: 175px;
+      min-height: 175px;
     }
     .flashcard-inner {
       position: relative;
       width: 100%;
-      min-height: 220px;
+      height: 100%;
       text-align: left;
       transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
@@ -635,316 +734,160 @@
     .flashcard-box.flipped .flashcard-inner {
       transform: rotateY(180deg);
     }
-    .flashcard-front, .flashcard-back {
+    .flashcard-front,
+    .flashcard-back {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
+      inset: 0;
+      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      border-radius: 14px;
-      padding: 18px 20px;
+      border-radius: 12px;
+      padding: 13px 15px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-    }
-    .flashcard-front {
-      background: #ffffff;
-      color: #163c2b;
-      border: 1px solid #d4decb;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    }
-    .flashcard-front .flashcard-badge {
-      align-self: flex-start;
-      font-size: 10px;
-      font-weight: 800;
-      color: #2b6e4d;
-      background: #eaf3e6;
-      padding: 3px 8px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-    .flashcard-front h3 {
-      margin: 0 0 4px;
-      font-size: 19px;
-      font-weight: 800;
-      color: #123726;
-    }
-    .flashcard-front h4 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #2b6e4d;
-      font-family: 'Noto Sans Malayalam', sans-serif;
-    }
-    .flashcard-front p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.55;
-      color: #4b6354;
-    }
-    .flashcard-back {
-      background: #fdfaf3;
-      color: #1d382b;
-      border: 1px solid #eddcb9;
-      transform: rotateY(180deg);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      justify-content: flex-start;
+      box-sizing: border-box;
       overflow-y: auto;
     }
-    .flashcard-back .flashcard-badge {
-      align-self: flex-start;
-      font-size: 10px;
-      font-weight: 800;
-      color: #855d14;
-      background: #faeed3;
-      padding: 3px 8px;
-      border-radius: 6px;
-      margin-bottom: 8px;
+
+    /* Sociology Card Faces */
+    .deck-sociology .flashcard-front {
+      background: #fdfdfe;
+      border: 1px solid #e0e7ff;
+      color: #1e1b4b;
+      box-shadow: 0 4px 12px rgba(67, 56, 202, 0.04);
     }
-    .flashcard-back p {
-      margin: 0 0 8px;
+    .deck-sociology .flashcard-back {
+      background: #faf5ff;
+      border: 1px solid #ddd6fe;
+      color: #1e1b4b;
+      transform: rotateY(180deg);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.06);
+    }
+
+    /* English Card Faces */
+    .deck-english .flashcard-front {
+      background: #ffffff;
+      border: 1px solid #e0f2fe;
+      color: #0f172a;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.04);
+    }
+    .deck-english .flashcard-back {
+      background: #f0fdfa;
+      border: 1px solid #bae6fd;
+      color: #0f172a;
+      transform: rotateY(180deg);
+      box-shadow: 0 4px 12px rgba(3, 105, 161, 0.06);
+    }
+
+    /* Badges & Content */
+    .flashcard-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .soc-badge {
+      background: #eef2ff;
+      color: #4f46e5;
+    }
+    .soc-badge-back {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+    .eng-badge {
+      background: #e0f2fe;
+      color: #0284c7;
+    }
+    .eng-badge-back {
+      background: #cffafe;
+      color: #0e7490;
+    }
+
+    .flashcard-front h4 {
+      font-size: 14.5px;
+      font-weight: 800;
+      margin: 0 0 3px;
+      line-height: 1.3;
+      color: #0f172a;
+    }
+    .flashcard-front h5[lang="ml"] {
+      font-family: 'Noto Sans Malayalam', sans-serif;
       font-size: 12.5px;
-      line-height: 1.6;
-      color: #284435;
+      font-weight: 700;
+      color: #4338ca;
+      margin: 0 0 5px;
+      line-height: 1.35;
+    }
+    .deck-english .flashcard-front h5[lang="ml"] {
+      color: #0284c7;
+    }
+    .flashcard-front p {
+      font-size: 11.5px;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .flashcard-back p {
+      margin: 0 0 5px;
+      font-size: 11.5px;
+      line-height: 1.48;
+      color: #1e293b;
+    }
+    .flashcard-back p:last-child {
+      margin-bottom: 0;
     }
     .flashcard-back p[lang="ml"] {
       font-family: 'Noto Sans Malayalam', sans-serif;
-      color: #3b5a49;
-      font-size: 12px;
+      font-size: 11px;
+      color: #334155;
+      line-height: 1.45;
     }
+
+    /* Flashcard Navigation Controls */
     .flashcard-nav {
       display: flex;
       justify-content: space-between;
-      gap: 8px;
-      margin-top: 14px;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
     }
     .lounge-btn-sm {
-      padding: 8px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      font-size: 12px;
+      padding: 6px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.15s;
+      transition: background 0.15s, transform 0.1s;
     }
     .lounge-btn-sm:hover {
-      background: rgba(255, 255, 255, 0.22);
+      background: #e2e8f0;
     }
-    .lounge-btn-primary {
-      background: #ebcc85;
-      color: #123726;
-      border-color: #dfb65e;
-    }
-    .lounge-btn-primary:hover {
-      background: #f3d799;
-    }
-
-    /* Pomodoro & Goals Right Panel */
-    .study-lounge-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-width: 0;
-    }
-    .timer-box {
-      background: #fffefa;
-      border: 1px solid #e0e6d9;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      color: #1c3c2b;
-    }
-    .timer-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #edf1e6;
-    }
-    .timer-icon {
-      font-size: 22px;
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: #edf6ea;
-    }
-    .timer-header > div:nth-child(2) {
-      flex: 1;
-      display: grid;
-    }
-    .timer-header strong {
-      font-size: 15px;
-      color: #143e2b;
-    }
-    .timer-header small {
-      font-size: 11px;
-      color: #6d8273;
-    }
-    .session-badge {
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: #eef6eb;
-      color: #21593e;
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .timer-modes {
-      display: flex;
-      gap: 8px;
-      margin: 14px 0 14px;
-    }
-    .timer-mode-btn {
-      flex: 1;
-      padding: 8px 6px;
-      border: 1px solid #d5decb;
-      border-radius: 8px;
-      background: #f7f9f3;
-      color: #496352;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.15s;
-    }
-    .timer-mode-btn.active {
-      background: #1b4d36;
+    .lounge-btn-soc {
+      background: #4f46e5;
       color: #ffffff;
-      border-color: #1b4d36;
+      border-color: #4338ca;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
     }
-    .timer-display-wrap {
-      text-align: center;
-      margin: 8px 0 14px;
+    .lounge-btn-soc:hover {
+      background: #4338ca;
     }
-    .timer-display {
-      font-size: clamp(46px, 5vw, 58px);
-      font-weight: 900;
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-      letter-spacing: 2px;
-      color: #123726;
-    }
-    .timer-status-text {
-      font-size: 12px;
-      color: #6a7f70;
-      margin: 8px 0 0;
-    }
-    .timer-controls {
-      display: flex;
-      gap: 10px;
-    }
-    .lounge-btn {
-      flex: 1;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      border: none;
-      transition: 0.15s;
-    }
-    .lounge-btn-play {
-      background: linear-gradient(135deg, #1f583e, #2d7353);
+    .lounge-btn-eng {
+      background: #0284c7;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(31, 88, 62, 0.25);
+      border-color: #0369a1;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2);
     }
-    .lounge-btn-play:hover {
-      filter: brightness(1.08);
-      transform: translateY(-1px);
-    }
-    .lounge-btn-play.paused {
-      background: linear-gradient(135deg, #c2881b, #d99a22);
-    }
-    .lounge-btn-secondary {
-      background: #f0f3eb;
-      color: #4a6353;
-      border: 1px solid #d8e0d1;
-    }
-    .lounge-btn-secondary:hover {
-      background: #e3ebd9;
-    }
-
-    /* Goals Checklist */
-    .goals-box {
-      background: #fffefa;
-      border: 1px solid #e0e6d9;
-      border-radius: 18px;
-      padding: 16px 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      color: #1c3c2b;
-    }
-    .goals-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 10px;
-    }
-    .goals-header strong {
-      font-size: 14px;
-      color: #143e2b;
-    }
-    .goals-header small {
-      font-size: 11px;
-      color: #6d8273;
-    }
-    .goals-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .goal-item label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: #274534;
-      cursor: pointer;
-    }
-    .goal-item input[type="checkbox"] {
-      accent-color: #1f583e;
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-    .goal-item.done span {
-      text-decoration: line-through;
-      color: #8da193;
-    }
-    .add-goal-form {
-      display: flex;
-      gap: 8px;
-    }
-    .add-goal-form input {
-      flex: 1;
-      padding: 8px 12px;
-      border: 1px solid #d5decb;
-      border-radius: 8px;
-      font-size: 12px;
-      background: #fbfdf9;
-      color: #1d382b;
-    }
-    .add-goal-form button {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 8px;
-      background: #1f583e;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    @media(max-width: 950px) {
-      .study-lounge-section {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        gap: 20px;
-      }
+    .lounge-btn-eng:hover {
+      background: #0369a1;
     }
   </style>
 </head>
@@ -1049,95 +992,109 @@
     <!-- FOCUS & REVISION LOUNGE (Interactive Study Zone)                          -->
     <!-- ========================================================================= -->
     <section id="study-lounge" class="study-lounge-section" aria-labelledby="study-lounge-title">
-      <div class="study-lounge-intro">
-        <div class="study-lounge-eyebrow"><span aria-hidden="true">⏱</span> FOCUS &amp; REVISION LOUNGE</div>
-        <h2 id="study-lounge-title">Smart Study Zone</h2>
-        <p>Boost your preparation with timed Pomodoro sessions, bilingual active-recall flashcards, and daily goals.</p>
-        
-        <div class="flashcard-deck" aria-label="Interactive concept flashcards">
-          <div class="flashcard-header">
-            <span class="flashcard-tag" id="card-subject">Sociology</span>
-            <span class="flashcard-counter" id="card-counter">Concept 1 of 8</span>
-          </div>
-          <div class="flashcard-box" id="flashcard-box" tabindex="0" role="button" aria-label="Click to flip flashcard">
-            <div class="flashcard-inner" id="flashcard-inner">
-              <div class="flashcard-front">
-                <span class="flashcard-badge">TAP TO FLIP ↻</span>
-                <h3 id="card-front-title">Socialisation</h3>
-                <h4 id="card-front-mal" lang="ml">സാമൂഹികവൽക്കരണം</h4>
-                <p id="card-front-hint">What is the core sociological definition &amp; key agents?</p>
-              </div>
-              <div class="flashcard-back">
-                <span class="flashcard-badge">EXAM SUMMARY ✓</span>
-                <p id="card-back-en">The lifelong process of acquiring culture, values, and norms to become a functioning member of society. Key agents: Family, School, Peer Groups, and Media.</p>
-                <p id="card-back-ml" lang="ml">വ്യക്തി സമൂഹത്തിന്റെ സംസ്കാരവും മൂല്യങ്ങളും പെരുമാറ്റച്ചട്ടങ്ങളും പഠിച്ചെടുത്ത് ഒരു സാമൂഹിക ജീവിയായി മാറുന്ന പ്രക്രിയ. പ്രധാന ഘടകങ്ങൾ: കുടുംബം, സ്കൂൾ, കൂട്ടുകാർ, മാധ്യമങ്ങൾ.</p>
-              </div>
-            </div>
-          </div>
-          <div class="flashcard-nav">
-            <button type="button" id="prev-card" class="lounge-btn-sm" aria-label="Previous card">← Prev</button>
-            <button type="button" id="flip-card-btn" class="lounge-btn-sm lounge-btn-primary">Flip Card ↻</button>
-            <button type="button" id="next-card" class="lounge-btn-sm" aria-label="Next card">Next →</button>
-          </div>
+      <div class="study-lounge-top">
+        <div class="study-lounge-heading">
+          <div class="study-lounge-eyebrow"><span aria-hidden="true">✦</span> INTERACTIVE REVISION DECKS</div>
+          <h2 id="study-lounge-title">Active Recall &amp; Learning Hub</h2>
+          <p>Quick bilingual revision cards for BA Sociology &amp; History core subjects, plus interactive English grammar challenges.</p>
         </div>
       </div>
 
-      <div class="study-lounge-panel">
-        <div class="timer-box">
-          <div class="timer-header">
-            <div class="timer-icon" aria-hidden="true">⏳</div>
-            <div>
-              <strong>Pomodoro Focus Timer</strong>
-              <small>Timed focus intervals · Beat fatigue</small>
+      <div class="study-decks-grid">
+        <!-- CARD 1: BA SOCIOLOGY & HISTORY -->
+        <div class="flashcard-deck deck-sociology" aria-label="BA Sociology & History Revision Cards">
+          <div class="flashcard-deck-header">
+            <div class="deck-title-wrap">
+              <span class="deck-icon" aria-hidden="true">🏛</span>
+              <div>
+                <h3 class="deck-title">BA Sociology &amp; History</h3>
+                <div class="deck-subtitle-row">
+                  <span class="flashcard-tag tag-soc" id="soc-card-subject">Sociology</span>
+                </div>
+              </div>
             </div>
-            <div class="session-badge"><span id="session-count">0</span> sessions done</div>
-          </div>
-          
-          <div class="timer-modes" role="tablist" aria-label="Timer duration">
-            <button type="button" class="timer-mode-btn active" data-time="1500" role="tab" aria-selected="true">25m Focus</button>
-            <button type="button" class="timer-mode-btn" data-time="300" role="tab" aria-selected="false">5m Break</button>
-            <button type="button" class="timer-mode-btn" data-time="3000" role="tab" aria-selected="false">50m Deep</button>
+            <span class="flashcard-counter" id="soc-card-counter">Card 1 of 10</span>
           </div>
 
-          <div class="timer-display-wrap">
-            <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
-            <p class="timer-status-text" id="timer-status-text">Ready to study. Click Start to begin.</p>
+          <div class="flashcard-box" id="soc-flashcard-box" tabindex="0" role="button" aria-label="Click to flip BA Sociology & History card">
+            <div class="flashcard-inner" id="soc-flashcard-inner">
+              <div class="flashcard-front">
+                <span class="flashcard-badge soc-badge">TAP TO FLIP ↻</span>
+                <h4 id="soc-card-front-title">Socialisation</h4>
+                <h5 id="soc-card-front-mal" lang="ml">സാമൂഹികവൽക്കരണം</h5>
+                <p id="soc-card-front-hint">What is the core sociological definition &amp; key agents?</p>
+              </div>
+              <div class="flashcard-back">
+                <span class="flashcard-badge soc-badge-back">EXAM SUMMARY ✓</span>
+                <p id="soc-card-back-en">The lifelong process of acquiring culture, values, and norms to become a functioning member of society. Key agents: Family, School, Peer Groups, and Media.</p>
+                <p id="soc-card-back-ml" lang="ml">വ്യക്തി സമൂഹത്തിന്റെ സംസ്കാരവും മൂല്യങ്ങളും പെരുമാറ്റച്ചട്ടങ്ങളും പഠിച്ചെടുത്ത് ഒരു സാമൂഹിക ജീവിയായി മാറുന്ന പ്രക്രിയ. പ്രധാന ഘടകങ്ങൾ: കുടുംബം, സ്കൂൾ, കൂട്ടുകാർ, മാധ്യമങ്ങൾ.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="timer-controls">
-            <button type="button" id="timer-start-btn" class="lounge-btn lounge-btn-play">Start Focus ▶</button>
-            <button type="button" id="timer-reset-btn" class="lounge-btn lounge-btn-secondary">Reset ↺</button>
+          <div class="flashcard-nav">
+            <button type="button" id="soc-prev-card" class="lounge-btn-sm" aria-label="Previous card">← Prev</button>
+            <button type="button" id="soc-flip-card-btn" class="lounge-btn-sm lounge-btn-soc">Flip Card ↻</button>
+            <button type="button" id="soc-next-card" class="lounge-btn-sm" aria-label="Next card">Next →</button>
           </div>
         </div>
 
-        <div class="goals-box">
-          <div class="goals-header">
-            <strong>Today's Focus Goals</strong>
-            <small>Tick off as you complete</small>
+        <!-- CARD 2: ENGLISH LEARNING CARDS -->
+        <div class="flashcard-deck deck-english" aria-label="English Learning and Grammar Cards">
+          <div class="flashcard-deck-header">
+            <div class="deck-title-wrap">
+              <span class="deck-icon" aria-hidden="true">📖</span>
+              <div>
+                <h3 class="deck-title">English Learning Cards</h3>
+                <div class="deck-subtitle-row">
+                  <div class="grammar-filter-wrap">
+                    <select id="grammar-type-filter" class="grammar-filter-select" aria-label="Filter English Grammar Type">
+                      <option value="all">All Grammar Topics (15)</option>
+                      <option value="tenses">Tenses &amp; Forms</option>
+                      <option value="voice">Active &amp; Passive Voice</option>
+                      <option value="speech">Direct &amp; Indirect Speech</option>
+                      <option value="prepositions">Prepositions &amp; Phrasals</option>
+                      <option value="agreement">Subject-Verb Agreement</option>
+                      <option value="errors">Common Errors &amp; Fixes</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="flashcard-counter" id="eng-card-counter">Card 1 of 15</span>
           </div>
-          <ul class="goals-list" id="goals-list">
-            <li class="goal-item">
-              <label><input type="checkbox" checked> <span>Revise 1 Malayalam reading chapter</span></label>
-            </li>
-            <li class="goal-item">
-              <label><input type="checkbox"> <span>Complete 1 MCQ Practice Test</span></label>
-            </li>
-            <li class="goal-item">
-              <label><input type="checkbox"> <span>Review 5 Concept Flashcards</span></label>
-            </li>
-          </ul>
-          <form id="add-goal-form" class="add-goal-form">
-            <input type="text" id="new-goal-input" placeholder="Add custom study goal..." maxlength="45">
-            <button type="submit" aria-label="Add goal">+</button>
-          </form>
+
+          <div class="flashcard-box" id="eng-flashcard-box" tabindex="0" role="button" aria-label="Click to flip English Learning card">
+            <div class="flashcard-inner" id="eng-flashcard-inner">
+              <div class="flashcard-front">
+                <span class="flashcard-badge eng-badge">TAP TO CHECK RULE ↻</span>
+                <h4 id="eng-card-front-title">She _____ (live) in Calicut since 2018.</h4>
+                <h5 id="eng-card-front-mal" lang="ml">മുൻപ് തുടങ്ങി ഇപ്പോഴും തുടരുന്ന കാര്യത്തിന് ഏത് ടെൻസ്?</h5>
+                <p id="eng-card-front-hint">Choose: has lived OR lived?</p>
+              </div>
+              <div class="flashcard-back">
+                <span class="flashcard-badge eng-badge-back">GRAMMAR RULE &amp; ANSWER ✓</span>
+                <p id="eng-card-back-en"><strong>Answer: has lived</strong><br>Use Present Perfect (has/have + V3) for actions that began in the past and continue into the present with 'since' or 'for'.</p>
+                <p id="eng-card-back-ml" lang="ml">കഴിഞ്ഞ കാലത്ത് ആരംഭിച്ച് ഇപ്പോഴും തുടരുന്ന പ്രവർത്തനങ്ങൾക്ക് Present Perfect Tense (has lived) ഉപയോഗിക്കണം.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard-nav">
+            <button type="button" id="eng-prev-card" class="lounge-btn-sm" aria-label="Previous card">← Prev</button>
+            <button type="button" id="eng-flip-card-btn" class="lounge-btn-sm lounge-btn-eng">Flip Card ↻</button>
+            <button type="button" id="eng-next-card" class="lounge-btn-sm" aria-label="Next card">Next →</button>
+          </div>
         </div>
       </div>
     </section>
 
     <script id="study-lounge-script">
     (() => {
-      // --- CONCEPT FLASHCARDS ---
-      const cards = [
+      // =========================================================================
+      // 1. BA SOCIOLOGY & HISTORY FLASHCARDS DECK
+      // =========================================================================
+      const socCards = [
         {
           subject: 'Sociology',
           titleEn: 'Socialisation',
@@ -1151,22 +1108,22 @@
           titleEn: 'The Turing Test',
           titleMl: 'ട്യൂറിംഗ് ടെസ്റ്റ്',
           hint: 'What was Alan Turing’s test for machine intelligence (1950)?',
-          backEn: 'Proposed by Alan Turing in "Computing Machinery and Intelligence" (1950). If a human interrogator cannot distinguish text responses of a machine from those of a human, the machine exhibits thinking.',
-          backMl: '1950-ൽ അലൻ ട്യൂറിംഗ് അവതരിപ്പിച്ച ബുദ്ധിപരീക്ഷ. സംഭാഷണത്തിൽ മനുഷ്യനും യന്ത്രവും തമ്മിലുള്ള വ്യത്യാസം തിരിച്ചറിയാൻ ചോദ്യകർത്താവിന് കഴിഞ്ഞില്ലെങ്കിൽ ആ യന്ത്രം ബുദ്ധിയുള്ളതായി കണക്കാക്കാം.'
+          backEn: 'Proposed by Alan Turing in "Computing Machinery and Intelligence" (1950). If a human interrogator cannot distinguish text responses of a machine from a human, the machine exhibits intelligence.',
+          backMl: '1950-ൽ അലൻ ട്യൂറിംഗ് അവതരിപ്പിച്ച ബുദ്ധിപരീക്ഷ. സംഭാഷണത്തിൽ മനുഷ്യനും യന്ത്രവും തമ്മിലുള്ള വ്യത്യാസം തിരിച്ചറിയാൻ ചോദ്യകർത്താവിന് കഴിഞ്ഞില്ലെങ്കിൽ ആ യന്ത്രം ചിന്തിക്കുന്നതായി കണക്കാക്കാം.'
         },
         {
           subject: 'Ethics',
           titleEn: 'Utilitarianism',
           titleMl: 'യൂട്ടിലിറ്റേറിയനിസം',
           hint: 'Who formulated it and what is the Greatest Happiness Principle?',
-          backEn: 'Founded by Jeremy Bentham (quantitative hedonism) and refined by J.S. Mill (qualitative pleasures). An action is morally right if it produces the greatest happiness for the greatest number.',
+          backEn: 'Founded by Jeremy Bentham and refined by J.S. Mill. An action is morally right if it produces the greatest happiness for the greatest number of people.',
           backMl: 'ജെറമി ബെന്താമും ജെ.എസ്. മില്ലും വികസിപ്പിച്ച സിദ്ധാന്തം. ഏറ്റവും കൂടുതൽ ആളുകൾക്ക് ഏറ്റവും കൂടുതൽ സന്തോഷവും നന്മയും നൽകുന്ന പ്രവൃത്തികളാണ് ധാർമ്മികമായി ശരി.'
         },
         {
           subject: 'History of Keralam',
           titleEn: 'Megalithic Culture',
           titleMl: 'മഹാശില സംസ്കാരം',
-          hint: 'What are Kerala’s Iron Age burial monuments and sites?',
+          hint: 'What are Kerala’s Iron Age burial monuments and key sites?',
           backEn: 'Burial monuments of the Iron Age: Kudakkallu (umbrella stone), Thoppikkallu (hat stone), Muniyaras (dolmens), and Nannangadi (urn burials). Prominent sites: Marayur, Wayanad, and Thrissur.',
           backMl: 'കേരളത്തിലെ ഇരുമ്പ് യുഗ ശ്മശാന സംസ്കാരം: കുടക്കല്ല്, തൊപ്പിക്കല്ല്, മുനിയറകൾ, നന്നങ്ങാടികൾ. പ്രധാന കേന്ദ്രങ്ങൾ: മറയൂർ, വയനാട്, തൃശൂർ.'
         },
@@ -1183,7 +1140,7 @@
           titleEn: 'Pragmatism & Experiential Learning',
           titleMl: 'പ്രായോഗികതാവാദം & അനുഭവ പഠനം',
           hint: 'What is John Dewey’s philosophy of "Learning by Doing"?',
-          backEn: 'John Dewey emphasized that education is life itself, not merely preparation for life. Knowledge is constructed through active problem solving, hands-on experience, and democratic participation.',
+          backEn: 'John Dewey emphasized that education is life itself, not merely preparation for life. Knowledge is actively constructed through hands-on experience, problem-solving, and democratic participation.',
           backMl: 'ജോൺ ഡ്യൂയിയുടെ "ചെയ്തു പഠിക്കുക" (Learning by Doing) സിദ്ധാന്തം. പ്രായോഗിക അനുഭവങ്ങളിലൂടെയും പ്രശ്നപരിഹാരങ്ങളിലൂടെയും അറിവ് നിർമ്മിക്കപ്പെടുന്നു.'
         },
         {
@@ -1191,7 +1148,7 @@
           titleEn: 'Law of Diminishing Marginal Utility',
           titleMl: 'പരിധീയ പ്രയോജന തത്വം',
           hint: 'Why does additional satisfaction decrease with each unit consumed?',
-          backEn: 'Formulated by H.H. Gossen (First Law). As a consumer increases the consumption of a good, the marginal utility derived from each additional unit declines while total utility increases at a decreasing rate.',
+          backEn: 'Formulated by H.H. Gossen. As a consumer consumes more units of a commodity, the marginal utility derived from each additional unit continuously declines.',
           backMl: 'ഒരു വസ്തു തുടർച്ചയായി ഉപയോഗിക്കുമ്പോൾ ഓരോ അധിക യൂണിറ്റിൽ നിന്നും ലഭിക്കുന്ന സംതൃപ്തി (Marginal Utility) ക്രമേണ കുറയുന്നു.'
         },
         {
@@ -1199,195 +1156,307 @@
           titleEn: 'Social Stratification',
           titleMl: 'സാമൂഹിക ശ്രേണീകരണം',
           hint: 'What are the main universal systems of structured inequality?',
-          backEn: 'The structured hierarchical ranking of individuals and groups in a society based on wealth, power, and prestige. Four universal systems: Slavery, Estate, Caste (closed), and Class (open).',
+          backEn: 'The structured hierarchical ranking of individuals and groups in society based on wealth, power, and prestige. Four universal systems: Slavery, Estate, Caste (closed), and Class (open).',
           backMl: 'സമ്പത്ത്, അധികാരം, പദവി എന്നിവയുടെ അടിസ്ഥാനത്തിൽ സമൂഹത്തെ വിവിധ തട്ടുകളായി തരംതിരിക്കുന്ന സംവിധാനം. പ്രധാന രൂപങ്ങൾ: അടിമത്തം, എസ്റ്റേറ്റ്, ജാതി (അടഞ്ഞത്), വർഗ്ഗം (തുറന്നത്).'
+        },
+        {
+          subject: 'History of Keralam',
+          titleEn: 'Aruvippuram Consecration (1888)',
+          titleMl: 'അരുവിപ്പുറം പ്രതിഷ്ഠ (1888)',
+          hint: 'What was the revolutionary impact of Sree Narayana Guru’s consecration?',
+          backEn: 'In 1888, Sree Narayana Guru consecrated a Siva idol at Aruvippuram, defying the Brahmin monopoly on temple rituals and inaugurating the modern Kerala social renaissance.',
+          backMl: '1888-ൽ ശ്രീനാരായണഗുരു അരുവിപ്പുറത്ത് ശിവപ്രതിഷ്ഠ നടത്തി ബ്രാഹ്മണ മേധാവിത്വത്തെ ചോദ്യം ചെയ്തു. "ഒരു ജാതി, ഒരു മതം, ഒരു ദൈവം മനുഷ്യന്" എന്ന നവോത്ഥാന സന്ദേശം നൽകി.'
+        },
+        {
+          subject: 'Sociology',
+          titleEn: 'Historical Materialism',
+          titleMl: 'ചരിത്രപരമായ ഭൗതികവാദം',
+          hint: 'How did Karl Marx explain social evolution through economic base and superstructure?',
+          backEn: 'Karl Marx’s materialist conception of history: the economic structure (Base - forces & relations of production) determines the legal, political, and cultural institutions (Superstructure).',
+          backMl: 'സാമ്പത്തിക ഉൽപ്പാദന രീതികളിലെയും വർഗ്ഗസമരങ്ങളിലെയും മാറ്റങ്ങളാണ് ചരിത്രത്തെ മുന്നോട്ട് നയിക്കുന്നതെന്ന കാൾ മാർക്സിന്റെ സിദ്ധാന്തം (Base & Superstructure).'
         }
       ];
 
-      let currentCardIndex = 0;
-      const box = document.getElementById('flashcard-box');
-      const tag = document.getElementById('card-subject');
-      const counter = document.getElementById('card-counter');
-      const frontTitle = document.getElementById('card-front-title');
-      const frontMal = document.getElementById('card-front-mal');
-      const frontHint = document.getElementById('card-front-hint');
-      const backEn = document.getElementById('card-back-en');
-      const backMl = document.getElementById('card-back-ml');
-      const prevBtn = document.getElementById('prev-card');
-      const nextBtn = document.getElementById('next-card');
-      const flipBtn = document.getElementById('flip-card-btn');
+      let socIndex = 0;
+      const socBox = document.getElementById('soc-flashcard-box');
+      const socTag = document.getElementById('soc-card-subject');
+      const socCounter = document.getElementById('soc-card-counter');
+      const socTitle = document.getElementById('soc-card-front-title');
+      const socMal = document.getElementById('soc-card-front-mal');
+      const socHint = document.getElementById('soc-card-front-hint');
+      const socBackEn = document.getElementById('soc-card-back-en');
+      const socBackMl = document.getElementById('soc-card-back-ml');
+      const socPrev = document.getElementById('soc-prev-card');
+      const socNext = document.getElementById('soc-next-card');
+      const socFlip = document.getElementById('soc-flip-card-btn');
 
-      function renderCard(idx) {
-        if (!box) return;
-        box.classList.remove('flipped');
-        const c = cards[idx];
-        if (tag) tag.textContent = c.subject;
-        if (counter) counter.textContent = 'Concept ' + (idx + 1) + ' of ' + cards.length;
-        if (frontTitle) frontTitle.textContent = c.titleEn;
-        if (frontMal) frontMal.textContent = c.titleMl;
-        if (frontHint) frontHint.textContent = c.hint;
-        if (backEn) backEn.textContent = c.backEn;
-        if (backMl) backMl.textContent = c.backMl;
+      function renderSocCard(idx) {
+        if (!socBox) return;
+        socBox.classList.remove('flipped');
+        const c = socCards[idx];
+        if (socTag) socTag.textContent = c.subject;
+        if (socCounter) socCounter.textContent = 'Card ' + (idx + 1) + ' of ' + socCards.length;
+        if (socTitle) socTitle.textContent = c.titleEn;
+        if (socMal) socMal.textContent = c.titleMl;
+        if (socHint) socHint.textContent = c.hint;
+        if (socBackEn) socBackEn.textContent = c.backEn;
+        if (socBackMl) socBackMl.textContent = c.backMl;
       }
 
-      function toggleFlip() {
-        if (box) box.classList.toggle('flipped');
+      function toggleSocFlip() {
+        if (socBox) socBox.classList.toggle('flipped');
       }
 
-      if (box) {
-        box.addEventListener('click', toggleFlip);
-        box.addEventListener('keydown', (e) => {
+      if (socBox) {
+        socBox.addEventListener('click', toggleSocFlip);
+        socBox.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            toggleFlip();
+            toggleSocFlip();
           }
         });
       }
-      if (flipBtn) flipBtn.addEventListener('click', toggleFlip);
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
-          renderCard(currentCardIndex);
+      if (socFlip) socFlip.addEventListener('click', toggleSocFlip);
+      if (socPrev) {
+        socPrev.addEventListener('click', () => {
+          socIndex = (socIndex - 1 + socCards.length) % socCards.length;
+          renderSocCard(socIndex);
         });
       }
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          currentCardIndex = (currentCardIndex + 1) % cards.length;
-          renderCard(currentCardIndex);
+      if (socNext) {
+        socNext.addEventListener('click', () => {
+          socIndex = (socIndex + 1) % socCards.length;
+          renderSocCard(socIndex);
         });
       }
-      renderCard(0);
+      renderSocCard(0);
 
-      // --- POMODORO TIMER ---
-      let timeLeft = 1500;
-      let timerDuration = 1500;
-      let timerInterval = null;
-      let isRunning = false;
-      let sessionsDone = 0;
+      // =========================================================================
+      // 2. ENGLISH LEARNING CARDS WITH GRAMMAR TYPE SELECTOR
+      // =========================================================================
+      const engCards = [
+        // Tenses & Verb Forms
+        {
+          type: 'tenses',
+          title: 'She _____ (live) in Calicut since 2018.',
+          mal: 'മുൻപ് തുടങ്ങി ഇപ്പോഴും തുടരുന്ന കാര്യത്തിന് ഏത് ടെൻസ്?',
+          hint: 'Option: has lived OR lived?',
+          answer: 'has lived',
+          rule: 'Use Present Perfect (has/have + V3) for actions that began in the past and continue up to the present with "since" or "for". Past Simple ("lived") is only for finished past events.',
+          ruleMl: 'കഴിഞ്ഞ കാലത്ത് ആരംഭിച്ച് ഇപ്പോഴും തുടരുന്ന പ്രവർത്തനങ്ങൾക്ക് Present Perfect Tense (has/have + past participle) ഉപയോഗിക്കണം.'
+        },
+        {
+          type: 'tenses',
+          title: 'When the phone rang, I _____ (read) a book.',
+          mal: 'ഒരു പ്രവൃത്തി നടന്നുകൊണ്ടിരിക്കുമ്പോൾ മറ്റൊന്ന് സംഭവിച്ചാൽ?',
+          hint: 'Option: read OR was reading?',
+          answer: 'was reading',
+          rule: 'The continuing background action uses Past Continuous (was/were + V-ing), while the sudden interrupting action takes Past Simple ("rang").',
+          ruleMl: 'ഒരു കാര്യം നടന്നുകൊണ്ടിരുന്ന സമയത്ത് മറ്റൊന്ന് സംഭവിക്കുമ്പോൾ നടന്നുകൊണ്ടിരുന്നതിന് Past Continuous (was reading) ഉപയോഗിക്കുന്നു.'
+        },
+        {
+          type: 'tenses',
+          title: 'If you had studied well, you _____ (pass) the exam.',
+          mal: 'ഭൂതകാലത്തിലെ അസാധ്യമായ നിബന്ധന (Third Conditional)?',
+          hint: 'Option: would pass OR would have passed?',
+          answer: 'would have passed',
+          rule: 'In Third Conditional (unreal past), the "if" clause contains Past Perfect ("had studied"), so the main clause requires "would have + past participle".',
+          ruleMl: 'കഴിഞ്ഞ കാലത്തെ നിബന്ധനകളിൽ "If + had + V3" വന്നാൽ പ്രധാന വാക്യത്തിൽ "would have + past participle" ഉപയോഗിക്കണം.'
+        },
 
-      const display = document.getElementById('timer-display');
-      const statusText = document.getElementById('timer-status-text');
-      const startBtn = document.getElementById('timer-start-btn');
-      const resetBtn = document.getElementById('timer-reset-btn');
-      const sessionCountEl = document.getElementById('session-count');
-      const modeBtns = document.querySelectorAll('.timer-mode-btn');
+        // Active & Passive Voice
+        {
+          type: 'voice',
+          title: 'Active: "The teacher explains the sociological theories."',
+          mal: 'കർമ്മം (the theories) മുന്നിൽ വച്ച് passive ആക്കുക.',
+          hint: 'How does Simple Present turn into passive voice?',
+          answer: 'The sociological theories are explained by the teacher.',
+          rule: 'Plural object ("The sociological theories") + "are" + Past Participle ("explained") + "by" + agent.',
+          ruleMl: 'Simple Present-ൽ കർമ്മം ബഹുവചനമാകുമ്പോൾ "are + V3 (explained)" രൂപമാണ് passive voice-ൽ വരുന്നത്.'
+        },
+        {
+          type: 'voice',
+          title: 'Active: "The government has approved the new policy."',
+          mal: '"has approved" പാസ്സീവ് ആക്കുമ്പോൾ എന്ത് മാറ്റം വരും?',
+          hint: 'In Present Perfect passive, what auxiliary word is added?',
+          answer: 'The new policy has been approved by the government.',
+          rule: 'In Present Perfect passive voice, insert "been" between "has/have" and the past participle ("has been approved").',
+          ruleMl: 'Present Perfect passive ആക്കുമ്പോൾ has/have എന്നതിനോടൊപ്പം "been + past participle" ചേർക്കണം.'
+        },
 
-      function updateDisplay() {
-        if (!display) return;
-        const m = Math.floor(timeLeft / 60);
-        const s = timeLeft % 60;
-        display.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
-      }
+        // Direct & Indirect Speech
+        {
+          type: 'speech',
+          title: 'Direct: He said, "I am writing my assignment today."',
+          mal: 'പരോക്ഷ പ്രസ്താവനയാക്കി മാറ്റുക.',
+          hint: 'Check changes for: "am writing", "my", and "today".',
+          answer: 'He said that he was writing his assignment that day.',
+          rule: 'Tense shifts from Present Continuous to Past Continuous ("am writing" -> "was writing"), pronouns update ("I" -> "he", "my" -> "his"), and "today" becomes "that day".',
+          ruleMl: 'റിപ്പോർട്ടിംഗ് വെർബ് പാസ്റ്റ് ആകുമ്പോൾ Present Continuous എന്നത് Past Continuous ആവുകയും "today" എന്നത് "that day" ആയി മാറുകയും ചെയ്യുന്നു.'
+        },
+        {
+          type: 'speech',
+          title: 'Direct: She asked Rahul, "Have you submitted the form?"',
+          mal: 'Yes/No ചോദ്യങ്ങൾ indirect speech ആക്കുമ്പോൾ?',
+          hint: 'Which conjunction joins the clauses ("if" / "whether")?',
+          answer: 'She asked Rahul if he had submitted the form.',
+          rule: 'For Yes/No questions, connect with "if" or "whether", change question word order to statement order, and shift "have submitted" to Past Perfect "had submitted".',
+          ruleMl: 'Yes/No ചോദ്യങ്ങൾക്ക് "if" അല്ലെങ്കിൽ "whether" ഉപയോഗിക്കുക. "Have submitted" എന്നത് "had submitted" ആയി മാറും.'
+        },
 
-      function playChime() {
-        try {
-          const ctx = new (window.AudioContext || window.webkitAudioContext)();
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(587.33, ctx.currentTime);
-          osc.frequency.setValueAtTime(880, ctx.currentTime + 0.25);
-          gain.gain.setValueAtTime(0.15, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
-          osc.start();
-          osc.stop(ctx.currentTime + 1.2);
-        } catch(err) {}
-      }
+        // Prepositions & Phrasals
+        {
+          type: 'prepositions',
+          title: 'He is senior _____ me by two years.',
+          mal: '"senior, junior, superior" എന്നിവയ്ക്കൊപ്പം ഏത് പ്രിപോസിഷൻ?',
+          hint: 'Choose: than OR to?',
+          answer: 'senior to me (Never "than")',
+          rule: 'Latin comparative adjectives ending in "-ior" (senior, junior, superior, inferior, prior) always take "to", never "than".',
+          ruleMl: 'senior, junior, superior, inferior തുടങ്ങിയ വാക്കുകൾക്ക് ശേഷം "than" അല്ല, "to" ആണ് പ്രിപോസിഷനായി ഉപയോഗിക്കേണ്ടത്.'
+        },
+        {
+          type: 'prepositions',
+          title: 'I have been preparing for the exam _____ three weeks.',
+          mal: 'സമയത്തിന്റെ ദൈർഘ്യം (duration) പറയാൻ ഏതാണ് ഉപയോഗിക്കുക?',
+          hint: 'Choose: since OR for?',
+          answer: 'for three weeks',
+          rule: 'Use "for" to indicate duration/period of time (for 3 weeks, for 2 hours). Use "since" for a specific starting point (since Monday, since 2021).',
+          ruleMl: 'സമയത്തിന്റെ ദൈർഘ്യം (duration) സൂചിപ്പിക്കാൻ "for" ഉപയോഗിക്കുക; ആരംഭിച്ച നിശ്ചിത സമയം പറയാൻ "since" ഉപയോഗിക്കുക.'
+        },
+        {
+          type: 'prepositions',
+          title: 'The meeting was _____ due to unavoidable reasons.',
+          mal: 'പൂർണ്ണമായി റദ്ദാക്കി എന്ന് സൂചിപ്പിക്കുന്ന phrasal verb ഏത്?',
+          hint: 'Choose: called off OR put off?',
+          answer: 'called off (= cancelled)',
+          rule: '"Call off" means to cancel entirely. "Put off" means to postpone or defer to a later date.',
+          ruleMl: '"Call off" എന്നാൽ പൂർണ്ണമായി റദ്ദാക്കുക (cancel) എന്നാണ്; "Put off" എന്നാൽ മറ്റൊരു ദിവസത്തേക്ക് മാറ്റിവെക്കുക (postpone) എന്നാണ്.'
+        },
 
-      function startTimer() {
-        if (isRunning) {
-          clearInterval(timerInterval);
-          isRunning = false;
-          if (startBtn) {
-            startBtn.textContent = 'Resume Focus ▶';
-            startBtn.classList.add('paused');
-          }
-          if (statusText) statusText.textContent = 'Timer paused. Click Resume to continue.';
-        } else {
-          isRunning = true;
-          if (startBtn) {
-            startBtn.textContent = 'Pause ❚❚';
-            startBtn.classList.remove('paused');
-          }
-          if (statusText) statusText.textContent = 'Focus in progress! Keep your attention on your studies.';
-          timerInterval = setInterval(() => {
-            if (timeLeft > 0) {
-              timeLeft--;
-              updateDisplay();
-            } else {
-              clearInterval(timerInterval);
-              isRunning = false;
-              playChime();
-              sessionsDone++;
-              if (sessionCountEl) sessionCountEl.textContent = sessionsDone;
-              if (startBtn) {
-                startBtn.textContent = 'Start Focus ▶';
-                startBtn.classList.remove('paused');
-              }
-              if (statusText) statusText.textContent = '🎉 Focus session complete! Take a rest or start a break.';
-            }
-          }, 1000);
+        // Subject-Verb Agreement
+        {
+          type: 'agreement',
+          title: 'Neither the teacher nor the students _____ present.',
+          mal: '"Neither... nor" വരുമ്പോൾ ക്രിയ ഏത് സബ്ജക്ടിനെ ആശ്രയിക്കുന്നു?',
+          hint: 'Choose: was OR were?',
+          answer: 'were present',
+          rule: 'When subjects are connected by "either... or" or "neither... nor", the verb agrees with the subject closest to it ("students" is plural, hence "were").',
+          ruleMl: '"Neither... nor" വരുമ്പോൾ വെർബിന് ഏറ്റവും അടുത്ത് നിൽക്കുന്ന സബ്ജക്ടിന് (students - ബഹുവചനം) അനുസരിച്ചാണ് ക്രിയ (were) വരുന്നത്.'
+        },
+        {
+          type: 'agreement',
+          title: 'Each of the participants _____ received a certificate.',
+          mal: '"Each of..." വന്നാൽ ക്രിയ ഏകവചനമോ ബഹുവചനമോ?',
+          hint: 'Choose: has OR have?',
+          answer: 'has received',
+          rule: '"Each", "Every", and "Each of..." take a singular verb ("has", "is", "was") regardless of the plural noun that follows.',
+          ruleMl: '"Each of the..." വരുമ്പോൾ നാമം ബഹുവചനമാണെങ്കിലും ക്രിയ എപ്പോഴും ഏകവചനമായിരിക്കണം (has).'
+        },
+
+        // Common Errors & Fixes
+        {
+          type: 'errors',
+          title: 'Error Spotting: "One of my friend is an economist."',
+          mal: 'ഈ വാക്യത്തിലെ തെറ്റ് എന്താണ്? എങ്ങനെ തിരുത്താം?',
+          hint: 'Look closely at the noun after "One of my...".',
+          answer: 'One of my friends is an economist.',
+          rule: '"One of..." must always be followed by a plural noun ("friends"), because you select one out of many, but the verb remains singular ("is").',
+          ruleMl: '"One of..." എന്നതിന് ശേഷം നാമം ബഹുവചനമായിരിക്കണം (friends), എന്നാൽ ക്രിയ ഏകവചനമായിരിക്കും (is).'
+        },
+        {
+          type: 'errors',
+          title: 'Error Spotting: "Despite of working hard, he failed."',
+          mal: '"Despite" എന്ന വാക്കിനൊപ്പം "of" വരുമോ?',
+          hint: 'Correct form: Despite OR In spite of?',
+          answer: 'Despite working hard... OR In spite of working hard...',
+          rule: '"Despite" takes no preposition (never "despite of"). Only "in spite" is followed by "of".',
+          ruleMl: '"Despite" എന്ന വാക്കിനൊപ്പം "of" ഉപയോഗിക്കാൻ പാടില്ല. "In spite of" എന്ന് മാത്രമേ "of" വരാവൂ.'
+        },
+        {
+          type: 'errors',
+          title: 'Error Spotting: "We discussed about the sociology topic."',
+          mal: '"Discussed" ന് ശേഷം "about" ആവശ്യമുണ്ടോ?',
+          hint: 'Does the transitive verb "discuss" take a preposition?',
+          answer: 'We discussed the sociology topic. (Remove "about")',
+          rule: 'Verbs like "discuss", "order", "describe", and "reach" take a direct object without prepositions like "about" or "for".',
+          ruleMl: '"Discuss", "order" തുടങ്ങിയ ക്രിയകൾക്ക് ശേഷം "about" അല്ലെങ്കിൽ "for" ചേർക്കേണ്ടതില്ല.'
         }
+      ];
+
+      let filteredEngCards = [...engCards];
+      let engIndex = 0;
+
+      const engBox = document.getElementById('eng-flashcard-box');
+      const engFilter = document.getElementById('grammar-type-filter');
+      const engCounter = document.getElementById('eng-card-counter');
+      const engTitle = document.getElementById('eng-card-front-title');
+      const engMal = document.getElementById('eng-card-front-mal');
+      const engHint = document.getElementById('eng-card-front-hint');
+      const engBackEn = document.getElementById('eng-card-back-en');
+      const engBackMl = document.getElementById('eng-card-back-ml');
+      const engPrev = document.getElementById('eng-prev-card');
+      const engNext = document.getElementById('eng-next-card');
+      const engFlip = document.getElementById('eng-flip-card-btn');
+
+      function renderEngCard(idx) {
+        if (!engBox || filteredEngCards.length === 0) return;
+        engBox.classList.remove('flipped');
+        const c = filteredEngCards[idx];
+        if (engCounter) engCounter.textContent = 'Card ' + (idx + 1) + ' of ' + filteredEngCards.length;
+        if (engTitle) engTitle.textContent = c.title;
+        if (engMal) engMal.textContent = c.mal;
+        if (engHint) engHint.textContent = c.hint;
+        if (engBackEn) engBackEn.innerHTML = '<strong>Answer: ' + c.answer + '</strong><br>' + c.rule;
+        if (engBackMl) engBackMl.textContent = c.ruleMl;
       }
 
-      function resetTimer() {
-        clearInterval(timerInterval);
-        isRunning = false;
-        timeLeft = timerDuration;
-        updateDisplay();
-        if (startBtn) {
-          startBtn.textContent = 'Start Focus ▶';
-          startBtn.classList.remove('paused');
-        }
-        if (statusText) statusText.textContent = 'Timer reset. Ready when you are.';
+      function toggleEngFlip() {
+        if (engBox) engBox.classList.toggle('flipped');
       }
 
-      if (startBtn) startBtn.addEventListener('click', startTimer);
-      if (resetBtn) resetBtn.addEventListener('click', resetTimer);
-
-      modeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          modeBtns.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-          timerDuration = parseInt(btn.dataset.time, 10);
-          resetTimer();
-        });
-      });
-
-      // --- GOALS CHECKLIST ---
-      const goalsList = document.getElementById('goals-list');
-      const addGoalForm = document.getElementById('add-goal-form');
-      const newGoalInput = document.getElementById('new-goal-input');
-
-      if (goalsList) {
-        goalsList.addEventListener('change', (e) => {
-          if (e.target.matches('input[type="checkbox"]')) {
-            const li = e.target.closest('.goal-item');
-            if (li) li.classList.toggle('done', e.target.checked);
+      if (engBox) {
+        engBox.addEventListener('click', toggleEngFlip);
+        engBox.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleEngFlip();
           }
         });
       }
+      if (engFlip) engFlip.addEventListener('click', toggleEngFlip);
 
-      if (addGoalForm && newGoalInput) {
-        addGoalForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const val = newGoalInput.value.trim();
-          if (!val) return;
-          const li = document.createElement('li');
-          li.className = 'goal-item';
-          li.innerHTML = '<label><input type="checkbox"> <span>' + val.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span></label>';
-          goalsList.appendChild(li);
-          newGoalInput.value = '';
+      if (engPrev) {
+        engPrev.addEventListener('click', () => {
+          if (filteredEngCards.length === 0) return;
+          engIndex = (engIndex - 1 + filteredEngCards.length) % filteredEngCards.length;
+          renderEngCard(engIndex);
         });
       }
+
+      if (engNext) {
+        engNext.addEventListener('click', () => {
+          if (filteredEngCards.length === 0) return;
+          engIndex = (engIndex + 1) % filteredEngCards.length;
+          renderEngCard(engIndex);
+        });
+      }
+
+      if (engFilter) {
+        engFilter.addEventListener('change', (e) => {
+          const type = e.target.value;
+          if (type === 'all') {
+            filteredEngCards = [...engCards];
+          } else {
+            filteredEngCards = engCards.filter(card => card.type === type);
+          }
+          engIndex = 0;
+          renderEngCard(engIndex);
+        });
+      }
+
+      renderEngCard(0);
     })();
-    </script>
+  </script>
 
     <!-- ========================================================================= -->
     <!-- [TEMPORARILY ARCHIVED: AI STUDY HELPER]                                   -->
