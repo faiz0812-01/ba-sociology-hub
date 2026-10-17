@@ -1318,7 +1318,7 @@ details.section-details summary, details.popular-details summary { cursor: point
       if (/sociology/.test(name)) return "Sociology";
       if (/education/.test(name)) return "Philosophy of Education";
       if (/economy|economic|foundation/.test(name)) return "Indian Economy";
-      if (/artificial intelligence|\bai\b|mind|philosophy of mind/.test(name)) return "AI & Mind";
+      if (/artificial intelligence|(?:^|[^a-z0-9])ai(?:[^a-z0-9]|$)|mind|philosophy of mind/.test(name)) return "AI & Mind";
       if (/ethic/.test(name)) return "Ethics";
       if (/english/.test(name)) return "English";
       if (/malayalam/.test(name)) return "Malayalam";
@@ -1458,6 +1458,12 @@ details.section-details summary, details.popular-details summary { cursor: point
 
       const tbody = document.getElementById('result-rows');
       tbody.replaceChildren();
+
+      if (!pageItems.length) {
+        const emptyTr = document.createElement('tr');
+        emptyTr.innerHTML = '<td colspan="12" style="text-align:center; padding:32px; color:var(--text-dim); font-family:var(--font-mono); font-size:13px;">' + (allResults.length ? 'NO MATCHING TEST ATTEMPTS FOUND FOR THIS FILTER' : 'NO TEST ATTEMPTS RECORDED IN DATABASE YET') + '</td>';
+        tbody.append(emptyTr);
+      }
 
       for (const item of pageItems) {
         const tr = document.createElement('tr');
@@ -1604,6 +1610,12 @@ details.section-details summary, details.popular-details summary { cursor: point
       const rows = document.getElementById('rows');
       rows.replaceChildren();
 
+      if (!pageItems.length) {
+        const emptyTr = document.createElement('tr');
+        emptyTr.innerHTML = '<td colspan="7" style="text-align:center; padding:32px; color:var(--text-dim); font-family:var(--font-mono); font-size:13px;">' + (trafficRecords.length ? 'NO MATCHING IP RECORDS FOUND' : 'NO INGRESS IP TELEMETRY LOGGED IN 7-DAY BUFFER') + '</td>';
+        rows.append(emptyTr);
+      }
+
       for (const v of pageItems) {
         const tr = document.createElement('tr');
         
@@ -1670,6 +1682,12 @@ details.section-details summary, details.popular-details summary { cursor: point
       tbody.replaceChildren();
       const visitorsByIP = new Map(trafficRecords.map(v => [v.ip, v]));
 
+      if (!popularPageRecords.length) {
+        const emptyTr = document.createElement('tr');
+        emptyTr.innerHTML = '<td colspan="7" style="text-align:center; padding:32px; color:var(--text-dim); font-family:var(--font-mono); font-size:13px;">NO CONTENT PAGE VIEWS RECORDED YET</td>';
+        tbody.append(emptyTr);
+      }
+
       for (const [idx, p] of popularPageRecords.entries()) {
         const tr = document.createElement('tr');
         const tdRank = document.createElement('td'); tdRank.textContent = '#' + (idx + 1); tr.append(tdRank);
@@ -1718,7 +1736,7 @@ details.section-details summary, details.popular-details summary { cursor: point
       document.getElementById('radar-summary-text').textContent = '● ' + count + ' ACTIVE TABS IN 90s';
 
       const pages = Array.isArray(liveData.pages) ? liveData.pages : [];
-      document.getElementById('live-pages-summary').textContent = pages.length ? pages.length + ' active study pages' : 'no active sessions';
+      document.getElementById('live-pages-summary').textContent = count ? (pages.length + ' active study page' + (pages.length === 1 ? '' : 's')) : 'no active sessions';
 
       const grid = document.getElementById('live-pages-grid');
       grid.replaceChildren();
@@ -1746,21 +1764,25 @@ details.section-details summary, details.popular-details summary { cursor: point
     // DATA FETCHING
     async function refreshLiveVisitors() {
       try {
-        const res = await fetch('/api/admin/live-visitors', { cache: 'no-store' });
+        const res = await fetch('/api/admin/live-visitors', { cache: 'no-store', credentials: 'same-origin' });
         if (res.status === 401) { location.href = '/admin/login'; return; }
         const d = await res.json();
         if (res.ok) {
           liveData = d;
-          renderLiveRadar();
+        } else {
+          liveData = { active: 0, pages: [] };
         }
       } catch (err) {
         console.warn('Live visitors fetch error:', err);
+        liveData = { active: 0, pages: [] };
+      } finally {
+        renderLiveRadar();
       }
     }
 
     async function refreshTraffic() {
       try {
-        const res = await fetch('/api/admin/traffic', { cache: 'no-store' });
+        const res = await fetch('/api/admin/traffic', { cache: 'no-store', credentials: 'same-origin' });
         if (res.status === 401) { location.href = '/admin/login'; return; }
         const d = await res.json();
         if (res.ok) {
@@ -1780,12 +1802,12 @@ details.section-details summary, details.popular-details summary { cursor: point
           const repeatIps = trafficRecords.filter(v => v.visits > 1).length;
           const repPct = trafficRecords.length ? ((repeatIps / trafficRecords.length) * 100).toFixed(1) : 0;
           document.getElementById('buffer-repeats').textContent = repPct + '%';
-
-          renderTraffic();
-          renderPopularPages();
         }
       } catch (err) {
         console.warn('Traffic fetch error:', err);
+      } finally {
+        renderTraffic();
+        renderPopularPages();
       }
     }
 
@@ -1793,7 +1815,7 @@ details.section-details summary, details.popular-details summary { cursor: point
       const btn = document.getElementById('refresh-results');
       if (btn) btn.disabled = true;
       try {
-        const res = await fetch('/api/admin/results', { cache: 'no-store' });
+        const res = await fetch('/api/admin/results', { cache: 'no-store', credentials: 'same-origin' });
         if (res.status === 401) { location.href = '/admin/login'; return; }
         const d = await res.json();
         if (res.ok) {
@@ -1807,13 +1829,18 @@ details.section-details summary, details.popular-details summary { cursor: point
               sel.add(new Option(s, s));
             }
           }
-
-          renderResults();
+          document.getElementById('results-status').textContent = allResults.length ? ('Auditing ' + allResults.length + ' student attempts in database.') : 'No mock test attempts recorded yet.';
+        } else {
+          document.getElementById('results-status').textContent = d.error || ('Mock test service returned HTTP ' + res.status);
+          allResults = [];
         }
       } catch (err) {
         console.warn('Results fetch error:', err);
+        document.getElementById('results-status').textContent = 'Network error fetching test telemetry.';
+        allResults = [];
       } finally {
         if (btn) btn.disabled = false;
+        renderResults();
       }
     }
 
@@ -1822,11 +1849,17 @@ details.section-details summary, details.popular-details summary { cursor: point
       const status = document.getElementById('admin-chat-status');
       if (status) status.textContent = 'Loading community chat messages...';
       try {
-        const res = await fetch('/api/chat', { cache: 'no-store' });
+        const res = await fetch('/api/chat', { cache: 'no-store', credentials: 'same-origin' });
         const d = await res.json();
         const messages = Array.isArray(d.messages) ? d.messages : [];
         const tbody = document.getElementById('admin-chat-rows');
         tbody.replaceChildren();
+
+        if (!messages.length) {
+          const emptyTr = document.createElement('tr');
+          emptyTr.innerHTML = '<td colspan="4" style="text-align:center; padding:32px; color:var(--text-dim); font-family:var(--font-mono); font-size:13px;">NO COMMUNITY CHAT MESSAGES STORED</td>';
+          tbody.append(emptyTr);
+        }
 
         for (const msg of messages) {
           const tr = document.createElement('tr');
@@ -1877,7 +1910,7 @@ details.section-details summary, details.popular-details summary { cursor: point
         r.auto_submitted ? 'Yes' : 'No',
         '"' + formatIST(r.submitted_at) + '"'
       ]);
-      const csv = [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+      const csv = [headers.join(','), ...rows.map(row => row.join(','))].join(String.fromCharCode(10));
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href = url; a.download = 'Academic_Hub_Mock_Test_Results_' + new Date().toISOString().slice(0, 10) + '.csv';
@@ -1897,7 +1930,7 @@ details.section-details summary, details.popular-details summary { cursor: point
         '"' + formatIST(v.time) + '"',
         '"' + (v.path || '/').replace(/"/g, '""') + '"'
       ]);
-      const csv = [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+      const csv = [headers.join(','), ...rows.map(row => row.join(','))].join(String.fromCharCode(10));
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href = url; a.download = 'Academic_Hub_Traffic_Audit_' + new Date().toISOString().slice(0, 10) + '.csv';

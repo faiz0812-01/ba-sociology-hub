@@ -8,6 +8,7 @@
   <meta name="google-adsense-account" content="ca-pub-6526381938888583">
   <title>Academic Hub | Learn • Practise • Succeed</title>
   <link rel="stylesheet" href="style.css?v=20261017-chapter-blink">
+  <link rel="stylesheet" href="premium-tests-panel.css?v=20261017-rotator">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,6 +21,7 @@
     <script defer src="data/learning_data_math.js"></script>
     <script defer src="data/learning_data_history.js"></script>
     <script defer src="data/learning_data_microeconomics.js"></script>
+    <script defer src="mock-test-rotator.js?v=20261017-rotator"></script>
   <style id="chapter-blink-styles">
     @keyframes chapterRandomBlink {
       0%, 100% {
@@ -996,15 +998,205 @@
     </section>
 
     <section id="tests" class="tests-section">
-      <div class="section-heading"><div><div class="eyebrow">CHECK YOUR PREPARATION</div><h2>Mock tests & exam practice</h2><p>Practise questions and get ready for exam day.</p></div><span class="tests-pill">PRACTICE ZONE</span></div>
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow"><span class="live-pulse-dot" aria-hidden="true"></span> CHECK YOUR PREPARATION</div>
+          <h2>Mock tests &amp; exam practice</h2>
+          <p>Exam-oriented practice tests with instant evaluation, scorecards &amp; detailed question explanations.</p>
+        </div>
+        <div class="test-header-actions">
+          <span class="live-cycle-pill" title="Subject photography rotates automatically every 20 minutes">
+            ⏱ 20-Min Picture Cycle: <strong id="photo-cycle-timer">20m 00s</strong>
+          </span>
+          <button type="button" class="shuffle-pill-btn" id="shuffle-photos-btn" title="Rotate all cards to the next curated visual immediately">
+            ✦ Shuffle Visuals
+          </button>
+        </div>
+      </div>
       <div class="test-grid">
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80" alt="Books and study materials for English"><div class="test-icon test-blue">Aa</div><span class="test-label">ENGLISH</span><h3>English MCQ Test</h3><p></p><a href="english-mcq-60q-test-final.html">Start test <span>→</span></a></article>
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80" alt="People gathered together representing society"><div class="test-icon test-purple">◎</div><span class="test-label">SOCIOLOGY</span><h3>Sociology Comprehensive Test</h3><p></p><a href="sociology-mock-test-final-60q.html?v=20261017a">Start test <span>→</span></a></article>
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Student learning for philosophy of education"><div class="test-icon test-orange">✎</div><span class="test-label">EDUCATION</span><h3>Philosophy of Education</h3><p></p><a href="philosophy-of-education-mock-test.html">Start test <span>→</span></a></article>
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80" alt="Artificial intelligence and digital technology"><div class="test-icon test-mint">✧</div><span class="test-label">ARTIFICIAL INTELLIGENCE</span><h3>Philosophy of AI</h3><p></p><a href="philosophy-of-ai-mcq-test.html">Start test <span>→</span></a></article>
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=900&q=80" alt="Handshake representing ethical conduct and trust" loading="lazy" decoding="async"><div class="test-icon test-green">◇</div><span class="test-label">ETHICS</span><h3>Fundamentals of Ethics MCQ Test</h3><a href="ethics-mock-test.html">Start test <span>→</span></a></article>
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Economic data and charts for Indian economy"><div class="test-icon test-green">₹</div><span class="test-label">INDIAN ECONOMY</span><h3>Development Issues of Indian Economy</h3><p></p><a href="economictest.html">Start test <span>→</span></a></article>
-        <article class="test-card"><img class="test-image" src="https://images.unsplash.com/photo-1644871913429-9ed7696180cc?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Coins representing microeconomics and consumer choice" loading="lazy" decoding="async"><div class="test-icon test-green">₹</div><span class="test-label">MICROECONOMICS</span><h3>Microeconomic Foundation</h3><p></p><a href="microeconomics-foundation-mcq-test.html">Start test <span>→</span></a></article>
+        <!-- 1. ENGLISH -->
+        <article class="test-card" data-subject-key="english">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80" alt="Books and study materials for English">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">Aa</span> English</div>
+            <div class="test-badge-float-right">60 MCQs</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">ENGLISH LITERATURE</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>English MCQ Test</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ 60 Questions</span>
+              <span class="test-chip">⏱ Timed</span>
+              <span class="test-chip">✓ Explanations</span>
+            </div>
+            <a href="english-mcq-60q-test-final.html?v=20261017_ai_final" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 2. SOCIOLOGY -->
+        <article class="test-card" data-subject-key="sociology">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80" alt="People gathered together representing society">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">◎</span> Sociology</div>
+            <div class="test-badge-float-right">60 MCQs</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">SOCIOLOGY</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Sociology Comprehensive Test</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ 60 Questions</span>
+              <span class="test-chip">⏱ Full Exam</span>
+              <span class="test-chip">✓ High-Yield</span>
+            </div>
+            <a href="sociology-mock-test-final-60q.html?v=20261017a" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 3. PHILOSOPHY OF EDUCATION -->
+        <article class="test-card" data-subject-key="education">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Student learning for philosophy of education">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">✎</span> Education</div>
+            <div class="test-badge-float-right">Core MCQs</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">EDUCATION</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Philosophy of Education</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ Active Recall</span>
+              <span class="test-chip">✓ Pedagogy</span>
+              <span class="test-chip">🎯 Solved</span>
+            </div>
+            <a href="philosophy-of-education-mock-test.html" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 4. PHILOSOPHY OF AI -->
+        <article class="test-card" data-subject-key="ai">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80" alt="Artificial intelligence and digital technology">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">✧</span> AI Ethics</div>
+            <div class="test-badge-float-right">New Tech</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">ARTIFICIAL INTELLIGENCE</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Philosophy of AI</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ Modern AI</span>
+              <span class="test-chip">⏱ Turing &amp; Mind</span>
+              <span class="test-chip">✓ Ethics</span>
+            </div>
+            <a href="philosophy-of-ai-mcq-test.html" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 5. FUNDAMENTALS OF ETHICS -->
+        <article class="test-card" data-subject-key="ethics">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=900&q=80" alt="Handshake representing ethical conduct and trust" loading="lazy" decoding="async">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">◇</span> Ethics</div>
+            <div class="test-badge-float-right">Core Virtues</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">ETHICS</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Fundamentals of Ethics MCQ Test</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ Moral Duty</span>
+              <span class="test-chip">✓ Aristotle &amp; Kant</span>
+              <span class="test-chip">🎯 100% Free</span>
+            </div>
+            <a href="ethics-mock-test.html" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 6. INDIAN ECONOMY -->
+        <article class="test-card" data-subject-key="economy">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Economic data and charts for Indian economy">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">₹</span> Indian Economy</div>
+            <div class="test-badge-float-right">Exam Prep</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">INDIAN ECONOMY</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Development Issues of Indian Economy</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ GDP &amp; Reforms</span>
+              <span class="test-chip">✓ Poverty Metrics</span>
+              <span class="test-chip">🎯 Trends</span>
+            </div>
+            <a href="economictest.html" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 7. MICROECONOMICS -->
+        <article class="test-card" data-subject-key="microeconomics">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1644871913429-9ed7696180cc?auto=format&fit=crop&w=900&q=80" alt="Coins representing microeconomics and consumer choice" loading="lazy" decoding="async">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">📈</span> Microeconomics</div>
+            <div class="test-badge-float-right">Foundation</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">MICROECONOMICS</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Microeconomic Foundation</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ Supply &amp; Demand</span>
+              <span class="test-chip">✓ Price Elasticity</span>
+              <span class="test-chip">🎯 Curves</span>
+            </div>
+            <a href="microeconomics-foundation-mcq-test.html" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- 8. MALAYALAM AEC -->
+        <article class="test-card" data-subject-key="malayalam">
+          <div class="test-media-wrap">
+            <img class="test-image" src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80" alt="Kerala backwaters and serene landscape of Malayalam literature" loading="lazy" decoding="async">
+            <div class="test-media-scrim" aria-hidden="true"></div>
+            <div class="test-badge-float-left"><span class="test-icon-symbol">ക</span> മലയാളം</div>
+            <div class="test-badge-float-right">AEC 100%</div>
+          </div>
+          <div class="test-content-body">
+            <div class="test-subject-header">
+              <span class="test-label">MALAYALAM AEC</span>
+              <span class="test-timer-cycle">20m auto</span>
+            </div>
+            <h3>Malayalam Sahityam &amp; Bhasha Test</h3>
+            <div class="test-meta-chips">
+              <span class="test-chip">⚡ സാഹിത്യം</span>
+              <span class="test-chip">✓ വ്യാകരണം</span>
+              <span class="test-chip">🎯 മോക്ക് ടെസ്റ്റ്</span>
+            </div>
+            <a href="malayalamtest.html" class="test-cta-btn">Start test <span>→</span></a>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -4099,9 +4291,9 @@
         items:[{
           label:'English MCQ Full Module',
           title:'English · MCQ Full Module',
-          href:'English_MCQ_full_module.pdf',
+          href:'English_MCQ_full_module.pdf?v=20261017_ai_final',
           medium:'English',
-          description:'Full-module English MCQ question paper PDF.',
+          description:'Comprehensive English MCQ question paper PDF (All Modules 1–4, 121 questions with verified answers).',
           embed:true
         }]
       }];
@@ -4532,7 +4724,9 @@
       moduleTitle.textContent=mcqPdf?subject+' · MCQ PDF':studyGuide?subject+' · Study guide Eng - Mal':subject+' · '+medium+' PDFs';
       const availableBilingualModules=modules.filter(module=>module.items.some(item=>item.medium==='Bilingual' && item.href)).map(module=>module.name);
       moduleDescription.textContent=mcqPdf
-        ? (subject==='Microeconomic Foundation'
+        ? (subject==='English'
+          ? 'Open the updated English Language Skills MCQ question paper PDF (All Modules 1–4, 121 questions with verified answer keys).'
+          : subject==='Microeconomic Foundation'
           ? 'Choose English or Malayalam to read your uploaded Microeconomics MCQ question banks.'
           : subject==='Philosophy of AI'
             ? 'Open the uploaded Philosophy of AI MCQ PDF in English and Malayalam.'
