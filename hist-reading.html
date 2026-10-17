@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="കാലിക്കറ്റ് സർവ്വകലാശാല ബി.എ ഹിസ്റ്ററി - കേരള ചരിത്രം 12-ാം നൂറ്റാണ്ട് വരെ സമ്പൂർണ്ണ ഇംഗ്ലീഷ്-മലയാള വായനാ സഹായി (Malayalam Reading) · HIS1CJ101 / HIS1MN100">
+  <title>കേരള ചരിത്രം മലയാളം വായന | History of Keralam Malayalam Reading</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&display=swap');
+
+    :root {
+      --hist-primary: #4a044e;
+      --hist-secondary: #701a75;
+      --hist-accent: #86198f;
+      --hist-light: #fdf4ff;
+      --hist-border: #f5d0fe;
+    }
+
+    body {
+      font-family: 'Noto Sans Malayalam', 'Manjari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #fdf4ff, #fae8ff, #f8fafc);
+      padding: 30px 18px;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    .page-box {
+      max-width: 1020px;
+      margin: auto;
+      background: #ffffff;
+      padding: 36px 32px;
+      border-radius: 28px;
+      box-shadow: 0 16px 36px rgba(74, 4, 78, 0.08);
+    }
+
+    .hero {
+      display: block !important;
+      position: relative !important;
+      min-height: 0 !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      margin: 0 0 28px 0 !important;
+      padding: 32px 24px 34px !important;
+      text-align: center !important;
+      background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 50%, #f5d0fe 100%) !important;
+      border: 1px solid #e879f9 !important;
+      border-radius: 24px !important;
+      box-shadow: 0 8px 24px rgba(112, 26, 117, 0.12) !important;
+      color: #0f172a !important;
+    }
+
+    .hero:before {
+      display: none !important;
+      content: none !important;
+    }
+
+    .uni-badge {
+      display: inline-block !important;
+      background: #fae8ff !important;
+      color: #701a75 !important;
+      padding: 6px 18px !important;
+      border-radius: 999px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      margin-bottom: 14px !important;
+      letter-spacing: 0.5px !important;
+      border: 1px solid #d946ef !important;
+    }
+
+    .hero h1 {
+      display: block !important;
+      font-size: clamp(23px, 4vw, 34px) !important;
+      line-height: 1.45 !important;
+      color: #4a044e !important;
+      margin: 0 0 12px 0 !important;
+      font-weight: 800 !important;
+      background: transparent !important;
+      -webkit-background-clip: unset !important;
+      text-shadow: none !important;
+    }
+
+    .hero p {
+      font-size: 15px !important;
+      line-height: 1.8 !important;
+      color: #334155 !important;
+      margin: 0 auto !important;
+      max-width: 820px !important;
+      font-weight: 500 !important;
+    }
+
+    /* Filter Bar */
+    .filter-wrapper {
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 9px 18px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #701a75;
+      color: #ffffff;
+      border-color: #701a75;
+      box-shadow: 0 4px 12px rgba(112, 26, 117, 0.28);
+    }
+
+    /* Search input */
+    .search-bar {
+      margin-bottom: 26px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .search-bar input:focus {
+      border-color: #701a75;
+      box-shadow: 0 0 0 4px rgba(112, 26, 117, 0.15);
+    }
+
+    /* Section divider */
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 34px 0 16px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f5d0fe;
+    }
+
+    .module-header h2 {
+      font-size: 20px;
+      margin: 0;
+      color: #4a044e;
+      font-weight: 700;
+    }
+
+    .module-tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: #fae8ff;
+      color: #701a75;
+      border: 1px solid #e879f9;
+    }
+
+    /* Chapter cards */
+    .chapter-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .chapter-card {
+      border: 1px solid #f5d0fe;
+      border-radius: 20px;
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(130deg, #ffffff, #fdf4ff);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(112, 26, 117, 0.1);
+      border-color: #d946ef;
+    }
+
+    .chapter-num {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--c1, #4a044e), var(--c2, #701a75));
+      box-shadow: 0 6px 14px rgba(74, 4, 78, 0.3);
+    }
+
+    .chapter-info h3 {
+      font-size: 17.5px;
+      line-height: 1.5;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      font-weight: 700;
+    }
+
+    .chapter-info .eng-title {
+      font-size: 13.5px;
+      color: #701a75;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .chapter-info p {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.65;
+      margin: 0 0 10px 0;
+    }
+
+    .tag-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      font-weight: 600;
+      background: #fae8ff;
+      color: #701a75;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #f5d0fe;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 140px;
+    }
+
+    .action-btn {
+      display: inline-block;
+      text-align: center;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-view {
+      background: #fae8ff;
+      color: #4a044e;
+      border: 1px solid #d946ef;
+    }
+
+    .btn-view:hover {
+      background: #701a75;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(112, 26, 117, 0.25);
+    }
+
+    /* In-Page Reader Sections */
+    .reading-content-box {
+      margin-top: 14px;
+      padding: 16px 20px;
+      background: #ffffff;
+      border: 1px solid #f5d0fe;
+      border-radius: 14px;
+      display: none;
+      grid-column: 1 / -1;
+    }
+
+    .reading-content-box.active {
+      display: block;
+    }
+
+    .reading-content-box h4 {
+      color: #4a044e;
+      margin: 12px 0 6px 0;
+      font-size: 14.5px;
+      font-weight: 700;
+      border-left: 3px solid #701a75;
+      padding-left: 8px;
+    }
+
+    .reading-content-box p {
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: #334155;
+      margin-bottom: 10px;
+    }
+
+    /* Q&A Cards */
+    .qa-card {
+      background: #ffffff;
+      border: 1px solid #f5d0fe;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: #4a044e;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .qa-ans-en {
+      color: #334155;
+      margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .qa-ans-ml {
+      color: #0f172a;
+      font-size: 13px;
+      line-height: 1.75;
+      background: #fdf4ff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 3px solid #86198f;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 2% auto;
+      width: 92%;
+      max-width: 1100px;
+      height: 90vh;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      padding: 14px 20px;
+      background: #4a044e;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .close-modal {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #f5d0fe;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .nav-btn {
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-home {
+      background: #0f172a;
+      color: white;
+    }
+
+    .nav-home:hover {
+      background: #1e293b;
+    }
+
+    .nav-hist-lms {
+      background: #701a75;
+      color: white;
+    }
+
+    .nav-hist-lms:hover {
+      background: #4a044e;
+    }
+
+    .nav-mock-test {
+      background: #059669;
+      color: white;
+    }
+
+    .nav-mock-test:hover {
+      background: #047857;
+    }
+
+    @media (max-width: 768px) {
+      .chapter-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 14px;
+      }
+      .chapter-num {
+        margin: 0 auto;
+      }
+      .tag-pills {
+        justify-content: center;
+      }
+      .btn-group {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page-box">
+
+    <!-- Header / Hero -->
+    <header class="hero">
+      <div class="uni-badge">കാലിക്കറ്റ് സർവ്വകലാശാല · ബി.എ ഹിസ്റ്ററി (FYUGP) · HIS1CJ101 / HIS1MN100</div>
+      <h1>കേരള ചരിത്രം മലയാളം വായന | History of Keralam Malayalam Reading</h1>
+      <p>സിലബസും 5 മൊഡ്യൂളുകളും (22 പാഠങ്ങൾ) സമഗ്രമായി മലയാളത്തിലും ഇംഗ്ലീഷിലും — ഭൂപ്രകൃതി, ശിലായുഗങ്ങൾ, ഇടയ്ക്കൽ-മറയൂർ ശിലാകലകൾ, മഹാശിലായുഗം, സംഘകാലം, റോമൻ വാണിജ്യം, പട്ടണം ഖനനം, പെരുമാൾ സാമ്രാജ്യം, ശാസനങ്ങൾ, എല്ലാ മോഡൽ ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+    </header>
+
+    <!-- Filter Buttons -->
+    <nav class="filter-wrapper" aria-label="Module filters">
+      <button class="filter-btn active" onclick="filterModule('all', this)">എല്ലാം (All Modules & Chapters)</button>
+      <button class="filter-btn" onclick="filterModule('syllabus', this)">സിലബസ് & മോഡൽ എക്സാം</button>
+      <button class="filter-btn" onclick="filterModule('mod1', this)">മൊഡ്യൂൾ 1 (Landscape & Env)</button>
+      <button class="filter-btn" onclick="filterModule('mod2', this)">മൊഡ്യൂൾ 2 (Prehistoric & Megalithic)</button>
+      <button class="filter-btn" onclick="filterModule('mod3', this)">മൊഡ്യൂൾ 3 (Early Historic Keralam)</button>
+      <button class="filter-btn" onclick="filterModule('mod4', this)">മൊഡ്യൂൾ 4 (Chera Perumals)</button>
+      <button class="filter-btn" onclick="filterModule('mod5', this)">മൊഡ്യൂൾ 5 (Doing History / Field)</button>
+    </nav>
+
+    <!-- Search Input -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="അധ്യായം, രാജാക്കന്മാർ, ശാസനങ്ങൾ, പുരാവസ്തു കേന്ദ്രങ്ങൾ തിരയുക (Search chapters, kings, inscriptions, sites)..." onkeyup="filterChapters()">
+    </div>
+
+    <!-- ==================== SYLLABUS ==================== -->
+    <section class="module-section" data-mod="syllabus">
+      <div class="module-header">
+        <h2>കരിക്കുലവും പരീക്ഷാ ബ്ലൂപ്രിന്റും | Curriculum & Model Examination Blueprint</h2>
+        <span class="module-tag">Core Syllabus</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">01</div>
+          <div class="chapter-info">
+            <h3>സിലബസും മോഡൽ പരീക്ഷയും: ഹിസ്റ്ററി ഓഫ് കേരളം 12-ാം നൂറ്റാണ്ട് വരെ</h3>
+            <div class="eng-title">Course Syllabus, Architecture & University Model Exam (HIS1CJ101 / HIS1MN100)</div>
+            <p>കോഴ്സ് ലക്ഷ്യങ്ങൾ, 4 ക്രെഡിറ്റുകൾ, 5 മൊഡ്യൂളുകൾ, 30 മാർക്കിന്റെ ഇന്റേണൽ, 70 മാർക്കിന്റെ എക്സ്റ്റേണൽ പരീക്ഷാ രൂപരേഖ. ഔദ്യോഗിക മോഡൽ പരീക്ഷയിലെ സെക്ഷൻ എ (10 ചോദ്യങ്ങൾ), സെക്ഷൻ ബി (8 ചോദ്യങ്ങൾ), സെക്ഷൻ സി (2 ദീർഘ ഉപന്യാസങ്ങൾ) എന്നിവയുടെ സമ്പൂർണ്ണ ദ്വിഭാഷാ ഉത്തരങ്ങൾ.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">HIS1CJ101</span>
+              <span class="tag-pill">4 Credits</span>
+              <span class="tag-pill">Exam Blueprint</span>
+              <span class="tag-pill">20 Model Q&As</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Syllabus_Introduction_and_Evaluation_Malayalam.pdf', 'സിലബസും മോഡൽ പരീക്ഷയും')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 1 ==================== -->
+    <section class="module-section" data-mod="mod1">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 1: കേരളം: ഭൂപ്രകൃതിയും പരിസ്ഥിതിയും | Module 1: Landscape & Environment</h2>
+        <span class="module-tag">Module 1 · 5 Units</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">02</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 1: ഭൂമിശാസ്ത്രവും പശ്ചിമഘട്ടവും നദികളും മൺസൂണും</h3>
+            <div class="eng-title">Module 1 · Ecological Regions, Western Ghats, Passes, Rivers, Monsoons & Biodiversity</div>
+            <p>ഒരു സവിശേഷ പാരിസ്ഥിതിക മേഖലയെന്ന നിലയിൽ കേരളം, മലനാട്-ഇടനാട്-തീരപ്രദേശങ്ങൾ, പശ്ചിമഘട്ടവും പാലക്കാട് ചുരവും, 44 നദികളും കായലുകളും, ഇടവപ്പാതിയും തുലാവർഷവും, ചെങ്കൽ മണ്ണും കാർഷിക കലണ്ടറും, തേക്ക്-കുരുമുളക് വ്യാപാരം. എല്ലാ LMS സെക്ഷൻ എ, ബി, സി ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Western Ghats</span>
+              <span class="tag-pill">Palakkad Gap</span>
+              <span class="tag-pill">44 Rivers</span>
+              <span class="tag-pill">Monsoon</span>
+              <span class="tag-pill">All 27 Q&As</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_1_Landscape_and_Environment_Malayalam.pdf', 'മൊഡ്യൂൾ 1: Landscape and Environment')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 2 ==================== -->
+    <section class="module-section" data-mod="mod2">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 2: ഇരുമ്പ് യുഗം വരെയുള്ള കേരളം | Module 2: Keralam Upto Iron Age</h2>
+        <span class="module-tag">Module 2 · 3 Chapters</span>
+      </div>
+      <div class="chapter-list">
+
+        <!-- Ch 1 -->
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">03</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 1: പ്രാചീന ശിലായുഗ മനുഷ്യവാസ കേന്ദ്രങ്ങൾ</h3>
+            <div class="eng-title">Chapter 1 · Prehistoric Settlements: Palaeolithic, Mesolithic & Neolithic in Keralam</div>
+            <p>പഴയ ശിലായുഗം (അഷൂലിയൻ കൈക്കോടാലികൾ, കാഞ്ഞിരപ്പുഴ, വഴുതനക്കാട്), മധ്യശിലായുഗ സൂക്ഷ്മശിലകൾ (വാളയാർ, മലമ്പുഴ, തെന്മല), നവീന ശിലായുഗ കോടാലികളും കാർഷിക വിപ്ലവവും (മഞ്ചേരി, പുള്ളിയന്നൂർ). എല്ലാ സെക്ഷൻ എ, ബി, സി ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Palaeolithic</span>
+              <span class="tag-pill">Microliths</span>
+              <span class="tag-pill">Neolithic Celts</span>
+              <span class="tag-pill">All 23 Q&As</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_2_Ch1_Prehistoric_Settlements_Malayalam.pdf', 'മൊഡ്യൂൾ 2 അധ്യായം 1: Prehistoric Settlements')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+
+        <!-- Ch 2 -->
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">04</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 2: ശിലാ ഗുഹകളും പ്രാചീന ശിലാകലയും</h3>
+            <div class="eng-title">Chapter 2 · Rock Shelters & Prehistoric Art: Edakkal, Marayur, Tenmala & Ancode</div>
+            <p>ഇടയ്ക്കൽ ഗുഹകളിലെ പെട്രോഗ്ലിഫുകൾ (ഫ്രെഡ് ഫോസറ്റ് 1894, ഭരണിയുടെ തലയുള്ള മനുഷ്യൻ, ചക്രങ്ങൾ), മറയൂരിലെ പിക്ടോഗ്രാഫുകൾ (അട്ടള, എഴുത്തുപോഗ്, കാവിമണ്ണിൽ വരച്ച മാൻകൂട്ടങ്ങൾ), തെന്മല, ആങ്കോട്. കലകളുടെ ആചാരപരമായ സ്വഭാവം, കാലപ്പഴക്കം നിർണ്ണയിക്കൽ. എല്ലാ 27 ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Edakkal Caves</span>
+              <span class="tag-pill">Marayur</span>
+              <span class="tag-pill">Petroglyphs</span>
+              <span class="tag-pill">Pictographs</span>
+              <span class="tag-pill">All 27 Q&As</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_2_Ch2_Rock_Shelters_Prehistoric_Art_Malayalam.pdf', 'മൊഡ്യൂൾ 2 അധ്യായം 2: Rock Shelters & Art')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+
+        <!-- Ch 3 -->
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">05</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3: മഹാശിലായുഗ സംസ്കാരം (ഇരുമ്പുയുഗം)</h3>
+            <div class="eng-title">Chapter 3 · The Megalithic Culture: Typology, Grave Goods, Excavations, Society & Economy</div>
+            <p>കുടക്കല്ലുകൾ, തൊപ്പിക്കല്ലുകൾ, ചെങ്കൽ വെട്ടുഗുഹകൾ, മുനിയറകൾ (Dolmens), സിസ്റ്റുകൾ, നന്നങ്ങാടികൾ, നടുക്കല്ലുകൾ (Menhirs). ജെ. ബാബിംഗ്ടൺ ഖനനം (1819), ബി.കെ. ഥാപ്പറിന്റെ പോർക്കുളം ഖനനം (1948). കറുപ്പും ചുവപ്പും പാത്രങ്ങൾ (BRW), കാർണിലിയൻ മുത്തുകൾ, ഇരുമ്പ് ആയുധങ്ങൾ. എല്ലാ 34+ ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Kodakkal & Thoppikkal</span>
+              <span class="tag-pill">Rock-cut Caves</span>
+              <span class="tag-pill">Babington 1819</span>
+              <span class="tag-pill">Porkkalam</span>
+              <span class="tag-pill">All 34+ Q&As</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_2_Ch3_Megalithic_Culture_Malayalam.pdf', 'മൊഡ്യൂൾ 2 അധ്യായം 3: Megalithic Culture')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 3 ==================== -->
+    <section class="module-section" data-mod="mod3">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 3: പ്രാചീന ചരിത്രകാലത്തെ കേരളം | Module 3: Early Historic Keralam</h2>
+        <span class="module-tag">Module 3 · Sangam Era</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">06</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 3: സംഘകാല സാഹിത്യം, തിണകൾ, റോമൻ വാണിജ്യം, പട്ടണം ഖനനം</h3>
+            <div class="eng-title">Module 3 · Early Tamil Literature, 5 Tinais, Indo-Roman Trade, Pattanam & Polity</div>
+            <p>അകനാനൂറ്, പുറനാനൂറ്, ചേരരെ സ്തുതിക്കുന്ന പതിറ്റുപത്ത്; ഐന്തിണകൾ (കുറിഞ്ചി, മുല്ലൈ, മരുതം, നെയ്തൽ, പാലൈ); പെരിപ്ലസ്, പ്ലിനി, ഹിപ്പാലസ് കാറ്റുകൾ; പട്ടണം ഖനനത്തിലെ മരത്തോണിയും ആംഫോറകളും; മൂവേന്തരും കുറുനില മന്നരും, വീരക്കല്ലുകൾ (നടുകല്ല്). എല്ലാ MCQs, ഷോർട്ട് എസ്സേ, എസ്സേ ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Sangam Texts</span>
+              <span class="tag-pill">5 Tinais</span>
+              <span class="tag-pill">Muziris & Pattanam</span>
+              <span class="tag-pill">Muvendar</span>
+              <span class="tag-pill">All Q&As Answered</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_3_Early_Historic_Keralam_Malayalam.pdf', 'മൊഡ്യൂൾ 3: Early Historic Keralam')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 4 ==================== -->
+    <section class="module-section" data-mod="mod4">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 4: പന്ത്രണ്ടാം നൂറ്റാണ്ട് വരെയുള്ള കേരളം | Module 4: Second Chera Kingdom</h2>
+        <span class="module-tag">Module 4 · Chera Perumals</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">07</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 4: രണ്ടാം ചേര സാമ്രാജ്യം, ശാസനങ്ങൾ, ഭൂബന്ധങ്ങൾ, ഭക്തിപ്രസ്ഥാനം</h3>
+            <div class="eng-title">Module 4 · Cheras of Mahodayapuram, Epigraphy, Nadus, Agrarian Relations, Guilds & Polity</div>
+            <p>വാഴപ്പള്ളി, തരിസാപ്പള്ളി, പാർത്ഥിവപുരം, തിരുവല്ല ചെപ്പേടുകൾ; ചേരമാൻപറമ്പ്, മതിലകം; നാടുകളും മൂഷികവംശകാവ്യവും; ചേരിക്കൽ, ബ്രഹ്മസ്വം, ദേവസ്വം, കാരാൺമ; മണിഗ്രാമം, അഞ്ചുവണ്ണം, വളഞ്ചിയാർ ഗിൽഡുകൾ; കുലശേഖര ആഴ്വാറും ചേരമാൻ പെരുമാൾ നായനാരും; പെരുമാൾ ഭരണകൂട സ്വഭാവം (ഇളംകുളം vs MGS). എല്ലാ MCQs, ഷോർട്ട് എസ്സേ, എസ്സേ ചോദ്യോത്തരങ്ങളും സഹിതം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Vazhappalli (832 CE)</span>
+              <span class="tag-pill">Tarisappalli (849 CE)</span>
+              <span class="tag-pill">Nalu Thali</span>
+              <span class="tag-pill">Brahmin Oligarchy</span>
+              <span class="tag-pill">All Q&As Answered</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_4_Keralam_Upto_12th_Century_Malayalam.pdf', 'മൊഡ്യൂൾ 4: Chera Perumals Upto 12th Century')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 5 ==================== -->
+    <section class="module-section" data-mod="mod5">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 5: പ്രായോഗിക ചരിത്ര പഠനം | Module 5: Doing History & Field Exploration</h2>
+        <span class="module-tag">Module 5 · Practical Field Study</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#4a044e; --c2:#701a75;">
+          <div class="chapter-num">08</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 5: ചരിത്ര സ്മാരക സന്ദർശനവും പൈതൃക നടത്തവും (Doing History)</h3>
+            <div class="eng-title">Module 5 · Field Visit, Heritage Walk, Archaeological Sites & Assignment Report Methodology</div>
+            <p>പ്രായോഗിക ചരിത്രാന്വേഷണം (Doing History); കേരളത്തിലെ പ്രമുഖ ചരിത്ര-പുരാവസ്തു കേന്ദ്രങ്ങളുടെ വിശദാംശങ്ങൾ (ഇടയ്ക്കൽ, മറയൂർ, പോർക്കുളം, അരിയന്നൂർ, കൊടുങ്ങല്ലൂർ, ചേരമാൻപറമ്പ്, പട്ടണം, വിഴിഞ്ഞം); പൈതൃക നടത്തം (Heritage Walk), വാമൊഴി ചരിത്ര ശേഖരണം, ഫീൽഡ് വർക്ക് റിപ്പോർട്ട് തയ്യാറാക്കൽ മാർഗ്ഗനിർദ്ദേശങ്ങൾ.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Field Visit</span>
+              <span class="tag-pill">Heritage Walk</span>
+              <span class="tag-pill">Site Documentation</span>
+              <span class="tag-pill">10-Mark Assignment</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('History/Malayalam PDF/History_Module_5_Doing_History_Field_Visit_Malayalam.pdf', 'മൊഡ്യൂൾ 5: Doing History')">വായിക്കുക (View PDF)</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modal for Viewing PDFs -->
+    <div id="viewerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">പഠന സഹായി PDF (Study Guide)</h3>
+          <button class="close-modal" onclick="closeViewer()">&times;</button>
+        </div>
+        <iframe id="pdfFrame" class="modal-iframe" src=""></iframe>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a class="nav-btn nav-hist-lms" href="index.html#subjects">🏛️ All Subjects Hub</a>
+      <a class="nav-btn nav-mock-test" href="sociology-mock-test-final-60q.html">📝 Practice Tests Portal</a>
+      <a class="nav-btn nav-home" href="index.html">← Back to Portal Home</a>
+    </div>
+
+  </main>
+
+  <script>
+    function filterModule(modId, btn) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const sections = document.querySelectorAll('.module-section');
+      sections.forEach(sec => {
+        if (modId === 'all' || sec.getAttribute('data-mod') === modId) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    function filterChapters() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.chapter-card');
+      
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function viewPdf(url, title) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('pdfFrame').src = url;
+      document.getElementById('viewerModal').style.display = 'block';
+    }
+
+    function closeViewer() {
+      document.getElementById('viewerModal').style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('viewerModal');
+      if (event.target == modal) {
+        closeViewer();
+      }
+    };
+  </script>
+
+</body>
+</html>
