@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Philosophy of AI — Premium MCQ Assessment</title>
+  <meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Philosophy of AI — Academic Hub Assessment</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
@@ -28,43 +31,65 @@
       --danger: #ef4444;
       --danger-dark: #b91c1c;
       --danger-light: #fef2f2;
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 18px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
       --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.1);
-      --shadow-xl: 0 20px 48px -12px rgba(15, 23, 42, 0.15);
+      --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.1);
+      --shadow-xl: 0 16px 36px -8px rgba(15, 23, 42, 0.12);
     }
 
-    *, *::before, *::after {
+    /* NO CURSOR SCROLLBAR - CLEAN WINDOW FIT */
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     body {
-      font-family: 'Inter', 'Manjari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
-      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', 'Inter', 'Manjari', -apple-system, sans-serif;
+      background: radial-gradient(circle at 10% 10%, #e0e7ff 0%, transparent 45%),
+                  radial-gradient(circle at 90% 90%, #ede9fe 0%, transparent 45%),
+                  #f1f5f9;
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.4;
       -webkit-font-smoothing: antialiased;
-      padding: 24px 16px 40px;
+      padding: 10px 12px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .wrap {
-      max-width: 940px;
+      max-width: 860px;
+      width: 100%;
       margin: 0 auto;
     }
 
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-xl);
-      padding: 32px;
+      padding: 18px 24px;
       box-shadow: var(--shadow-xl);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.85);
       position: relative;
       overflow: hidden;
     }
@@ -86,10 +111,10 @@
 
     .mal-text {
       font-family: 'Manjari', sans-serif;
-      font-size: 15px;
+      font-size: 13px;
       color: #4338ca;
-      margin-top: 4px;
-      line-height: 1.45;
+      margin-top: 3px;
+      line-height: 1.35;
       font-weight: 600;
     }
 
@@ -100,15 +125,15 @@
       background: #f1f5f9;
       border: 1px solid #cbd5e1;
       border-radius: 999px;
-      padding: 3px;
+      padding: 2px;
       gap: 2px;
     }
 
     .lang-btn {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 999px;
       border: 0;
       background: transparent;
@@ -120,7 +145,7 @@
     .lang-btn.active {
       background: var(--primary);
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+      box-shadow: 0 1px 6px rgba(79, 70, 229, 0.35);
     }
 
     /* BUTTONS */
@@ -129,21 +154,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       border: 0;
-      border-radius: var(--radius-md);
-      padding: 13px 22px;
-      font-size: 15px;
+      border-radius: var(--radius-sm);
+      padding: 8px 18px;
+      font-size: 13.5px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.15s ease;
       text-decoration: none;
       line-height: 1.2;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
     }
 
     .btn:active {
@@ -153,11 +178,11 @@
     .btn.primary {
       background: var(--accent-gradient);
       color: #ffffff;
-      box-shadow: 0 4px 16px var(--primary-glow);
+      box-shadow: 0 3px 12px var(--primary-glow);
     }
 
     .btn.secondary {
-      background: #f1f5f9;
+      background: #f8fafc;
       color: #334155;
       border: 1px solid #cbd5e1;
     }
@@ -165,44 +190,45 @@
     .btn.danger {
       background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+      box-shadow: 0 3px 10px rgba(239, 68, 68, 0.25);
     }
 
     .btn.success {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.25);
     }
 
     /* ----------------------------------------------------
        PAGE 1: FIRST PAGE (WELCOME / START SCREEN)
+       SAME PATTERN, PROPORTIONALLY REDUCED
        ---------------------------------------------------- */
     #start {
       background: radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
                   radial-gradient(circle at 90% 100%, rgba(139, 92, 246, 0.08) 0%, transparent 45%),
                   #ffffff;
       border: 1px solid rgba(226, 232, 240, 0.9);
-      padding: 44px 36px;
+      padding: 22px 26px;
     }
 
     .start-badge-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
 
     .pill-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
+      gap: 5px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 10.5px;
       font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
@@ -213,12 +239,12 @@
     }
 
     .hero-title {
-      font-size: 38px;
-      line-height: 1.15;
+      font-size: 26px;
+      line-height: 1.2;
       color: #0f172a;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
       font-weight: 900;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
     .hero-title span {
@@ -229,236 +255,240 @@
 
     .hero-subtitle {
       color: #475569;
-      font-size: 17px;
-      margin-bottom: 24px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 14px;
     }
 
     .quote-box {
-      background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
-      border: 1px solid #c7d2fe;
-      border-left: 5px solid #6366f1;
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      margin-bottom: 28px;
+      background: #f8fafc;
+      border-left: 3.5px solid var(--primary);
+      padding: 8px 14px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
 
     .quote-text {
-      font-size: 15px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #334155;
       font-weight: 600;
-      color: #3730a3;
-      line-height: 1.5;
     }
 
     .quote-author {
-      display: block;
-      margin-top: 6px;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
-      color: #6366f1;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      color: #4f46e5;
+      white-space: nowrap;
     }
 
     .exam-specs-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 30px;
+      gap: 8px;
+      margin-bottom: 14px;
     }
 
     .spec-card {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 16px 14px;
+      padding: 10px 8px;
       text-align: center;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .spec-card:hover {
-      transform: translateY(-2px);
-      border-color: #cbd5e1;
+      box-shadow: var(--shadow-sm);
     }
 
     .spec-icon {
-      font-size: 22px;
-      margin-bottom: 6px;
+      font-size: 18px;
+      margin-bottom: 2px;
     }
 
     .spec-value {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 800;
       color: #0f172a;
-      line-height: 1.2;
     }
 
     .spec-label {
-      font-size: 11px;
+      font-size: 9.5px;
       font-weight: 700;
       color: #64748b;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-top: 4px;
     }
 
     .input-card {
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 28px;
-      box-shadow: var(--shadow-sm);
-      transition: border-color 0.2s ease;
-    }
-
-    .input-card:focus-within {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 4px var(--primary-glow);
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 14px;
     }
 
     .input-label {
       display: block;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #334155;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .name-input-wrapper {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 4px 16px;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      gap: 8px;
+      transition: all 0.15s ease;
     }
 
     .name-input-wrapper:focus-within {
-      background: #ffffff;
       border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
     }
 
     .name-input-icon {
-      font-size: 20px;
-      color: #6366f1;
+      font-size: 16px;
     }
 
     .name-input-wrapper input {
       width: 100%;
       border: 0;
-      background: transparent;
-      padding: 12px 0;
-      font-family: 'Inter', sans-serif;
-      font-size: 17px;
-      font-weight: 600;
+      outline: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
       color: #0f172a;
-      outline: none;
+      background: transparent;
+      padding: 4px 0;
+    }
+
+    .start-error-msg {
+      color: #dc2626;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 4px;
+      display: none;
     }
 
     .subject-pill-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #f1f5f9;
-      font-size: 13px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #cbd5e1;
+      font-size: 11px;
       color: #64748b;
     }
 
     .subject-active-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-weight: 700;
+      gap: 4px;
       color: #4f46e5;
-      background: #eef2ff;
-      padding: 4px 10px;
-      border-radius: 6px;
+      font-weight: 800;
     }
 
     .start-cta-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .btn-start-large {
-      font-size: 18px;
-      padding: 16px 36px;
-      border-radius: var(--radius-md);
-      background: var(--accent-gradient);
-      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
-    }
-
-    .btn-start-large:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px -4px rgba(79, 70, 229, 0.5);
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: var(--radius-sm);
     }
 
     .start-notice {
-      font-size: 13px;
+      font-size: 11px;
       color: #64748b;
-    }
-
-    .start-error-msg {
-      color: #dc2626;
-      font-weight: 700;
-      font-size: 14px;
-      margin-top: 10px;
-      display: none;
+      font-weight: 600;
     }
 
     /* ----------------------------------------------------
        PAGE 2: IN-QUIZ SCREEN
+       SAME PATTERN, PROPORTIONALLY REDUCED
        ---------------------------------------------------- */
     #test {
-      padding: 24px 28px;
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      max-height: 96vh;
+      overflow: hidden;
+    }
+
+    .quiz-top-pinned {
+      flex-shrink: 0;
+      background: var(--card-bg);
+      padding-bottom: 2px;
+    }
+
+    .question-box {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      padding-right: 2px;
+      padding-bottom: 16px;
+      scrollbar-width: none !important;
+    }
+
+    .question-box::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
     }
 
     .quiz-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border);
+      gap: 10px;
     }
 
     .quiz-progress-info {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      gap: 10px;
     }
 
     .progress-pill {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       color: #334155;
       display: flex;
-      align-items: center;
-      gap: 8px;
+      align-items: baseline;
+      gap: 4px;
     }
 
     .progress-pill .q-number {
+      font-size: 15px;
       color: var(--primary);
-      font-size: 17px;
+      font-weight: 900;
     }
 
     .progress-bar-container {
-      width: 220px;
-      height: 8px;
+      width: 100px;
+      height: 5px;
       background: #e2e8f0;
       border-radius: 999px;
       overflow: hidden;
@@ -468,27 +498,24 @@
       height: 100%;
       background: var(--accent-gradient);
       border-radius: 999px;
-      transition: width 0.3s ease;
       width: 0%;
+      transition: width 0.25s ease;
     }
 
     .quiz-timer-hud {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
       background: #0f172a;
-      border: 1px solid #1e293b;
-      padding: 6px 14px;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+      color: #ffffff;
+      padding: 3px 9px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
     }
 
-    .timer-icon {
-      font-size: 16px;
-    }
-
+    .timer-icon { font-size: 12px; }
     .timer-label {
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 800;
       color: #94a3b8;
       text-transform: uppercase;
@@ -497,58 +524,46 @@
 
     .timer-digits {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 20px;
+      font-size: 14.5px;
       font-weight: 800;
       color: #38bdf8;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-    }
-
-    .timer-digits.urgent {
-      color: #f87171;
-      text-shadow: 0 0 12px rgba(248, 113, 113, 0.7);
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      letter-spacing: 0.5px;
     }
 
     .palette-toggle-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 14px 0 8px;
+      margin: 8px 0 4px;
     }
 
     .palette-heading {
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 800;
       color: #64748b;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
     }
 
+    /* ALL 60 BUTTONS VISIBLE IN ONE VIEW - NO INNER SCROLLBAR */
     .palette-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      max-height: 84px;
-      overflow-y: auto;
-      padding: 6px 2px;
-      margin-bottom: 18px;
-      scrollbar-width: thin;
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 2.5px;
+      padding: 1px 0;
+      margin-bottom: 8px;
+      overflow: visible;
+      max-height: none;
     }
 
     .nav-btn {
       font-family: 'JetBrains Mono', monospace;
-      width: 32px;
-      height: 30px;
+      width: 100%;
+      height: 20px;
       padding: 0;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
-      border-radius: 6px;
+      border-radius: 4px;
       border: 1px solid #cbd5e1;
       background: #ffffff;
       color: #475569;
@@ -556,141 +571,114 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s ease;
+      transition: all 0.12s ease;
     }
 
-    .nav-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-1px);
-    }
+    .nav-btn:hover { border-color: var(--primary); color: var(--primary); background: #f5f3ff; }
+    .nav-btn.current { outline: 2px solid var(--primary); outline-offset: 1px; font-weight: 800; color: var(--primary); }
+    .nav-btn.answered-correct { background: var(--success) !important; color: #ffffff !important; border-color: var(--success-dark) !important; }
+    .nav-btn.answered-wrong { background: var(--danger) !important; color: #ffffff !important; border-color: var(--danger-dark) !important; }
 
-    .nav-btn.current {
-      outline: 2px solid var(--primary);
-      outline-offset: 1px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .nav-btn.answered-correct {
-      background: var(--success) !important;
-      color: #ffffff !important;
-      border-color: var(--success-dark) !important;
-    }
-
-    .nav-btn.answered-wrong {
-      background: var(--danger) !important;
-      color: #ffffff !important;
-      border-color: var(--danger-dark) !important;
+    .drag-handle-bar {
+      display: none;
     }
 
     .question-box {
-      margin: 16px 0 20px;
+      margin: 4px 0 6px;
     }
 
     .q-meta-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
-      gap: 10px;
+      margin-bottom: 4px;
+      gap: 8px;
     }
 
     .q-category-tag {
       display: inline-block;
-      font-size: 11px;
+      font-size: 9.5px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #6366f1;
       background: #e0e7ff;
-      padding: 3px 10px;
-      border-radius: 6px;
+      padding: 2px 8px;
+      border-radius: 4px;
     }
 
     .q-text {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 21px;
+      font-size: 17px;
       font-weight: 700;
-      line-height: 1.45;
+      line-height: 1.35;
       color: #0f172a;
     }
 
+    /* SAME FULL-WIDTH STACKED OPTIONS PATTERN, PROPORTIONALLY REDUCED */
     .options-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin: 16px 0;
+      gap: 7px;
+      margin: 8px 0;
     }
 
     .opt-card {
       display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 14px 18px;
-      border-radius: var(--radius-md);
-      border: 2px solid #e2e8f0;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid #e2e8f0;
       background: #ffffff;
       cursor: pointer;
-      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.15s ease;
       position: relative;
       user-select: none;
     }
 
     .opt-card:hover:not(.locked) {
-      border-color: #cbd5e1;
+      border-color: #a5b4fc;
       background: #f8fafc;
-      transform: translateX(3px);
+      transform: translateY(-1px);
     }
 
-    .opt-card input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
+    .opt-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
 
     .opt-letter {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
+      font-size: 11.5px;
       font-weight: 800;
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       flex-shrink: 0;
-      border-radius: 8px;
+      border-radius: 5px;
       background: #f1f5f9;
       color: #475569;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s ease;
       border: 1px solid #cbd5e1;
     }
 
     .opt-text {
-      font-size: 16px;
-      font-weight: 500;
+      font-size: 13.5px;
+      font-weight: 600;
       color: #1e293b;
-      line-height: 1.5;
-      padding-top: 3px;
+      line-height: 1.3;
     }
 
-    .opt-card.locked {
-      cursor: default;
-      pointer-events: none;
-    }
+    .opt-card.locked { cursor: default; pointer-events: none; }
 
     .opt-card.selected-correct {
       background: #ecfdf5 !important;
       border-color: #10b981 !important;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
     }
-
     .opt-card.selected-correct .opt-letter {
       background: #10b981 !important;
       color: #ffffff !important;
       border-color: #059669 !important;
     }
-
     .opt-card.selected-correct .opt-text {
       color: #065f46 !important;
       font-weight: 700;
@@ -699,15 +687,12 @@
     .opt-card.selected-wrong {
       background: #fef2f2 !important;
       border-color: #ef4444 !important;
-      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
     }
-
     .opt-card.selected-wrong .opt-letter {
       background: #ef4444 !important;
       color: #ffffff !important;
       border-color: #dc2626 !important;
     }
-
     .opt-card.selected-wrong .opt-text {
       color: #991b1b !important;
       font-weight: 700;
@@ -716,71 +701,60 @@
     .opt-card.revealed-correct {
       background: #f0fdf4 !important;
       border-color: #22c55e !important;
-      border-style: solid !important;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
-      animation: pulseGreen 1.6s infinite ease-in-out;
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.35);
     }
-
     .opt-card.revealed-correct .opt-letter {
       background: #22c55e !important;
       color: #ffffff !important;
       border-color: #16a34a !important;
     }
-
     .opt-card.revealed-correct .opt-text {
       color: #14532d !important;
       font-weight: 700;
     }
 
-    @keyframes pulseGreen {
-      0%, 100% { box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3); }
-      50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.6); }
-    }
-
-    /* ----------------------------------------------------
-       EXPLANATION BOX (IMMEDIATE FEEDBACK DRAWER)
-       ---------------------------------------------------- */
+    /* SAME EXPLANATION DRAWER PATTERN, PROPORTIONALLY REDUCED */
     .explanation-drawer {
-      margin-top: 18px;
-      border-radius: var(--radius-lg);
-      padding: 22px 24px;
-      animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--shadow-md);
+      margin-top: 8px;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      animation: slideInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-sm);
       position: relative;
     }
 
     @keyframes slideInUp {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .explanation-drawer.wrong-drawer {
       background: #fff8f8;
-      border: 2px solid #fca5a5;
+      border: 1.5px solid #fca5a5;
     }
 
     .explanation-drawer.correct-drawer {
       background: #f0fdf4;
-      border: 2px solid #86efac;
+      border: 1.5px solid #86efac;
     }
 
     .expl-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 8px;
       flex-wrap: wrap;
     }
 
     .expl-status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
+      gap: 5px;
+      padding: 4px 10px;
       border-radius: 999px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -799,54 +773,55 @@
     }
 
     .expl-concept-pill {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: #475569;
       background: rgba(255, 255, 255, 0.9);
-      padding: 4px 12px;
-      border-radius: 6px;
+      padding: 3px 8px;
+      border-radius: 5px;
       border: 1px solid #e2e8f0;
     }
 
     .expl-section {
-      margin-bottom: 12px;
-      line-height: 1.55;
+      margin-bottom: 6px;
+      line-height: 1.4;
     }
 
     .expl-section-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .wrong-drawer .expl-why-wrong-title { color: #dc2626; }
     .expl-why-right-title { color: #15803d; }
 
     .expl-body {
-      font-size: 14.5px;
+      font-size: 13px;
       color: #1e293b;
     }
 
     .expl-highlight-correct {
       background: #ffffff;
       border: 1px solid #bbf7d0;
-      border-left: 4px solid #10b981;
-      padding: 10px 14px;
-      border-radius: 8px;
-      margin: 8px 0;
+      border-left: 3.5px solid #10b981;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin: 4px 0;
       font-weight: 600;
       color: #065f46;
+      font-size: 13px;
     }
 
     .expl-footer-action {
-      margin-top: 18px;
-      padding-top: 14px;
+      margin-top: 8px;
+      padding-top: 8px;
       border-top: 1px dashed #cbd5e1;
       display: flex;
       align-items: center;
@@ -854,25 +829,25 @@
     }
 
     .btn-expl-next {
-      font-size: 15px;
-      padding: 12px 24px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+      font-size: 13.5px;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.3);
     }
 
     .quiz-bottom-actions {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-top: 24px;
-      padding-top: 18px;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid var(--border);
-      flex-wrap: wrap;
     }
 
     /* ----------------------------------------------------
        PAGE 3: LAST PAGE (RESULTS & ANALYSIS REPORT)
+       SAME PATTERN, PROPORTIONALLY REDUCED
        ---------------------------------------------------- */
     #result {
       padding: 0;
@@ -884,82 +859,84 @@
 
     .result-top-toolbar {
       background: #f8fafc;
-      padding: 14px 28px;
+      padding: 8px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
-      gap: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      box-shadow: var(--shadow-sm);
+      gap: 8px;
+    }
+
+    .result-top-toolbar .btn {
+      padding: 5px 12px;
+      font-size: 11.5px;
     }
 
     .result-academic-header {
       background: linear-gradient(135deg, #091e42 0%, #1e3a8a 60%, #312e81 100%);
       color: #ffffff;
-      padding: 36px 32px 30px;
+      padding: 16px 20px 14px;
       text-align: center;
-      border-bottom: 5px solid #10b981;
+      border-bottom: 3px solid #10b981;
       position: relative;
     }
 
     .report-brand-tag {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #93c5fd;
-      margin-bottom: 8px;
-    }
-
-    .report-main-heading {
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-      line-height: 1.2;
+      margin-bottom: 2px;
     }
 
     .report-sub-tag {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 9.5px;
+      font-weight: 700;
       color: #cbd5e1;
       letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+
+    .report-main-heading {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin: 0;
+      line-height: 1.2;
     }
 
     .result-content-body {
-      padding: 32px 28px;
+      padding: 14px 18px;
     }
 
     .student-dossier-card {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 8px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-left: 5px solid var(--primary);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      margin-bottom: 24px;
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-bottom: 12px;
     }
 
     .dossier-label {
       display: block;
-      font-size: 11px;
+      font-size: 9.5px;
       font-weight: 800;
       color: #64748b;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
     }
 
     .dossier-value {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 800;
       color: #0f172a;
       overflow-wrap: anywhere;
@@ -972,65 +949,62 @@
       color: #1e3a8a;
       background: #dbeafe;
       border: 1px solid #93c5fd;
-      border-radius: 8px;
-      padding: 4px 12px;
+      border-radius: 5px;
+      padding: 2px 8px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
     }
 
     .grand-score-card {
       background: radial-gradient(circle at 50% 0%, #eff6ff 0%, #ffffff 80%);
-      border: 2px solid #bfdbfe;
-      border-radius: var(--radius-lg);
-      padding: 28px 20px;
+      border: 1.5px solid #bfdbfe;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
       box-shadow: var(--shadow-sm);
     }
 
     .grand-score-label {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 800;
       color: #1d4ed8;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
     }
 
     .grand-score-value {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 54px;
+      font-size: 38px;
       font-weight: 900;
       color: #0f172a;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      line-height: 1;
     }
 
     .grand-score-value .divider {
       color: #94a3b8;
-      font-size: 36px;
+      font-size: 26px;
       font-weight: 400;
-      margin: 0 4px;
+      margin: 0 2px;
     }
 
     .grand-score-pct {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 800;
       color: #059669;
-      margin: 6px 0 12px;
+      margin: 4px 0 8px;
     }
 
     .status-badge-lg {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
+      gap: 5px;
+      padding: 4px 12px;
       border-radius: 999px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 15px;
+      font-size: 11.5px;
       font-weight: 800;
-      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
@@ -1042,15 +1016,15 @@
     .metrics-stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     .metric-card {
       background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 18px 14px;
+      border-radius: var(--radius-sm);
+      padding: 8px 6px;
       text-align: center;
       box-shadow: var(--shadow-sm);
     }
@@ -1062,7 +1036,7 @@
 
     .metric-num {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 900;
       line-height: 1.1;
     }
@@ -1073,53 +1047,53 @@
     .metric-card.accuracy .metric-num { color: #4338ca; }
 
     .metric-label {
-      font-size: 11px;
+      font-size: 8.5px;
       font-weight: 800;
       color: #64748b;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-top: 6px;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
     }
 
     .result-motivation-box {
       background: #ecfdf5;
       border: 1px solid #a7f3d0;
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
       color: #065f46;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 12px;
       text-align: center;
-      line-height: 1.5;
-      margin-bottom: 24px;
+      line-height: 1.35;
+      margin-bottom: 12px;
     }
 
     .review-section-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 28px 0 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #e2e8f0;
+      margin: 12px 0 8px;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #e2e8f0;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 6px;
     }
 
     .review-title {
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 800;
       color: #0f172a;
     }
 
     .review-filter-tabs {
       display: flex;
-      gap: 6px;
+      gap: 4px;
     }
 
     .filter-btn {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 6px 14px;
-      font-size: 12px;
+      padding: 4px 10px;
+      font-size: 10.5px;
       font-weight: 700;
       border-radius: 999px;
       border: 1px solid #cbd5e1;
@@ -1135,13 +1109,19 @@
       border-color: var(--primary);
     }
 
+    #reviewContainer {
+      max-height: 260px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
     .review-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: 20px;
-      margin-bottom: 14px;
-      border-left: 5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      border-left: 3.5px solid #cbd5e1;
     }
 
     .review-card.correct { border-left-color: #10b981; background: #fcfffd; }
@@ -1152,22 +1132,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 3px;
     }
 
     .rev-q-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
       color: #64748b;
     }
 
     .rev-badge {
       display: inline-block;
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 800;
-      padding: 3px 10px;
+      padding: 2px 7px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -1179,36 +1159,39 @@
 
     .rev-q-text {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 16px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #0f172a;
-      line-height: 1.45;
-      margin-bottom: 12px;
+      line-height: 1.3;
+      margin-bottom: 4px;
     }
 
     .rev-answers-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
       background: #f8fafc;
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      margin-bottom: 4px;
+      font-size: 11px;
+    }
+
+    .rev-ans-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
     }
 
     .rev-ans-item b {
-      display: block;
-      font-size: 11px;
+      font-size: 9.5px;
       color: #64748b;
       text-transform: uppercase;
-      margin-bottom: 2px;
+      min-width: 75px;
+      flex-shrink: 0;
     }
 
-    .rev-ans-item span {
-      font-weight: 700;
-    }
-
+    .rev-ans-item span { font-weight: 700; }
     .rev-ans-item.your-ans.correct span { color: #15803d; }
     .rev-ans-item.your-ans.wrong span { color: #dc2626; }
     .rev-ans-item.correct-ans span { color: #15803d; }
@@ -1216,60 +1199,216 @@
     .rev-expl-box {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 13.5px;
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 11px;
       color: #334155;
-      line-height: 1.5;
+      line-height: 1.35;
     }
 
     .rev-expl-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
-      font-size: 12px;
+      font-size: 9.5px;
       color: #4f46e5;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
     }
 
     .result-footer {
       background: #091e42;
       color: #cbd5e1;
-      padding: 24px 20px;
+      padding: 8px 12px;
       text-align: center;
-      font-size: 13px;
-      border-top: 4px solid #10b981;
+      font-size: 9.5px;
+      border-top: 2.5px solid #10b981;
     }
 
     .result-footer strong {
       display: block;
       color: #ffffff;
-      font-size: 15px;
+      font-size: 10.5px;
       font-weight: 800;
-      margin-bottom: 4px;
-      letter-spacing: 0.05em;
     }
 
-    @media (max-width: 768px) {
-      body { padding: 12px 8px 30px; }
-      .card { padding: 20px 16px; border-radius: var(--radius-lg); }
-      #start { padding: 28px 18px; }
-      .hero-title { font-size: 26px; }
-      .hero-subtitle { font-size: 15px; }
-      .exam-specs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .student-dossier-card { grid-template-columns: 1fr 1fr; }
-      .metrics-stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .rev-answers-grid { grid-template-columns: 1fr; }
-      .quiz-header { gap: 10px; }
-      .progress-bar-container { width: 140px; }
-      .q-text { font-size: 18px; }
-    }
+    /* RESPONSIVE MOBILE VIEW (MAX-WIDTH: 600PX)
+       PALETTE ALWAYS VISIBLE AT TOP + DRAGGABLE ANSWER WINDOW */
+    @media (max-width: 600px) {
+      body {
+        padding: 4px;
+        height: 100vh;
+        max-height: 100dvh;
+        overflow: hidden;
+      }
+      .wrap {
+        height: 100%;
+        max-height: 100dvh;
+      }
+      .card {
+        padding: 8px 10px 10px !important;
+        border-radius: 12px !important;
+        height: 100%;
+        max-height: calc(100dvh - 8px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      #start {
+        overflow-y: auto !important;
+        scrollbar-width: none !important;
+      }
+      #start::-webkit-scrollbar {
+        display: none !important;
+      }
+      #result {
+        overflow-y: auto !important;
+        scrollbar-width: none !important;
+      }
+      #result::-webkit-scrollbar {
+        display: none !important;
+      }
+      .hero-title { font-size: 19px !important; }
+      .hero-subtitle { font-size: 11px !important; margin-bottom: 8px; }
+      .exam-specs-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 5px; }
+      .student-dossier-card { grid-template-columns: repeat(2, 1fr) !important; gap: 5px; }
+      .metrics-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 5px; }
 
-    @media (max-width: 480px) {
-      .hero-title { font-size: 22px; }
-      .student-dossier-card { grid-template-columns: 1fr; }
-      .grand-score-value { font-size: 40px; }
+      /* Mobile Quiz Header - Zero Clipping */
+      .quiz-header {
+        padding-bottom: 5px !important;
+        gap: 6px !important;
+      }
+      .quiz-progress-info {
+        gap: 6px !important;
+      }
+      .progress-pill {
+        font-size: 11px !important;
+      }
+      .progress-pill .q-number {
+        font-size: 13px !important;
+      }
+      .progress-bar-container {
+        width: 48px !important;
+        height: 4px !important;
+      }
+      .lang-switcher .lang-btn {
+        padding: 2px 5px !important;
+        font-size: 9px !important;
+      }
+      .quiz-timer-hud {
+        padding: 2px 7px !important;
+        gap: 4px !important;
+        flex-shrink: 0 !important;
+      }
+      .timer-icon {
+        font-size: 11px !important;
+      }
+      .timer-label {
+        display: none !important; /* Hide long label so timer digits are never clipped */
+      }
+      .timer-digits {
+        font-size: 13.5px !important;
+      }
+
+      /* Pinned Top Palette on Mobile - ALL 60 NUMBERS 100% PROMINENT & VISIBLE */
+      .quiz-top-pinned {
+        flex-shrink: 0;
+        margin-bottom: 8px !important;
+        padding-bottom: 8px !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        background: var(--card-bg);
+      }
+      .palette-toggle-row {
+        margin: 5px 0 4px !important;
+      }
+      .palette-heading {
+        font-size: 9.5px !important;
+        font-weight: 800 !important;
+      }
+      #paletteSummary {
+        font-size: 9.5px !important;
+      }
+      .palette-container {
+        grid-template-columns: repeat(15, 1fr) !important;
+        gap: 2.5px !important;
+        margin-bottom: 0 !important;
+      }
+      .nav-btn {
+        height: 20px !important;
+        font-size: 9.5px !important;
+        font-weight: 700 !important;
+        border-radius: 4px !important;
+      }
+
+      /* Draggable Answer Window - Options Dragged Down with Room to Breathe */
+      .drag-handle-bar {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 2px 0 6px !important;
+      }
+      .drag-indicator {
+        width: 36px;
+        height: 4px;
+        background: #cbd5e1;
+        border-radius: 999px;
+      }
+      .question-box {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding-top: 4px !important;
+        padding-bottom: 32px !important;
+        scrollbar-width: none !important;
+      }
+      .question-box::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+      }
+      .q-meta-row {
+        margin-bottom: 6px !important;
+      }
+      .q-category-tag {
+        font-size: 8.5px !important;
+        padding: 2px 6px !important;
+      }
+      .q-text {
+        font-size: 14px !important;
+        line-height: 1.35 !important;
+        margin-bottom: 8px !important;
+      }
+      .options-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 7px !important;
+        margin: 8px 0 12px !important;
+      }
+      .opt-card {
+        padding: 7px 11px !important;
+        border-radius: 8px !important;
+      }
+      .opt-letter {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 11px !important;
+      }
+      .opt-text {
+        font-size: 12.5px !important;
+        line-height: 1.3 !important;
+      }
+      .explanation-drawer {
+        margin-top: 10px !important;
+        padding: 10px 12px !important;
+      }
+      .expl-title {
+        font-size: 13.5px !important;
+      }
+      .expl-box {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+      }
     }
 
     @media print {
@@ -1277,6 +1416,7 @@
       .result-top-toolbar, .btn, .review-filter-tabs { display: none !important; }
       #result { box-shadow: none; border: 0; }
       .result-academic-header, .result-footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      #reviewContainer { max-height: none !important; overflow: visible !important; }
     }
   </style>
 </head>
@@ -1288,9 +1428,9 @@
        ========================================== -->
   <section id="start" class="card">
     <div class="start-badge-row">
-      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+      <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
         <span class="pill-badge academic">🎓 University Internal Exam Series</span>
-        <span class="pill-badge" style="background:#f1f5f9; color:#475569; border:1px solid #e2e8f0;">Semester 2 · Minor Degree Course</span>
+        <span class="pill-badge" style="background:#f1f5f9; color:#475569; border:1px solid #e2e8f0;">Semester 1 · Minor Degree Course</span>
       </div>
 
       <!-- Bilingual Language Mode Switcher -->
@@ -1350,7 +1490,7 @@
       <div id="startError" class="start-error-msg">⚠️ Please enter your name to begin the assessment.</div>
 
       <div class="subject-pill-row">
-        <span>Subject Code: <b>MDC-PHI-AI-02</b></span>
+        <span>Subject Code: <b>MDC-PHI-AI-01 (Semester 1)</b></span>
         <span class="subject-active-tag">✨ Philosophy of AI Assessment</span>
       </div>
     </div>
@@ -1369,42 +1509,47 @@
        PAGE 2: IN-QUIZ SCREEN (REAL-TIME FEEDBACK)
        ========================================== -->
   <section id="test" class="card hidden">
-    <!-- Top HUD Bar -->
-    <header class="quiz-header">
-      <div class="quiz-progress-info">
-        <div class="progress-pill">
-          <span>Question</span>
-          <span id="qIndexBadge" class="q-number">1 / 60</span>
+    <!-- Pinned Top Zone: Header + All 60 Question Palette Numbers -->
+    <div class="quiz-top-pinned">
+      <header class="quiz-header">
+        <div class="quiz-progress-info">
+          <div class="progress-pill">
+            <span>Question</span>
+            <span id="qIndexBadge" class="q-number">1 / 60</span>
+          </div>
+          <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar-fill"></div>
+          </div>
         </div>
-        <div class="progress-bar-container">
-          <div id="progressBar" class="progress-bar-fill"></div>
+
+        <!-- Bilingual Language Mode Switcher in Quiz -->
+        <div class="lang-switcher">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="both">Dual</button>
+          <button class="lang-btn" data-lang="mal">മലയാളം</button>
         </div>
-      </div>
 
-      <!-- Bilingual Language Mode Switcher in Quiz -->
-      <div class="lang-switcher">
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="both">Dual</button>
-        <button class="lang-btn" data-lang="mal">മലയാളം</button>
-      </div>
+        <!-- HUD Countdown Clock -->
+        <div class="quiz-timer-hud">
+          <span class="timer-icon">⏳</span>
+          <span class="timer-label">Time Remaining</span>
+          <span id="timer" class="timer-digits">30:00</span>
+        </div>
+      </header>
 
-      <!-- HUD Countdown Clock -->
-      <div class="quiz-timer-hud">
-        <span class="timer-icon">⏳</span>
-        <span class="timer-label">Time Remaining</span>
-        <span id="timer" class="timer-digits">30:00</span>
+      <!-- Question Palette (All 60 Questions Always Visible) -->
+      <div class="palette-toggle-row">
+        <span class="palette-heading">Question Palette (60 Questions)</span>
+        <span id="paletteSummary" style="font-size:11px; color:#64748b; font-weight:700;">0 answered</span>
       </div>
-    </header>
-
-    <!-- Question Palette -->
-    <div class="palette-toggle-row">
-      <span class="palette-heading">Question Palette</span>
-      <span id="paletteSummary" style="font-size:12px; color:#64748b; font-weight:700;">0 answered</span>
+      <div id="palette" class="palette-container"></div>
     </div>
-    <div id="palette" class="palette-container"></div>
 
-    <!-- Question Content Box -->
-    <main class="question-box">
+    <!-- Draggable / Scrollable Answer Window Area -->
+    <main class="question-box" id="quizScrollArea">
+      <div class="drag-handle-bar">
+        <span class="drag-indicator"></span>
+      </div>
       <div class="q-meta-row">
         <div id="qCategory" class="q-category-tag">Philosophy of AI</div>
       </div>
@@ -1412,21 +1557,21 @@
         <h2 id="qText" class="q-text"></h2>
       </div>
       
-      <!-- Interactive Options -->
+      <!-- Interactive Options (Stacked Full Width) -->
       <div id="optionsList" class="options-list"></div>
 
       <!-- Immediate Feedback & Explanation Drawer -->
       <div id="explanationDrawer" class="explanation-drawer hidden"></div>
-    </main>
 
-    <!-- Bottom Action Controls -->
-    <footer class="quiz-bottom-actions">
-      <button id="prevBtn" class="btn secondary">⬅ &nbsp;Previous</button>
-      <div style="display:flex; gap:10px;">
-        <button id="submitBtn" class="btn danger" style="display:none;">Finish & Submit Test</button>
-        <button id="nextBtn" class="btn primary">Next &nbsp;➔</button>
-      </div>
-    </footer>
+      <!-- Bottom Action Controls -->
+      <footer id="quizBottomActions" class="quiz-bottom-actions">
+        <button id="prevBtn" class="btn secondary">⬅ &nbsp;Previous</button>
+        <div style="display:flex; gap:8px;">
+          <button id="submitBtn" class="btn danger" style="display:none;">Finish & Submit Test</button>
+          <button id="nextBtn" class="btn primary">Next &nbsp;➔</button>
+        </div>
+      </footer>
+    </main>
   </section>
 
 
@@ -1445,13 +1590,13 @@
 
     <!-- Prestigious Academic Header -->
     <header class="result-academic-header">
-      <div class="report-brand-tag">ACADEMIC HUB · HIGHER EDUCATION ASSESSMENT</div>
-      <h1 class="report-main-heading">EXAMINATION PERFORMANCE TRANSCRIPT</h1>
-      <div class="report-sub-tag">PHILOSOPHY OF ARTIFICIAL INTELLIGENCE · INTERNAL MOCK SERIES</div>
+      <div class="report-brand-tag">Academic Hub</div>
+      <div class="report-sub-tag">UNIVERSITY INTERNAL EXAM PREPARATION SERIES</div>
+      <h1 class="report-main-heading">MOCK TEST RESULTS</h1>
     </header>
 
     <div class="result-content-body">
-      <!-- Student Dossier Bar (NO Times New Roman!) -->
+      <!-- Student Dossier Bar -->
       <div class="student-dossier-card">
         <div class="dossier-item">
           <span class="dossier-label">Candidate Name</span>
@@ -1463,7 +1608,7 @@
         </div>
         <div class="dossier-item">
           <span class="dossier-label">Examination Code</span>
-          <span class="dossier-value mono">MDC-AI-60Q</span>
+          <span class="dossier-value mono">MDC-AI-SEM1</span>
         </div>
         <div class="dossier-item">
           <span class="dossier-label">Test Duration</span>
@@ -1580,7 +1725,6 @@
   function switchScreen(screenId) {
     ['start', 'test', 'result'].forEach(id => $(id).classList.add('hidden'));
     $(screenId).classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // LANGUAGE TOGGLE HANDLER
@@ -1654,104 +1798,78 @@
 
     clearInterval(timerInterval);
     timerInterval = setInterval(handleTimerTick, 1000);
-    updateTimerDisplay();
   }
 
-  // TIMER
+  // TIMER HANDLER
   function handleTimerTick() {
-    remainingSeconds--;
-    if (remainingSeconds < 0) remainingSeconds = 0;
-    updateTimerDisplay();
-    if (remainingSeconds === 0) {
+    if (remainingSeconds <= 0) {
+      clearInterval(timerInterval);
       submitTest(true);
+      return;
     }
-  }
-
-  function updateTimerDisplay() {
+    remainingSeconds--;
     const mins = Math.floor(remainingSeconds / 60);
     const secs = remainingSeconds % 60;
-    const formatted = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-    const timerEl = $('timer');
-    timerEl.textContent = formatted;
-
-    if (remainingSeconds <= 300) {
-      timerEl.classList.add('urgent');
-    } else {
-      timerEl.classList.remove('urgent');
-    }
+    $('timer').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
 
-  // PALETTE
+  // PALETTE RENDER (ALL 60 BUTTONS VISIBLE IN ONE VIEW)
   function renderPalette() {
+    const paletteEl = $('palette');
     let html = '';
     let answeredCount = 0;
 
-    testQuestions.forEach((q, idx) => {
-      const ans = userAnswers[idx];
+    for (let i = 0; i < N; i++) {
+      const userAns = userAnswers[i];
       let stateClass = '';
-      if (ans) {
+      if (i === currentPos) {
+        stateClass = 'current';
+      }
+      if (userAns) {
         answeredCount++;
-        if (ans === q.answer) {
-          stateClass = 'answered-correct';
-        } else {
-          stateClass = 'answered-wrong';
-        }
+        const isCorrect = (userAns === testQuestions[i].answer);
+        stateClass += isCorrect ? ' answered-correct' : ' answered-wrong';
       }
-      if (idx === currentPos) {
-        stateClass += ' current';
-      }
-      html += `<button class="nav-btn ${stateClass}" data-pos="${idx}" onclick="jumpToQuestion(${idx})">${idx + 1}</button>`;
-    });
-
-    $('palette').innerHTML = html;
+      html += `<button class="nav-btn ${stateClass}" onclick="jumpToQuestion(${i})">${i + 1}</button>`;
+    }
+    paletteEl.innerHTML = html;
     $('paletteSummary').textContent = `${answeredCount} of ${N} answered`;
   }
 
   function jumpToQuestion(pos) {
-    currentPos = pos;
-    renderQuestion();
+    if (pos >= 0 && pos < N) {
+      currentPos = pos;
+      renderQuestion();
+    }
   }
 
-  // RENDER QUESTION
+  // QUESTION RENDER
   function renderQuestion() {
+    const scrollArea = $('quizScrollArea');
+    if (scrollArea) scrollArea.scrollTop = 0;
     const q = testQuestions[currentPos];
-    const selectedAns = userAnswers[currentPos];
-
     $('qIndexBadge').textContent = `${currentPos + 1} / ${N}`;
-    const progressPct = ((currentPos + 1) / N) * 100;
-    $('progressBar').style.width = progressPct + '%';
+    $('progressBar').style.width = `${((currentPos + 1) / N) * 100}%`;
 
-    // Concept category
     if (currentLang === 'mal') {
-      $('qCategory').textContent = q.conceptMal;
+      $('qCategory').textContent = q.conceptMal || q.concept;
+      $('qText').innerHTML = q.questionMal || q.question;
     } else if (currentLang === 'both') {
-      $('qCategory').textContent = `${q.concept} • ${q.conceptMal}`;
+      $('qCategory').textContent = `${q.concept} · ${q.conceptMal || ''}`;
+      $('qText').innerHTML = `${q.question}<div class="mal-text">👉 ${q.questionMal || ''}</div>`;
     } else {
       $('qCategory').textContent = q.concept;
+      $('qText').innerHTML = q.question;
     }
 
-    // Question Text with Bilingual Rendering
-    let qHtml = '';
-    if (currentLang === 'en') {
-      qHtml = `<h2 id="qText" class="q-text">${q.question}</h2>`;
-    } else if (currentLang === 'mal') {
-      qHtml = `<h2 id="qText" class="q-text">${q.questionMal}</h2>`;
-    } else {
-      // Dual / Both
-      qHtml = `
-        <h2 id="qText" class="q-text">${q.question}</h2>
-        <div class="mal-text">👉 ${q.questionMal}</div>
-      `;
-    }
-    $('qTextContainer').innerHTML = qHtml;
-
-    // Options
+    const selectedAns = userAnswers[currentPos];
     let optsHtml = '';
+
     q.options.forEach(opt => {
       let cardClass = 'opt-card';
       if (selectedAns) {
         cardClass += ' locked';
-        if (selectedAns === opt.value) {
+        if (opt.value === selectedAns) {
           cardClass += (opt.value === q.answer) ? ' selected-correct' : ' selected-wrong';
         } else if (opt.value === q.answer) {
           cardClass += ' revealed-correct';
@@ -1770,12 +1888,16 @@
 
     // Explanation Drawer
     const drawer = $('explanationDrawer');
+    const bottomActions = $('quizBottomActions');
+
     if (selectedAns) {
       renderExplanationDrawer(q, selectedAns);
       drawer.classList.remove('hidden');
+      bottomActions.style.display = 'none'; // Avoid duplicate buttons
     } else {
       drawer.classList.add('hidden');
       drawer.innerHTML = '';
+      bottomActions.style.display = 'flex';
     }
 
     $('prevBtn').disabled = (currentPos === 0);
@@ -1790,24 +1912,21 @@
     renderPalette();
   }
 
-  // IMMEDIATE FEEDBACK
+  // IMMEDIATE FEEDBACK WITH SMOOTH INNER DRAG / SCROLL
   function handleOptionSelect(selectedValue) {
     if (userAnswers[currentPos]) return;
-
     userAnswers[currentPos] = selectedValue;
-    const q = testQuestions[currentPos];
-
     renderQuestion();
 
     setTimeout(() => {
-      const drawer = $('explanationDrawer');
-      if (drawer) {
-        drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const scrollArea = $('quizScrollArea');
+      if (scrollArea) {
+        scrollArea.scrollTo({ top: scrollArea.scrollHeight, behavior: 'smooth' });
       }
-    }, 80);
+    }, 40);
   }
 
-  // EXPLANATION DRAWER WITH BILINGUAL SUPPORT
+  // EXPLANATION DRAWER WITH FULL RICH PATTERN (PROPORTIONALLY REDUCED)
   function renderExplanationDrawer(q, selectedValue) {
     const isCorrect = (selectedValue === q.answer);
     const drawer = $('explanationDrawer');
@@ -1832,7 +1951,7 @@
         conceptHeader = q.conceptMal;
         explText = q.explanationMal;
       } else if (currentLang === 'both') {
-        explText = `${q.explanation}<br><div class="mal-text" style="color:#065f46; margin-top:6px;">👉 ${q.explanationMal}</div>`;
+        explText = `${q.explanation}<div class="mal-text" style="color:#065f46; margin-top:4px;">👉 ${q.explanationMal}</div>`;
       }
 
       html = `
@@ -1866,7 +1985,7 @@
         conceptHeader = q.conceptMal;
         explText = q.explanationMal;
       } else if (currentLang === 'both') {
-        explText = `${q.explanation}<br><div class="mal-text" style="color:#065f46; margin-top:6px;">👉 ${q.explanationMal}</div>`;
+        explText = `${q.explanation}<div class="mal-text" style="color:#065f46; margin-top:4px;">👉 ${q.explanationMal}</div>`;
       }
 
       html = `
@@ -1895,7 +2014,6 @@
     if (currentPos < N - 1) {
       currentPos++;
       renderQuestion();
-      window.scrollTo({ top: 120, behavior: 'smooth' });
     }
   }
 
@@ -1903,7 +2021,6 @@
     if (currentPos > 0) {
       currentPos--;
       renderQuestion();
-      window.scrollTo({ top: 120, behavior: 'smooth' });
     }
   }
 
@@ -1955,13 +2072,13 @@
 
     const statusBadge = $('resStatusBadge');
     if (pct >= 80) {
-      statusBadge.textContent = '🌟 DISTINCTION · OUTSTANDING';
+      statusBadge.textContent = '🌟 DISTINCTION';
       statusBadge.className = 'status-badge-lg status-excellent';
     } else if (pct >= 60) {
-      statusBadge.textContent = '🏆 FIRST CLASS · VERY GOOD';
+      statusBadge.textContent = '🏆 FIRST CLASS';
       statusBadge.className = 'status-badge-lg status-good';
     } else if (pct >= 40) {
-      statusBadge.textContent = '✅ PASS · PROFICIENT';
+      statusBadge.textContent = '✅ PASS';
       statusBadge.className = 'status-badge-lg status-pass';
     } else {
       statusBadge.textContent = '📚 NEEDS IMPROVEMENT';
@@ -1979,12 +2096,28 @@
       motEl.innerHTML = `💡 <b>Keep Growing!</b> Philosophy of AI involves subtle conceptual distinctions. Review each question-wise explanation below carefully, then retake the test!`;
     }
 
-    renderReviewCards('all');
+    const initialFilter = (wrong > 0) ? 'wrong' : 'all';
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === initialFilter);
+    });
+
+    renderReviewCards(initialFilter);
   }
 
-  // REVIEW CARDS
+  // REVIEW CARDS - SAME PATTERN, PROPORTIONALLY REDUCED
   function renderReviewCards(filter) {
     let html = '';
+
+    if (filter === 'wrong') {
+      const hasMistakes = testQuestions.some((q, idx) => userAnswers[idx] && userAnswers[idx] !== q.answer);
+      if (!hasMistakes) {
+        $('reviewContainer').innerHTML = `
+          <div style="text-align:center; padding:12px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; color:#15803d; font-weight:700; font-size:12px;">
+            🎉 100% Correct on attempted questions! Tap "All (60)" above to inspect full solutions.
+          </div>`;
+        return;
+      }
+    }
 
     testQuestions.forEach((q, idx) => {
       const userAns = userAnswers[idx];
@@ -2010,30 +2143,30 @@
         explDisplay = q.explanationMal;
       } else if (currentLang === 'both') {
         qTextDisplay = `${q.question}<div class="mal-text">👉 ${q.questionMal}</div>`;
-        explDisplay = `${q.explanation}<div class="mal-text" style="margin-top:6px;">👉 ${q.explanationMal}</div>`;
+        explDisplay = `${q.explanation}<div class="mal-text" style="margin-top:3px;">👉 ${q.explanationMal}</div>`;
       }
 
       html += `
         <article class="review-card ${cardState}">
           <div class="rev-q-head">
-            <span class="rev-q-num">QUESTION ${idx + 1} OF ${N} · ${q.concept}</span>
+            <span class="rev-q-num">Q${idx + 1}/${N} · ${q.concept}</span>
             <span class="rev-badge ${badgeClass}">${badgeText}</span>
           </div>
           <div class="rev-q-text">${qTextDisplay}</div>
 
           <div class="rev-answers-grid">
             <div class="rev-ans-item your-ans ${badgeClass}">
-              <b>Your Answer</b>
+              <b>Your Choice:</b>
               <span>${userText}</span>
             </div>
             <div class="rev-ans-item correct-ans">
-              <b>Correct Answer</b>
+              <b>Correct:</b>
               <span>${correctText}</span>
             </div>
           </div>
 
           <div class="rev-expl-box">
-            <div class="rev-expl-title">💡 Explanation & Conceptual Key:</div>
+            <div class="rev-expl-title">💡 Explanation:</div>
             <div>${explDisplay}</div>
           </div>
         </article>
@@ -2097,20 +2230,22 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Philosophy of AI Transcript - ${candidateName}</title>
+  <title>Academic Hub - Philosophy of AI Transcript - ${candidateName}</title>
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; color: #0f172a; max-width: 900px; margin: auto; }
-    h1 { color: #1e3a8a; }
-    .meta-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 15px; margin: 15px 0; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #cbd5e1; padding: 10px; font-size: 14px; text-align: left; }
+    body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; padding: 25px; color: #0f172a; max-width: 900px; margin: auto; }
+    h1 { color: #1e3a8a; margin-bottom: 2px; }
+    h2 { color: #475569; font-size: 14px; margin-top: 0; }
+    .meta-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin: 15px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px; font-size: 13px; text-align: left; }
     th { background: #f1f5f9; }
   </style>
 </head>
 <body>
-  <h1>Philosophy of AI — Official Examination Transcript</h1>
+  <h1>Academic Hub</h1>
+  <h2>UNIVERSITY INTERNAL EXAM PREPARATION SERIES · MOCK TEST RESULTS</h2>
   <div class="meta-box">
-    <p><b>Candidate:</b> ${candidateName}</p>
+    <p><b>Candidate:</b> ${candidateName} &nbsp;|&nbsp; <b>Course:</b> Philosophy of AI (MDC-AI-SEM1)</p>
     <p><b>Score:</b> ${$('resScore').textContent} / ${N} &nbsp;|&nbsp; <b>Percentage:</b> ${$('resPct').textContent} &nbsp;|&nbsp; <b>Status:</b> ${$('resStatusBadge').textContent}</p>
     <p><b>Date:</b> ${new Date().toLocaleDateString()}</p>
   </div>
@@ -2134,7 +2269,7 @@
     const blob = new Blob([reportDoc], { type: 'text/html;charset=utf-8' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `Philosophy_of_AI_Transcript_${candidateName.replace(/\s+/g, '_')}.html`;
+    a.download = `AcademicHub_Philosophy_of_AI_${candidateName.replace(/\s+/g, '_')}.html`;
     a.click();
   }
 
