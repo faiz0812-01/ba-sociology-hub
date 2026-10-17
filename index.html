@@ -234,6 +234,20 @@
         outline-offset: 3px;
       }
     }
+
+    /* Hide download buttons from all Malayalam reading tabs and modals across all subjects */
+    .module-dialog--malayalam [download],
+    .module-dialog--malayalam .btn-download,
+    .module-dialog--malayalam .download,
+    .language-tab--malayalam [download],
+    .language-tab--malayalam .btn-download,
+    .language-tab--malayalam .download,
+    [data-subject] .language-tab--malayalam [download],
+    .module-dialog[lang="ml"] [download],
+    .module-dialog[lang="ml"] .btn-download,
+    .module-dialog[lang="ml"] .download {
+      display: none !important;
+    }
   </style>
 
   <style id="ai-study-guide-organization">
@@ -3531,7 +3545,7 @@
       actions.className='module-pdf-actions';
       const open=document.createElement('a');
       open.className='module-chapter-open-link';
-      open.href=item.href.split('#')[0];
+      open.href=itemMedium==='Malayalam'?item.href.split('#')[0]+'#toolbar=0&navpanes=0':item.href.split('#')[0];
       open.target='_blank';
       open.rel='noopener';
       open.textContent='Open';

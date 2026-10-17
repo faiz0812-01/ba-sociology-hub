@@ -274,16 +274,12 @@
       color: #4c1d95;
     }
 
-    .btn-download {
-      background: linear-gradient(135deg, var(--c1, #581c87), var(--c2, #7e22ce));
-      color: #ffffff;
-      border: none;
-      box-shadow: 0 4px 10px rgba(107, 33, 168, 0.25);
-    }
-
-    .btn-download:hover {
-      filter: brightness(0.92);
-      transform: translateY(-1px);
+    .btn-download,
+    .download,
+    a[download],
+    button[download],
+    [download] {
+      display: none !important;
     }
 
     /* Modal */
@@ -830,7 +826,8 @@
 
     function viewPdf(url, title) {
       document.getElementById('modalTitle').innerText = title;
-      document.getElementById('pdfFrame').src = url;
+      const clean = url.split('#')[0];
+      document.getElementById('pdfFrame').src = clean + '#toolbar=0&navpanes=0';
       document.getElementById('viewerModal').style.display = 'block';
     }
 

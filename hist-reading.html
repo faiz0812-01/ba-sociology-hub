@@ -276,6 +276,14 @@
       box-shadow: 0 4px 12px rgba(112, 26, 117, 0.25);
     }
 
+    .btn-download,
+    .download,
+    a[download],
+    button[download],
+    [download] {
+      display: none !important;
+    }
+
     /* In-Page Reader Sections */
     .reading-content-box {
       margin-top: 14px;
@@ -750,7 +758,8 @@
 
     function viewPdf(url, title) {
       document.getElementById('modalTitle').innerText = title;
-      document.getElementById('pdfFrame').src = url;
+      const clean = url.split('#')[0];
+      document.getElementById('pdfFrame').src = clean + '#toolbar=0&navpanes=0';
       document.getElementById('viewerModal').style.display = 'block';
     }
 
