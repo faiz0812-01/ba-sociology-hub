@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="കാലിക്കറ്റ് സർവ്വകലാശാല ബി.എ സോഷ്യോളജി - സമ്പൂർണ്ണ മലയാള പരിഭാഷാ വായനാ സഹായി (Malayalam Reading) · SOC1CJ101 Introduction to Sociology">
+  <title>സോഷ്യോളജി മലയാളം വായന | Sociology Malayalam Reading</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&display=swap');
+
+    :root {
+      --soc-primary: #6b21a8;
+      --soc-secondary: #7e22ce;
+      --soc-light: #faf5ff;
+      --soc-border: #e9d5ff;
+    }
+
+    body {
+      font-family: 'Noto Sans Malayalam', 'Manjari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #faf5ff, #f3e8ff, #f8fafc);
+      padding: 30px 18px;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    .page-box {
+      max-width: 980px;
+      margin: auto;
+      background: #ffffff;
+      padding: 36px 32px;
+      border-radius: 28px;
+      box-shadow: 0 16px 36px rgba(107, 33, 168, 0.08);
+    }
+
+    .hero {
+      display: block !important;
+      position: relative !important;
+      min-height: 0 !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      margin: 0 0 28px 0 !important;
+      padding: 32px 24px 34px !important;
+      text-align: center !important;
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #f5f3ff 100%) !important;
+      border: 1px solid #d8b4fe !important;
+      border-radius: 24px !important;
+      box-shadow: 0 8px 24px rgba(126, 34, 206, 0.1) !important;
+      color: #0f172a !important;
+    }
+
+    .hero:before {
+      display: none !important;
+      content: none !important;
+    }
+
+    .uni-badge {
+      display: inline-block !important;
+      background: #f3e8ff !important;
+      color: #581c87 !important;
+      padding: 6px 18px !important;
+      border-radius: 999px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      margin-bottom: 14px !important;
+      letter-spacing: 0.5px !important;
+      border: 1px solid #d8b4fe !important;
+    }
+
+    .hero h1 {
+      display: block !important;
+      font-size: clamp(23px, 4vw, 34px) !important;
+      line-height: 1.45 !important;
+      color: #581c87 !important;
+      margin: 0 0 12px 0 !important;
+      font-weight: 800 !important;
+      background: transparent !important;
+      -webkit-background-clip: unset !important;
+      text-shadow: none !important;
+    }
+
+    .hero p {
+      font-size: 15px !important;
+      line-height: 1.8 !important;
+      color: #334155 !important;
+      margin: 0 auto !important;
+      max-width: 800px !important;
+      font-weight: 500 !important;
+    }
+
+    /* Filter Bar */
+    .filter-wrapper {
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 9px 18px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #7e22ce;
+      color: #ffffff;
+      border-color: #7e22ce;
+      box-shadow: 0 4px 12px rgba(126, 34, 206, 0.25);
+    }
+
+    /* Search input */
+    .search-bar {
+      margin-bottom: 26px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .search-bar input:focus {
+      border-color: #7e22ce;
+      box-shadow: 0 0 0 4px rgba(126, 34, 206, 0.15);
+    }
+
+    /* Section divider */
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 32px 0 16px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e9d5ff;
+    }
+
+    .module-header h2 {
+      font-size: 20px;
+      margin: 0;
+      color: #581c87;
+      font-weight: 700;
+    }
+
+    .module-tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: #f3e8ff;
+      color: #6b21a8;
+      border: 1px solid #d8b4fe;
+    }
+
+    /* Chapter cards */
+    .chapter-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .chapter-card {
+      border: 1px solid #e9d5ff;
+      border-radius: 20px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(130deg, #ffffff, #faf5ff);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(107, 33, 168, 0.08);
+      border-color: #c084fc;
+    }
+
+    .chapter-num {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--c1, #581c87), var(--c2, #7e22ce));
+      box-shadow: 0 6px 14px rgba(107, 33, 168, 0.28);
+    }
+
+    .chapter-info h3 {
+      font-size: 17px;
+      line-height: 1.5;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      font-weight: 700;
+    }
+
+    .chapter-info .eng-title {
+      font-size: 13.5px;
+      color: #7e22ce;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .chapter-info p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0 0 8px 0;
+    }
+
+    .tag-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      font-weight: 600;
+      background: #f3e8ff;
+      color: #6b21a8;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #e9d5ff;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 140px;
+    }
+
+    .action-btn {
+      display: inline-block;
+      text-align: center;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-view {
+      background: #f3e8ff;
+      color: #581c87;
+      border: 1px solid #d8b4fe;
+    }
+
+    .btn-view:hover {
+      background: #e9d5ff;
+      color: #4c1d95;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, var(--c1, #581c87), var(--c2, #7e22ce));
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 10px rgba(107, 33, 168, 0.25);
+    }
+
+    .btn-download:hover {
+      filter: brightness(0.92);
+      transform: translateY(-1px);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 2% auto;
+      width: 92%;
+      max-width: 1100px;
+      height: 90vh;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      padding: 14px 20px;
+      background: #581c87;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .close-modal {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #e9d5ff;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      padding: 14px 26px;
+      border-radius: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-home {
+      background: #0f172a;
+      color: white;
+    }
+
+    .nav-home:hover {
+      background: #1e293b;
+    }
+
+    .nav-soc-lms {
+      background: #7e22ce;
+      color: white;
+    }
+
+    .nav-soc-lms:hover {
+      background: #6b21a8;
+    }
+
+    .nav-mock-test {
+      background: #059669;
+      color: white;
+    }
+
+    .nav-mock-test:hover {
+      background: #047857;
+    }
+
+    @media (max-width: 768px) {
+      .chapter-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 14px;
+      }
+      .chapter-num {
+        margin: 0 auto;
+      }
+      .tag-pills {
+        justify-content: center;
+      }
+      .btn-group {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page-box">
+
+    <!-- Header / Hero -->
+    <header class="hero">
+      <div class="uni-badge">കാലിക്കറ്റ് സർവ്വകലാശാല · ബി.എ സോഷ്യോളജി (FYUGP)</div>
+      <h1>സോഷ്യോളജി മലയാളം വായന | Malayalam Reading</h1>
+      <p>സിലബസും 5 മൊഡ്യൂളുകളും (14 അധ്യായങ്ങൾ) സമഗ്രമായി മലയാളത്തിലും ഇംഗ്ലീഷിലും — സിദ്ധാന്തങ്ങൾ, രേഖാചിത്രങ്ങൾ, എൽ.എം.എസ് ചോദ്യോത്തരങ്ങൾ, 210+ പരീക്ഷാ MCQs എന്നിവ സഹിതം.</p>
+    </header>
+
+    <!-- Filter Buttons -->
+    <nav class="filter-wrapper" aria-label="Module filters">
+      <button class="filter-btn active" onclick="filterModule('all', this)">എല്ലാം (All 14 Chapters)</button>
+      <button class="filter-btn" onclick="filterModule('syllabus', this)">സിലബസ് (Syllabus)</button>
+      <button class="filter-btn" onclick="filterModule('mod1', this)">മൊഡ്യൂൾ 1 (Introducing)</button>
+      <button class="filter-btn" onclick="filterModule('mod2', this)">മൊഡ്യൂൾ 2 (Practicing)</button>
+      <button class="filter-btn" onclick="filterModule('mod3', this)">മൊഡ്യൂൾ 3 (Individual & Society)</button>
+      <button class="filter-btn" onclick="filterModule('mod4', this)">മൊഡ്യൂൾ 4 (Sociology & Society)</button>
+      <button class="filter-btn" onclick="filterModule('mod5', this)">മൊഡ്യൂൾ 5 (Field Dynamics)</button>
+    </nav>
+
+    <!-- Search Input -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="അധ്യായം, ചിന്തകർ, സിദ്ധാന്തങ്ങൾ തിരയുക (Search chapters, thinkers, concepts)..." onkeyup="filterChapters()">
+    </div>
+
+    <!-- ==================== SYLLABUS ==================== -->
+    <section class="module-section" data-mod="syllabus">
+      <div class="module-header">
+        <h2>സിലബസ് രൂപരേഖ (Curriculum Structure)</h2>
+        <span class="module-tag">Core Syllabus</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">01</div>
+          <div class="chapter-info">
+            <h3>സിലബസ്: ഇൻട്രൊഡക്ഷൻ ടു സോഷ്യോളജി (SOC1CJ101)</h3>
+            <div class="eng-title">Course Syllabus · Introduction to Sociology · FYUGP Semester 1 Major Core</div>
+            <p>കോഴ്സ് ലക്ഷ്യങ്ങൾ, ക്രെഡിറ്റ് വിഭജനം (4 Credits), 5 മൊഡ്യൂളുകളുടെ ഘടന, 20 മാർക്കിന്റെ ഇന്റേണൽ, 80 മാർക്കിന്റെ എക്സ്റ്റേണൽ പരീക്ഷാ രീതികൾ.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">SOC1CJ101</span>
+              <span class="tag-pill">4 Credits</span>
+              <span class="tag-pill">Evaluation Scheme</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Syllabus_Introduction_to_Sociology_Malayalam.pdf', 'സിലബസ്: Introduction to Sociology')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Syllabus_Introduction_to_Sociology_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 1 ==================== -->
+    <section class="module-section" data-mod="mod1">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 1: ഇൻട്രൊഡ്യൂസിങ് സോഷ്യോളജി (Introducing Sociology)</h2>
+        <span class="module-tag">Module 1</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">02</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 1: സോഷ്യോളജിയുടെ ആമുഖവും സ്വഭാവവും (Introducing Sociology)</h3>
+            <div class="eng-title">Module 1 · Origin, Science, Nature, Scope & Applications</div>
+            <p>1839-ൽ ഓഗസ്റ്റ് കോംതെ, ഫ്രഞ്ച് വിപ്ലവം (1789), വ്യവസായ വിപ്ലവം, പോസിറ്റിവിസം, ശാസ്ത്രീയ സ്വഭാവം (റോബർട്ട് ബിയർസ്റ്റെഡ്), ഫോർമലിസ്റ്റിക് vs സിന്തറ്റിക് സ്കൂളുകൾ, പ്രായോഗിക മേഖലകൾ.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Auguste Comte</span>
+              <span class="tag-pill">Robert Bierstedt</span>
+              <span class="tag-pill">Simmel vs Durkheim</span>
+              <span class="tag-pill">25 LMS MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_1_Introducing_Sociology_Malayalam.pdf', 'മൊഡ്യൂൾ 1: Introducing Sociology')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_1_Introducing_Sociology_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 2 ==================== -->
+    <section class="module-section" data-mod="mod2">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 2: പ്രാക്റ്റീസിങ് സോഷ്യോളജി (Practicing Sociology)</h2>
+        <span class="module-tag">Module 2</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">03</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 2: സോഷ്യോളജിക്കൽ വീക്ഷണങ്ങളും രീതിശാസ്ത്രവും (Practicing Sociology)</h3>
+            <div class="eng-title">Module 2 · Sociological Paradigms, Scientific Research & Ethics</div>
+            <p>സി. റൈറ്റ് മിൽസിന്റെ സോഷ്യോളജിക്കൽ ഭാവന, സ്ട്രക്ചറൽ ഫങ്ഷണലിസം, കോൺഫ്ലിക്റ്റ് തിയറി, സിംബോളിക് ഇന്ററാക്ഷനിസം, ക്രിട്ടിക്കൽ സോഷ്യോളജി, 7 ഘട്ടങ്ങളുള്ള ഗവേഷണ രീതി, റിസർച്ച് എത്തിക്സ്.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">C.W. Mills</span>
+              <span class="tag-pill">Paradigms</span>
+              <span class="tag-pill">7 Research Stages</span>
+              <span class="tag-pill">Ethics</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_2_Practicing_Sociology_Malayalam.pdf', 'മൊഡ്യൂൾ 2: Practicing Sociology')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_2_Practicing_Sociology_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 3 ==================== -->
+    <section class="module-section" data-mod="mod3">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 3: വ്യക്തിയും സമൂഹവും (Individual and Society)</h2>
+        <span class="module-tag">Module 3 · 6 Chapters</span>
+      </div>
+      <div class="chapter-list">
+
+        <!-- 3.1 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">04</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3.1: സാമൂഹിക പ്രതിപ്രവർത്തനം: തരങ്ങൾ (Social Interaction)</h3>
+            <div class="eng-title">Chapter 3.1 · Associative & Dissociative Social Processes</div>
+            <p>പരസ്പര സമ്പർക്കവും ആശയവിനിമയവും, സഹകരണം (Primary, Secondary, Tertiary), അനുരഞ്ജനം (Compromise, Arbitration), സ്വാംശീകരണം, മത്സരം, സംഘർഷം, സോഷ്യൽ എക്സ്ചേഞ്ച്.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Cooperation</span>
+              <span class="tag-pill">Accommodation</span>
+              <span class="tag-pill">Competition</span>
+              <span class="tag-pill">Conflict</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_3_Ch1_Social_Interaction_Types_Malayalam.pdf', 'അധ്യായം 3.1: Social Interaction')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_3_Ch1_Social_Interaction_Types_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 3.2 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">05</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3.2: സാമൂഹിക ഗ്രൂപ്പുകൾ: തരങ്ങൾ (Social Groups)</h3>
+            <div class="eng-title">Chapter 3.2 · Primary, Secondary, In-Group & Reference Groups</div>
+            <p>സി.എച്ച്. കൂലിയുടെ പ്രൈമറി vs സെക്കൻഡറി ഗ്രൂപ്പുകൾ, സംനറുടെ ഇൻ-ഗ്രൂപ്പ് vs ഔട്ട്-ഗ്രൂപ്പ്, എത്‌നോസെൻട്രിസം, റോബർട്ട് മെർട്ടന്റെ റഫറൻസ് ഗ്രൂപ്പുകൾ, ടോണീസിന്റെ ജെമൈൻഷാഫ്റ്റ്.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">C.H. Cooley</span>
+              <span class="tag-pill">W.G. Sumner</span>
+              <span class="tag-pill">Merton</span>
+              <span class="tag-pill">Gemeinschaft</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_3_Ch2_Social_Groups_Types_Malayalam.pdf', 'അധ്യായം 3.2: Social Groups')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_3_Ch2_Social_Groups_Types_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 3.3 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">06</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3.3: സോഷ്യലൈസേഷൻ: നിർവ്വചനവും തരങ്ങളും (Socialization)</h3>
+            <div class="eng-title">Chapter 3.3 · Lifelong Process, Types & Resocialization</div>
+            <p>ജൈവിക ജീവിയെ സാമൂഹിക മനുഷ്യനാക്കുന്ന പ്രക്രിയ, പ്രൈമറി, സെക്കൻഡറി, ആന്റിസിപ്പേറ്ററി സോഷ്യലൈസേഷൻ, ഗോഫ്മാന്റെ ടോട്ടൽ ഇൻസ്റ്റിറ്റ്യൂഷൻസിലെ റീ-സോഷ്യലൈസേഷൻ.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Lifelong Process</span>
+              <span class="tag-pill">Primary/Secondary</span>
+              <span class="tag-pill">Resocialization</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_3_Ch3_Socialization_Definition_Types_Malayalam.pdf', 'അധ്യായം 3.3: Socialization Definition & Types')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_3_Ch3_Socialization_Definition_Types_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 3.4 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">07</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3.4: സോഷ്യലൈസേഷന്റെ മാധ്യമങ്ങൾ (Agents of Socialization)</h3>
+            <div class="eng-title">Chapter 3.4 · Family, Peer Group, School & Digital Media</div>
+            <p>കുടുംബം (വ്യക്തിത്വ ഫാക്ടറി - പാർസൺസ്), പിയർ ഗ്രൂപ്പിലെ തുല്യത, സ്കൂളിലെ ഹിഡൻ കരിക്കുലം, മാധ്യമങ്ങളും ഡിജിറ്റൽ സംസ്കാരവും, തൊഴിലിടം.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Family</span>
+              <span class="tag-pill">Peer Group</span>
+              <span class="tag-pill">Hidden Curriculum</span>
+              <span class="tag-pill">Digital Media</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_3_Ch4_Agents_of_Socialization_Malayalam.pdf', 'അധ്യായം 3.4: Agents of Socialization')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_3_Ch4_Agents_of_Socialization_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 3.5 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">08</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3.5: സോഷ്യലൈസേഷന്റെ ഘട്ടങ്ങൾ (Stages of Socialization)</h3>
+            <div class="eng-title">Chapter 3.5 · Freud, Cooley's Looking-Glass Self & Mead's Self</div>
+            <p>ഫ്രോയിഡിന്റെ ഇദ്-ഈഗോ-സൂപ്പർ ഈഗോ, കൂലിയുടെ ലുക്കിങ്-ഗ്ലാസ് സെൽഫ് (3 ഘട്ടങ്ങൾ), മീഡിന്റെ പ്ലേ & ഗെയിം ഘട്ടങ്ങൾ, 'I' ഉം 'Me' യും, ജനറലൈസ്ഡ് അതർ.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Sigmund Freud</span>
+              <span class="tag-pill">Looking-Glass Self</span>
+              <span class="tag-pill">G.H. Mead</span>
+              <span class="tag-pill">Generalized Other</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_3_Ch5_Stages_of_Socialization_Malayalam.pdf', 'അധ്യായം 3.5: Stages of Socialization')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_3_Ch5_Stages_of_Socialization_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 3.6 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">09</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 3.6: സാമൂഹിക നിയന്ത്രണം: തരങ്ങളും ഏജൻസികളും (Social Control)</h3>
+            <div class="eng-title">Chapter 3.6 · Theories, Typologies & Formal/Informal Agencies</div>
+            <p>ഇ.എ. റോസ് (1901), കാൾ മാൻഹൈമിന്റെ പ്രത്യക്ഷ-പരോക്ഷ നിയന്ത്രണങ്ങൾ, കൂലിയുടെ ബോധപൂർവ്വ-അബോധപൂർവ്വ നിയന്ത്രണങ്ങൾ, പോസിറ്റീവ്-നെഗറ്റീവ് സാംഗ്ഷനുകൾ, നിയമവും കുടുംബവും.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">E.A. Ross</span>
+              <span class="tag-pill">Karl Mannheim</span>
+              <span class="tag-pill">Formal/Informal</span>
+              <span class="tag-pill">Sanctions</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_3_Ch6_Social_Control_Types_Agencies_Malayalam.pdf', 'അധ്യായം 3.6: Social Control')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_3_Ch6_Social_Control_Types_Agencies_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 4 ==================== -->
+    <section class="module-section" data-mod="mod4">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 4: സോഷ്യോളജിയും സമൂഹവും (Sociology and Society)</h2>
+        <span class="module-tag">Module 4 · 4 Chapters</span>
+      </div>
+      <div class="chapter-list">
+
+        <!-- 4.1 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">10</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 4.1: സമൂഹം: സവിശേഷതകളും തരങ്ങളും (Society: Types)</h3>
+            <div class="eng-title">Chapter 4.1 · Characteristics, Evolutionary Progression & Community</div>
+            <p>'Socius', മാക്കൈവറുടെ സാമൂഹിക ബന്ധങ്ങളുടെ വലക്കണ്ണി, സാദൃശ്യവും വ്യത്യാസവും, നായാട്ടു സമൂഹം, കാർഷിക സമൂഹം, വ്യാവസായിക സമൂഹം, ഡാനിയൽ ബെല്ലിന്റെ പോസ്റ്റ്-ഇൻഡസ്ട്രിയൽ സൊസൈറ്റി.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">MacIver & Page</span>
+              <span class="tag-pill">Evolutionary Types</span>
+              <span class="tag-pill">Post-Industrial</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_4_Ch1_Society_Characteristics_Types_Malayalam.pdf', 'അധ്യായം 4.1: Society Types')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_4_Ch1_Society_Characteristics_Types_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 4.2 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">11</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 4.2: സാമൂഹിക സ്ഥാപനങ്ങൾ (Social Institutions)</h3>
+            <div class="eng-title">Chapter 4.2 · Five Core Pillars: Family, Marriage, Economy, Polity & Religion</div>
+            <p>അടിസ്ഥാന മാനുഷിക ആവശ്യങ്ങൾ, കുടുംബം, വിവാഹം (Monogamy & Polygamy), സമ്പദ്‌വ്യവസ്ഥ, ഭരണകൂടം, മതവും ഡർക്കൈമിന്റെ വിശുദ്ധ-ലൗകിക സങ്കല്പവും.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">5 Core Pillars</span>
+              <span class="tag-pill">Marriage Types</span>
+              <span class="tag-pill">State & Polity</span>
+              <span class="tag-pill">Sacred & Profane</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_4_Ch2_Social_Institutions_Malayalam.pdf', 'അധ്യായം 4.2: Social Institutions')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_4_Ch2_Social_Institutions_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 4.3 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">12</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 4.3: സാമൂഹിക ഘടന: പദവിയും പങ്കും (Status & Role)</h3>
+            <div class="eng-title">Chapter 4.3 · Ascribed/Achieved Status, Role Conflict & Role Set</div>
+            <p>റാൾഫ് ലിന്റൺ (1936), അസ്ക്രൈബ്ഡ് vs ആർജ്ജിത പദവി, മാസ്റ്റർ സ്റ്റാറ്റസ്, റോബർട്ട് മെർട്ടന്റെ റോൾ സെറ്റ്, റോൾ സംഘർഷം (Conflict), റോൾ സമ്മർദ്ദം (Strain).</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Ralph Linton</span>
+              <span class="tag-pill">Ascribed vs Achieved</span>
+              <span class="tag-pill">Role Conflict</span>
+              <span class="tag-pill">Role Set</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_4_Ch3_Social_Structure_Status_Role_Malayalam.pdf', 'അധ്യായം 4.3: Status and Role')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_4_Ch3_Social_Structure_Status_Role_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+        <!-- 4.4 -->
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">13</div>
+          <div class="chapter-info">
+            <h3>അധ്യായം 4.4: സാമൂഹിക മാറ്റം: ഘടകങ്ങൾ (Social Change)</h3>
+            <div class="eng-title">Chapter 4.4 · Theories, Factors & Ogburn's Cultural Lag</div>
+            <p>പരിണാമ സിദ്ധാന്തം (Spencer), ചക്രിയ സിദ്ധാന്തം (Spengler), മാർക്സിന്റെ വർഗ്ഗസമരം, സാങ്കേതിക-ജനസംഖ്യാ ഘടകങ്ങൾ, വില്യം ഒഗ്ബേണിന്റെ കൾച്ചറൽ ലാഗ് (ഭൗതിക vs അഭൗതിക സംസ്കാരം).</p>
+            <div class="tag-pills">
+              <span class="tag-pill">William F. Ogburn</span>
+              <span class="tag-pill">Cultural Lag</span>
+              <span class="tag-pill">Theories of Change</span>
+              <span class="tag-pill">Technology</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_4_Ch4_Social_Change_Factors_Malayalam.pdf', 'അധ്യായം 4.4: Social Change')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_4_Ch4_Social_Change_Factors_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 5 ==================== -->
+    <section class="module-section" data-mod="mod5">
+      <div class="module-header">
+        <h2>മൊഡ്യൂൾ 5: പ്രായോഗിക ഫീൽഡ് അസസ്സ്മെന്റ് (Perceiving Social Dynamics)</h2>
+        <span class="module-tag">Module 5 · Practical</span>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter-card" style="--c1:#581c87; --c2:#7e22ce;">
+          <div class="chapter-num">14</div>
+          <div class="chapter-info">
+            <h3>മൊഡ്യൂൾ 5: സോഷ്യൽ ഡൈനാമിക്സ് തിരിച്ചറിയൽ (ഫീൽഡ് അസൈൻമെന്റ്)</h3>
+            <div class="eng-title">Module 5 · Practical Fieldwork, Assignment Guidelines & Evaluation Rubrics</div>
+            <p>പ്രായോഗിക ഫീൽഡ് പ്രൊജക്റ്റ്, പ്രാദേശിക പ്രശ്ന തെരഞ്ഞെടുപ്പ്, ചോദ്യാവലി രൂപീകരണം (10-15 ചോദ്യങ്ങൾ), 15-25 പേരുടെ സർവേ, ഡാറ്റാ അപഗ്രഥനം, റിപ്പോർട്ട് രചന, 20 മാർക്കിന്റെ ഇന്റേണൽ റൂബ്രിക്സ്.</p>
+            <div class="tag-pills">
+              <span class="tag-pill">Fieldwork Protocol</span>
+              <span class="tag-pill">Questionnaire Design</span>
+              <span class="tag-pill">Report Writing</span>
+              <span class="tag-pill">20 Internal Marks</span>
+              <span class="tag-pill">15 MCQs</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="action-btn btn-view" onclick="viewPdf('Sociology/Malayalam PDF/Sociology_Module_5_Perceiving_Social_Dynamics_Assignment_Malayalam.pdf', 'മൊഡ്യൂൾ 5: Fieldwork Assignment')">PDF കാണുക</button>
+            <a class="action-btn btn-download" href="Sociology/Malayalam%20PDF/Sociology_Module_5_Perceiving_Social_Dynamics_Assignment_Malayalam.pdf" download>ഡൗൺലോഡ്</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PDF Viewer Modal -->
+    <div id="viewerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">PDF Viewer</h3>
+          <button class="close-modal" onclick="closeViewer()">×</button>
+        </div>
+        <iframe id="pdfFrame" class="modal-iframe" src=""></iframe>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a class="nav-btn nav-soc-lms" href="soc-lms.html">📄 Sociology LMS PDF (Original)</a>
+      <a class="nav-btn nav-mock-test" href="sociology-mock-test-final-60q.html">📝 Sociology Comprehensive Mock Test</a>
+      <a class="nav-btn nav-home" href="index.html">← Back to Portal Home</a>
+    </div>
+
+  </main>
+
+  <script>
+    function filterModule(modId, btn) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const sections = document.querySelectorAll('.module-section');
+      sections.forEach(sec => {
+        if (modId === 'all' || sec.getAttribute('data-mod') === modId) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    function filterChapters() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.chapter-card');
+      
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function viewPdf(url, title) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('pdfFrame').src = url;
+      document.getElementById('viewerModal').style.display = 'block';
+    }
+
+    function closeViewer() {
+      document.getElementById('viewerModal').style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('viewerModal');
+      if (event.target == modal) {
+        closeViewer();
+      }
+    };
+  </script>
+
+</body>
+</html>
