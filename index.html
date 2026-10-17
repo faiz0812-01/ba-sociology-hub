@@ -2299,10 +2299,21 @@
 
       paneQuiz.append(quizControl, questionsList);
 
+      function shuffleArray(arr) {
+        const copy = [...arr];
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
+        }
+        return copy;
+      }
+
       let currentQuiz = { questions: [], score: 0, answered: 0 };
       function loadQuiz() {
         const pool = docData.quizPool || [];
-        const shuffled = [...pool].sort(() => 0.5 - Math.random()).slice(0, 15);
+        const shuffled = shuffleArray(pool).slice(0, 15);
         currentQuiz = { questions: shuffled, score: 0, answered: 0 };
         questionsList.replaceChildren();
         updateScore();
@@ -2340,15 +2351,27 @@
 
           const letters = ['A', 'B', 'C', 'D'];
           const letterMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
-          const correctIdx = typeof q.answer === 'number' ? q.answer : (letterMap[String(q.answer).trim()] ?? parseInt(q.answer, 10));
-          card.dataset.correctIdx = String(correctIdx);
+          const origCorrectIdx = typeof q.answer === 'number' ? q.answer : (letterMap[String(q.answer).trim()] ?? parseInt(q.answer, 10));
 
-          (q.options || []).forEach((opt, optIdx) => {
+          // Map options with isCorrect flag and dynamically shuffle options for each question
+          const rawOptions = Array.isArray(q.options) ? q.options : [];
+          const optionsWithMeta = rawOptions.map((opt, oIdx) => ({
+            opt,
+            isCorrect: (oIdx === origCorrectIdx)
+          }));
+          const shuffledOptions = shuffleArray(optionsWithMeta);
+          const newCorrectIdx = shuffledOptions.findIndex(item => item.isCorrect);
+
+          card.dataset.correctIdx = String(newCorrectIdx);
+
+          shuffledOptions.forEach((item, optIdx) => {
+            const opt = item.opt;
+            const isThisCorrect = item.isCorrect;
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'option-btn';
             btn.dataset.optIdx = String(optIdx);
-            btn.dataset.isCorrect = (optIdx === correctIdx) ? 'true' : 'false';
+            btn.dataset.isCorrect = isThisCorrect ? 'true' : 'false';
             
             let enText = '';
             let malText = '';
@@ -2360,7 +2383,7 @@
             }
 
             btn.innerHTML = `
-              <span class="option-letter">${letters[optIdx]}</span>
+              <span class="option-letter">${letters[optIdx] || (optIdx + 1)}</span>
               <div class="option-content" style="display:flex; flex-direction:column; gap:2px; text-align:left;">
                 <span class="opt-en" style="font-weight:600; font-size:13.5px; color:#1e293b;">${enText}</span>
                 ${malText ? `<span class="opt-mal" style="font-family:'Noto Sans Malayalam',sans-serif; font-size:12.5px; color:#475569; font-weight:500;">${malText}</span>` : ''}
@@ -2370,9 +2393,9 @@
             btn.onclick = () => {
               Array.from(optGrid.children).forEach((b, i) => {
                 b.disabled = true;
-                if (i === correctIdx) b.classList.add('revealed-correct');
+                if (i === newCorrectIdx) b.classList.add('revealed-correct');
               });
-              if (optIdx === correctIdx) {
+              if (isThisCorrect) {
                 btn.classList.remove('revealed-correct');
                 btn.classList.add('selected-correct');
                 currentQuiz.score++;

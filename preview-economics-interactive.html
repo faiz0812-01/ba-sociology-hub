@@ -894,11 +894,22 @@
       });
     }
 
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
+
     function setupQuiz(key) {
       if (!learningData || !learningData[key]) return;
       const pool = learningData[key].quizPool || [];
-      // Shuffle and pick questions (e.g. up to 5)
-      const shuffled = [...pool].sort(() => 0.5 - Math.random()).slice(0, 5);
+      // Shuffle and pick questions using Fisher-Yates
+      const shuffled = shuffleArray(pool).slice(0, 5);
       currentQuizState = { questions: shuffled, score: 0, answered: 0 };
       renderQuiz();
     }
@@ -933,18 +944,31 @@
         const expBox = card.querySelector(`#exp-box-${qIdx}`);
 
         const letters = ['A', 'B', 'C', 'D'];
-        q.options.forEach((optText, optIdx) => {
+        const letterMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+        const origCorrectIdx = typeof q.answer === 'number' ? q.answer : (letterMap[String(q.answer).trim()] ?? parseInt(q.answer, 10));
+
+        const rawOptions = Array.isArray(q.options) ? q.options : [];
+        const optionsWithMeta = rawOptions.map((opt, oIdx) => ({
+          opt,
+          isCorrect: oIdx === origCorrectIdx
+        }));
+        const shuffledOptions = shuffleArray(optionsWithMeta);
+        const newCorrectIdx = shuffledOptions.findIndex(item => item.isCorrect);
+
+        shuffledOptions.forEach((item, optIdx) => {
+          const optText = typeof item.opt === 'object' && item.opt !== null ? (item.opt.en || String(item.opt)) : String(item.opt);
+          const isCorrect = item.isCorrect;
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'option-btn';
-          btn.innerHTML = `<span class="option-letter">${letters[optIdx]}</span> <span>${optText}</span>`;
+          btn.innerHTML = `<span class="option-letter">${letters[optIdx] || (optIdx + 1)}</span> <span>${optText}</span>`;
           btn.onclick = () => {
             // Disable all options for this question
             Array.from(grid.children).forEach((b, i) => {
               b.disabled = true;
-              if (i === q.answer) b.classList.add('revealed-correct');
+              if (i === newCorrectIdx) b.classList.add('revealed-correct');
             });
-            if (optIdx === q.answer) {
+            if (isCorrect) {
               btn.classList.add('selected-correct');
               currentQuizState.score++;
             } else {
