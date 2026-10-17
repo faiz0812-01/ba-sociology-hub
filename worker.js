@@ -142,21 +142,24 @@ export default {
     }
     if (url.pathname === "/api/chat/delete") {
       if (request.method !== "POST") return json({error:"Method not allowed."},405);
-      if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
+      const origin = request.headers.get("Origin");
+      if (origin && origin !== url.origin) return json({error:"Forbidden"},403);
       let input; try { input = await request.json(); } catch { return json({error:"Invalid request."},400); }
       const isMod = await isAuthorizedModerator(request, env, room, input?.adminPassword);
       if (!isMod) return json({error:"Unauthorized. Moderator login required."},401);
-      if (!input?.id || typeof input.id !== "string") return json({error:"Missing message ID."},400);
+      const msgId = String(input?.id || "").trim();
+      if (!msgId) return json({error:"Missing message ID."},400);
       const chat = env.CHAT_ROOM.get(env.CHAT_ROOM.idFromName("ba-sociology-semester-chat"));
       return chat.fetch(new Request("https://internal/internal/chat/delete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: input.id })
+        body: JSON.stringify({ id: msgId })
       }));
     }
     if (url.pathname === "/api/chat/clear") {
       if (request.method !== "POST") return json({error:"Method not allowed."},405);
-      if (request.headers.get("Origin") !== url.origin) return json({error:"Forbidden"},403);
+      const origin = request.headers.get("Origin");
+      if (origin && origin !== url.origin) return json({error:"Forbidden"},403);
       let input = {}; try { input = await request.json(); } catch {}
       const isMod = await isAuthorizedModerator(request, env, room, input?.adminPassword);
       if (!isMod) return json({error:"Unauthorized. Moderator login required."},401);
@@ -234,11 +237,11 @@ export class StudyHubChat {
     if (path === "/internal/chat/delete") {
       if (request.method !== "POST") return json({}, 405);
       let input; try { input = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
-      const id = typeof input?.id === "string" ? input.id : "";
+      const id = String(input?.id || "").trim();
       if (!id) return json({ error: "Message ID is required." }, 400);
       let stored = (await this.state.storage.get("messages")) || [];
       const beforeCount = stored.length;
-      stored = stored.filter(m => m.id !== id);
+      stored = stored.filter(m => String(m.id || "").trim() !== id);
       await this.state.storage.put("messages", stored);
       return json({ ok: true, deleted: beforeCount !== stored.length, messages: stored });
     }
@@ -389,6 +392,7 @@ export class StudyHubChat {
       response.headers.set("Set-Cookie","__Host-hub_admin=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0");
       return response;
     }
+    if (path === "/admin/api/admin/session" || path === "/admin/admin/traffic") return json({ok:true});
     if (request.method !== "GET") return json({},405);
     if (path === "/admin/api/admin/live-visitors") {
       const saved=(await this.state.storage.get("liveVisitors")) || {};
@@ -413,7 +417,6 @@ export class StudyHubChat {
       const uniqueIPs=new Set([...records.map(r=>r.ip),...sectionVisits.map(r=>r.ip)]);
       return json({records:groupTrafficByIP(records,sectionVisits),popularPages:groupPopularPages(sectionVisits),views:records.length,uniqueIPs:uniqueIPs.size,today,updatedAt:now});
     }
-    if (path === "/admin/api/admin/session" || path === "/admin/admin/traffic") return json({ok:true});
     return json({error:"Not found"},404);
   }
 
@@ -1876,10 +1879,23 @@ details.section-details summary, details.popular-details summary { cursor: point
             if (!confirm('Delete message from student ' + (msg.name || '') + '?')) return;
             delBtn.disabled = true;
             try {
-              const dr = await fetch('/api/chat/delete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: msg.id }) });
-              if (dr.ok) loadAdminChat();
-              else alert('Could not delete message.');
-            } catch { alert('Network error.'); }
+              const dr = await fetch('/api/chat/delete', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: msg.id })
+              });
+              const data = await dr.json().catch(() => ({}));
+              if (dr.ok) {
+                await loadAdminChat();
+              } else {
+                alert('Could not delete message: ' + (data.error || ('HTTP ' + dr.status)));
+              }
+            } catch (err) {
+              alert('Network error while deleting message.');
+            } finally {
+              delBtn.disabled = false;
+            }
           };
           tdAction.append(delBtn);
           tr.append(tdAction);
@@ -1994,10 +2010,19 @@ details.section-details summary, details.popular-details summary { cursor: point
     document.getElementById('admin-chat-clear').onclick = async () => {
       if (!confirm('DANGER: Clear all community student chat messages permanently?')) return;
       try {
-        const res = await fetch('/api/chat/clear', { method: 'POST' });
-        if (res.ok) loadAdminChat();
-        else alert('Could not clear messages.');
-      } catch { alert('Network error.'); }
+        const res = await fetch('/api/chat/clear', {
+          method: 'POST',
+          credentials: 'same-origin'
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok) {
+          await loadAdminChat();
+        } else {
+          alert('Could not clear messages: ' + (data.error || ('HTTP ' + res.status)));
+        }
+      } catch {
+        alert('Network error.');
+      }
     };
 
     document.getElementById('logout').onclick = async () => {
@@ -2156,7 +2181,13 @@ async function isAuthorizedModerator(request, env, room, fallbackPassword) {
     if (!mismatch) return true;
   }
   try {
-    const session = await room.fetch(await adminRequest(request, env, "https://internal/admin/api/admin/session"));
+    const sessionReq = new Request("https://internal/admin/api/admin/session", {
+      method: "GET",
+      headers: {
+        "Cookie": request.headers.get("Cookie") || ""
+      }
+    });
+    const session = await room.fetch(await adminRequest(sessionReq, env, "https://internal/admin/api/admin/session"));
     if (session.ok) return true;
   } catch {}
   return false;

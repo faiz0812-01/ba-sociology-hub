@@ -1676,6 +1676,7 @@
         if (storedPass) headers['X-Admin-Password'] = storedPass;
         const response = await fetch('/api/chat/delete', {
           method: 'POST',
+          credentials: 'same-origin',
           headers,
           body: JSON.stringify({ id, adminPassword: storedPass || undefined })
         });
@@ -1697,6 +1698,7 @@
         if (storedPass) headers['X-Admin-Password'] = storedPass;
         const response = await fetch('/api/chat/clear', {
           method: 'POST',
+          credentials: 'same-origin',
           headers,
           body: JSON.stringify({ adminPassword: storedPass || undefined })
         });
