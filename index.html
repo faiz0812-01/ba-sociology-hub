@@ -687,19 +687,10 @@
       color: #92400e;
     }
     .flashcard-counter {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #78716c;
-      white-space: nowrap;
-      background: #fefce8;
-      border: 1px solid #fef08a;
-      padding: 3px 8px;
-      border-radius: 6px;
+      display: none !important;
     }
     .deck-english .flashcard-counter {
-      background: #f1f5f9;
-      border: none;
-      color: #64748b;
+      display: none !important;
     }
 
     /* Filter Dropdowns */
@@ -1042,7 +1033,7 @@
                 <div class="deck-subtitle-row">
                   <div class="filter-wrap">
                     <select id="subject-filter" class="filter-select subject-filter-select" aria-label="Filter Subject or Language">
-                      <option value="all">All Subjects &amp; Languages (19)</option>
+                      <option value="all">All Subjects &amp; Languages</option>
                       <option value="sociology">Sociology</option>
                       <option value="history">History of Keralam</option>
                       <option value="philosophy">Philosophy &amp; Ethics</option>
@@ -1051,13 +1042,14 @@
                       <option value="malayalam">Malayalam (AEC സാഹിത്യം)</option>
                       <option value="arabic">Arabic (ARA1FA102 Basic Skills)</option>
                       <option value="hindi">Hindi (BA Hindi Sahitya)</option>
+                      <option value="mathematics">Mathematics</option>
                     </select>
                   </div>
                   <span class="flashcard-tag tag-sub" id="soc-card-subject">Sociology</span>
                 </div>
               </div>
             </div>
-            <span class="flashcard-counter" id="soc-card-counter">Card 1 of 19</span>
+            <span class="flashcard-counter" id="soc-card-counter" style="display:none;" aria-hidden="true"></span>
           </div>
 
           <div class="flashcard-box" id="soc-flashcard-box" tabindex="0" role="button" aria-label="Click to flip Subjects card">
@@ -1093,7 +1085,7 @@
                 <div class="deck-subtitle-row">
                   <div class="filter-wrap">
                     <select id="grammar-type-filter" class="filter-select grammar-filter-select" aria-label="Filter English Grammar Type">
-                      <option value="all">All Grammar Topics (15)</option>
+                      <option value="all">All Grammar Topics</option>
                       <option value="tenses">Tenses &amp; Forms</option>
                       <option value="voice">Active &amp; Passive Voice</option>
                       <option value="speech">Direct &amp; Indirect Speech</option>
@@ -1105,7 +1097,7 @@
                 </div>
               </div>
             </div>
-            <span class="flashcard-counter" id="eng-card-counter">Card 1 of 15</span>
+            <span class="flashcard-counter" id="eng-card-counter" style="display:none;" aria-hidden="true"></span>
           </div>
 
           <div class="flashcard-box" id="eng-flashcard-box" tabindex="0" role="button" aria-label="Click to flip English Learning card">
@@ -1133,526 +1125,7 @@
       </div>
     </section>
 
-    <script id="study-lounge-script">
-    (() => {
-      // =========================================================================
-      // 1. SUBJECTS & LANGUAGES FLASHCARDS DECK
-      // =========================================================================
-      const socCards = [
-        // --- SOCIOLOGY ---
-        {
-          category: 'sociology',
-          subject: 'Sociology',
-          titleEn: 'Socialisation',
-          titleSec: 'സാമൂഹികവൽക്കരണം',
-          lang: 'ml',
-          hint: 'What is the core sociological definition & key agents?',
-          backEn: 'The lifelong process through which an individual acquires culture, values, and norms to become a functioning member of society. Primary: Family; Secondary: School, Peer Groups, Media.',
-          backSec: 'വ്യക്തി സമൂഹത്തിന്റെ സംസ്കാരവും മൂല്യങ്ങളും പെരുമാറ്റച്ചട്ടങ്ങളും പഠിച്ചെടുത്ത് ഒരു സാമൂഹിക ജീവിയായി മാറുന്ന പ്രക്രിയ. പ്രധാന ഘടകങ്ങൾ: കുടുംബം, സ്കൂൾ, സമപ്രായക്കാർ, മാധ്യമങ്ങൾ.'
-        },
-        {
-          category: 'sociology',
-          subject: 'Sociology',
-          titleEn: 'Social Stratification',
-          titleSec: 'സാമൂഹിക ശ്രേണീകരണം',
-          lang: 'ml',
-          hint: 'What are the four universal systems of structured inequality?',
-          backEn: 'The structured hierarchical ranking of individuals and groups based on wealth, power, and prestige. Four universal systems: Slavery, Estate, Caste (closed), and Class (open).',
-          backSec: 'സമ്പത്ത്, അധികാരം, പദവി എന്നിവയുടെ അടിസ്ഥാനത്തിൽ സമൂഹത്തെ വിവിധ തട്ടുകളായി തരംതിരിക്കുന്ന സംവിധാനം. പ്രധാന രൂപങ്ങൾ: അടിമത്തം, എസ്റ്റേറ്റ്, ജാതി (അടഞ്ഞത്), വർഗ്ഗം (തുറന്നത്).'
-        },
-        {
-          category: 'sociology',
-          subject: 'Sociology',
-          titleEn: 'Historical Materialism',
-          titleSec: 'ചരിത്രപരമായ ഭൗതികവാദം (മാർക്സ്)',
-          lang: 'ml',
-          hint: 'How did Karl Marx explain social evolution through base and superstructure?',
-          backEn: 'Karl Marx’s materialist conception: the economic mode of production (Base) determines the legal, political, and cultural institutions (Superstructure), driven forward by class struggle.',
-          backSec: 'സാമ്പത്തിക അടിത്തറയാണ് (Base) നിയമം, മതം, രാഷ്ട്രീയം (Superstructure) എന്നിവയെ നിർണ്ണയിക്കുന്നതെന്നും വർഗ്ഗസമരമാണ് ചരിത്രത്തെ നയിക്കുന്നതെന്നും മാർക്സ് സമർത്ഥിച്ചു.'
-        },
-
-        // --- HISTORY OF KERALAM ---
-        {
-          category: 'history',
-          subject: 'History of Keralam',
-          titleEn: 'Megalithic Culture',
-          titleSec: 'മഹാശില സംസ്കാരം',
-          lang: 'ml',
-          hint: 'What are Kerala’s Iron Age burial monuments and key sites?',
-          backEn: 'Iron Age megaliths: Kudakkallu (umbrella stone), Thoppikkallu (hat stone), Muniyaras (dolmens), and Nannangadi (urn burials). Key sites: Marayur, Wayanad, and Thrissur.',
-          backSec: 'കേരളത്തിലെ ഇരുമ്പ് യുഗ ശ്മശാന സംസ്കാരം: കുടക്കല്ല്, തൊപ്പിക്കല്ല്, മുനിയറകൾ, നന്നങ്ങാടികൾ. പ്രധാന കേന്ദ്രങ്ങൾ: മറയൂർ, വയനാട്, തൃശൂർ.'
-        },
-        {
-          category: 'history',
-          subject: 'History of Keralam',
-          titleEn: 'Aruvippuram Consecration (1888)',
-          titleSec: 'അരുവിപ്പുറം പ്രതിഷ്ഠ (1888)',
-          lang: 'ml',
-          hint: 'What was the revolutionary impact of Sree Narayana Guru’s consecration?',
-          backEn: 'In 1888, Sree Narayana Guru consecrated a Siva idol at Aruvippuram, defying the Brahmin monopoly on temple rituals and inaugurating the modern Kerala social renaissance.',
-          backSec: '1888-ൽ ശ്രീനാരായണഗുരു അരുവിപ്പുറത്ത് ശിവപ്രതിഷ്ഠ നടത്തി ബ്രാഹ്മണ മേധാവിത്വത്തെ ചോദ്യം ചെയ്തു. "ഒരു ജാതി, ഒരു മതം, ഒരു ദൈവം മനുഷ്യന്" എന്ന നവോത്ഥാന സന്ദേശം നൽകി.'
-        },
-
-        // --- PHILOSOPHY & ETHICS ---
-        {
-          category: 'philosophy',
-          subject: 'Philosophy of AI',
-          titleEn: 'The Turing Test (1950)',
-          titleSec: 'ട്യൂറിംഗ് ടെസ്റ്റ് (അലൻ ട്യൂറിംഗ്)',
-          lang: 'ml',
-          hint: 'What was Alan Turing’s test for machine intelligence?',
-          backEn: 'Proposed by Alan Turing in "Computing Machinery and Intelligence". If a human interrogator cannot distinguish text responses of a machine from a human, the machine exhibits intelligence.',
-          backSec: '1950-ൽ അലൻ ട്യൂറിംഗ് അവതരിപ്പിച്ച ബുദ്ധിപരീക്ഷ. സംഭാഷണത്തിൽ മനുഷ്യനും യന്ത്രവും തമ്മിലുള്ള വ്യത്യാസം തിരിച്ചറിയാൻ ചോദ്യകർത്താവിന് കഴിഞ്ഞില്ലെങ്കിൽ ആ യന്ത്രം ബുദ്ധിയുള്ളതായി കണക്കാക്കാം.'
-        },
-        {
-          category: 'philosophy',
-          subject: 'Ethics',
-          titleEn: 'Utilitarianism',
-          titleSec: 'യൂട്ടിലിറ്റേറിയനിസം (ഉപയോഗിതാവാദം)',
-          lang: 'ml',
-          hint: 'Who formulated it and what is the Greatest Happiness Principle?',
-          backEn: 'Founded by Jeremy Bentham and refined by J.S. Mill. An action is morally right if it produces the greatest happiness for the greatest number of people.',
-          backSec: 'ജെറമി ബെന്താമും ജെ.എസ്. മില്ലും വികസിപ്പിച്ച സിദ്ധാന്തം. ഏറ്റവും കൂടുതൽ ആളുകൾക്ക് ഏറ്റവും കൂടുതൽ സന്തോഷവും നന്മയും നൽകുന്ന പ്രവൃത്തികളാണ് ധാർമ്മികമായി ശരി.'
-        },
-
-        // --- ECONOMICS ---
-        {
-          category: 'economics',
-          subject: 'Indian Economy',
-          titleEn: 'NITI Aayog & Planning',
-          titleSec: 'നീതി ആയോഗ് & ആസൂത്രണം',
-          lang: 'ml',
-          hint: 'How did NITI Aayog transform Indian economic policy from 2015?',
-          backEn: 'Formed on 1 January 2015 replacing the 65-year-old Planning Commission. Promotes "Cooperative Federalism" and a bottom-up policy approach rather than top-down five-year plans.',
-          backSec: '2015 ജനുവരി 1-ന് പ്ലാനിംഗ് കമ്മീഷന് പകരമായി നിലവിൽ വന്നു. താഴെത്തട്ടിൽ നിന്നുള്ള വികസനവും സംസ്ഥാനങ്ങളുടെ കൂട്ടായ പങ്കാളിത്തവും (Cooperative Federalism) ലക്ഷ്യമിടുന്നു.'
-        },
-        {
-          category: 'economics',
-          subject: 'Microeconomics',
-          titleEn: 'Law of Diminishing Marginal Utility',
-          titleSec: 'പരിധീയ പ്രയോജന തത്വം',
-          lang: 'ml',
-          hint: 'Why does additional satisfaction decrease with each unit consumed?',
-          backEn: 'Formulated by H.H. Gossen. As a consumer consumes more units of a commodity, the marginal utility derived from each additional unit continuously declines.',
-          backSec: 'ഒരു വസ്തു തുടർച്ചയായി ഉപയോഗിക്കുമ്പോൾ ഓരോ അധിക യൂണിറ്റിൽ നിന്നും ലഭിക്കുന്ന സംതൃപ്തി (Marginal Utility) ക്രമേണ കുറയുന്നു.'
-        },
-
-        // --- ENGLISH (ENG1FA101) ---
-        {
-          category: 'english',
-          subject: 'English (ENG1FA101)',
-          titleEn: 'Dr. B.R. Ambedkar — Annihilation of Caste',
-          titleSec: 'ഡോ. ബി.ആർ. അംബേദ്കർ — ജാതി ഉന്മൂലനം',
-          lang: 'ml',
-          hint: 'What is Dr. Ambedkar’s core sociological critique of caste (1936)?',
-          backEn: 'Ambedkar argues that caste is not merely a division of labour, but a hierarchical division of labourers. Real social freedom demands abolishing the religious authority that upholds caste.',
-          backSec: 'ജാതിവ്യവസ്ഥ വെറും തൊഴിൽ വിഭജനമല്ല, മറിച്ച് തൊഴിലാളികളെ തട്ടുകളായി തിരിക്കുന്ന വ്യവസ്ഥയാണെന്നും ഇതിനെ വേരോടെ പിഴുതെറിയണമെന്നും അംബേദ്കർ വ്യക്തമാക്കുന്നു.'
-        },
-        {
-          category: 'english',
-          subject: 'English (ENG1FA101)',
-          titleEn: 'Vaikom Muhammad Basheer — The World-Renowned Nose',
-          titleSec: 'വൈക്കം മുഹമ്മദ് ബഷീർ — വിശ്വവിഖ്യാതമായ മൂക്ക്',
-          lang: 'ml',
-          hint: 'How does Basheer use sharp political satire in this story?',
-          backEn: 'A masterclass in satire: an ordinary cook’s extraordinary nose brings fame, politics, and controversy, exposing gullibility, journalistic opportunism, and power games.',
-          backSec: 'ഒരു സാധാരണ പാചകക്കാരന്റെ നീളമുള്ള മൂക്ക് ആഘോഷമാക്കുന്നതിലൂടെ മാധ്യമങ്ങളുടെയും രാഷ്ട്രീയക്കാരുടെയും കപട നാടകങ്ങളെ ബഷീർ പരിഹസിക്കുന്നു.'
-        },
-
-        // --- MALAYALAM (AEC) ---
-        {
-          category: 'malayalam',
-          subject: 'Malayalam (AEC)',
-          titleEn: 'ആത്മകഥ vs. ജീവചരിത്രം (Autobiography & Biography)',
-          titleSec: 'ഓർമ്മതൻ വിസ്മയം (കലാമണ്ഡലം ഹൈദരാലി)',
-          lang: 'ml',
-          hint: 'ആത്മകഥയും ജീവചരിത്രവും തമ്മിലുള്ള പ്രധാന വ്യത്യാസങ്ങൾ എന്തൊക്കെയാണ്?',
-          backEn: 'Autobiography: Self-written account of one’s life with subjective emotional authenticity. Biography: Objective third-person study of another person’s life and achievements.',
-          backSec: 'വ്യക്തി സ്വന്തം ജീവിതാനുഭവങ്ങൾ സത്യസന്ധമായി എഴുതുന്നത് ആത്മകഥ (ഉദാ: കലാമണ്ഡലം ഹൈദരാലിയുടെ "ഓർമ്മതൻ വിസ്മയം"). മറ്റൊരാൾ ഒരു വ്യക്തിയുടെ ജീവിതം പഠിച്ചെഴുതുന്നത് ജീവചരിത്രം.'
-        },
-        {
-          category: 'malayalam',
-          subject: 'Malayalam (AEC)',
-          titleEn: 'സഞ്ചാര സാഹിത്യം (Travelogue)',
-          titleSec: 'എസ്.കെ. പൊറ്റെക്കാട്ടിന്റെ യാത്രാവിവരണങ്ങൾ',
-          lang: 'ml',
-          hint: 'മലയാളത്തിലെ സഞ്ചാര സാഹിത്യത്തിന്റെ സവിശേഷതകളും പ്രമുഖ കൃതികളും ഏവ?',
-          backEn: 'Travel literature blends personal discovery, landscape, and human culture. S.K. Pottekkatt brought world travel into Malayalam literature with works like "Kappirikalude Naattil" and "Bali Dweep".',
-          backSec: 'യാത്രാനുഭവങ്ങളും നാട്ടുചരിത്രങ്ങളും സംസ്കാരവും പ്രതിപാദിക്കുന്ന സാഹിത്യ ശാഖ. എസ്.കെ. പൊറ്റെക്കാട്ടിന്റെ കൃതികൾ മലയാള സഞ്ചാര സാഹിത്യത്തിൽ ചിരപ്രതിഷ്ഠ നേടി.'
-        },
-
-        // --- ARABIC (ARA1FA102) ---
-        {
-          category: 'arabic',
-          subject: 'Arabic (ARA1FA102)',
-          titleEn: 'Demonstrative Pronouns (أسماء الإشارة - Haadha / Haadhihi)',
-          titleSec: 'അറബിക് പഠനം — അസ്മാഉൽ ഇശാറ (ചൂണ്ടുപദങ്ങൾ)',
-          lang: 'ar',
-          hint: 'How are "هٰذَا" (Haadha) and "هٰذِهِ" (Haadhihi) used for near demonstration?',
-          backEn: 'In Arabic: "هٰذَا" (Haadha) is used for singular masculine objects (هٰذا كِتَابٌ - This is a book), while "هٰذِهِ" (Haadhihi) is used for feminine objects (هٰذِهِ سَيَّارَةٌ - This is a car).',
-          backSec: 'അടുത്തുള്ള വസ്തുക്കളെ ചൂണ്ടിക്കാണിക്കാൻ: പുല്ലിംഗത്തിന് "ഹദാ" (هٰذَا) എന്നും സ്ത്രിലിംഗത്തിന് "ഹദിഹി" (هٰذِهِ) എന്നും ഉപയോഗിക്കുന്നു. ഉദാ: هٰذا قَلَمٌ (ഇതൊരു പേനയാണ്).'
-        },
-        {
-          category: 'arabic',
-          subject: 'Arabic (ARA1FA102)',
-          titleEn: 'Question Particles (أدوات الاستفهام - Man / Maa / Ayna)',
-          titleSec: 'അറബിക് പഠനം — ചോദ്യ പദങ്ങൾ (Interrogative)',
-          lang: 'ar',
-          hint: 'What are the basic interrogative particles in Arabic communication?',
-          backEn: '"مَنْ" (Man = Who?); "مَا" (Maa = What?); "أَيْنَ" (Ayna = Where?). Essential for self-introductions and daily dialogues in ARA1FA102.',
-          backSec: 'ചോദ്യങ്ങൾ ചോദിക്കാൻ: "മൻ" (مَنْ - ആര്?), "മാ" (مَا - എന്ത്?), "ഐന" (أَيْنَ - എവിടെ?). ഉദാ: مَنْ هٰذا؟ (ഇതാരാണ്?), أَيْنَ الْكِتَابُ؟ (പുസ്തകം എവിടെ?).'
-        },
-        {
-          category: 'arabic',
-          subject: 'Arabic (ARA1FA102)',
-          titleEn: 'Personal Pronouns (الضمائر المنفصلة - Ana, Anta, Huwa)',
-          titleSec: 'അറബിക് പഠനം — സർവ്വനാമങ്ങൾ (Personal Pronouns)',
-          lang: 'ar',
-          hint: 'How are singular personal subject pronouns structured in Arabic?',
-          backEn: '"أَنَا" (Ana = I); "أَنْتَ" (Anta = You, masc.); "أَنْتِ" (Anti = You, fem.); "هُوَ" (Huwa = He); "هِيَ" (Hiya = She). Foundation for personal identity in Arabic.',
-          backSec: 'അറബിക് സർവ്വനാമങ്ങൾ: അനാ (أَنَا - ഞാൻ), അന്ത (أَنْتَ - നീ/പുരുഷൻ), അന്തി (أَنْتِ - നീ/സ്ത്രീ), ഹുവ (هُوَ - അവൻ), ഹിയ (هِيَ - അവൾ).'
-        },
-
-        // --- HINDI (BA HINDI) ---
-        {
-          category: 'hindi',
-          subject: 'Hindi (BA Hindi)',
-          titleEn: 'Premchand — "Idgah" (ईदगाह कहानी)',
-          titleSec: 'പ്രേംചന്ദ് — "ഈദ്ഗാഹ്" (Eidgah)',
-          lang: 'hi',
-          hint: 'प्रेमचंद की प्रसिद्ध कहानी "ईदगाह" का केंद्रीय पात्र और मानवीय संदेश क्या है?',
-          backEn: 'Hamid (हामिद), a poor 4-year-old boy, spends his fair money buying a pair of tongs (चिमटा) for his grandmother Amina, symbolizing sacrifice, maturity, and selfless love.',
-          backSec: 'ഈദ്ഗാഹ് (പ്രേംചന്ദ്): നാലുവയസ്സുകാരനായ ഹമീദ് പെരുന്നാളിന് കളിപ്പാട്ടങ്ങൾക്ക് പകരം മുത്തശ്ശിക്ക് റൊട്ടി ചുടുമ്പോൾ കൈ പൊള്ളാതിരിക്കാൻ ചവണ (chimta) വാങ്ങുന്ന ഉദാത്ത സ്നേഹത്തിന്റെ കഥ.'
-        },
-        {
-          category: 'hindi',
-          subject: 'Hindi (BA Hindi)',
-          titleEn: 'Kabir ke Dohe — Bhakti Movement (कबीर के दोहे)',
-          titleSec: 'കബീറിന്റെ ദോഹകൾ (Bhakti Sahitya)',
-          lang: 'hi',
-          hint: 'कबीरदास के दोहों की मुख्य दार्शनिक और सामाजिक विशेषता क्या है?',
-          backEn: 'Kabir condemned social discrimination, caste divisions, and religious superstition, preaching sincere devotion, equality, truth, and universal brotherhood.',
-          backSec: 'കബീറിന്റെ ദോഹകൾ: ജാതിവ്യവസ്ഥയെയും മതപരമായ കാപട്യങ്ങളെയും എതിർത്ത് മാനവികതയും സത്യസന്ധതയും സമത്വവും പ്രഘോഷിച്ച ഭക്തിപ്രസ്ഥാന കവിതകൾ.'
-        },
-        {
-          category: 'hindi',
-          subject: 'Hindi (BA Hindi)',
-          titleEn: 'Hindi Grammar — Use of "Ne" (कारक: "ने" का प्रयोग)',
-          titleSec: 'ഹിന്ദി വ്യാകരണം — "നേ" (Ne) പ്രയോഗ നിയമം',
-          lang: 'hi',
-          hint: 'हिन्दी व्याकरण में "ने" (Ne) परसर्ग का प्रयोग किस काल और क्रिया के साथ होता है?',
-          backEn: '"ने" is used only with transitive verbs (सकर्मक क्रिया) in the past tense (भूतकाल) with the subject (कर्ता). Example: "राम ने पुस्तक पढ़ी". Never used in present/future.',
-          backSec: 'ഹിന്ദിയിൽ സകർമ്മക ക്രിയകൾക്കൊപ്പം ഭൂതകാലത്തിൽ (Past Tense) മാത്രമേ കർത്താവിനോടൊപ്പം "നേ" (ne) ചേർക്കാറുള്ളൂ. ഉദാ: രാം നേ പുസ്തക് പഢീ (റാം പുസ്തകം വായിച്ചു).'
-        }
-      ];
-
-      let filteredSocCards = [...socCards];
-      let socIndex = 0;
-
-      const socBox = document.getElementById('soc-flashcard-box');
-      const socFilter = document.getElementById('subject-filter');
-      const socTag = document.getElementById('soc-card-subject');
-      const socCounter = document.getElementById('soc-card-counter');
-      const socTitle = document.getElementById('soc-card-front-title');
-      const socSec = document.getElementById('soc-card-front-mal');
-      const socHint = document.getElementById('soc-card-front-hint');
-      const socBackEn = document.getElementById('soc-card-back-en');
-      const socBackSec = document.getElementById('soc-card-back-ml');
-      const socPrev = document.getElementById('soc-prev-card');
-      const socNext = document.getElementById('soc-next-card');
-      const socFlip = document.getElementById('soc-flip-card-btn');
-
-      function renderSocCard(idx) {
-        if (!socBox || filteredSocCards.length === 0) return;
-        socBox.classList.remove('flipped');
-        const c = filteredSocCards[idx];
-        if (socTag) socTag.textContent = c.subject;
-        if (socCounter) socCounter.textContent = 'Card ' + (idx + 1) + ' of ' + filteredSocCards.length;
-        if (socTitle) socTitle.textContent = c.titleEn;
-        if (socSec) {
-          socSec.textContent = c.titleSec;
-          socSec.setAttribute('lang', c.lang || 'ml');
-        }
-        if (socHint) socHint.textContent = c.hint;
-        if (socBackEn) socBackEn.textContent = c.backEn;
-        if (socBackSec) {
-          socBackSec.textContent = c.backSec;
-          socBackSec.setAttribute('lang', c.lang || 'ml');
-        }
-      }
-
-      function toggleSocFlip() {
-        if (socBox) socBox.classList.toggle('flipped');
-      }
-
-      if (socBox) {
-        socBox.addEventListener('click', toggleSocFlip);
-        socBox.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleSocFlip();
-          }
-        });
-      }
-      if (socFlip) socFlip.addEventListener('click', toggleSocFlip);
-
-      if (socPrev) {
-        socPrev.addEventListener('click', () => {
-          if (filteredSocCards.length === 0) return;
-          socIndex = (socIndex - 1 + filteredSocCards.length) % filteredSocCards.length;
-          renderSocCard(socIndex);
-        });
-      }
-
-      if (socNext) {
-        socNext.addEventListener('click', () => {
-          if (filteredSocCards.length === 0) return;
-          socIndex = (socIndex + 1) % filteredSocCards.length;
-          renderSocCard(socIndex);
-        });
-      }
-
-      if (socFilter) {
-        socFilter.addEventListener('change', (e) => {
-          const val = e.target.value;
-          if (val === 'all') {
-            filteredSocCards = [...socCards];
-          } else {
-            filteredSocCards = socCards.filter(c => c.category === val);
-          }
-          socIndex = 0;
-          renderSocCard(socIndex);
-        });
-      }
-
-      renderSocCard(0);
-
-      // =========================================================================
-      // 2. ENGLISH LEARNING CARDS WITH GRAMMAR TYPE SELECTOR (REST INTACT)
-      // =========================================================================
-      const engCards = [
-        // Tenses & Verb Forms
-        {
-          type: 'tenses',
-          title: 'She _____ (live) in Calicut since 2018.',
-          mal: 'മുൻപ് തുടങ്ങി ഇപ്പോഴും തുടരുന്ന കാര്യത്തിന് ഏത് ടെൻസ്?',
-          hint: 'Option: has lived OR lived?',
-          answer: 'has lived',
-          rule: 'Use Present Perfect (has/have + V3) for actions that began in the past and continue up to the present with "since" or "for". Past Simple ("lived") is only for finished past events.',
-          ruleMl: 'കഴിഞ്ഞ കാലത്ത് ആരംഭിച്ച് ഇപ്പോഴും തുടരുന്ന പ്രവർത്തനങ്ങൾക്ക് Present Perfect Tense (has/have + past participle) ഉപയോഗിക്കണം.'
-        },
-        {
-          type: 'tenses',
-          title: 'When the phone rang, I _____ (read) a book.',
-          mal: 'ഒരു പ്രവൃത്തി നടന്നുകൊണ്ടിരിക്കുമ്പോൾ മറ്റൊന്ന് സംഭവിച്ചാൽ?',
-          hint: 'Option: read OR was reading?',
-          answer: 'was reading',
-          rule: 'The continuing background action uses Past Continuous (was/were + V-ing), while the sudden interrupting action takes Past Simple ("rang").',
-          ruleMl: 'ഒരു കാര്യം നടന്നുകൊണ്ടിരുന്ന സമയത്ത് മറ്റൊന്ന് സംഭവിക്കുമ്പോൾ നടന്നുകൊണ്ടിരുന്നതിന് Past Continuous (was reading) ഉപയോഗിക്കുന്നു.'
-        },
-        {
-          type: 'tenses',
-          title: 'If you had studied well, you _____ (pass) the exam.',
-          mal: 'ഭൂതകാലത്തിലെ അസാധ്യമായ നിബന്ധന (Third Conditional)?',
-          hint: 'Option: would pass OR would have passed?',
-          answer: 'would have passed',
-          rule: 'In Third Conditional (unreal past), the "if" clause contains Past Perfect ("had studied"), so the main clause requires "would have + past participle".',
-          ruleMl: 'കഴിഞ്ഞ കാലത്തെ നിബന്ധനകളിൽ "If + had + V3" വന്നാൽ പ്രധാന വാക്യത്തിൽ "would have + past participle" ഉപയോഗിക്കണം.'
-        },
-
-        // Active & Passive Voice
-        {
-          type: 'voice',
-          title: 'Active: "The teacher explains the sociological theories."',
-          mal: 'കർമ്മം (the theories) മുന്നിൽ വച്ച് passive ആക്കുക.',
-          hint: 'How does Simple Present turn into passive voice?',
-          answer: 'The sociological theories are explained by the teacher.',
-          rule: 'Plural object ("The sociological theories") + "are" + Past Participle ("explained") + "by" + agent.',
-          ruleMl: 'Simple Present-ൽ കർമ്മം ബഹുവചനമാകുമ്പോൾ "are + V3 (explained)" രൂപമാണ് passive voice-ൽ വരുന്നത്.'
-        },
-        {
-          type: 'voice',
-          title: 'Active: "The government has approved the new policy."',
-          mal: '"has approved" പാസ്സീവ് ആക്കുമ്പോൾ എന്ത് മാറ്റം വരും?',
-          hint: 'In Present Perfect passive, what auxiliary word is added?',
-          answer: 'The new policy has been approved by the government.',
-          rule: 'In Present Perfect passive voice, insert "been" between "has/have" and the past participle ("has been approved").',
-          ruleMl: 'Present Perfect passive ആക്കുമ്പോൾ has/have എന്നതിനോടൊപ്പം "been + past participle" ചേർക്കണം.'
-        },
-
-        // Direct & Indirect Speech
-        {
-          type: 'speech',
-          title: 'Direct: He said, "I am writing my assignment today."',
-          mal: 'പരോക്ഷ പ്രസ്താവനയാക്കി മാറ്റുക.',
-          hint: 'Check changes for: "am writing", "my", and "today".',
-          answer: 'He said that he was writing his assignment that day.',
-          rule: 'Tense shifts from Present Continuous to Past Continuous ("am writing" -> "was writing"), pronouns update ("I" -> "he", "my" -> "his"), and "today" becomes "that day".',
-          ruleMl: 'റിപ്പോർട്ടിംഗ് വെർബ് പാസ്റ്റ് ആകുമ്പോൾ Present Continuous എന്നത് Past Continuous ആവുകയും "today" എന്നത് "that day" ആയി മാറുകയും ചെയ്യുന്നു.'
-        },
-        {
-          type: 'speech',
-          title: 'Direct: She asked Rahul, "Have you submitted the form?"',
-          mal: 'Yes/No ചോദ്യങ്ങൾ indirect speech ആക്കുമ്പോൾ?',
-          hint: 'Which conjunction joins the clauses ("if" / "whether")?',
-          answer: 'She asked Rahul if he had submitted the form.',
-          rule: 'For Yes/No questions, connect with "if" or "whether", change question word order to statement order, and shift "have submitted" to Past Perfect "had submitted".',
-          ruleMl: 'Yes/No ചോദ്യങ്ങൾക്ക് "if" അല്ലെങ്കിൽ "whether" ഉപയോഗിക്കുക. "Have submitted" എന്നത് "had submitted" ആയി മാറും.'
-        },
-
-        // Prepositions & Phrasals
-        {
-          type: 'prepositions',
-          title: 'He is senior _____ me by two years.',
-          mal: '"senior, junior, superior" എന്നിവയ്ക്കൊപ്പം ഏത് പ്രിപോസിഷൻ?',
-          hint: 'Choose: than OR to?',
-          answer: 'senior to me (Never "than")',
-          rule: 'Latin comparative adjectives ending in "-ior" (senior, junior, superior, inferior, prior) always take "to", never "than".',
-          ruleMl: 'senior, junior, superior, inferior തുടങ്ങിയ വാക്കുകൾക്ക് ശേഷം "than" അല്ല, "to" ആണ് പ്രിപോസിഷനായി ഉപയോഗിക്കേണ്ടത്.'
-        },
-        {
-          type: 'prepositions',
-          title: 'I have been preparing for the exam _____ three weeks.',
-          mal: 'സമയത്തിന്റെ ദൈർഘ്യം (duration) പറയാൻ ഏതാണ് ഉപയോഗിക്കുക?',
-          hint: 'Choose: since OR for?',
-          answer: 'for three weeks',
-          rule: 'Use "for" to indicate duration/period of time (for 3 weeks, for 2 hours). Use "since" for a specific starting point (since Monday, since 2021).',
-          ruleMl: 'സമയത്തിന്റെ ദൈർഘ്യം (duration) സൂചിപ്പിക്കാൻ "for" ഉപയോഗിക്കുക; ആരംഭിച്ച നിശ്ചിത സമയം പറയാൻ "since" ഉപയോഗിക്കുക.'
-        },
-        {
-          type: 'prepositions',
-          title: 'The meeting was _____ due to unavoidable reasons.',
-          mal: 'പൂർണ്ണമായി റദ്ദാക്കി എന്ന് സൂചിപ്പിക്കുന്ന phrasal verb ഏത്?',
-          hint: 'Choose: called off OR put off?',
-          answer: 'called off (= cancelled)',
-          rule: '"Call off" means to cancel entirely. "Put off" means to postpone or defer to a later date.',
-          ruleMl: '"Call off" എന്നാൽ പൂർണ്ണമായി റദ്ദാക്കുക (cancel) എന്നാണ്; "Put off" എന്നാൽ മറ്റൊരു ദിവസത്തേക്ക് മാറ്റിവെക്കുക (postpone) എന്നാണ്.'
-        },
-
-        // Subject-Verb Agreement
-        {
-          type: 'agreement',
-          title: 'Neither the teacher nor the students _____ present.',
-          mal: '"Neither... nor" വരുമ്പോൾ ക്രിയ ഏത് സബ്ജക്ടിനെ ആശ്രയിക്കുന്നു?',
-          hint: 'Choose: was OR were?',
-          answer: 'were present',
-          rule: 'When subjects are connected by "either... or" or "neither... nor", the verb agrees with the subject closest to it ("students" is plural, hence "were").',
-          ruleMl: '"Neither... nor" വരുമ്പോൾ വെർബിന് ഏറ്റവും അടുത്ത് നിൽക്കുന്ന സബ്ജക്ടിന് (students - ബഹുവചനം) അനുസരിച്ചാണ് ക്രിയ (were) വരുന്നത്.'
-        },
-        {
-          type: 'agreement',
-          title: 'Each of the participants _____ received a certificate.',
-          mal: '"Each of..." വന്നാൽ ക്രിയ ഏകവചനമോ ബഹുവചനമോ?',
-          hint: 'Choose: has OR have?',
-          answer: 'has received',
-          rule: '"Each", "Every", and "Each of..." take a singular verb ("has", "is", "was") regardless of the plural noun that follows.',
-          ruleMl: '"Each of the..." വരുമ്പോൾ നാമം ബഹുവചനമാണെങ്കിലും ക്രിയ എപ്പോഴും ഏകവചനമായിരിക്കണം (has).'
-        },
-
-        // Common Errors & Fixes
-        {
-          type: 'errors',
-          title: 'Error Spotting: "One of my friend is an economist."',
-          mal: 'ഈ വാക്യത്തിലെ തെറ്റ് എന്താണ്? എങ്ങനെ തിരുത്താം?',
-          hint: 'Look closely at the noun after "One of my...".',
-          answer: 'One of my friends is an economist.',
-          rule: '"One of..." must always be followed by a plural noun ("friends"), because you select one out of many, but the verb remains singular ("is").',
-          ruleMl: '"One of..." എന്നതിന് ശേഷം നാമം ബഹുവചനമായിരിക്കണം (friends), എന്നാൽ ക്രിയ ഏകവചനമായിരിക്കും (is).'
-        },
-        {
-          type: 'errors',
-          title: 'Error Spotting: "Despite of working hard, he failed."',
-          mal: '"Despite" എന്ന വാക്കിനൊപ്പം "of" വരുമോ?',
-          hint: 'Correct form: Despite OR In spite of?',
-          answer: 'Despite working hard... OR In spite of working hard...',
-          rule: '"Despite" takes no preposition (never "despite of"). Only "in spite" is followed by "of".',
-          ruleMl: '"Despite" എന്ന വാക്കിനൊപ്പം "of" ഉപയോഗിക്കാൻ പാടില്ല. "In spite of" എന്ന് മാത്രമേ "of" വരാവൂ.'
-        },
-        {
-          type: 'errors',
-          title: 'Error Spotting: "We discussed about the sociology topic."',
-          mal: '"Discussed" ന് ശേഷം "about" ആവശ്യമുണ്ടോ?',
-          hint: 'Does the transitive verb "discuss" take a preposition?',
-          answer: 'We discussed the sociology topic. (Remove "about")',
-          rule: 'Verbs like "discuss", "order", "describe", and "reach" take a direct object without prepositions like "about" or "for".',
-          ruleMl: '"Discuss", "order" തുടങ്ങിയ ക്രിയകൾക്ക് ശേഷം "about" അല്ലെങ്കിൽ "for" ചേർക്കേണ്ടതില്ല.'
-        }
-      ];
-
-      let filteredEngCards = [...engCards];
-      let engIndex = 0;
-
-      const engBox = document.getElementById('eng-flashcard-box');
-      const engFilter = document.getElementById('grammar-type-filter');
-      const engCounter = document.getElementById('eng-card-counter');
-      const engTitle = document.getElementById('eng-card-front-title');
-      const engMal = document.getElementById('eng-card-front-mal');
-      const engHint = document.getElementById('eng-card-front-hint');
-      const engBackEn = document.getElementById('eng-card-back-en');
-      const engBackMl = document.getElementById('eng-card-back-ml');
-      const engPrev = document.getElementById('eng-prev-card');
-      const engNext = document.getElementById('eng-next-card');
-      const engFlip = document.getElementById('eng-flip-card-btn');
-
-      function renderEngCard(idx) {
-        if (!engBox || filteredEngCards.length === 0) return;
-        engBox.classList.remove('flipped');
-        const c = filteredEngCards[idx];
-        if (engCounter) engCounter.textContent = 'Card ' + (idx + 1) + ' of ' + filteredEngCards.length;
-        if (engTitle) engTitle.textContent = c.title;
-        if (engMal) engMal.textContent = c.mal;
-        if (engHint) engHint.textContent = c.hint;
-        if (engBackEn) engBackEn.innerHTML = '<strong>Answer: ' + c.answer + '</strong><br>' + c.rule;
-        if (engBackMl) engBackMl.textContent = c.ruleMl;
-      }
-
-      function toggleEngFlip() {
-        if (engBox) engBox.classList.toggle('flipped');
-      }
-
-      if (engBox) {
-        engBox.addEventListener('click', toggleEngFlip);
-        engBox.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleEngFlip();
-          }
-        });
-      }
-      if (engFlip) engFlip.addEventListener('click', toggleEngFlip);
-
-      if (engPrev) {
-        engPrev.addEventListener('click', () => {
-          if (filteredEngCards.length === 0) return;
-          engIndex = (engIndex - 1 + filteredEngCards.length) % filteredEngCards.length;
-          renderEngCard(engIndex);
-        });
-      }
-
-      if (engNext) {
-        engNext.addEventListener('click', () => {
-          if (filteredEngCards.length === 0) return;
-          engIndex = (engIndex + 1) % filteredEngCards.length;
-          renderEngCard(engIndex);
-        });
-      }
-
-      if (engFilter) {
-        engFilter.addEventListener('change', (e) => {
-          const type = e.target.value;
-          if (type === 'all') {
-            filteredEngCards = [...engCards];
-          } else {
-            filteredEngCards = engCards.filter(card => card.type === type);
-          }
-          engIndex = 0;
-          renderEngCard(engIndex);
-        });
-      }
-
-      renderEngCard(0);
-    })();
-  </script>
+    <script defer src="active-recall-engine.js"></script>
 
     <!-- ========================================================================= -->
     <!-- [TEMPORARILY ARCHIVED: AI STUDY HELPER]                                   -->
@@ -5170,6 +4643,7 @@
       }
     }, 0);
   }, true);
+  </script>
   <!-- [TEMPORARILY ARCHIVED: AI STUDY SCRIPT - Re-enable when restoring AI Study Helper] -->
   <!-- <script src="ai-study.js?v=20261014-ai-study-helper" defer></script> -->
 
