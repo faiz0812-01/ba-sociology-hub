@@ -2528,24 +2528,8 @@
         ]
       }
     ];
-    const microeconomicsEnglishModules = [
-      {
-        name: 'Module V · Open-ended module',
-        items: [
-          {
-            label: 'Unit 23 · Open-ended module',
-            title: 'Microeconomic Foundation · Module V · Unit 23 · Open-ended module',
-            description: 'Market structures, firm decision-making, and the influence of economic policies on market transactions.',
-            href: 'Unit23_T1782382201236.pdf',
-            medium: 'English',
-            embed: true
-          }
-        ]
-      }
-    ];
     function getSubjectModules(subject,medium) {
       if(subject==='Arabic' && medium==='Arabic') return arabicCourseModules;
-      if(subject==='Microeconomic Foundation' && medium==='English') return microeconomicsEnglishModules;
       if(subject==='Mathematics' && medium==='English') return mathematicsCourseModules;
       if(subject==='English' && medium==='English') return englishCourseModules;
       if(subject==='English' && medium==='Malayalam') return englishMalayalamModules;
@@ -3560,8 +3544,8 @@
                 ? 'Official Development Issues in Indian Economy course modules (Modules 1–5, 12 documents). Choose a module and topic to open or preview.'
                 : subject==='Mathematics' && medium==='English'
                   ? 'Official Mathematics course modules (Modules 1–4, 18 comprehensive chapters & question banks). Select a chapter to read PDF, study bilingual summaries, or practice MCQs.'
-                : subject==='Microeconomic Foundation' && medium==='English'
-                  ? 'Microeconomic Foundation · Module V (open-ended module). Unit 23 covers market structures, firm decision-making, and policy effects on market transactions.'
+                : (subject==='Microeconomic Foundation' || subject==='Microeconomics') && medium==='English'
+                  ? 'Official Microeconomic Foundation course modules (Modules 1–5, 23 comprehensive units). Select a unit to read PDF, study bilingual summaries, or practice MCQs.'
                 : medium==='Malayalam'
                   ? 'Uploaded Malayalam PDFs open here for reading without leaving Academic Hub.'
                 : 'Browse module tabs. PDFs appear here after they are added to Academic Hub.';
