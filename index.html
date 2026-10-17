@@ -4199,6 +4199,17 @@
             embed:true
           }        ]
       }];
+      if(subject==='Development Issues in Indian Economy') return [{
+        name:'Indian Economy MCQ',
+        items:[{
+          label:'Development Issues in Indian Economy · MCQs',
+          title:'Development Issues in Indian Economy · MCQ PDF',
+          href:'Development__Indian_Economy_MCQs.pdf?v=20261017',
+          medium:'English',
+          description:'Indian Economy MCQ question bank PDF.',
+          embed:true
+        }]
+      }];
       return [1,2,3,4].map(n=>({name:'Module '+n,items:[{label:'MCQ PDF awaiting upload',title:subject+' · Module '+n+' · MCQ PDF',description:'Upload the MCQ question-paper PDF for this subject and module to display it here.'}]}));
     }
     function showModuleItem(subject,medium,moduleName,item) {
